@@ -1,0 +1,65 @@
+// /**
+//  * Sample React Native App
+//  * https://github.com/facebook/react-native
+//  *
+//  * @format
+//  */
+
+// import React from 'react';
+// import RNPickerSelect from "react-native-picker-select";
+// import {
+//   Button,
+//   SafeAreaView,
+//   Text,
+//   TextInput,
+//   View,
+// } from 'react-native';
+
+
+
+
+
+
+// const App = () => {
+//   return (
+//     <SafeAreaView>
+//     <View >
+//     <Text>DÉPART</Text>
+//     <TextInput
+//           placeholder="Station de départ"
+//         />
+
+//     <Text>ARRIVÉE</Text>
+//     <TextInput
+//           placeholder="Station d'arrivée"
+//         />
+//     <Text>JOURS DE DÉPART</Text>
+//     <TextInput
+//           placeholder="Date"
+//         />
+//     <Text>HORAIRE DE DÉPART</Text>
+//     <TextInput
+//           placeholder="Horaire de départ"
+//         />
+//     <Text>GENRE</Text>
+//     <RNPickerSelect
+//     placeholder={{ label: "Séléctionnez votre genre", value: null }}
+//                  onValueChange={(value) => console.log(value)}
+//                  items={[
+//                      { label: "Femme", value: "Femme" },
+//                      { label: "Homme", value: "Homme" },
+//                      { label: "Non genré", value: "Non genré" },
+//                  ]}
+//              />
+   
+//     </View>
+//     <Button
+//         title="VALIDER"
+//       />
+//     </SafeAreaView>
+//   );
+// };
+
+  
+
+// export default App;
