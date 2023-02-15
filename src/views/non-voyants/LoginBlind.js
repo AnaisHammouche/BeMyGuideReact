@@ -1,5 +1,5 @@
 import React, {Component, useCallback, useContext, useEffect, useState} from 'react';
-import styles from './../../style/LoginBindStyle';
+import styles from '../../style/LoginBindStyle';
 import {useNavigation} from '@react-navigation/native';
 
 import {
@@ -8,13 +8,12 @@ import {
   TouchableOpacity,
   Text,
   TextInput,
-  FlatList,
   Alert,
 } from 'react-native';
 import axios from 'axios';
 
-  const LogInBind = () => {
-
+  const LogInBlind = () => {
+    const navigation = useNavigation();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
  
@@ -28,8 +27,8 @@ import axios from 'axios';
     .then(function (response) {
       if (response.status = "200") {
         //Alert.alert("reponse : " + JSON.stringify(response.data.token));
-        Alert.alert('coucou');
-       // useNavigation.navigate('TestLogin');
+        //Alert.alert('coucou');
+      navigation.navigate('FormRouteBlind');
       }
       
     })
@@ -83,4 +82,4 @@ import axios from 'axios';
 
 
 
-export default LogInBind;
+export default LogInBlind;

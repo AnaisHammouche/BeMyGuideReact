@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-
-import TestLogin from '../../views/non-voyants/testLogin';
-import LogInBind from '../../views/non-voyants/LoginBind';
+import LogInBlind from '../../views/non-voyants/LoginBlind';
+import FormRouteBlind from '../../views/non-voyants/formRouteBlind';
 
 
 const Stack = createNativeStackNavigator();
@@ -13,8 +12,8 @@ const AppNavigator = () => {
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator initialRouteName="Bienvenue">
-        <Stack.Screen name="LogInBind" component={LogInBind}/>
-        <Stack.Screen name="TestLogin" component={TestLogin} />
+        <Stack.Screen name="LogInBind" component={LogInBlind}/>
+        <Stack.Screen name="FormRouteBlind" component={FormRouteBlind} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -6,7 +6,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 const TestLogin = ({navigation, route}) => {
     return (
         <SafeAreaView>
-        <Text> {route.params.name}
+        <Text> {route.params}
         </Text></SafeAreaView>
     );
 };

@@ -1,11 +1,5 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React from 'react';
+import RNPickerSelect from "react-native-picker-select";
 import {
   Button,
   SafeAreaView,
@@ -16,7 +10,8 @@ import {
 
 
 
-function FormRouteV(){
+
+const FormRouteBlind = () => {
   return (
     <SafeAreaView>
     <View >
@@ -37,7 +32,17 @@ function FormRouteV(){
     <TextInput
           placeholder="Horaire de départ"
         />
-    
+    <Text>GENRE</Text>
+    <RNPickerSelect
+    placeholder={{ label: "Séléctionnez votre genre", value: null }}
+                 onValueChange={(value) => console.log(value)}
+                 items={[
+                     { label: "Femme", value: "Femme" },
+                     { label: "Homme", value: "Homme" },
+                     { label: "Non genré", value: "Non genré" },
+                 ]}
+             />
+   
     </View>
     <Button
         title="VALIDER"
@@ -48,4 +53,4 @@ function FormRouteV(){
 
   
 
-export default FormRouteV;
+export default FormRouteBlind;
