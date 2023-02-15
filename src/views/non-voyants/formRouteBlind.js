@@ -11,10 +11,13 @@ import {
 
 
 
-const FormRouteBlind = () => {
+const FormRouteBlind = ({route, navigation}) => {
+  const tokenForm = route.params;
+ // console.warn('warn formroute' + JSON.stringify(getTokenData));
   return (
     <SafeAreaView>
     <View >
+    <Text>Token actuel : {JSON.stringify(tokenForm)}</Text>
     <Text>DÉPART</Text>
     <TextInput
           placeholder="Station de départ"

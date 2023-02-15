@@ -1,5 +1,6 @@
 import React, {Component, useCallback, useContext, useEffect, useState} from 'react';
 import styles from '../../style/LoginBindStyle';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 
 import {
@@ -13,22 +14,33 @@ import {
 import axios from 'axios';
 
   const LogInBlind = () => {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
  
   const postLogin = useCallback(async(email, password) => {
+
+
 
     axios
     .post("http://localhost:8080/api/v1/auth/authenticate", {
       email: email,
       password: password
     })
-    .then(function (response) {
+    .then(async function (response) {
+      const tokenData = JSON.stringify(response.data.token);
+      console.warn('warn response : ' + tokenData)
+      await AsyncStorage.setItem('Token', tokenData);
+      console.warn('warn1' + JSON.stringify(AsyncStorage));
       if (response.status = "200") {
+       const getTokenData = await AsyncStorage.getItem('Token');
+       console.warn('warn 200' + JSON.stringify(getTokenData));
+       //console.warn(JSON.stringify(AsyncStorage));
+       return getTokenData != null ? JSON.parse(getTokenData) && navigation.navigate('FormRouteBlind', {token : getTokenData}) : null;
         //Alert.alert("reponse : " + JSON.stringify(response.data.token));
         //Alert.alert('coucou');
-      navigation.navigate('FormRouteBlind');
+     // await AsyncStorage.getItem('Token');
+      
       }
       
     })
