@@ -30,14 +30,15 @@ import axios from 'axios';
     })
     .then(async function (response) {
       const tokenData = JSON.stringify(response.data.token);
-      console.warn('warn response : ' + tokenData)
+      console.log(JSON.parse(tokenData));
+      console.warn('warn response : ' + tokenData);
       await AsyncStorage.setItem('Token', tokenData);
       console.warn('warn1' + JSON.stringify(AsyncStorage));
       if (response.status = "200") {
        const getTokenData = await AsyncStorage.getItem('Token');
        console.warn('warn 200' + JSON.stringify(getTokenData));
        //console.warn(JSON.stringify(AsyncStorage));
-       return getTokenData != null ? JSON.parse(getTokenData) && navigation.navigate('FormRouteBlind', {token : getTokenData}) : null;
+       return getTokenData != null ? JSON.parse(getTokenData) && navigation.navigate('FormRouteBlind', { token : getTokenData}) : null;
         //Alert.alert("reponse : " + JSON.stringify(response.data.token));
         //Alert.alert('coucou');
      // await AsyncStorage.getItem('Token');
@@ -52,9 +53,9 @@ import axios from 'axios';
   }, []);
 
 
-  return (
-    <Match/>
-  );
+  // return (
+  //   <Match/>
+  // );
 
 
 

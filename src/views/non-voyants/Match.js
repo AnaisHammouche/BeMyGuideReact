@@ -16,29 +16,43 @@ import axios from 'axios';
 
   const Match = () => {
   const navigation = useNavigation();
-  const [fromStation, setFromStation] = useState();
-  const [toStation, setToStation] = useState();
+  const [fromStation, setFromStation] = useState([]);
+  const [toStation, setToStation] = useState([]);
   const [date, setDate] = useState();
   const [hours, setHours] = useState();
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   
-  const getMatch = () => {
+  const getMatch = async () => {
 
-   axios
-    .get("http://localhost:8080/api/v1/routes/test", {
-       params: { fromStation: fromStation,
-        toStation: toStation
+    const config = {
+      headers: {
+        'Accept-Encoding': 'gzip, deflate, br'
+      }};
+
+
+  axios
+    .get('http://localhost:8080/api/v1/routes/test', {
+
+      headers: {
+        'Accept-Encoding': 'gzip, deflate, br'
     }
+
+    //    params: { fromStation: fromStation,
+    //     toStation: toStation,
+    //     tokenData : 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXlAZ21haWwuY29tIiwiaWF0IjoxNjc2NTQ1NTc1LCJleHAiOjE2NzY1NTk5NzV9.4wbHNstFfkLAukRc0xjNPxjnp8rMhePZ_cLcRThhBm8'
+    // }
     })
     .then(function (response) {
-        setFromStation();
-        setToStation();
-        Alert.alert(' get response : ' + JSON.stringify(response.data));
+      //const tokenData = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYXlAZ21haWwuY29tIiwiaWF0IjoxNjc2NTQ1NTc1LCJleHAiOjE2NzY1NTk5NzV9.4wbHNstFfkLAukRc0xjNPxjnp8rMhePZ_cLcRThhBm8';
+        // setFromStation(response.data);
+        // setToStation(response.data);
+        
+        Alert.alert(' get response : ' + response.status);
     
     })
     .catch(function(error) {
-      Alert.alert('get error : ' + JSON.stringify(error));
+      Alert.alert('Accept-Encoding status:'+ error);
     })
     .then(function (){
 
