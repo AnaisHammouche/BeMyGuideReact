@@ -12,7 +12,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 const Stack = createNativeStackNavigator();
 
 import Welcome from './views/welcome';
-import Register from './views/regiter';
+import Register from './views/register';
+import Login from './views/login';
+
 //import type {PropsWithChildren} from 'react';
 
 /* import {
@@ -23,14 +25,14 @@ import Register from './views/regiter';
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen'; */
 
+// Pour masquer la header bar screenOptions={{headerShown: false}}
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Home"
-        screenOptions={{headerShown: false}}>
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={Welcome} />
         <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="Login" component={Login} />
       </Stack.Navigator>
     </NavigationContainer>
   );

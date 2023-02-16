@@ -12,18 +12,20 @@ export const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'RobotoMono-Bold',
-    marginBottom: 20,
-    fontSize: 30,
+    fontSize: 35,
+    marginTop: 90,
     textAlign: 'center',
     alignContent: 'space-between',
     color: colors_theme.txt_white,
   },
   separator: {
-    marginVertical: 120,
+    marginVertical: 80,
     alignItems: 'center',
     justifyContent: 'center',
   },
   icon: {
+    marginHorizontal: 170,
+    alignItems: 'center',
     tintColor: 'white',
     justifyContent: 'center',
     width: 50,

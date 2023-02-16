@@ -25,19 +25,21 @@ const Welcome = props => {
     <SafeAreaView style={styles.screen}>
       <ImageBackground source={require('../assets/main_aidant.png')}>
         <View style={styles.separator}>
+          <Text style={styles.title}>Où tu iras, nous irons aussi.</Text>
           <Image
             source={require('../assets/close_eye.png')}
             style={styles.icon}
           />
         </View>
-        <Text style={styles.title}>Où tu iras, nous irons aussi.</Text>
-        <Text style={styles.text}>
-          Avec Be my guide, trouvez facilement un(e) accompagnateur(trice)
-          adapté(e) à vos besoins et disponible surtout quand vous en avez
-          besoin.
-        </Text>
         <View style={styles.separator}>
-          <ButtonDefault title="Rejoignez-nous" onPress={goToRegister} />
+          <ButtonDefault
+            title="JE SOUHAITE ME FAIRE ACCOMPAGNE"
+            onPress={goToRegister}
+          />
+          <ButtonDefault
+            title="JE SOUHAITE ACCOMPAGNER QUELQU'UN"
+            onPress={goToRegister}
+          />
           <Text style={styles.textConnect}>Vous avez déjà un compte ?</Text>
           <TouchableOpacity onPress={goToLogin}>
             <Text style={styles.connect}> Connectez-vous</Text>

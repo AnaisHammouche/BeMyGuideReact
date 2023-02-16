@@ -3,7 +3,7 @@ import {colors_theme} from '../config/colors_theme.js';
 
 export const styles = StyleSheet.create({
   button: {
-    backgroundColor: colors_theme.button_green,
+    backgroundColor: 'white',
     alignItems: 'center',
     height: 70,
     width: 300,
@@ -12,9 +12,8 @@ export const styles = StyleSheet.create({
     borderRadius: 30,
   },
   buttonText: {
-    color: 'white',
-    fontSize: 18,
+    color: 'grey',
+    fontSize: 26,
     fontFamily: 'RobotoMono-Medium',
-    textAlign: 'center',
   },
 });
