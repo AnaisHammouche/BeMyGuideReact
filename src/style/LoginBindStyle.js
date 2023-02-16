@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    marginBottom: '30%',
+    marginBottom: '90%',
   },
   title: {
     fontWeight: 'bold',

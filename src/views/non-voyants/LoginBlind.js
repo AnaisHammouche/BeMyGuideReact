@@ -11,6 +11,7 @@ import {
   TextInput,
   Alert,
 } from 'react-native';
+import Match from '../non-voyants/Match';
 import axios from 'axios';
 
   const LogInBlind = () => {
@@ -51,10 +52,15 @@ import axios from 'axios';
   }, []);
 
 
+  return (
+    <Match/>
+  );
+
+
 
   return (
     <SafeAreaView style={styles.screen}>
-      <View>
+      <View style={styles.container}>
         <Text style={styles.title}>Ça faisait longtemps qu'on ne vous avait pas vu</Text>
         <View >
           <Text >VOTRE ADRESSE MAIL</Text>
@@ -74,17 +80,17 @@ import axios from 'axios';
           onChangeText={setPassword}
           />
         </View>
-        
+{/*         
         <TouchableOpacity
         onPress={() => Alert.alert(JSON.stringify('email : ' + email + ' mdp : ' + password))}>
           <Text >
             ME CONNECTER
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
         onPress={() => postLogin(email, password) }>
           <Text >
-            ME CONNECTER Ray
+            ME CONNECTER
           </Text>
         </TouchableOpacity>
       </View>
