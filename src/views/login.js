@@ -5,7 +5,6 @@ import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {styles} from '../styles/login_style';
 import ButtonDefault from '../components/button';
-import {RadioButton} from 'react-native-paper';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -18,7 +17,6 @@ const Login = () => {
   const getUser = async () => {
     try {
       const data = await AsyncStorage.getItem(mail);
-      //console.log(pseudo + " " + data);
       console.log(value);
       if (data !== null || data !== '') {
         setValue(data);
@@ -55,13 +53,6 @@ const Login = () => {
         <Text style={styles.title}>
           Ca fait longtemps qu'on ne vous avait pas vu
         </Text>
-        <View>
-          <RadioButton
-            value="Mr"
-            status={checked === 'first' ? 'checked' : 'unchecked'}
-            onPress={() => setChecked('first')}
-          />
-        </View>
         <View style={styles.separator}>
           <TextInput
             style={isValid ? styles.form : styles.formRed}

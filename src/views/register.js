@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {SafeAreaView, Text, View, Image, TextInput} from 'react-native';
 import {styles} from '../styles/register_style';
 import ButtonDefault from '../components/button';
+import {RadioButton} from 'react-native-paper';
 
 const Register = () => {
   const navigation = useNavigation();
@@ -71,6 +72,13 @@ const Register = () => {
         <Text style={styles.title}>Nous rejoindre</Text>
       </View>
       <View style={styles.separator}>
+        {/*  <View>
+          <RadioButton
+            value="Mr"
+            status={checked === 'first' ? 'checked' : 'unchecked'}
+            onPress={() => setChecked('first')}
+          />
+        </View> */}
         <TextInput
           style={styles.form}
           autoCapitalize="none"
