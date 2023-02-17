@@ -1,7 +1,7 @@
 import React, { Component, useCallback, useContext, useEffect, useState } from 'react';
 import RNPickerSelect from "react-native-picker-select";
 import axios from 'axios';
-
+import styles from '../../styles/LoginBindStyle';
 import {
   Button,
   SafeAreaView,
@@ -38,15 +38,15 @@ const FormRouteBlind = ({ route, navigation }) => {
       .then(async function (response) {
         if (response.status = "200") {
           const fromStationData = JSON.stringify(fromStation);
-          console.log('fromstation : ' + fromStationData);
+        //  console.log('fromstation : ' + fromStationData);
           
           const toStationData = JSON.stringify(toStation);
-          console.log('tostationDataa : ' + toStationData );
+       //   console.log('tostationDataa : ' + toStationData );
         
           //  alert("reponse : " + JSON.stringify(response.data.token));
-          console.log("c'est gagné ! ")
+        //  console.log("c'est gagné ! ")
         
-          navigation.navigate('Match', { fromStation: fromStationData, toStation: toStationData });
+          navigation.navigate('Match', { fromStation: fromStationData, toStation: toStationData , routeParamsToken: routeParamsToken });
         }
 
       })
@@ -60,7 +60,7 @@ const FormRouteBlind = ({ route, navigation }) => {
   return (
     <SafeAreaView style={{marginTop: '50%'}}>
       <View >
-       
+      <Text style={styles.title}>OÙ ALLEZ-VOUS ?</Text>
         <Text>DÉPART</Text>
           <TextInput
           placeholder="Station de départ"

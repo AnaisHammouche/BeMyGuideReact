@@ -30,12 +30,12 @@ const LogInBlind = () => {
       })
       .then(async function (response) {
         const tokenData = JSON.stringify(response.data.token);
-        console.warn('warn response : ' + tokenData)
+       // console.warn('warn response : ' + tokenData)
         await AsyncStorage.setItem('Token', tokenData);
-        console.warn('warn1' + JSON.stringify(AsyncStorage));
+       // console.warn('warn1' + JSON.stringify(AsyncStorage));
         if (response.status = "200") {
           const getTokenData = await AsyncStorage.getItem('Token');
-          console.warn('warn 200' + JSON.stringify(getTokenData));
+       //   console.warn('warn 200' + JSON.stringify(getTokenData));
           //console.warn(JSON.stringify(AsyncStorage));
          // return getTokenData != null ? JSON.parse(getTokenData) && navigation.navigate('FormRouteBlind', { token: tokenData }) : null;
           return getTokenData != null ? JSON.parse(getTokenData) && navigation.navigate('FormRouteBlind', { token: getTokenData }) : null;
