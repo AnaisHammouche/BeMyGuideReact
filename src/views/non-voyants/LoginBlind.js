@@ -1,5 +1,5 @@
 import React, { Component, useCallback, useContext, useEffect, useState } from 'react';
-import styles from '../../style/LoginBindStyle';
+import {styles} from '../../styles/login_style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
@@ -11,6 +11,7 @@ import {
   Text,
   TextInput,
   Alert,
+  Image
 } from 'react-native';
 
 const LogInBlind = () => {
@@ -21,8 +22,8 @@ const LogInBlind = () => {
   const postLogin = useCallback(async (email, password) => {
 
     axios
-      // .post("http://localhost:8080/api/v1/auth/authenticate", {
-      .post("http://192.168.1.20:8080/api/v1/auth/authenticate", {
+       .post("http://localhost:8080/api/v1/auth/authenticate", {
+     // .post("http://192.168.1.20:8080/api/v1/auth/authenticate", {
 
         email: email,
         password: password
@@ -37,7 +38,7 @@ const LogInBlind = () => {
           console.warn('warn 200' + JSON.stringify(getTokenData));
           //console.warn(JSON.stringify(AsyncStorage));
          // return getTokenData != null ? JSON.parse(getTokenData) && navigation.navigate('FormRouteBlind', { token: tokenData }) : null;
-          return getTokenData != null ? JSON.parse(getTokenData) && navigation.navigate('FormRouteBlind', { token: tokenData }) : null;
+          return getTokenData != null ? JSON.parse(getTokenData) && navigation.navigate('FormRouteBlind', { token: getTokenData }) : null;
            //Alert.alert("reponse : " + JSON.stringify(response.data.token));
           //Alert.alert('coucou');
           // await AsyncStorage.getItem('Token');
@@ -55,11 +56,12 @@ const LogInBlind = () => {
 
   return (
     <SafeAreaView style={styles.screen}>
-      <View>
-        <Text style={styles.title}>Ça faisait longtemps qu'on ne vous avait pas vu</Text>
+      <View style={styles.container}>
+        <Text style={styles.title}>Ça faisait longtemps qu'on ne vous avait pas vu.  <Image source={require('../../assets/close_eye.png')} style={styles.icon}/></Text>
         <View >
           <Text >VOTRE ADRESSE MAIL</Text>
           <TextInput
+            //style={isValid ? styles.form : styles.formRed}
             placeholder='bonjour@bemyguide.fr'
             keyboardType="default"
             value={email}

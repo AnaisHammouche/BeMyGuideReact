@@ -18,6 +18,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const FormRouteBlind = ({ route, navigation }) => {
 
   const routeParamsToken = route.params.token;
+
   const [fromStation, setfromStation] = useState();
   const [toStation, setToStation] = useState();
   const [date, setDate] = useState();
@@ -27,17 +28,25 @@ const FormRouteBlind = ({ route, navigation }) => {
 
     axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(routeParamsToken)}`;
 
-   await axios
+    axios
       // (mettre son ip ici après le http://)
-      .post("http://192.168.1.20:8080/api/v1/routes/add", {
+    //  .post("http://192.168.1.20:8080/api/v1/routes/add", {
+      .post("http://localhost:8080/api/v1/routes/add", {
         fromStation: fromStation,
         toStation: toStation
 })
       .then(async function (response) {
         if (response.status = "200") {
+          const fromStationData = JSON.stringify(fromStation);
+          console.log('fromstation : ' + fromStationData);
+          
+          const toStationData = JSON.stringify(toStation);
+          console.log('tostationDataa : ' + toStationData );
+        
           //  alert("reponse : " + JSON.stringify(response.data.token));
           console.log("c'est gagné ! ")
-          navigation.navigate('LogInBlind');
+        
+          navigation.navigate('Match', { fromStation: fromStationData, toStation: toStationData });
         }
 
       })
@@ -49,7 +58,7 @@ const FormRouteBlind = ({ route, navigation }) => {
   }, []);
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{marginTop: '50%'}}>
       <View >
        
         <Text>DÉPART</Text>
@@ -81,7 +90,7 @@ const FormRouteBlind = ({ route, navigation }) => {
           value={time}
           onChangeText={setTime}
         />
-        {/*  <Text>GENRE</Text>
+         <Text>GENRE</Text>
         <RNPickerSelect
           placeholder={{ label: "Séléctionnez votre genre", value: null }}
           onValueChange={(value) => console.log(value)}
@@ -90,7 +99,7 @@ const FormRouteBlind = ({ route, navigation }) => {
             { label: "Homme", value: "Homme" },
             { label: "Non genré", value: "Non genré" },
           ]}
-        /> */}
+        />
 
       </View>
       <TouchableOpacity

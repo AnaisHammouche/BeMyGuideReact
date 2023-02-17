@@ -33,7 +33,7 @@ const Welcome = props => {
         </View>
         <View style={styles.separator}>
           <ButtonDefault
-            title="JE SOUHAITE ME FAIRE ACCOMPAGNE"
+            title="JE SOUHAITE ME FAIRE ACCOMPAGNER"
             onPress={goToRegister}
           />
           <ButtonDefault

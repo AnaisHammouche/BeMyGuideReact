@@ -7,13 +7,7 @@
 
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-
-const Stack = createNativeStackNavigator();
-
-import Welcome from './views/welcome';
-import Register from './views/register';
-import Login from './views/login';
+import AppNavigator from '../src/components/navigators/AppNavigator';
 
 //import type {PropsWithChildren} from 'react';
 
@@ -29,11 +23,7 @@ import Login from './views/login';
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Home" component={Welcome} />
-        <Stack.Screen name="Register" component={Register} />
-        <Stack.Screen name="Login" component={Login} />
-      </Stack.Navigator>
+     <AppNavigator/>
     </NavigationContainer>
   );
 };

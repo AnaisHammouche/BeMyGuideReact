@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
   title: {
     fontFamily: 'RobotoMono-Bold',
     fontSize: 30,
-    alignItems: 'space-around',
+   // alignItems: 'space-around',
   },
   separator: {
     marginVertical: 50,

@@ -58,7 +58,7 @@ const Register = () => {
       );
       navigation.navigate('Login');
     } else {
-      alert('ils nous manquent des informations');
+      alert('Veuillez remplir les informations nécessaires à votre inscriptions.');
     }
   }, [isValid, user.firstName]);
 
