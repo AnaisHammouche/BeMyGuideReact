@@ -50,7 +50,7 @@ const LogInBlind = () => {
       .catch(function (error) {
         Alert.alert('erreur : ' + JSON.stringify(error));
       });
-  }, []);
+    }, []);
 
   // return (
   //   <Match/>
@@ -96,6 +96,7 @@ const LogInBlind = () => {
             ME CONNECTER
           </Text>
         </TouchableOpacity>
+      </View>
       </View>
     </SafeAreaView>
   );
