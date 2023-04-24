@@ -1,5 +1,6 @@
 import React, { Component, useCallback, useContext, useEffect, useState } from 'react';
 import {styles} from '../../styles/login_style';
+// import {styles} from '../../styles/button_style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
@@ -59,18 +60,18 @@ const LogInBlind = () => {
       <View style={styles.container}>
         <Text style={styles.title}>Ça faisait longtemps qu'on ne vous avait pas vu.  <Image source={require('../../assets/close_eye.png')} style={styles.icon}/></Text>
         <View >
-          <Text >VOTRE ADRESSE MAIL</Text>
-          <TextInput
+          <Text style={styles.text}>VOTRE ADRESSE MAIL</Text>
+          <TextInput style={styles.input}
             //style={isValid ? styles.form : styles.formRed}
             placeholder='bonjour@bemyguide.fr'
             keyboardType="default"
             value={email}
             onChangeText={setEmail}
           />
-          <Text keyboardType="default">
+          <Text style={styles.text} keyboardType="default">
             VOTRE MOT DE PASSE
           </Text>
-          <TextInput
+          <TextInput  style={styles.input}
             placeholder='**********'
             secureTextEntry={true}
             value={password}
@@ -84,9 +85,9 @@ const LogInBlind = () => {
             ME CONNECTER
           </Text>
         </TouchableOpacity> */}
-        <TouchableOpacity
+        <TouchableOpacity style={styles.button}
           onPress={() => postLogin(email, password)}>
-          <Text >
+          <Text style={styles.buttonText}>
             ME CONNECTER
           </Text>
         </TouchableOpacity>
