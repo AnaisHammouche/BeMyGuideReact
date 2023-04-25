@@ -68,7 +68,7 @@ const FormRouteBlind = ({route, navigation}) => {
       <View style={styles.container}>
      
         <Text style={styles.title}>OÙ ALLEZ-VOUS ?</Text>
-        <Text  style={styles.text}>DÉPART</Text>
+        <Text  style={styles.text}>STATION DE DÉPART</Text>
         <TextInput
           style={styles.input}
           placeholder="Station de départ"
@@ -77,7 +77,7 @@ const FormRouteBlind = ({route, navigation}) => {
           onChangeText={setfromStation}
         />
 
-        <Text style={styles.text}>ARRIVÉE</Text>
+        <Text style={styles.text}>STATION D'ARRIVÉE</Text>
         <TextInput
           style={styles.input}
           placeholder="Station d'arrivée"
