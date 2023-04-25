@@ -4,21 +4,22 @@ import {colors_theme} from '../config/colors_theme.js';
 export const styles = StyleSheet.create({
   screen: {
     flex: 1,
+ //   justifyContent: 'space-between',
   },
   image: {
     flex: 1,
     resizeMode: 'cover',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
   title: {
     fontFamily: 'RobotoMono-Bold',
-    fontSize: 35,
-    marginTop: 90,
+    fontSize: 25,
     textAlign: 'center',
-    alignContent: 'space-between',
+   // alignContent: 'space-between',
     color: colors_theme.txt_white,
   },
-  separator: {
+  titleContainer: {
+    paddingTop: 120,
     marginVertical: 80,
     alignItems: 'center',
     justifyContent: 'center',
@@ -42,10 +43,32 @@ export const styles = StyleSheet.create({
     color: colors_theme.txt_white,
     fontFamily: 'RobotoMono-Medium',
     fontSize: 12,
+    marginTop: 18,
   },
   connect: {
+    textAlign: 'center',
     color: colors_theme.txt_white,
     fontSize: 12,
     fontFamily: 'RobotoMono-Bold',
+  },
+  button1: {
+    backgroundColor: colors_theme.button_green,
+    alignItems: 'center',
+    padding: 4,
+    height: 50,
+    width: 250,
+    // marginTop: 30,
+    justifyContent: 'center',
+    borderRadius: 10,
+  },
+  button2: {
+    backgroundColor: colors_theme.button_green,
+    alignItems: 'center',
+    padding: 4,
+    height: 50,
+    width: 250,
+    marginTop: 20,
+    justifyContent: 'center',
+    borderRadius: 10,
   },
 });

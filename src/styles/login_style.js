@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
     margin: 6,
     borderWidth: 1,
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 2,
   },
 
   separator: {
@@ -57,7 +57,7 @@ export const styles = StyleSheet.create({
     width: 200,
     marginTop: 60,
     justifyContent: 'center',
-    borderRadius: 30,
+    borderRadius: 10,
   },
   buttonText: {
     color: 'white',
