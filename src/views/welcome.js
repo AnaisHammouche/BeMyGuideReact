@@ -46,7 +46,7 @@ const Welcome = props => {
         
         
           <Text style={styles.textConnect}>Vous avez déjà un compte ?</Text>
-          <TouchableOpacity onPress={goToLogin} >
+          <TouchableOpacity onPress={goToLogin} style={styles.button}>
             <Text style={styles.connect}> Connectez-vous</Text>
           </TouchableOpacity>
         </View>
