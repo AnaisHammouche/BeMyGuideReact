@@ -66,8 +66,9 @@ const FormRouteBlind = ({route, navigation}) => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
+     
         <Text style={styles.title}>OÙ ALLEZ-VOUS ?</Text>
-        <Text >DÉPART</Text>
+        <Text  style={styles.text}>DÉPART</Text>
         <TextInput
           style={styles.input}
           placeholder="Station de départ"
@@ -76,7 +77,7 @@ const FormRouteBlind = ({route, navigation}) => {
           onChangeText={setfromStation}
         />
 
-        <Text>ARRIVÉE</Text>
+        <Text style={styles.text}>ARRIVÉE</Text>
         <TextInput
           style={styles.input}
           placeholder="Station d'arrivée"
@@ -84,7 +85,7 @@ const FormRouteBlind = ({route, navigation}) => {
           value={toStation}
           onChangeText={setToStation}
         />
-        <Text>JOUR DE DÉPART</Text>
+        <Text style={styles.text}>JOUR DE DÉPART</Text>
         <TextInput
           style={styles.input}
           placeholder="Date"
@@ -92,7 +93,7 @@ const FormRouteBlind = ({route, navigation}) => {
           value={date}
           onChangeText={setDate}
         />
-        <Text>HORAIRE DE DÉPART</Text>
+        <Text style={styles.text}>HORAIRE DE DÉPART</Text>
         <TextInput
           style={styles.input}
           placeholder="Horaire de départ"
@@ -100,7 +101,7 @@ const FormRouteBlind = ({route, navigation}) => {
           value={time}
           onChangeText={setTime}
         />
-        <Text>GENRE</Text>
+        <Text style={styles.text}>GENRE</Text>
         <RNPickerSelect
           placeholder={{label: 'Séléctionnez votre genre', value: null}}
           onValueChange={value => console.log(value)}

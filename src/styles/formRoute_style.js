@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
   container:{
     flex: 1,
     padding: 40,
+   width: '100%',
     justifyContent: 'center',
     alignItems: 'flex-start',
   },
@@ -21,12 +22,12 @@ const styles = StyleSheet.create({
   title: {
     fontFamily: 'RobotoMono-Bold',
     fontSize: 30,
-    textAlign: 'justify',
+    textAlign: 'center',
     marginBottom: 36,
   },
 
   text: {
-    
+    fontWeight: '700',
   },
 
 input: {
@@ -50,7 +51,10 @@ input: {
   },
   
   connect: {
+    color: 'white',
+    fontWeight: '700',
     textAlign: 'center',
+   // fontSize: 12,
     marginHorizontal: 40,
     marginVertical: 10,
     height: 40,
