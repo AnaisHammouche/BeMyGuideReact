@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-import LogInBlind from '../../views/non-voyants/LoginBlind';
-import FormRouteBlind from '../../views/non-voyants/formRouteBlind';
+import LogInBlind from '../../views/blind/LoginBlind';
+import FormRouteBlind from '../../views/blind/formRouteBlind';
 import Welcome from '../../views/welcome';
 import Register from '../../views/register';
-import LoginBlind from '../../views/non-voyants/LoginBlind';
-import Match from '../../views/non-voyants/Match';
+import LoginBlind from '../../views/blind/LoginBlind';
+import Match from '../../views/blind/Match';
 
 
 const Stack = createNativeStackNavigator();
