@@ -24,24 +24,29 @@ const Welcome = props => {
   return (
     <SafeAreaView style={styles.screen}>
       <ImageBackground source={require('../assets/main_aidant.png')}>
-        <View style={styles.separator}>
-          <Text style={styles.title}>Où tu iras, nous irons aussi.</Text>
+        <View style={styles.titleContainer}>
+      
+          <Text style={styles.title}>Où tu iras, </Text>
+          <Text style={styles.title}>nous irons aussi.</Text>
           <Image
             source={require('../assets/close_eye.png')}
             style={styles.icon}
           />
         </View>
-        <View style={styles.separator}>
-          <ButtonDefault
-            title="JE SOUHAITE ME FAIRE ACCOMPAGNER"
-            onPress={goToRegister}
-          />
-          <ButtonDefault
-            title="JE SOUHAITE ACCOMPAGNER QUELQU'UN"
-            onPress={goToRegister}
-          />
+        <View style={styles.titleContainer}>
+          <TouchableOpacity onPress={goToRegister} style={styles.button1}>
+          <Text style={styles.connect}>   JE SOUHAITE ME FAIRE ACCOMPAGNER</Text>
+            
+            </TouchableOpacity>
+        
+          <TouchableOpacity onPress={goToRegister} style={styles.button2}>
+          <Text style={styles.connect}> JE SOUHAITE ACCOMPAGNER QUELQU'UN</Text>
+         
+        </TouchableOpacity>
+        
+        
           <Text style={styles.textConnect}>Vous avez déjà un compte ?</Text>
-          <TouchableOpacity onPress={goToLogin}>
+          <TouchableOpacity onPress={goToLogin} >
             <Text style={styles.connect}> Connectez-vous</Text>
           </TouchableOpacity>
         </View>
