@@ -1,7 +1,14 @@
-import React, { Component, useCallback, useContext, useEffect, useState } from 'react';
-import RNPickerSelect from "react-native-picker-select";
+import React, {
+  Component,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
+import RNPickerSelect from 'react-native-picker-select';
 import axios from 'axios';
-import styles from '../../styles/LoginBindStyle';
+import styles from '../../styles/formRoute_style';
+
 import {
   Button,
   SafeAreaView,
@@ -12,11 +19,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
-
-
-const FormRouteBlind = ({ route, navigation }) => {
-
+const FormRouteBlind = ({route, navigation}) => {
   const routeParamsToken = route.params.token;
 
   const [fromStation, setfromStation] = useState();
@@ -25,44 +28,48 @@ const FormRouteBlind = ({ route, navigation }) => {
   const [time, setTime] = useState();
 
   const postRoute = useCallback(async (fromStation, toStation) => {
-
-    axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(routeParamsToken)}`;
+    axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
+      routeParamsToken,
+    )}`;
 
     axios
       // (mettre son ip ici après le http://)
-    //  .post("http://192.168.1.20:8080/api/v1/routes/add", {
-      .post("http://localhost:8080/api/v1/routes/add", {
+      //  .post("http://192.168.1.20:8080/api/v1/routes/add", {
+      .post('http://localhost:8080/api/v1/routes/add', {
         fromStation: fromStation,
-        toStation: toStation
-})
+        toStation: toStation,
+      })
       .then(async function (response) {
-        if (response.status = "200") {
+        if ((response.status = '200')) {
           const fromStationData = JSON.stringify(fromStation);
-        //  console.log('fromstation : ' + fromStationData);
-          
-          const toStationData = JSON.stringify(toStation);
-       //   console.log('tostationDataa : ' + toStationData );
-        
-          //  alert("reponse : " + JSON.stringify(response.data.token));
-        //  console.log("c'est gagné ! ")
-        
-          navigation.navigate('Match', { fromStation: fromStationData, toStation: toStationData , routeParamsToken: routeParamsToken });
-        }
+          //  console.log('fromstation : ' + fromStationData);
 
+          const toStationData = JSON.stringify(toStation);
+          //   console.log('tostationDataa : ' + toStationData );
+
+          //  alert("reponse : " + JSON.stringify(response.data.token));
+          //  console.log("c'est gagné ! ")
+
+          navigation.navigate('Match', {
+            fromStation: fromStationData,
+            toStation: toStationData,
+            routeParamsToken: routeParamsToken,
+          });
+        }
       })
       .catch(function (error) {
         alert('erreur : ' + JSON.stringify(error));
-        console.log("perdu ! " + error)
+        console.log('perdu ! ' + error);
       });
-
   }, []);
 
   return (
-    <SafeAreaView style={{marginTop: '50%'}}>
-      <View >
-      <Text style={styles.title}>OÙ ALLEZ-VOUS ?</Text>
-        <Text>DÉPART</Text>
-          <TextInput
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+        <Text style={styles.title}>OÙ ALLEZ-VOUS ?</Text>
+        <Text >DÉPART</Text>
+        <TextInput
+          style={styles.input}
           placeholder="Station de départ"
           keyboardType="default"
           value={fromStation}
@@ -71,6 +78,7 @@ const FormRouteBlind = ({ route, navigation }) => {
 
         <Text>ARRIVÉE</Text>
         <TextInput
+          style={styles.input}
           placeholder="Station d'arrivée"
           keyboardType="default"
           value={toStation}
@@ -78,6 +86,7 @@ const FormRouteBlind = ({ route, navigation }) => {
         />
         <Text>JOUR DE DÉPART</Text>
         <TextInput
+          style={styles.input}
           placeholder="Date"
           keyboardType="default"
           value={date}
@@ -85,33 +94,31 @@ const FormRouteBlind = ({ route, navigation }) => {
         />
         <Text>HORAIRE DE DÉPART</Text>
         <TextInput
+          style={styles.input}
           placeholder="Horaire de départ"
           keyboardType="default"
           value={time}
           onChangeText={setTime}
         />
-         <Text>GENRE</Text>
+        <Text>GENRE</Text>
         <RNPickerSelect
-          placeholder={{ label: "Séléctionnez votre genre", value: null }}
-          onValueChange={(value) => console.log(value)}
+          placeholder={{label: 'Séléctionnez votre genre', value: null}}
+          onValueChange={value => console.log(value)}
           items={[
-            { label: "Femme", value: "Femme" },
-            { label: "Homme", value: "Homme" },
-            { label: "Non genré", value: "Non genré" },
+            {label: 'Femme', value: 'Femme'},
+            {label: 'Homme', value: 'Homme'},
+            {label: 'Non genré', value: 'Non genré'},
           ]}
         />
-
-      </View>
+      
       <TouchableOpacity
+        style={styles.button}
         onPress={() => postRoute(fromStation, toStation)}>
-        <Text >
-          Valider
-        </Text>
+        <Text style={styles.connect}>Valider</Text>
       </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };
-
-
 
 export default FormRouteBlind;
