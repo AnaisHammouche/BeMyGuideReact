@@ -19,6 +19,7 @@ import axios from 'axios';
     console.log('ROUTPARAMFROMSTATION : ' + routeParamsFromStation);
     const routeParamsToStation = JSON.parse(route.params.toStation);
     console.log('ROUTPARAMTOSTATION : ' + routeParamsToStation);
+    
  // const navigation = useNavigation();
   const [fromStation, setFromStation] = useState([]);
   const [toStation, setToStation] = useState([]);
@@ -27,32 +28,25 @@ import axios from 'axios';
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   
-  const getMatch =  () => {
-
-
-
-    // const config = {
-    //   headers: {
-    //     'Accept-Encoding': 'gzip, deflate, br'
-    //   }};
-
-
+  const getMatch =  useCallback(async (routeParamsFromStation, routeParamsToStation) => {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(routeParamsToken)}`;
+    console.log("routeParamsToken :" + routeParamsToken)
   axios
     .get('http://localhost:8080/api/v1/routes/test', {
-
+      routeParamsFromStation,
+      routeParamsToStation
     })
-    .then(function (response) {
-        
+    .then( async function (response) {
+      if (response.status = "200") {
+      console.log('tokenDATA : ' + routeParamsToken)
         Alert.alert(' get response : ' + response.status);
     
-    })
+  }})
     .catch(function(error) {
       Alert.alert('Accept-Encoding status:'+ error);
-    })
-    .then(function (){
-
     });
-};
+
+},);
 
 
 
@@ -78,7 +72,7 @@ import axios from 'axios';
             <Text>{firstName} {lastName}</Text>
             <Text>Accompagnateur</Text>
         <TouchableOpacity
-        onPress={() => getMatch(fromStation,toStation)}>
+        onPress={() => getMatch(routeParamsFromStation,routeParamsToStation)}>
           <Text >
             CHAT
           </Text>

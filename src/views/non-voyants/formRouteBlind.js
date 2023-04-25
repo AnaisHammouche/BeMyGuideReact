@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import {
   Button,
+  Modal,
   SafeAreaView,
   Text,
   TextInput,
@@ -15,10 +16,10 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
+
 const FormRouteBlind = ({ route, navigation }) => {
 
   const routeParamsToken = route.params.token;
-
   const [fromStation, setfromStation] = useState();
   const [toStation, setToStation] = useState();
   const [date, setDate] = useState();
@@ -27,46 +28,87 @@ const FormRouteBlind = ({ route, navigation }) => {
   const postRoute = useCallback(async (fromStation, toStation) => {
 
     axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(routeParamsToken)}`;
+    console.log("routeParamsToken form 1: " + JSON.parse(routeParamsToken))
 
     axios
-      // (mettre son ip ici après le http://)
-    //  .post("http://192.168.1.20:8080/api/v1/routes/add", {
       .post("http://localhost:8080/api/v1/routes/add", {
         fromStation: fromStation,
-        toStation: toStation
+        toStation: toStation,
+
 })
       .then(async function (response) {
-        if (response.status = "200") {
+        const getAsynTokenStorage = await AsyncStorage.getItem('Token');
+        console.log("routeParamsToken async:" + JSON.parse(getAsynTokenStorage))
+        if (response.status = "200" && fromStation && toStation ) {
           const fromStationData = JSON.stringify(fromStation);
-          console.log('fromstation : ' + fromStationData);
-          
+          console.log('fromstationPost : ' + fromStationData);
           const toStationData = JSON.stringify(toStation);
-          console.log('tostationDataa : ' + toStationData );
-        
-          //  alert("reponse : " + JSON.stringify(response.data.token));
-          console.log("c'est gagné ! ")
-        
-          navigation.navigate('Match', { fromStation: fromStationData, toStation: toStationData });
-        }
+          console.log('tostationDataPost : ' + toStationData );        
+           return getAsynTokenStorage != null ? JSON.parse(getAsynTokenStorage) : null;
+         }
 
       })
+      
       .catch(function (error) {
+        if (!fromStation || !toStation ) { 
+          console.log("champ vide")
         alert('erreur : ' + JSON.stringify(error));
         console.log("perdu ! " + error)
-      });
+      }});
 
-  }, []);
+      axios.get("http://localhost:8080/api/v1/routes/matches", {
+        fromStation: fromStation,
+        toStation: toStation,
+      })
+      .then(function (response){
+        if (response.data){
+          navigation.navigate('Waiting')
+          console.log("dans response data get")
+          axios.post('http://localhost:8080/api/v1/sendgrid', {
+
+          })
+          .then(async function (response){
+            console.log('dans le post sendgrid')
+            })
+           
+          }}
+          
+          // const getAsynTokenStorage = AsyncStorage.getItem('Token');
+          //  const fromStationData = fromStation;
+          //  console.log('fromstationGet : ' + fromStationData);
+          // const toStationData = toStation;
+          //  console.log('tostationDataaGet : ' + toStationData );
+          // return getAsynTokenStorage != null ? JSON.parse(getAsynTokenStorage) && navigation.navigate('Match', { fromStation: fromStationData, toStation: toStationData, token: getAsynTokenStorage }) : null;
+      
+
+          // } else {
+          //   navigation.navigate('Waiting')
+          // }
+          //  console.log(response.data[0]['fromStation'] + response.data[0]['fromStation'] )
+        
+      
+      .catch(function (error) {
+        if ( !response.data || response.data == null ) {  
+          console.log("get erreur reponse vide ou null !") 
+  } else {
+    console.log("get erreur !")
+    alert('erreur : ' + JSON.stringify(error));
+    console.log("perdu ! " + error)
+  }
+}))
+
+}, []);
 
   return (
     <SafeAreaView style={{marginTop: '50%'}}>
       <View >
-       
         <Text>DÉPART</Text>
           <TextInput
           placeholder="Station de départ"
           keyboardType="default"
           value={fromStation}
           onChangeText={setfromStation}
+          required
         />
 
         <Text>ARRIVÉE</Text>
@@ -75,6 +117,7 @@ const FormRouteBlind = ({ route, navigation }) => {
           keyboardType="default"
           value={toStation}
           onChangeText={setToStation}
+          required
         />
         <Text>JOUR DE DÉPART</Text>
         <TextInput
@@ -103,7 +146,8 @@ const FormRouteBlind = ({ route, navigation }) => {
 
       </View>
       <TouchableOpacity
-        onPress={() => postRoute(fromStation, toStation)}>
+        onPress={() => postRoute(fromStation, toStation) }
+          onLongPress= {() => console.log('pas de match désolé') }>
         <Text >
           Valider
         </Text>

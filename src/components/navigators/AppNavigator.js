@@ -7,6 +7,7 @@ import Welcome from '../../views/welcome';
 import Register from '../../views/register';
 import LoginBlind from '../../views/non-voyants/LoginBlind';
 import Match from '../../views/non-voyants/Match';
+import Waiting from '../../views/waiting';
 
 
 const Stack = createNativeStackNavigator();
@@ -22,6 +23,7 @@ const AppNavigator = () => {
       <Stack.Screen name="Register" component={Register} />
       <Stack.Screen name="Login" component={LoginBlind} />
       <Stack.Screen name="Match" component={Match} />
+      <Stack.Screen name="Waiting" component={Waiting} />
       </Stack.Navigator>
     </NavigationContainer>
 
