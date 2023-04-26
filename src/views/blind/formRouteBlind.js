@@ -7,7 +7,8 @@ import React, {
 } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import axios from 'axios';
-import styles from '../../styles/LoginBindStyle';
+import styles from '../../styles/formRoute_style';
+
 import {
   Button,
   SafeAreaView,
@@ -66,39 +67,43 @@ const FormRouteBlind = ({route, navigation}) => {
   );
 
   return (
-    <SafeAreaView style={{marginTop: '50%'}}>
-      <View>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
         <Text style={styles.title}>OÙ ALLEZ-VOUS ?</Text>
-        <Text>DÉPART</Text>
+        <Text style={styles.text}>STATION DE DÉPART</Text>
         <TextInput
+          style={styles.input}
           placeholder="Station de départ"
           keyboardType="default"
           value={fromStation}
           onChangeText={setfromStation}
         />
 
-        <Text>ARRIVÉE</Text>
+        <Text style={styles.text}>STATION D'ARRIVÉE</Text>
         <TextInput
+          style={styles.input}
           placeholder="Station d'arrivée"
           keyboardType="default"
           value={toStation}
           onChangeText={setToStation}
         />
-        <Text>JOUR DE DÉPART</Text>
+        <Text style={styles.text}>JOUR DE DÉPART</Text>
         <TextInput
+          style={styles.input}
           placeholder="Date"
           keyboardType="default"
           value={date}
           onChangeText={setDate}
         />
-        <Text>HORAIRE DE DÉPART</Text>
+        <Text style={styles.text}>HORAIRE DE DÉPART</Text>
         <TextInput
+          style={styles.input}
           placeholder="Horaire de départ"
           keyboardType="default"
           value={time}
           onChangeText={setTime}
         />
-        <Text>GENRE</Text>
+        <Text style={styles.text}>GENRE</Text>
         <RNPickerSelect
           placeholder={{label: 'Séléctionnez votre genre', value: null}}
           onValueChange={value => console.log(value)}
@@ -108,10 +113,13 @@ const FormRouteBlind = ({route, navigation}) => {
             {label: 'Non genré', value: 'Non genré'},
           ]}
         />
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => postRoute(fromStation, toStation)}>
+          <Text style={styles.connect}>Valider</Text>
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={() => postRoute(fromStation, toStation)}>
-        <Text>Valider</Text>
-      </TouchableOpacity>
     </SafeAreaView>
   );
 };
