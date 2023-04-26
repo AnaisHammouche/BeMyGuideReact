@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native';
-import {colors_theme} from '../config/colors_theme.js';
 
 export const styles = StyleSheet.create({
   screen: {
@@ -19,7 +18,7 @@ export const styles = StyleSheet.create({
   title: {
     fontFamily: 'RobotoMono-Bold',
     fontSize: 30,
-   // alignItems: 'space-around',
+    // alignItems: 'space-around',
   },
   separator: {
     marginVertical: 50,

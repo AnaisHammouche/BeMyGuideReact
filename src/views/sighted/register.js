@@ -1,10 +1,16 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useCallback, useMemo, useState} from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {SafeAreaView, Text, View, Image, TextInput} from 'react-native';
-import {styles} from '../styles/register_style';
-import ButtonDefault from '../components/button';
-import {RadioButton} from 'react-native-paper';
+import {
+  SafeAreaView,
+  Text,
+  View,
+  Image,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
+import {styles} from '../../styles/register_style';
+import ButtonDefault from '../../components/button';
+import postRegister from '../../api/userApi';
 
 const Register = () => {
   const navigation = useNavigation();
@@ -13,15 +19,18 @@ const Register = () => {
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  //const [gender, setGender] = useState('');
   const [isValid, setIsValid] = useState('true');
   const user = {
     lastName: lastName,
     firstName: firstName,
     mail: mail,
     password: password,
+    isBlind: false,
+    //gender: gender,
   };
 
-  const newUser = async () => {
+  /* const newUser = async () => {
     try {
       await AsyncStorage.setItem(
         user.lastName,
@@ -33,7 +42,7 @@ const Register = () => {
     } catch (error) {
       console.log('error: ' + error);
     }
-  };
+  }; */
 
   useMemo(() => {
     if (
@@ -52,33 +61,70 @@ const Register = () => {
 
   const validator = useCallback(() => {
     if (isValid) {
-      newUser();
+      postRegister(
+        //user.gender,
+        user.lastName,
+        user.firstName,
+        user.mail,
+        user.password,
+        user.isBlind,
+      );
       alert(
         'Bienvenue, ' + user.firstName + ' ravie de vous comptez parmis nous',
       );
       navigation.navigate('Login');
     } else {
-      alert('Veuillez remplir les informations nécessaires à votre inscriptions.');
+      alert(
+        'Veuillez remplir les informations nécessaires à votre inscriptions.',
+      );
     }
-  }, [isValid, user.firstName]);
+  }, [
+    isValid,
+    navigation,
+    user.firstName,
+    //user.gender,
+    user.isBlind,
+    user.lastName,
+    user.mail,
+    user.password,
+  ]);
 
   return (
     <SafeAreaView style={styles.screen}>
       <View style={styles.container}>
         <Image
-          source={require('../assets/close_eye.png')}
+          source={require('../../assets/close_eye.png')}
           style={styles.icon}
         />
         <Text style={styles.title}>Nous rejoindre</Text>
       </View>
       <View style={styles.separator}>
-        {/*  <View>
-          <RadioButton
-            value="Mr"
-            status={checked === 'first' ? 'checked' : 'unchecked'}
-            onPress={() => setChecked('first')}
-          />
-        </View> */}
+        {/* <TouchableOpacity onPress={() => setGender(!gender)}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <View
+              style={{
+                height: 24,
+                width: 24,
+                borderRadius: 4,
+                borderWidth: 2,
+                borderColor: gender ? '#007AFF' : '#C7C7CC',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              {gender && (
+                <View
+                  style={{
+                    height: 12,
+                    width: 12,
+                    borderRadius: 2,
+                    backgroundColor: '#007AFF',
+                  }}
+                />
+              )}
+            </View>
+            <Text style={{marginLeft: 8}}>Femme</Text>
+          </View>
+        </TouchableOpacity> */}
         <TextInput
           style={styles.form}
           autoCapitalize="none"
@@ -105,8 +151,9 @@ const Register = () => {
           style={styles.form}
           placeholder="VOTRE MOT DE PASSE"
           autoCapitalize="none"
+          keyboardType="default"
           secureTextEntry={true}
-          value={user.password}
+          value={password}
           onChangeText={setPassword}
         />
         <TextInput

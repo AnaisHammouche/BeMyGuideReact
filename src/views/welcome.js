@@ -7,11 +7,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import ButtonDefault from '../components/button';
 import {styles} from '../styles/welcome_style';
 
 const Welcome = props => {
   const {navigation} = props;
+
+  const goToRegisterBlind = useCallback(() => {
+    navigation.navigate('RegisterBlind');
+  }, [navigation]);
 
   const goToRegister = useCallback(() => {
     navigation.navigate('Register');
@@ -25,7 +28,6 @@ const Welcome = props => {
     <SafeAreaView style={styles.screen}>
       <ImageBackground source={require('../assets/main_aidant.png')}>
         <View style={styles.titleContainer}>
-      
           <Text style={styles.title}>Où tu iras, </Text>
           <Text style={styles.title}>nous irons aussi.</Text>
           <Image
@@ -34,17 +36,20 @@ const Welcome = props => {
           />
         </View>
         <View style={styles.titleContainer}>
-          <TouchableOpacity onPress={goToRegister} style={styles.button1}>
-          <Text style={styles.connect}>   JE SOUHAITE ME FAIRE ACCOMPAGNER</Text>
-            
-            </TouchableOpacity>
-        
+          <TouchableOpacity onPress={goToRegisterBlind} style={styles.button1}>
+            <Text style={styles.connect}>
+              {' '}
+              JE SOUHAITE ME FAIRE ACCOMPAGNER
+            </Text>
+          </TouchableOpacity>
+
           <TouchableOpacity onPress={goToRegister} style={styles.button2}>
-          <Text style={styles.connect}> JE SOUHAITE ACCOMPAGNER QUELQU'UN</Text>
-         
-        </TouchableOpacity>
-        
-        
+            <Text style={styles.connect}>
+              {' '}
+              JE SOUHAITE ACCOMPAGNER QUELQU'UN
+            </Text>
+          </TouchableOpacity>
+
           <Text style={styles.textConnect}>Vous avez déjà un compte ?</Text>
           <TouchableOpacity onPress={goToLogin} style={styles.button}>
             <Text style={styles.connect}> Connectez-vous</Text>

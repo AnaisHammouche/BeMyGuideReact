@@ -1,30 +1,29 @@
 import * as React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { NavigationContainer } from '@react-navigation/native';
-import LogInBlind from '../../views/blind/LoginBlind';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
 import FormRouteBlind from '../../views/blind/formRouteBlind';
 import Welcome from '../../views/welcome';
-import Register from '../../views/register';
-import LoginBlind from '../../views/blind/LoginBlind';
+import Register from '../../views/sighted/register';
+import Login from '../../views/login';
 import Match from '../../views/blind/Match';
-
+import RegisterBlind from '../../views/blind/registerBlind';
 
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
-
   return (
     <NavigationContainer independent={true}>
-      <Stack.Navigator initialRouteName="Bienvenue" screenOptions={{headerShown: false}}>
+      <Stack.Navigator
+        initialRouteName="Bienvenue"
+        screenOptions={{headerShown: false}}>
         <Stack.Screen name="Home" component={Welcome} />
-        <Stack.Screen name="LogInBlind" component={LogInBlind} />
         <Stack.Screen name="FormRouteBlind" component={FormRouteBlind} />
-      <Stack.Screen name="Register" component={Register} />
-      <Stack.Screen name="Login" component={LoginBlind} />
-      <Stack.Screen name="Match" component={Match} />
+        <Stack.Screen name="Register" component={Register} />
+        <Stack.Screen name="RegisterBlind" component={RegisterBlind} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Match" component={Match} />
       </Stack.Navigator>
     </NavigationContainer>
-
   );
 };
 

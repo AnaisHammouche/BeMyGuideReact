@@ -27,48 +27,50 @@ const FormRouteBlind = ({route, navigation}) => {
   const [date, setDate] = useState();
   const [time, setTime] = useState();
 
-  const postRoute = useCallback(async (fromStation, toStation) => {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
-      routeParamsToken,
-    )}`;
+  const postRoute = useCallback(
+    async (fromStation, toStation) => {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
+        routeParamsToken,
+      )}`;
 
-    axios
-      // (mettre son ip ici après le http://)
-      //  .post("http://192.168.1.20:8080/api/v1/routes/add", {
-      .post('http://localhost:8080/api/v1/routes/add', {
-        fromStation: fromStation,
-        toStation: toStation,
-      })
-      .then(async function (response) {
-        if ((response.status = '200')) {
-          const fromStationData = JSON.stringify(fromStation);
-          //  console.log('fromstation : ' + fromStationData);
+      axios
+        // (mettre son ip ici après le http://)
+        //  .post("http://192.168.1.20:8080/api/v1/routes/add", {
+        .post('http://localhost:8080/api/v1/routes/add', {
+          fromStation: fromStation,
+          toStation: toStation,
+        })
+        .then(async function (response) {
+          if ((response.status = '200')) {
+            const fromStationData = JSON.stringify(fromStation);
+            //  console.log('fromstation : ' + fromStationData);
 
-          const toStationData = JSON.stringify(toStation);
-          //   console.log('tostationDataa : ' + toStationData );
+            const toStationData = JSON.stringify(toStation);
+            //   console.log('tostationDataa : ' + toStationData );
 
-          //  alert("reponse : " + JSON.stringify(response.data.token));
-          //  console.log("c'est gagné ! ")
+            //  alert("reponse : " + JSON.stringify(response.data.token));
+            //  console.log("c'est gagné ! ")
 
-          navigation.navigate('Match', {
-            fromStation: fromStationData,
-            toStation: toStationData,
-            routeParamsToken: routeParamsToken,
-          });
-        }
-      })
-      .catch(function (error) {
-        alert('erreur : ' + JSON.stringify(error));
-        console.log('perdu ! ' + error);
-      });
-  }, []);
+            navigation.navigate('Match', {
+              fromStation: fromStationData,
+              toStation: toStationData,
+              routeParamsToken: routeParamsToken,
+            });
+          }
+        })
+        .catch(function (error) {
+          alert('erreur : ' + JSON.stringify(error));
+          console.log('perdu ! ' + error);
+        });
+    },
+    [navigation, routeParamsToken],
+  );
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-     
         <Text style={styles.title}>OÙ ALLEZ-VOUS ?</Text>
-        <Text  style={styles.text}>STATION DE DÉPART</Text>
+        <Text style={styles.text}>STATION DE DÉPART</Text>
         <TextInput
           style={styles.input}
           placeholder="Station de départ"
@@ -111,12 +113,12 @@ const FormRouteBlind = ({route, navigation}) => {
             {label: 'Non genré', value: 'Non genré'},
           ]}
         />
-      
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => postRoute(fromStation, toStation)}>
-        <Text style={styles.connect}>Valider</Text>
-      </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => postRoute(fromStation, toStation)}>
+          <Text style={styles.connect}>Valider</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
