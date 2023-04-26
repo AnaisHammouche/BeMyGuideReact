@@ -2,7 +2,7 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Alert} from 'react-native';
 
-const baseUrl = process.env.BASE_URL;
+let baseUrl = process.env.BASE_URL;
 
 export default async function postRegister(
   lastName,
@@ -10,17 +10,17 @@ export default async function postRegister(
   mail,
   password,
   isBlind,
-  gender,
+  //gender,
   navigation,
 ) {
   axios
-    .post('http://localhost:8080/api/v1/auth/register', {
+    .post(`${baseUrl}/auth/register`, {
       lastname: lastName,
       firstname: firstName,
       email: mail,
       password: password,
       isBlind: isBlind,
-      gender: gender,
+      //gender: gender,
     })
     .then(async function (response) {
       const tokenData = JSON.stringify(response.data.token);

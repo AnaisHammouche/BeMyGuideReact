@@ -1,10 +1,16 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useCallback, useMemo, useState} from 'react';
-import {SafeAreaView, Text, View, Image, TextInput} from 'react-native';
+import {
+  SafeAreaView,
+  Text,
+  View,
+  Image,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import {styles} from '../../styles/register_style';
 import ButtonDefault from '../../components/button';
 import postRegister from '../../api/userApi';
-import RNPickerSelect from 'react-native-picker-select';
 
 const Register = () => {
   const navigation = useNavigation();
@@ -13,7 +19,7 @@ const Register = () => {
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [gender, setGender] = useState('female');
+  //const [gender, setGender] = useState('');
   const [isValid, setIsValid] = useState('true');
   const user = {
     lastName: lastName,
@@ -21,7 +27,7 @@ const Register = () => {
     mail: mail,
     password: password,
     isBlind: false,
-    gender: gender,
+    //gender: gender,
   };
 
   /* const newUser = async () => {
@@ -56,7 +62,7 @@ const Register = () => {
   const validator = useCallback(() => {
     if (isValid) {
       postRegister(
-        user.gender,
+        //user.gender,
         user.lastName,
         user.firstName,
         user.mail,
@@ -76,7 +82,7 @@ const Register = () => {
     isValid,
     navigation,
     user.firstName,
-    user.gender,
+    //user.gender,
     user.isBlind,
     user.lastName,
     user.mail,
@@ -93,17 +99,32 @@ const Register = () => {
         <Text style={styles.title}>Nous rejoindre</Text>
       </View>
       <View style={styles.separator}>
-        <Text>GENRE</Text>
-        <RNPickerSelect
-          placeholder={{label: 'Séléctionnez votre genre', value: null}}
-          onValueChange={value => setGender(value)}
-          value={gender}
-          items={[
-            {label: 'Femme', value: 'Femme'},
-            {label: 'Homme', value: 'Homme'},
-            {label: 'Non genré', value: 'Non genré'},
-          ]}
-        />
+        {/* <TouchableOpacity onPress={() => setGender(!gender)}>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <View
+              style={{
+                height: 24,
+                width: 24,
+                borderRadius: 4,
+                borderWidth: 2,
+                borderColor: gender ? '#007AFF' : '#C7C7CC',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              {gender && (
+                <View
+                  style={{
+                    height: 12,
+                    width: 12,
+                    borderRadius: 2,
+                    backgroundColor: '#007AFF',
+                  }}
+                />
+              )}
+            </View>
+            <Text style={{marginLeft: 8}}>Femme</Text>
+          </View>
+        </TouchableOpacity> */}
         <TextInput
           style={styles.form}
           autoCapitalize="none"

@@ -1,9 +1,17 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useCallback, useMemo, useState} from 'react';
-import {SafeAreaView, Text, View, Image, TextInput} from 'react-native';
+import {
+  SafeAreaView,
+  Text,
+  View,
+  Image,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import {styles} from '../../styles/register_style';
 import ButtonDefault from '../../components/button';
 import postRegister from '../../api/userApi';
+import {Touchable} from 'react-native';
 
 const RegisterBlind = () => {
   const navigation = useNavigation();
@@ -12,7 +20,7 @@ const RegisterBlind = () => {
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [isBlind, setIsBlind] = useState('true');
+  //const [gender, setGender] = useState('');
   const [isValid, setIsValid] = useState('true');
   const user = {
     lastName: lastName,
@@ -20,6 +28,7 @@ const RegisterBlind = () => {
     mail: mail,
     password: password,
     isBlind: true,
+    //gender: gender,
   };
 
   /* const newUser = async () => {
@@ -53,7 +62,14 @@ const RegisterBlind = () => {
 
   const validator = useCallback(() => {
     if (isValid) {
-      postRegister(user.lastName, user.firstName, user.mail, user.password);
+      postRegister(
+        //user.gender,
+        user.lastName,
+        user.firstName,
+        user.mail,
+        user.password,
+        user.isBlind,
+      );
       alert(
         'Bienvenue, ' + user.firstName + ' ravie de vous comptez parmis nous',
       );
@@ -67,6 +83,8 @@ const RegisterBlind = () => {
     isValid,
     navigation,
     user.firstName,
+    //user.gender,
+    user.isBlind,
     user.lastName,
     user.mail,
     user.password,
@@ -82,12 +100,13 @@ const RegisterBlind = () => {
         <Text style={styles.title}>Nous rejoindre</Text>
       </View>
       <View style={styles.separator}>
-        {/*  <View>
-          <RadioButton
-            value="Mr"
-            status={checked === 'first' ? 'checked' : 'unchecked'}
-            onPress={() => setChecked('first')}
+        {/* <View>
+          <TouchableOpacity
+            value="Femme"
+            status={gender === 'Femme' ? 'checked' : 'unchecked'}
+            onPress={() => setGender('Femme')}
           />
+          <Text>Femme</Text>
         </View> */}
         <TextInput
           style={styles.form}
