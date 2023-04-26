@@ -1,10 +1,9 @@
+
 import React, {useCallback, useEffect, useState} from 'react';
 import {SafeAreaView, View, Text, Image, TextInput, Alert, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {styles} from '../styles/login_style';
 import ButtonDefault from '../components/button';
-import axios from 'axios';
 import {axiosLogin} from '../api/userApi';
 
 const Login = () => {

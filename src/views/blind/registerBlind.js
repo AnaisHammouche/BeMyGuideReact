@@ -3,13 +3,14 @@ import React, {useCallback, useMemo, useState} from 'react';
 import {SafeAreaView, Text, View, Image, TextInput} from 'react-native';
 import {styles} from '../../styles/register_style';
 import ButtonDefault from '../../components/button';
-import postRegister from '../../api/userApi';
+import postRegister, {axiosRegiter} from '../../api/userApi';
+import axios from 'axios';
 
 const RegisterBlind = () => {
   const navigation = useNavigation();
   const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
-  const [mail, setMail] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   //const [gender, setGender] = useState('');
@@ -17,32 +18,18 @@ const RegisterBlind = () => {
   const user = {
     lastName: lastName,
     firstName: firstName,
-    mail: mail,
+    email: email,
     password: password,
     isBlind: true,
     //gender: gender,
   };
-
-  /* const newUser = async () => {
-    try {
-      await AsyncStorage.setItem(
-        user.lastName,
-        user.firstName,
-        user.mail,
-        user.password,
-      );
-      console.log('registered');
-    } catch (error) {
-      console.log('error: ' + error);
-    }
-  }; */
 
   useMemo(() => {
     if (
       lastName === '' ||
       firstName === '' ||
       password !== confirmPassword ||
-      mail === '' ||
+      email === '' ||
       password === '' ||
       password.length < 5
     ) {
@@ -50,17 +37,18 @@ const RegisterBlind = () => {
     } else {
       setIsValid(true);
     }
-  }, [lastName, firstName, mail, password, confirmPassword]);
+  }, [lastName, firstName, email, password, confirmPassword]);
 
   const validator = useCallback(() => {
     if (isValid) {
-      postRegister(
+      axiosRegiter(
         //user.gender,
         user.lastName,
         user.firstName,
-        user.mail,
+        user.email,
         user.password,
         user.isBlind,
+        navigation,
       );
       alert(
         'Bienvenue, ' + user.firstName + ' ravie de vous comptez parmis nous',
@@ -78,7 +66,7 @@ const RegisterBlind = () => {
     //user.gender,
     user.isBlind,
     user.lastName,
-    user.mail,
+    user.email,
     user.password,
   ]);
 
@@ -119,8 +107,8 @@ const RegisterBlind = () => {
           autoCapitalize="none"
           placeholder="VOTRE ADRESSE MAIL"
           keyboardType="email-address"
-          value={mail}
-          onChangeText={setMail}
+          value={email}
+          onChangeText={setEmail}
         />
         <TextInput
           style={styles.form}
