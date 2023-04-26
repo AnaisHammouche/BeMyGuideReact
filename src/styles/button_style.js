@@ -5,11 +5,11 @@ export const styles = StyleSheet.create({
   button: {
     backgroundColor: colors_theme.button_green,
     alignItems: 'center',
-    height: 70,
+    height: 50,
     width: 300,
-    margin: 24,
+    marginTop: 30,
     justifyContent: 'center',
-    borderRadius: 30,
+    borderRadius: 10,
   },
   buttonText: {
     color: 'white',

@@ -56,7 +56,7 @@ const RegisterBlind = () => {
       navigation.navigate('Login');
     } else {
       alert(
-        'Veuillez remplir les informations nécessaires à votre inscriptions.',
+        'Veuillez remplir les informations nécessaires à votre inscription.',
       );
     }
   }, [
@@ -88,30 +88,42 @@ const RegisterBlind = () => {
           />
           <Text>Femme</Text>
         </View> */}
+         <Text style={styles.inputText} keyboardType="default">
+            NOM
+          </Text>
         <TextInput
-          style={styles.form}
+          style={styles.input}
           autoCapitalize="none"
           placeholder="NOM"
           value={lastName}
           onChangeText={setLastName}
         />
+        <Text style={styles.inputText} keyboardType="default">
+            PRENOM
+          </Text>
         <TextInput
-          style={styles.form}
+          style={styles.input}
           autoCapitalize="none"
           placeholder="PRENOM"
           value={firstName}
           onChangeText={setFirstName}
         />
+        <Text style={styles.inputText} keyboardType="default">
+            E-MAIL
+          </Text>
         <TextInput
-          style={styles.form}
+          style={styles.input}
           autoCapitalize="none"
           placeholder="VOTRE ADRESSE MAIL"
           keyboardType="email-address"
           value={email}
           onChangeText={setEmail}
         />
+        <Text style={styles.inputText} keyboardType="default">
+            MOT DE PASSE
+          </Text>
         <TextInput
-          style={styles.form}
+          style={styles.input}
           placeholder="VOTRE MOT DE PASSE"
           autoCapitalize="none"
           keyboardType="default"
@@ -119,8 +131,11 @@ const RegisterBlind = () => {
           value={password}
           onChangeText={setPassword}
         />
+        <Text style={styles.inputText} keyboardType="default">
+            CONFIRMATION DE MOT DE PASSE
+          </Text>
         <TextInput
-          style={styles.form}
+          style={styles.input}
           autoCapitalize="none"
           placeholder="CONFIRMATION MOT DE PASSE"
           secureTextEntry={true}

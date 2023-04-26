@@ -1,13 +1,16 @@
 import {StyleSheet} from 'react-native';
+import {colors_theme} from '../config/colors_theme.js';
+
 
 export const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    //padding: 40,
   },
   container: {
-    justifyContent: 'space-between',
+   // justifyContent: 'space-between',
     marginTop: 50,
-    flexDirection: 'column',
+   // flexDirection: 'column',
     alignItems: 'center',
   },
   icon: {
@@ -21,16 +24,25 @@ export const styles = StyleSheet.create({
     // alignItems: 'space-around',
   },
   separator: {
-    marginVertical: 50,
+   // marginVertical: 50,
+   // padding: 20,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  form: {
-    marginTop: 30,
+  inputText: {
+    marginTop: 50,
+    //marginLeft: 10,
+   // height: 40,
+    width: '85%',
+    paddingLeft: 10,
+  },
+  input: {
     height: 40,
-    width: 350,
-    padding: 10,
+    width: '85%',
+    paddingHorizontal: 10,
     borderRadius: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: 'green',
   },
   formRed: {
     marginTop: 30,
@@ -43,13 +55,15 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
   },
   button: {
+    backgroundColor: 'green',
+    color: 'white',
     alignItems: 'center',
     justifyContent: 'space-around',
     marginTop: 30,
     height: 50,
-    width: 200,
+    width: '85%',
     backgroundColor: 'white',
-    borderRadius: 20,
+    borderRadius: 10,
     borderWidth: 1,
   },
 });
