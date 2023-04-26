@@ -10,13 +10,13 @@ import {
 } from 'react-native';
 import {styles} from '../../styles/register_style';
 import ButtonDefault from '../../components/button';
-import postRegister from '../../api/userApi';
+import postRegister, {axiosRegiter} from '../../api/userApi';
 
 const Register = () => {
   const navigation = useNavigation();
   const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
-  const [mail, setMail] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   //const [gender, setGender] = useState('');
@@ -24,7 +24,7 @@ const Register = () => {
   const user = {
     lastName: lastName,
     firstName: firstName,
-    mail: mail,
+    email: email,
     password: password,
     isBlind: false,
     //gender: gender,
@@ -49,7 +49,7 @@ const Register = () => {
       lastName === '' ||
       firstName === '' ||
       password !== confirmPassword ||
-      mail === '' ||
+      email === '' ||
       password === '' ||
       password.length < 5
     ) {
@@ -57,17 +57,18 @@ const Register = () => {
     } else {
       setIsValid(true);
     }
-  }, [lastName, firstName, mail, password, confirmPassword]);
+  }, [lastName, firstName, email, password, confirmPassword]);
 
   const validator = useCallback(() => {
     if (isValid) {
-      postRegister(
+      axiosRegiter(
         //user.gender,
         user.lastName,
         user.firstName,
-        user.mail,
+        user.email,
         user.password,
         user.isBlind,
+        navigation,
       );
       alert(
         'Bienvenue, ' + user.firstName + ' ravie de vous comptez parmis nous',
@@ -85,7 +86,7 @@ const Register = () => {
     //user.gender,
     user.isBlind,
     user.lastName,
-    user.mail,
+    user.email,
     user.password,
   ]);
 
@@ -144,8 +145,8 @@ const Register = () => {
           autoCapitalize="none"
           placeholder="VOTRE ADRESSE MAIL"
           keyboardType="email-address"
-          value={mail}
-          onChangeText={setMail}
+          value={email}
+          onChangeText={setEmail}
         />
         <TextInput
           style={styles.form}
