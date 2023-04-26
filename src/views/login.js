@@ -1,47 +1,50 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {useAsyncStorage} from '@react-native-async-storage/async-storage';
-import {SafeAreaView, View, Text, Image, TextInput} from 'react-native';
+import {SafeAreaView, View, Text, Image, TextInput, Alert} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {styles} from '../styles/login_style';
 import ButtonDefault from '../components/button';
+import axios from 'axios';
 
 const Login = () => {
   const navigation = useNavigation();
-  const [mail, setMail] = useState('');
+  const [email, setMail] = useState('');
   const [password, setPassword] = useState('');
-  const [isValid, setIsValid] = useState('true');
-  const [value, setValue] = useState('value');
-  const [checked, setChecked] = React.useState('first');
 
-  const getUser = async () => {
-    try {
-      const data = await AsyncStorage.getItem(mail);
-      console.log(value);
-      if (data !== null || data !== '') {
-        setValue(data);
-      } else {
-        return console.log('Pas de données!!!');
-      }
-    } catch (error) {
-      console.log('erreur : ' + error);
-    }
-  };
+  const postLogin = useCallback(
+    async (email, password) => {
+      axios
+        .post('http://localhost:8080/api/v1/auth/authenticate', {
+          // .post("http://192.168.1.20:8080/api/v1/auth/authenticate", {
 
-  useEffect(() => {
-    getUser();
-  });
-
-  const validator = useCallback(() => {
-    if (password !== value) {
-      setIsValid('false');
-      alert('Votre mail ou mot de passe est incorrect');
-    } else {
-      setIsValid('true');
-      alert('Vous êtes connecté !');
-      navigation.navigate('Profil');
-    }
-  }, [password, value, navigation]);
+          email: email,
+          password: password,
+        })
+        .then(async function (response) {
+          const tokenData = JSON.stringify(response.data.token);
+          // console.warn('warn response : ' + tokenData)
+          await AsyncStorage.setItem('Token', tokenData);
+          // console.warn('warn1' + JSON.stringify(AsyncStorage));
+          if ((response.status = '200')) {
+            const getTokenData = await AsyncStorage.getItem('Token');
+            //   console.warn('warn 200' + JSON.stringify(getTokenData));
+            //console.warn(JSON.stringify(AsyncStorage));
+            // return getTokenData != null ? JSON.parse(getTokenData) && navigation.navigate('FormRouteBlind', { token: tokenData }) : null;
+            return getTokenData != null
+              ? JSON.parse(getTokenData) &&
+                  navigation.navigate('FormRouteBlind', {token: getTokenData})
+              : null;
+            //Alert.alert("reponse : " + JSON.stringify(response.data.token));
+            //Alert.alert('coucou');
+            // await AsyncStorage.getItem('Token');
+          }
+        })
+        .catch(function (error) {
+          Alert.alert('erreur : ' + JSON.stringify(error));
+        });
+    },
+    [navigation],
+  );
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -54,16 +57,16 @@ const Login = () => {
           Ca fait longtemps qu'on ne vous avait pas vu
         </Text>
         <View style={styles.separator}>
+          <Text>VOTRE ADRESSE MAIL</Text>
           <TextInput
-            style={isValid ? styles.form : styles.formRed}
             autoCapitalize="none"
-            placeholder="VOTRE ADRESSE MAIL"
+            placeholder="bonjour@bemyguide.fr"
             keyboardType="email-address"
-            value={mail}
+            value={email}
             onChangeText={setMail}
           />
+          <Text keyboardType="default">VOTRE MOT DE PASSE</Text>
           <TextInput
-            style={isValid ? styles.form : styles.formRed}
             autoCapitalize="none"
             secureTextEntry={true}
             placeholder="VOTRE MOT DE PASSE"
@@ -72,7 +75,10 @@ const Login = () => {
           />
         </View>
         <View style={{alignItems: 'center'}}>
-          <ButtonDefault title="ME CONNECTER" onPress={validator} />
+          <ButtonDefault
+            title="ME CONNECTER"
+            onPress={() => postLogin(email, password)}
+          />
         </View>
       </View>
     </SafeAreaView>

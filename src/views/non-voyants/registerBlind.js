@@ -1,27 +1,28 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useCallback, useMemo, useState} from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {SafeAreaView, Text, View, Image, TextInput} from 'react-native';
-import {styles} from '../styles/register_style';
-import ButtonDefault from '../components/button';
-import {RadioButton} from 'react-native-paper';
+import {styles} from '../../styles/register_style';
+import ButtonDefault from '../../components/button';
+import postRegister from '../../api/userApi';
 
-const Register = () => {
+const RegisterBlind = () => {
   const navigation = useNavigation();
   const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
   const [mail, setMail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [isBlind, setIsBlind] = useState('true');
   const [isValid, setIsValid] = useState('true');
   const user = {
     lastName: lastName,
     firstName: firstName,
     mail: mail,
     password: password,
+    isBlind: true,
   };
 
-  const newUser = async () => {
+  /* const newUser = async () => {
     try {
       await AsyncStorage.setItem(
         user.lastName,
@@ -33,7 +34,7 @@ const Register = () => {
     } catch (error) {
       console.log('error: ' + error);
     }
-  };
+  }; */
 
   useMemo(() => {
     if (
@@ -52,21 +53,30 @@ const Register = () => {
 
   const validator = useCallback(() => {
     if (isValid) {
-      newUser();
+      postRegister(user.lastName, user.firstName, user.mail, user.password);
       alert(
         'Bienvenue, ' + user.firstName + ' ravie de vous comptez parmis nous',
       );
       navigation.navigate('Login');
     } else {
-      alert('Veuillez remplir les informations nécessaires à votre inscriptions.');
+      alert(
+        'Veuillez remplir les informations nécessaires à votre inscriptions.',
+      );
     }
-  }, [isValid, user.firstName]);
+  }, [
+    isValid,
+    navigation,
+    user.firstName,
+    user.lastName,
+    user.mail,
+    user.password,
+  ]);
 
   return (
     <SafeAreaView style={styles.screen}>
       <View style={styles.container}>
         <Image
-          source={require('../assets/close_eye.png')}
+          source={require('../../assets/close_eye.png')}
           style={styles.icon}
         />
         <Text style={styles.title}>Nous rejoindre</Text>
@@ -105,8 +115,9 @@ const Register = () => {
           style={styles.form}
           placeholder="VOTRE MOT DE PASSE"
           autoCapitalize="none"
+          keyboardType="default"
           secureTextEntry={true}
-          value={user.password}
+          value={password}
           onChangeText={setPassword}
         />
         <TextInput
@@ -129,4 +140,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterBlind;

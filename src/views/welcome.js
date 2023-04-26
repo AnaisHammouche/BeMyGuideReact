@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
   Image,
   ImageBackground,
@@ -12,6 +12,10 @@ import {styles} from '../styles/welcome_style';
 
 const Welcome = props => {
   const {navigation} = props;
+
+  const goToRegisterBlind = useCallback(() => {
+    navigation.navigate('RegisterBlind');
+  }, [navigation]);
 
   const goToRegister = useCallback(() => {
     navigation.navigate('Register');
@@ -34,7 +38,7 @@ const Welcome = props => {
         <View style={styles.separator}>
           <ButtonDefault
             title="JE SOUHAITE ME FAIRE ACCOMPAGNER"
-            onPress={goToRegister}
+            onPress={goToRegisterBlind}
           />
           <ButtonDefault
             title="JE SOUHAITE ACCOMPAGNER QUELQU'UN"

@@ -9,16 +9,16 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* BeMyGuideReactNativeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* BeMyGuideReactNativeTests.m */; };
 		0268F18441514914B503A74B /* RobotoMono-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2583288D3DFC46E5BE3B7AAC /* RobotoMono-LightItalic.ttf */; };
-		0C80B921A6F3F58F76C31292 /* libPods-BeMyGuideReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-BeMyGuideReactNative.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1657CEFC2B9A5ADEB7581F6E /* libPods-BeMyGuideReactNative-BeMyGuideReactNativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F02A585A21E26FA9D5EFE519 /* libPods-BeMyGuideReactNative-BeMyGuideReactNativeTests.a */; };
 		1A6E33B0E5D94FB9B25AB895 /* RobotoMono-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4F58EB2ECD1544AEA9D51135 /* RobotoMono-Regular.ttf */; };
 		2448334157224FD1A9F29581 /* RobotoMono-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05FE33AB5DDD4ADA9E580C04 /* RobotoMono-Bold.ttf */; };
+		28309CBFB55037DF13686470 /* libPods-BeMyGuideReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E8BDDB206B36FD46ED84BEF /* libPods-BeMyGuideReactNative.a */; };
 		3027BFCEC92949D681E2D473 /* RobotoMono-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 530D8745888E4C4296EBB56E /* RobotoMono-ExtraLightItalic.ttf */; };
 		643FD58CC1E44A0C836CF334 /* RobotoMono-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A98EEA9AA2642AAAAAF2166 /* RobotoMono-SemiBold.ttf */; };
 		651B06DD749948C8810F52ED /* RobotoMono-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0052E9CFA65C4ADA9AAB5D24 /* RobotoMono-ThinItalic.ttf */; };
-		7699B88040F8A987B510C191 /* libPods-BeMyGuideReactNative-BeMyGuideReactNativeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-BeMyGuideReactNative-BeMyGuideReactNativeTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		8544CE613C8248AB9713B096 /* RobotoMono-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 44413A8027F14F4F88A8666C /* RobotoMono-Medium.ttf */; };
 		892850640E3C4ACBBD41306B /* RobotoMono-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E3FC074DE96E4CA4B90FFA26 /* RobotoMono-Thin.ttf */; };
@@ -54,28 +54,28 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = BeMyGuideReactNative/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = BeMyGuideReactNative/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = BeMyGuideReactNative/main.m; sourceTree = "<group>"; };
-		19F6CBCC0A4E27FBF8BF4A61 /* libPods-BeMyGuideReactNative-BeMyGuideReactNativeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeMyGuideReactNative-BeMyGuideReactNativeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22F09FCA1ED343DBAD07CA58 /* RobotoMono-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-BoldItalic.ttf"; path = "../src/assets/fonts/RobotoMono-BoldItalic.ttf"; sourceTree = "<group>"; };
 		2583288D3DFC46E5BE3B7AAC /* RobotoMono-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-LightItalic.ttf"; path = "../src/assets/fonts/RobotoMono-LightItalic.ttf"; sourceTree = "<group>"; };
 		34B80EEBEAE0469F9123ED6E /* RobotoMono-Italic-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-Italic-VariableFont_wght.ttf"; path = "../src/assets/fonts/RobotoMono-Italic-VariableFont_wght.ttf"; sourceTree = "<group>"; };
-		3B4392A12AC88292D35C810B /* Pods-BeMyGuideReactNative.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeMyGuideReactNative.debug.xcconfig"; path = "Target Support Files/Pods-BeMyGuideReactNative/Pods-BeMyGuideReactNative.debug.xcconfig"; sourceTree = "<group>"; };
 		44413A8027F14F4F88A8666C /* RobotoMono-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-Medium.ttf"; path = "../src/assets/fonts/RobotoMono-Medium.ttf"; sourceTree = "<group>"; };
+		4632352DD163C4D9886D65EA /* Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests.debug.xcconfig"; path = "Target Support Files/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4F58EB2ECD1544AEA9D51135 /* RobotoMono-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-Regular.ttf"; path = "../src/assets/fonts/RobotoMono-Regular.ttf"; sourceTree = "<group>"; };
 		530D8745888E4C4296EBB56E /* RobotoMono-ExtraLightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-ExtraLightItalic.ttf"; path = "../src/assets/fonts/RobotoMono-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
-		5709B34CF0A7D63546082F79 /* Pods-BeMyGuideReactNative.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeMyGuideReactNative.release.xcconfig"; path = "Target Support Files/Pods-BeMyGuideReactNative/Pods-BeMyGuideReactNative.release.xcconfig"; sourceTree = "<group>"; };
-		5B7EB9410499542E8C5724F5 /* Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests.debug.xcconfig"; path = "Target Support Files/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests.debug.xcconfig"; sourceTree = "<group>"; };
-		5DCACB8F33CDC322A6C60F78 /* libPods-BeMyGuideReactNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeMyGuideReactNative.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E8BDDB206B36FD46ED84BEF /* libPods-BeMyGuideReactNative.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeMyGuideReactNative.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F46D540E0094AA79211351A /* RobotoMono-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-MediumItalic.ttf"; path = "../src/assets/fonts/RobotoMono-MediumItalic.ttf"; sourceTree = "<group>"; };
 		6168B1ECC1544F14821E8B4D /* RobotoMono-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-ExtraLight.ttf"; path = "../src/assets/fonts/RobotoMono-ExtraLight.ttf"; sourceTree = "<group>"; };
 		6208BD59AD8B408B961B7661 /* RobotoMono-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-SemiBoldItalic.ttf"; path = "../src/assets/fonts/RobotoMono-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		6CC96838CF5B90A752FF3C59 /* Pods-BeMyGuideReactNative.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeMyGuideReactNative.debug.xcconfig"; path = "Target Support Files/Pods-BeMyGuideReactNative/Pods-BeMyGuideReactNative.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = BeMyGuideReactNative/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		89C6BE57DB24E9ADA2F236DE /* Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests.release.xcconfig"; path = "Target Support Files/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests.release.xcconfig"; sourceTree = "<group>"; };
 		8A98EEA9AA2642AAAAAF2166 /* RobotoMono-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-SemiBold.ttf"; path = "../src/assets/fonts/RobotoMono-SemiBold.ttf"; sourceTree = "<group>"; };
+		93EC494880D0367E11E2516E /* Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests.release.xcconfig"; path = "Target Support Files/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests.release.xcconfig"; sourceTree = "<group>"; };
 		A472002A503A401CAB29D207 /* RobotoMono-VariableFont_wght.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-VariableFont_wght.ttf"; path = "../src/assets/fonts/RobotoMono-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		B746B6692A4D4F34AF64DA58 /* RobotoMono-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-Light.ttf"; path = "../src/assets/fonts/RobotoMono-Light.ttf"; sourceTree = "<group>"; };
 		DA201A823F6A48808F01DB31 /* RobotoMono-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-Italic.ttf"; path = "../src/assets/fonts/RobotoMono-Italic.ttf"; sourceTree = "<group>"; };
 		E3FC074DE96E4CA4B90FFA26 /* RobotoMono-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "RobotoMono-Thin.ttf"; path = "../src/assets/fonts/RobotoMono-Thin.ttf"; sourceTree = "<group>"; };
+		E5788904752105B2117AC0B6 /* Pods-BeMyGuideReactNative.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeMyGuideReactNative.release.xcconfig"; path = "Target Support Files/Pods-BeMyGuideReactNative/Pods-BeMyGuideReactNative.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		F02A585A21E26FA9D5EFE519 /* libPods-BeMyGuideReactNative-BeMyGuideReactNativeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BeMyGuideReactNative-BeMyGuideReactNativeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,7 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7699B88040F8A987B510C191 /* libPods-BeMyGuideReactNative-BeMyGuideReactNativeTests.a in Frameworks */,
+				1657CEFC2B9A5ADEB7581F6E /* libPods-BeMyGuideReactNative-BeMyGuideReactNativeTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C80B921A6F3F58F76C31292 /* libPods-BeMyGuideReactNative.a in Frameworks */,
+				28309CBFB55037DF13686470 /* libPods-BeMyGuideReactNative.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,8 +132,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5DCACB8F33CDC322A6C60F78 /* libPods-BeMyGuideReactNative.a */,
-				19F6CBCC0A4E27FBF8BF4A61 /* libPods-BeMyGuideReactNative-BeMyGuideReactNativeTests.a */,
+				5E8BDDB206B36FD46ED84BEF /* libPods-BeMyGuideReactNative.a */,
+				F02A585A21E26FA9D5EFE519 /* libPods-BeMyGuideReactNative-BeMyGuideReactNativeTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -173,10 +173,10 @@
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3B4392A12AC88292D35C810B /* Pods-BeMyGuideReactNative.debug.xcconfig */,
-				5709B34CF0A7D63546082F79 /* Pods-BeMyGuideReactNative.release.xcconfig */,
-				5B7EB9410499542E8C5724F5 /* Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests.debug.xcconfig */,
-				89C6BE57DB24E9ADA2F236DE /* Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests.release.xcconfig */,
+				6CC96838CF5B90A752FF3C59 /* Pods-BeMyGuideReactNative.debug.xcconfig */,
+				E5788904752105B2117AC0B6 /* Pods-BeMyGuideReactNative.release.xcconfig */,
+				4632352DD163C4D9886D65EA /* Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests.debug.xcconfig */,
+				93EC494880D0367E11E2516E /* Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -212,12 +212,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "BeMyGuideReactNativeTests" */;
 			buildPhases = (
-				A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */,
+				99CB5DD1A42D2A1DAE774B5B /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */,
-				F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */,
+				7899B7D53B2217B1EE2340FB /* [CP] Embed Pods Frameworks */,
+				7C6F59814082C5E0BD70057B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -233,14 +233,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "BeMyGuideReactNative" */;
 			buildPhases = (
-				C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */,
+				B91DBD31E37D58D0502747A3 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */,
-				E235C05ADACE081382539298 /* [CP] Copy Pods Resources */,
+				47426DBA3B181921CB72BBC8 /* [CP] Embed Pods Frameworks */,
+				F5F3035E8DADF6828FD5D433 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -339,7 +339,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
 		};
-		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
+		47426DBA3B181921CB72BBC8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -356,7 +356,41 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeMyGuideReactNative/Pods-BeMyGuideReactNative-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A55EABD7B0C7F3A422A6CC61 /* [CP] Check Pods Manifest.lock */ = {
+		7899B7D53B2217B1EE2340FB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7C6F59814082C5E0BD70057B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99CB5DD1A42D2A1DAE774B5B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -378,7 +412,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C38B50BA6285516D6DCD4F65 /* [CP] Check Pods Manifest.lock */ = {
+		B91DBD31E37D58D0502747A3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -400,24 +434,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C59DA0FBD6956966B86A3779 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E235C05ADACE081382539298 /* [CP] Copy Pods Resources */ = {
+		F5F3035E8DADF6828FD5D433 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -432,23 +449,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeMyGuideReactNative/Pods-BeMyGuideReactNative-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F6A41C54EA430FDDC6A6ED99 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests/Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -503,7 +503,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests.debug.xcconfig */;
+			baseConfigurationReference = 4632352DD163C4D9886D65EA /* Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -530,7 +530,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests.release.xcconfig */;
+			baseConfigurationReference = 93EC494880D0367E11E2516E /* Pods-BeMyGuideReactNative-BeMyGuideReactNativeTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -554,7 +554,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-BeMyGuideReactNative.debug.xcconfig */;
+			baseConfigurationReference = 6CC96838CF5B90A752FF3C59 /* Pods-BeMyGuideReactNative.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -581,7 +581,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-BeMyGuideReactNative.release.xcconfig */;
+			baseConfigurationReference = E5788904752105B2117AC0B6 /* Pods-BeMyGuideReactNative.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
