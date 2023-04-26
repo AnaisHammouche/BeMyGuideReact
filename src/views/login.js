@@ -19,7 +19,7 @@ const Login = () => {
     <SafeAreaView style={styles.screen}>
       <View style={styles.container}>
         <Text style={styles.title}>
-          Cela fait longtemps qu'on ne vous avait pas vu
+          Cela faisait longtemps qu'on ne vous avait pas vu.
         </Text>
         <Image
           source={require('../assets/close_eye.png')}
