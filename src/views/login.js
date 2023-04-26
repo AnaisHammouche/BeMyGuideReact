@@ -1,5 +1,6 @@
-import React, {useCallback, useState} from 'react';
-import {SafeAreaView, View, Text, Image, TextInput} from 'react-native';
+
+import React, {useCallback, useEffect, useState} from 'react';
+import {SafeAreaView, View, Text, Image, TextInput, Alert, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {styles} from '../styles/login_style';
 import ButtonDefault from '../components/button';
@@ -17,24 +18,28 @@ const Login = () => {
   return (
     <SafeAreaView style={styles.screen}>
       <View style={styles.container}>
+        <Text style={styles.title}>
+          Cela fait longtemps qu'on ne vous avait pas vu
+        </Text>
         <Image
           source={require('../assets/close_eye.png')}
           style={styles.icon}
         />
-        <Text style={styles.title}>
-          Ca fait longtemps qu'on ne vous avait pas vu
-        </Text>
-        <View style={styles.separator}>
-          <Text>VOTRE ADRESSE MAIL</Text>
+        <View style={styles.smallContainer}>
+          <Text style={styles.text}>VOTRE ADRESSE MAIL</Text>
           <TextInput
+            style={styles.input}
             autoCapitalize="none"
             placeholder="bonjour@bemyguide.fr"
             keyboardType="email-address"
             value={email}
             onChangeText={setMail}
           />
-          <Text keyboardType="default">VOTRE MOT DE PASSE</Text>
+          <Text style={styles.text} keyboardType="default">
+            VOTRE MOT DE PASSE
+          </Text>
           <TextInput
+            style={styles.input}
             autoCapitalize="none"
             secureTextEntry={true}
             placeholder="VOTRE MOT DE PASSE"
@@ -42,12 +47,12 @@ const Login = () => {
             onChangeText={setPassword}
           />
         </View>
-        <View style={{alignItems: 'center'}}>
-          <ButtonDefault
-            title="ME CONNECTER"
-            onPress={() => postLogin(email, password)}
-          />
-        </View>
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => postLogin(email, password)}>
+          <Text style={styles.buttonText}>ME CONNECTER</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

@@ -63,46 +63,47 @@ const LogInBlind = () => {
       <View style={styles.container}>
         <Text style={styles.title}>
           Cela faisait longtemps qu'on ne vous avait pas vu.{' '}
-          <Image
+       </Text>
+       <Image
             source={require('../../assets/close_eye.png')}
             style={styles.icon}
           />
-        </Text>
         
-          <View style={styles.smallContainer}>
-            <Text style={styles.text}>VOTRE ADRESSE MAIL</Text>
-            <TextInput
-              style={styles.input}
-              //style={isValid ? styles.form : styles.formRed}
-              placeholder="bonjour@bemyguide.fr"
-              keyboardType="default"
-              value={email}
-              onChangeText={setEmail}
-            />
-            <Text style={styles.text} keyboardType="default">
-              VOTRE MOT DE PASSE
-            </Text>
-            <TextInput
-              style={styles.input}
-              placeholder="**********"
-              secureTextEntry={true}
-              value={password}
-              onChangeText={setPassword}
-            />
-          </View>
 
-          {/*   <TouchableOpacity
+        <View style={styles.smallContainer}>
+          <Text style={styles.text}>VOTRE ADRESSE MAIL</Text>
+          <TextInput
+            style={styles.input}
+            //style={isValid ? styles.form : styles.formRed}
+            placeholder="bonjour@bemyguide.fr"
+            keyboardType="default"
+            value={email}
+            onChangeText={setEmail}
+          />
+          <Text style={styles.text} keyboardType="default">
+            VOTRE MOT DE PASSE
+          </Text>
+          <TextInput
+            style={styles.input}
+            placeholder="**********"
+            secureTextEntry={true}
+            value={password}
+            onChangeText={setPassword}
+          />
+        </View>
+
+        {/*   <TouchableOpacity
           onPress={() => Alert.alert(JSON.stringify('email : ' + email + ' mdp : ' + password))}>
           <Text >
             ME CONNECTER
           </Text>
         </TouchableOpacity> */}
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => postLogin(email, password)}>
-            <Text style={styles.buttonText}>ME CONNECTER</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => postLogin(email, password)}>
+          <Text style={styles.buttonText}>ME CONNECTER</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
   );
 };
