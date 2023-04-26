@@ -8,7 +8,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import {styles} from '../../styles/register_style';
+import {styles} from '../../styles/register_sighted_style';
 import ButtonDefault from '../../components/button';
 import postRegister, {axiosRegiter} from '../../api/userApi';
 
@@ -127,21 +127,21 @@ const Register = () => {
           </View>
         </TouchableOpacity> */}
         <TextInput
-          style={styles.form}
+          style={styles.input}
           autoCapitalize="none"
           placeholder="NOM"
           value={lastName}
           onChangeText={setLastName}
         />
         <TextInput
-          style={styles.form}
+          style={styles.input}
           autoCapitalize="none"
           placeholder="PRENOM"
           value={firstName}
           onChangeText={setFirstName}
         />
         <TextInput
-          style={styles.form}
+          style={styles.input}
           autoCapitalize="none"
           placeholder="VOTRE ADRESSE MAIL"
           keyboardType="email-address"
@@ -149,7 +149,7 @@ const Register = () => {
           onChangeText={setEmail}
         />
         <TextInput
-          style={styles.form}
+          style={styles.input}
           placeholder="VOTRE MOT DE PASSE"
           autoCapitalize="none"
           keyboardType="default"
@@ -158,7 +158,7 @@ const Register = () => {
           onChangeText={setPassword}
         />
         <TextInput
-          style={styles.form}
+          style={styles.input}
           autoCapitalize="none"
           placeholder="CONFIRMATION MOT DE PASSE"
           secureTextEntry={true}
