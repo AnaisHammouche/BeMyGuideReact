@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, TouchableOpacity, Text} from 'react-native';
-import {styles} from '../styles/button_style.js';
+import {styles} from '../styles/button.js';
 
 const ButtonDefault = ({title, onPress}) => {
   return (

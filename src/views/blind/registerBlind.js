@@ -1,10 +1,9 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useCallback, useMemo, useState} from 'react';
 import {SafeAreaView, Text, View, Image, TextInput} from 'react-native';
-import {styles} from '../../styles/register_style';
+import {styles} from '../../styles/registerBlindStyle';
 import ButtonDefault from '../../components/button';
-import postRegister, {axiosRegiter as axiosRegister} from '../../api/userApi';
-import axios from 'axios';
+import {axiosRegister} from '../../api/userApi';
 
 const RegisterBlind = () => {
   const navigation = useNavigation();

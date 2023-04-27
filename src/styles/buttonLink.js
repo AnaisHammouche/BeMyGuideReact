@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native';
-import {colors_theme} from '../config/colors_theme.js';
 
 export const styles = StyleSheet.create({
   button: {

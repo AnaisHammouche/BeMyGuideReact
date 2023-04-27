@@ -1,16 +1,14 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
   SafeAreaView,
   View,
   Text,
   Image,
   TextInput,
-  Alert,
   TouchableOpacity,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {styles} from '../styles/login_style';
-import ButtonDefault from '../components/button';
+import {styles} from '../styles/loginStyle';
 import {axiosLogin} from '../api/userApi';
 
 const Login = () => {

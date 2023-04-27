@@ -1,23 +1,7 @@
-import React, {
-  Component,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
-import styles from '../../styles/LoginBindStyle';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useNavigation} from '@react-navigation/native';
+import React, {useState} from 'react';
+import styles from '../../styles/loginStyle';
 
-import {
-  SafeAreaView,
-  View,
-  TouchableOpacity,
-  Text,
-  TextInput,
-  Alert,
-  Image,
-} from 'react-native';
+import {SafeAreaView, View, Text, Alert, Image} from 'react-native';
 import axios from 'axios';
 
 const Match = ({route, navigation}) => {

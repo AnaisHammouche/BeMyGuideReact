@@ -1,24 +1,13 @@
-import React, {
-  Component,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, {useCallback, useState} from 'react';
 import RNPickerSelect from 'react-native-picker-select';
-import axios from 'axios';
-
 import {
-  Button,
-  Modal,
   SafeAreaView,
   Text,
   TextInput,
   View,
   TouchableOpacity,
 } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import styles from '../../styles/formRoute_style';
+import styles from '../../styles/formRoute';
 import {AxiosRoute} from '../../api/routeApi';
 
 const FormRouteBlind = ({route, navigation}) => {

@@ -1,18 +1,10 @@
-
-import {
-  Image,
-  ImageBackground,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {SafeAreaView, Text, View} from 'react-native';
 // //import Component from 'react-native-paper/lib/typescript/src/components/Typography/Text';
 // import ButtonDefault from '../components/button';
 // import {styles} from '../styles/welcome_style';
 
 // class Waiting extends Component {
-  
+
 //     constructor(props) {
 //         super(props);
 //         this.state = {
@@ -22,7 +14,7 @@ import {
 //         componentWillMount(){
 //             console.log('First this called');
 //           }
-        
+
 //           getData(){
 //             setTimeout(() => {
 //               console.log('Our data is fetched');
@@ -31,7 +23,7 @@ import {
 //               })
 //             }, 1000)
 //           }
-        
+
 //           componentDidMount(){
 //             this.getData();
 //           }
@@ -47,64 +39,57 @@ import {
 //   )
 // }
 
+import React, {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {Navigation} from 'react-native-navigation';
 
-import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { Navigation } from 'react-native-navigation';
+const Waiting = route => {
+  const navigation = useNavigation();
+  const [isHide, setIsHide] = useState(true);
 
-const Waiting = (route) => {
+  setTimeout(() => setIsHide(false), 1000);
 
-    const navigation = useNavigation();
-    const [isHide, setIsHide] = useState(true);
+  const routeParamsToken = route.params.token;
 
-    setTimeout(() => setIsHide(false), 1000);
+  // super(props);
+  // this.state = {
+  //   data: 'Votre demande a bien été prise en compte. Vous recevrez une notification dès que nous aurons trouvé le match idéal !'
+  // };
 
-    const routeParamsToken = route.params.token;
+  // const waiting2 = useCallback => {
 
-    
-    
-    // super(props);
-    // this.state = {
-    //   data: 'Votre demande a bien été prise en compte. Vous recevrez une notification dès que nous aurons trouvé le match idéal !'
-    // };
-  
-// const waiting2 = useCallback => {
+  // //   getData(){
+  // //     setTimeout(() => {
 
+  // //         navigation.navigate('Match')
+  // //     }, 1000)
+  // //   }
 
-// //   getData(){
-// //     setTimeout(() => {
-        
-// //         navigation.navigate('Match')
-// //     }, 1000)
-// //   }
+  // //   componentDidMount(){
+  // //     // setTimeout(() => {this.navigationForm()}, 1000)
+  // //     this.getData();
+  // //   }
 
-// //   componentDidMount(){
-// //     // setTimeout(() => {this.navigationForm()}, 1000)
-// //     this.getData();
-// //   }
+  // // //   navigationForm() {
 
-// // //   navigationForm() {
-    
-// // //     navigation.navigate('Match')
-// // //   }
+  // // //     navigation.navigate('Match')
+  // // //   }
 
-// }
+  // }
 
-    
-    return(
-        <SafeAreaView >
+  return (
+    <SafeAreaView>
       <View>
-      <Text>
-      Votre demande a bien été prise en compte. Vous recevrez une notification dès que nous aurons trouvé le match idéal !
-      </Text>
-      {!isHide ? navigation.navigate('Match') : null}
-    </View>
+        <Text>
+          Votre demande a bien été prise en compte. Vous recevrez une
+          notification dès que nous aurons trouvé le match idéal !
+        </Text>
+        {!isHide ? navigation.navigate('Match') : null}
+      </View>
     </SafeAreaView>
-    )
+  );
 
-    return(
-    navigation.navigate('Match'))
-    };
-
+  return navigation.navigate('Match');
+};
 
 export default Waiting;

@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {styles} from '../styles/welcome_style';
+import {styles} from '../styles/welcomeStyle';
 
 const Welcome = props => {
   const {navigation} = props;

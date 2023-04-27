@@ -1,14 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useCallback, useMemo, useState} from 'react';
-import {
-  SafeAreaView,
-  Text,
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
-import {styles} from '../../styles/register_sighted_style';
+import {SafeAreaView, Text, View, Image, TextInput} from 'react-native';
+import {styles} from '../../styles/registerSighted';
 import ButtonDefault from '../../components/button';
 import {axiosRegister} from '../../api/userApi';
 
@@ -29,20 +22,6 @@ const Register = () => {
     isBlind: false,
     //gender: gender,
   };
-
-  /* const newUser = async () => {
-    try {
-      await AsyncStorage.setItem(
-        user.lastName,
-        user.firstName,
-        user.mail,
-        user.password,
-      );
-      console.log('registered');
-    } catch (error) {
-      console.log('error: ' + error);
-    }
-  }; */
 
   useMemo(() => {
     if (

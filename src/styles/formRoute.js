@@ -1,8 +1,5 @@
-import React from 'react';
-
 import {StyleSheet} from 'react-native';
-import {FullWindowOverlay} from 'react-native-screens';
-import {colors_theme} from '../config/colors_theme.js';
+import {colorsTheme} from '../config/colorsTheme.js';
 
 const styles = StyleSheet.create({
   safeArea: {
@@ -38,7 +35,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   button: {
-    backgroundColor: colors_theme.button_green,
+    backgroundColor: colorsTheme.button_green,
     alignItems: 'center',
     padding: 4,
     height: 50,
@@ -52,7 +49,6 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: '700',
     textAlign: 'center',
-    // fontSize: 12,
     marginHorizontal: 40,
     marginVertical: 10,
     height: 40,

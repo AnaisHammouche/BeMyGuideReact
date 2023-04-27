@@ -1,4 +1,4 @@
-export const colors_theme = {
+export const colorsTheme = {
   button_green: '#27AE60',
   txt_white: '#FFFFFF',
   txt_black: '#000000',
