@@ -8,8 +8,10 @@ import Login from '../../views/login';
 // import Match from '../../views/blind/Match';
 import RegisterBlind from '../../views/blind/registerBlind';
 import Waiting from '../../views/waiting';
+import DisplayAllMyRoutesBlind from '../../views/blind/DisplayAllMyRoutesBlind'
 
 const Stack = createNativeStackNavigator();
+// const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => {
   return (
@@ -24,6 +26,7 @@ const AppNavigator = () => {
         <Stack.Screen name="Login" component={Login} />
         {/* <Stack.Screen name="Match" component={Match} /> */}
         <Stack.Screen name="Waiting" component={Waiting} />
+        <Stack.Screen name="DisplayAllMyRoutesBlind" component={DisplayAllMyRoutesBlind} />
       </Stack.Navigator>
     </NavigationContainer>
   );

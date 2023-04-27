@@ -15,7 +15,7 @@ const Waiting = ({route, navigation}) => {
   const routeParamsToken = route.params.token;
   
     setTimeout(() => {
-    navigation.navigate('FormRouteBlind', {token : routeParamsToken})
+    navigation.navigate('DisplayAllMyRoutesBlind', {token : routeParamsToken})
   }, 1 * 10 * 1000)
 
   return (

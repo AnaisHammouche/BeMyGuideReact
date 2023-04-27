@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {StyleSheet} from 'react-native';
 import { FullWindowOverlay } from 'react-native-screens';
 import {colors_theme} from '../config/colors_theme.js';
@@ -39,12 +38,32 @@ input: {
     padding: 10,
     borderRadius: 5,
   },
+  buttonContainer: {
+    marginTop: 50,
+    flex: 1,
+    padding: 40,
+   width: '100%',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+  },
+
     button: {
     backgroundColor: colors_theme.button_green,
     alignItems: 'center',
     padding: 4,
     height: 50,
-    width: '100%',
+    width: '90%',
+    marginTop: 20,
+    justifyContent: 'center',
+    borderRadius: 10,
+  },
+
+  buttonRed: {
+  backgroundColor: 'red',
+    alignItems: 'center',
+    padding: 4,
+    height: 50,
+    width: '90%',
     marginTop: 20,
     justifyContent: 'center',
     borderRadius: 10,

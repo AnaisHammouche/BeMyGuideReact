@@ -15,9 +15,12 @@ import {
   TextInput,
   View,
   TouchableOpacity,
-  DatePickerIOSComponent
+  // DatePickerIOSComponent
 
 } from 'react-native';
+
+
+import {DatePickerIOSComponent} from '@react-native-community/datetimepicker'
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../styles/formRoute_style';
@@ -40,7 +43,7 @@ const FormRouteBlind = ({route, navigation}) => {
   const routeParamsToken = route.params.token;
   const [fromStation, setfromStation] = useState();
   const [toStation, setToStation] = useState();
-  const [date, setDate] = useState();
+  //const [date, setDate] = useState();
   const [time, setTime] = useState();
   const [routeMateGender, setRouteMateGender] = useState();
 
@@ -81,7 +84,7 @@ const FormRouteBlind = ({route, navigation}) => {
           required
         />
         <Text style={styles.text}>JOUR DE DÉPART</Text>
-        <DatePicker
+        {/* <DatePicker
         style={styles.inputDate}
           date={currentDate}
           mode="date"
@@ -91,7 +94,9 @@ const FormRouteBlind = ({route, navigation}) => {
           maxDate={maxDate}
           confirmBtnText="Confirm"
           cancelBtnText="Cancel"
+          
           customStyles={{
+          
             dateIcon: {
               right: -10,
               top: 4,
@@ -118,7 +123,7 @@ const FormRouteBlind = ({route, navigation}) => {
           onDateChange={(date) => {
             setDate(date);
           }}
-        />
+        /> */}
       
         <Text style={styles.text}>HORAIRE DE DÉPART</Text>
         <TextInput
@@ -140,12 +145,13 @@ const FormRouteBlind = ({route, navigation}) => {
         />
     
       <TouchableOpacity style={styles.button}
-        // onPress={() => postRoute(fromStation, toStation, routeMateGender,
-        //   routeParamsToken, 
-        //   navigation)
-        // }
-        onPress={() => console.log(currentDate)}
-        onLongPress={() => console.log(currentDate)}>
+        onPress={() => postRoute(fromStation, toStation, routeMateGender,
+          routeParamsToken, 
+          navigation)
+        }
+        // onPress={() => console.log(currentDate)}
+        // onLongPress={() => console.log(currentDate)}
+        >
         <Text  style={styles.connect}>Valider</Text>
       </TouchableOpacity>
       </View>
