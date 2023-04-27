@@ -21,6 +21,7 @@ export const styles = StyleSheet.create({
   title: {
     fontFamily: 'RobotoMono-Bold',
     fontSize: 30,
+    marginBottom: 50,
     // alignItems: 'space-around',
   },
   separator: {
@@ -29,14 +30,10 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  inputText: {
-    marginTop: 50,
-    //marginLeft: 10,
-   // height: 40,
-    width: '85%',
-    paddingLeft: 10,
-  },
+ 
   input: {
+    marginTop: 20,
+    marginBottom: 30,
     height: 40,
     width: '85%',
     paddingHorizontal: 10,
@@ -54,16 +51,5 @@ export const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
   },
-  button: {
-    backgroundColor: 'green',
-    color: 'white',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    marginTop: 30,
-    height: 50,
-    width: '85%',
-    backgroundColor: 'white',
-    borderRadius: 10,
-    borderWidth: 1,
-  },
+
 });

@@ -23,7 +23,7 @@ import AppNavigator from '../src/components/navigators/AppNavigator';
 const App = () => {
   return (
     <NavigationContainer>
-     <AppNavigator/>
+      <AppNavigator />
     </NavigationContainer>
   );
 };

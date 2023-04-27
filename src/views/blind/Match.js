@@ -19,7 +19,8 @@ import axios from 'axios';
     console.log('ROUTPARAMFROMSTATION : ' + routeParamsFromStation);
     const routeParamsToStation = JSON.parse(route.params.toStation);
     console.log('ROUTPARAMTOSTATION : ' + routeParamsToStation);
-    
+
+    //const routeParamsToken = JSON.parse(route.params.token);
  // const navigation = useNavigation();
   const [fromStation, setFromStation] = useState([]);
   const [toStation, setToStation] = useState([]);
@@ -28,25 +29,30 @@ import axios from 'axios';
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   
-  const getMatch =  useCallback(async (routeParamsFromStation, routeParamsToStation) => {
+  const getMatch =  async(routeParamsFromStation, routeParamsToStation) => {
+
     axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(routeParamsToken)}`;
-    console.log("routeParamsToken :" + routeParamsToken)
+
+    // const config = {
+    //   headers: {
+    //     'Accept-Encoding': 'gzip, deflate, br'
+    //   }};
+
+
   axios
-    .get('http://localhost:8080/api/v1/routes/test', {
-      routeParamsFromStation,
-      routeParamsToStation
+    .get('http://localhost:8080/api/v1/routes/matches', {
+
     })
-    .then( async function (response) {
-      if (response.status = "200") {
-      console.log('tokenDATA : ' + routeParamsToken)
+    .then(function (response) {
         Alert.alert(' get response : ' + response.status);
-    
-  }})
+    })
     .catch(function(error) {
       Alert.alert('Accept-Encoding status:'+ error);
-    });
+    })
+    .then(function (){
 
-},);
+    });
+};
 
 
 
@@ -60,19 +66,19 @@ import axios from 'axios';
           <Text >{routeParamsFromStation}</Text>
           <Text >À : </Text>
           <Text >{routeParamsToStation}</Text>
-          <Text >Le : </Text>
+          {/* <Text >Le : </Text>
           <Text >{date}</Text>
           <Text >À : </Text>
-          <Text >{hours}</Text>
-          <Text >à été confirmée par {firstName}.</Text>
-          <Text >N'oubliez pas de le contacter afin de convenir d'un lieu de rendez-vous plus précis tel que le numéro d'entée de la station. </Text>
-          
-        <View>
+          <Text >{hours}</Text> */}
+          {/* <Text >à été confirmée par {firstName}.</Text> */}
+          {/* <Text >N'oubliez pas de le contacter afin de convenir d'un lieu de rendez-vous plus précis tel que le numéro d'entée de la station. </Text>
+           */}
+        {/* <View>
             <Image></Image>
             <Text>{firstName} {lastName}</Text>
             <Text>Accompagnateur</Text>
         <TouchableOpacity
-        onPress={() => getMatch(routeParamsFromStation,routeParamsToStation)}>
+        onPress={() => getMatch(fromStation,toStation)}>
           <Text >
             CHAT
           </Text>
@@ -83,7 +89,7 @@ import axios from 'axios';
             TEL
           </Text>
         </TouchableOpacity>
-        </View>
+        </View> */}
       </View>
       </View>
     </SafeAreaView>

@@ -1,38 +1,27 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useCallback, useMemo, useState} from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {SafeAreaView, Text, View, Image, TextInput} from 'react-native';
-import {styles} from '../styles/register_style';
-import ButtonDefault from '../components/button';
-import {RadioButton} from 'react-native-paper';
+import {styles} from '../../styles/register_style';
+import ButtonDefault from '../../components/button';
+import postRegister, {axiosRegiter} from '../../api/userApi';
+import axios from 'axios';
 
-const Register = () => {
+const RegisterBlind = () => {
   const navigation = useNavigation();
   const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
-  const [mail, setMail] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  //const [gender, setGender] = useState('');
   const [isValid, setIsValid] = useState('true');
   const user = {
     lastName: lastName,
     firstName: firstName,
-    mail: mail,
+    email: email,
     password: password,
-  };
-
-  const newUser = async () => {
-    try {
-      await AsyncStorage.setItem(
-        user.lastName,
-        user.firstName,
-        user.mail,
-        user.password,
-      );
-      console.log('registered');
-    } catch (error) {
-      console.log('error: ' + error);
-    }
+    isBlind: true,
+    //gender: gender,
   };
 
   useMemo(() => {
@@ -40,7 +29,7 @@ const Register = () => {
       lastName === '' ||
       firstName === '' ||
       password !== confirmPassword ||
-      mail === '' ||
+      email === '' ||
       password === '' ||
       password.length < 5
     ) {
@@ -48,69 +37,105 @@ const Register = () => {
     } else {
       setIsValid(true);
     }
-  }, [lastName, firstName, mail, password, confirmPassword]);
+  }, [lastName, firstName, email, password, confirmPassword]);
 
   const validator = useCallback(() => {
     if (isValid) {
-      newUser();
+      axiosRegiter(
+        //user.gender,
+        user.lastName,
+        user.firstName,
+        user.email,
+        user.password,
+        user.isBlind,
+        navigation,
+      );
       alert(
         'Bienvenue, ' + user.firstName + ' ravie de vous comptez parmis nous',
       );
       navigation.navigate('Login');
     } else {
-      alert('Veuillez remplir les informations nécessaires à votre inscriptions.');
+      alert(
+        'Veuillez remplir les informations nécessaires à votre inscription.',
+      );
     }
-  }, [isValid, user.firstName]);
+  }, [
+    isValid,
+    navigation,
+    user.firstName,
+    //user.gender,
+    user.isBlind,
+    user.lastName,
+    user.email,
+    user.password,
+  ]);
 
   return (
     <SafeAreaView style={styles.screen}>
       <View style={styles.container}>
         <Image
-          source={require('../assets/close_eye.png')}
+          source={require('../../assets/close_eye.png')}
           style={styles.icon}
         />
         <Text style={styles.title}>Nous rejoindre</Text>
       </View>
       <View style={styles.separator}>
-        {/*  <View>
-          <RadioButton
-            value="Mr"
-            status={checked === 'first' ? 'checked' : 'unchecked'}
-            onPress={() => setChecked('first')}
+        {/* <View>
+          <TouchableOpacity
+            value="Femme"
+            status={gender === 'Femme' ? 'checked' : 'unchecked'}
+            onPress={() => setGender('Femme')}
           />
+          <Text>Femme</Text>
         </View> */}
+         <Text style={styles.inputText} keyboardType="default">
+            NOM
+          </Text>
         <TextInput
-          style={styles.form}
+          style={styles.input}
           autoCapitalize="none"
           placeholder="NOM"
           value={lastName}
           onChangeText={setLastName}
         />
+        <Text style={styles.inputText} keyboardType="default">
+            PRENOM
+          </Text>
         <TextInput
-          style={styles.form}
+          style={styles.input}
           autoCapitalize="none"
           placeholder="PRENOM"
           value={firstName}
           onChangeText={setFirstName}
         />
+        <Text style={styles.inputText} keyboardType="default">
+            E-MAIL
+          </Text>
         <TextInput
-          style={styles.form}
+          style={styles.input}
           autoCapitalize="none"
           placeholder="VOTRE ADRESSE MAIL"
           keyboardType="email-address"
-          value={mail}
-          onChangeText={setMail}
+          value={email}
+          onChangeText={setEmail}
         />
+        <Text style={styles.inputText} keyboardType="default">
+            MOT DE PASSE
+          </Text>
         <TextInput
-          style={styles.form}
+          style={styles.input}
           placeholder="VOTRE MOT DE PASSE"
           autoCapitalize="none"
+          keyboardType="default"
           secureTextEntry={true}
-          value={user.password}
+          value={password}
           onChangeText={setPassword}
         />
+        <Text style={styles.inputText} keyboardType="default">
+            CONFIRMATION DE MOT DE PASSE
+          </Text>
         <TextInput
-          style={styles.form}
+          style={styles.input}
           autoCapitalize="none"
           placeholder="CONFIRMATION MOT DE PASSE"
           secureTextEntry={true}
@@ -129,4 +154,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default RegisterBlind;
