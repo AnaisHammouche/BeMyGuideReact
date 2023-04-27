@@ -67,9 +67,11 @@ export async function AxiosRouteGet(fromStation,
     navigation
     })
     .then(
-      function (response) {
+      async function (response) {
         if (response.data) {
-           navigation.navigate('Waiting');
+          const getAsynTokenStorage = await AsyncStorage.getItem('Token');
+          console.log("routeParamsToken : " + getAsynTokenStorage)
+          navigation.navigate('Waiting', {token : getAsynTokenStorage});
           axios
           .post(`${baseUrl}/sendgrid`, {})
           .then(async function (response) {

@@ -17,7 +17,7 @@ const AppNavigator = () => {
       <Stack.Navigator
         initialRouteName="Bienvenue"
         screenOptions={{headerShown: false}}>
-        <Stack.Screen name="Home" component={Welcome} />
+        <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="FormRouteBlind" component={FormRouteBlind} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="RegisterBlind" component={RegisterBlind} />
