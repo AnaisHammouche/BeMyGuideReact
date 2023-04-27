@@ -1,6 +1,13 @@
-
 import React, {useCallback, useEffect, useState} from 'react';
-import {SafeAreaView, View, Text, Image, TextInput, Alert, TouchableOpacity} from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  Image,
+  TextInput,
+  Alert,
+  TouchableOpacity,
+} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {styles} from '../styles/login_style';
 import ButtonDefault from '../components/button';

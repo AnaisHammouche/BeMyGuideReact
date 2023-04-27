@@ -63,12 +63,11 @@ const LogInBlind = () => {
       <View style={styles.container}>
         <Text style={styles.title}>
           Cela faisait longtemps qu'on ne vous avait pas vu.{' '}
-       </Text>
-       <Image
-            source={require('../../assets/close_eye.png')}
-            style={styles.icon}
-          />
-        
+        </Text>
+        <Image
+          source={require('../../assets/close_eye.png')}
+          style={styles.icon}
+        />
 
         <View style={styles.smallContainer}>
           <Text style={styles.text}>VOTRE ADRESSE MAIL</Text>
