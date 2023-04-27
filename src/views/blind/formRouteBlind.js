@@ -1,5 +1,4 @@
 import React, {
-  Component,
   useCallback,
   useContext,
   useEffect,
@@ -22,7 +21,7 @@ import {
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../styles/formRoute_style';
-import { AxiosRoute } from '../../api/routeApi';
+import { AxiosRoute, AxiosRouteGet } from '../../api/routeApi';
 import DatePicker from 'react-native-datepicker';
 import TimePicker from 'react-native-simple-time-picker';
 
@@ -36,6 +35,7 @@ const maxDate = addOneYear(currentDate);
 
 // const [date, setDate] = useState('09-10-2021');
 
+
 const FormRouteBlind = ({route, navigation}) => {
   const routeParamsToken = route.params.token;
   const [fromStation, setfromStation] = useState();
@@ -48,7 +48,11 @@ const FormRouteBlind = ({route, navigation}) => {
     AxiosRoute(fromStation,
       toStation,
       routeMateGender,
-      routeParamsToken, navigation)}, [fromStation,
+      routeParamsToken, navigation), AxiosRouteGet(fromStation,
+        toStation,
+        routeMateGender,
+        routeParamsToken, navigation)}
+      , [fromStation,
         toStation,
         routeMateGender,
         routeParamsToken, navigation]);

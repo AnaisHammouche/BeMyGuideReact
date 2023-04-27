@@ -50,47 +50,42 @@ export async function AxiosRoute(
         console.log('perdu ! ' + error);
       }
     });
-
-  // axios
-  //   .get('http://localhost:8080/api/v1/routes/matches', {
-  //     fromStation: fromStation,
-  //     toStation: toStation,
-  //     routeMateGender: routeMateGender
-  //   })
-  //   .then(
-  //     function (response) {
-  //       if (response.data) {
-  //         navigation.navigate('Waiting');
-  //         console.log('dans response data get');
-  //         axios
-  //           .post('http://localhost:8080/api/v1/sendgrid', {})
-  //           .then(async function (response) {
-  //             console.log('dans le post sendgrid');
-  //           });
-  //       }
-  //     }
-
-  // const getAsynTokenStorage = AsyncStorage.getItem('Token');
-  //  const fromStationData = fromStation;
-  //  console.log('fromstationGet : ' + fromStationData);
-  // const toStationData = toStation;
-  //  console.log('tostationDataaGet : ' + toStationData );
-  // return getAsynTokenStorage != null ? JSON.parse(getAsynTokenStorage) && navigation.navigate('Match', { fromStation: fromStationData, toStation: toStationData, token: getAsynTokenStorage }) : null;
-
-  // } else {
-  //   navigation.navigate('Waiting')
-  // }
-  //  console.log(response.data[0]['fromStation'] + response.data[0]['fromStation'] )
-
-  //         .catch(function (error) {
-  //           if (!response.data || response.data == null) {
-  //             console.log('get erreur reponse vide ou null !');
-  //           } else {
-  //             console.log('get erreur !');
-  //             alert('erreur : ' + JSON.stringify(error));
-  //             console.log('perdu ! ' + error);
-  //           }
-  //         }),
-  //     );
+    ;
 }
 [];
+
+export async function AxiosRouteGet(fromStation,
+    toStation,
+    routeMateGender,
+    routeParamsToken, navigation) {
+    axios
+    .get(`${baseUrl}/routes/matches`, {
+    fromStation: fromStation,
+    toStation: toStation,
+    routeMateGender: routeMateGender,
+    routeParamsToken, 
+    navigation
+    })
+    .then(
+      async function (response) {
+        if (response.data) {
+          const getAsynTokenStorage = await AsyncStorage.getItem('Token');
+          console.log("routeParamsToken : " + getAsynTokenStorage)
+          navigation.navigate('Waiting', {token : getAsynTokenStorage});
+          axios
+          .post(`${baseUrl}/sendgrid`, {})
+          .then(async function (response) {
+            console.log('dans le post sendgrid');
+          });
+        }
+      })
+}
+
+// export async function PostAxiosSendGrid (){
+//     axios
+//     .post(`${baseUrl}/sendgrid`, {})
+//     .then(async function (response) {
+//       console.log('dans le post sendgrid');
+//     });
+
+// }

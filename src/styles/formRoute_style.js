@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
 
   text: {
     fontWeight: '700',
+    fontFamily: 'RobotoMono-Medium',
   },
 
 input: {
@@ -38,6 +39,7 @@ input: {
     borderWidth: 1,
     padding: 10,
     borderRadius: 5,
+    fontFamily: 'RobotoMono-Medium',
   },
   inputDate: {
     height: 40,
@@ -56,6 +58,7 @@ input: {
     marginTop: 20,
     justifyContent: 'center',
     borderRadius: 10,
+    fontFamily: 'RobotoMono-Medium',
   },
   
   connect: {
