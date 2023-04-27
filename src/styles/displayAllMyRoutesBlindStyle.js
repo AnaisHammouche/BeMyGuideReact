@@ -39,14 +39,6 @@ input: {
     padding: 10,
     borderRadius: 5,
   },
-  inputDate: {
-    height: 40,
-    width: '95%',
-    marginTop :10,
-    marginBottom: 26,
-    borderRadius: 5,
-  },
-  
     button: {
     backgroundColor: colors_theme.button_green,
     alignItems: 'center',
