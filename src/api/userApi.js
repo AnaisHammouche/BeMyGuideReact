@@ -4,7 +4,7 @@ import {Alert} from 'react-native';
 
 let baseUrl = process.env.BASE_URL;
 
-export async function axiosRegiter(
+export async function axiosRegister(
   firstName,
   lastName,
   email,
