@@ -75,12 +75,14 @@ input: {
     borderRadius: 5,
   },
   dateIcon: {
+    useNativeDriver: true,
     position: 'absolute',
     right: -5,
     top: 4,
     marginLeft: 0,
   },
   dateInput: {
+    useNativeDriver: true,
     borderColor : "gray",
     alignItems: "flex-start",
     borderWidth: 0,
@@ -91,6 +93,7 @@ input: {
     color: "gray"
   },
   dateText: {
+    useNativeDriver: true,
     fontSize: 17,
   }
 })

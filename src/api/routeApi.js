@@ -8,7 +8,7 @@ export async function AxiosRoute(
   fromStation,
   toStation,
   routeMateGender,
-  routeParamsToken, 
+  routeParamsToken,
   navigation
 ) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
@@ -46,7 +46,7 @@ export async function AxiosRoute(
     .catch(function (error) {
       if (!fromStation || !toStation) {
         console.log('champ vide');
-        alert('erreur : ' + JSON.stringify(error));
+        Alert('erreur : ' + JSON.stringify(error));
         console.log('perdu ! ' + error);
       }
     });
