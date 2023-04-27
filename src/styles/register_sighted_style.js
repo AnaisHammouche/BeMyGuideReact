@@ -40,6 +40,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     borderBottomWidth: 1,
     borderBottomColor: 'green',
+    fontFamily: 'RobotoMono-Medium',
   },
   formRed: {
     marginTop: 30,
