@@ -69,7 +69,7 @@ export async function AxiosRouteGet(fromStation,
     .then(
       function (response) {
         if (response.data) {
-          // navigation.navigate('Waiting');
+           navigation.navigate('Waiting');
           axios
           .post(`${baseUrl}/sendgrid`, {})
           .then(async function (response) {
