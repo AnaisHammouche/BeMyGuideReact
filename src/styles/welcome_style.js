@@ -8,8 +8,8 @@ export const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    resizeMode: 'cover',
-    justifyContent: 'space-between',
+   // resizeMode: 'cover',
+  //  justifyContent: 'space-between',
   },
   title: {
     fontFamily: 'RobotoMono-Bold',
@@ -19,13 +19,19 @@ export const styles = StyleSheet.create({
     color: colors_theme.txt_white,
   },
   titleContainer: {
-    paddingTop: 120,
+   paddingTop: 120,
     marginVertical: 80,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  buttonContainer: {
+  //  paddingTop: 120,
+     marginVertical: 80,
+     alignItems: 'center',
+     justifyContent: 'center',
+   },
   icon: {
-    marginHorizontal: 170,
+   // marginHorizontal: 170,
     alignItems: 'center',
     tintColor: 'white',
     justifyContent: 'center',
@@ -42,13 +48,13 @@ export const styles = StyleSheet.create({
   textConnect: {
     color: colors_theme.txt_white,
     fontFamily: 'RobotoMono-Medium',
-    fontSize: 12,
-    marginTop: 18,
+    fontSize: 16,
+    marginTop: 80,
   },
   connect: {
     textAlign: 'center',
     color: colors_theme.txt_white,
-    fontSize: 12,
+    fontSize: 16,
     fontFamily: 'RobotoMono-Bold',
   },
   button1: {
@@ -56,7 +62,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 4,
     height: 50,
-    width: 250,
+    width: 260,
     // marginTop: 30,
     justifyContent: 'center',
     borderRadius: 10,
@@ -66,7 +72,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 4,
     height: 50,
-    width: 250,
+    width: 260,
     marginTop: 20,
     justifyContent: 'center',
     borderRadius: 10,

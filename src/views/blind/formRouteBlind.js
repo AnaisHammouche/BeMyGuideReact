@@ -15,10 +15,26 @@ import {
   TextInput,
   View,
   TouchableOpacity,
+  DatePickerIOSComponent
+
 } from 'react-native';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../styles/formRoute_style';
 import { AxiosRoute, AxiosRouteGet } from '../../api/routeApi';
+import DatePicker from 'react-native-datepicker';
+import TimePicker from 'react-native-simple-time-picker';
+
+
+const currentDate = new Date();
+function addOneYear(date) {
+  date.setFullYear(date.getFullYear() + 1);
+  return date;
+}
+const maxDate = addOneYear(currentDate);
+
+// const [date, setDate] = useState('09-10-2021');
+
 
 const FormRouteBlind = ({route, navigation}) => {
   const routeParamsToken = route.params.token;
@@ -65,13 +81,45 @@ const FormRouteBlind = ({route, navigation}) => {
           required
         />
         <Text style={styles.text}>JOUR DE DÉPART</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Date"
-          keyboardType="default"
-          value={date}
-          onChangeText={setDate}
+        <DatePicker
+        style={styles.inputDate}
+          date={currentDate}
+          mode="date"
+          placeholder="Sélectionnez un jour de départ"
+          format="DD/MM/YYYY"
+          minDate={currentDate}
+          maxDate={maxDate}
+          confirmBtnText="Confirm"
+          cancelBtnText="Cancel"
+          customStyles={{
+            dateIcon: {
+              right: -10,
+              top: 4,
+              marginLeft: 0,
+            },
+            dateInput: {
+             // marginTop: 15,
+              borderColor : "black",
+            //  alignItems: "flex-start",
+             // borderWidth: 0,
+              width: '300%',
+              //borderBottomWidth: 1,
+              borderRadius: 5,
+            },
+            placeholderText: {
+              padding: 10, 
+              fontSize: 17,
+              color: "gray"
+            },
+            dateText: {
+              fontSize: 17,
+            }
+          }}
+          onDateChange={(date) => {
+            setDate(date);
+          }}
         />
+      
         <Text style={styles.text}>HORAIRE DE DÉPART</Text>
         <TextInput
           style={styles.input}
@@ -92,10 +140,12 @@ const FormRouteBlind = ({route, navigation}) => {
         />
     
       <TouchableOpacity style={styles.button}
-        onPress={() => postRoute(fromStation, toStation, routeMateGender,
-          routeParamsToken, 
-          navigation)}
-        onLongPress={() => console.log('pas de match désolé')}>
+        // onPress={() => postRoute(fromStation, toStation, routeMateGender,
+        //   routeParamsToken, 
+        //   navigation)
+        // }
+        onPress={() => console.log(currentDate)}
+        onLongPress={() => console.log(currentDate)}>
         <Text  style={styles.connect}>Valider</Text>
       </TouchableOpacity>
       </View>

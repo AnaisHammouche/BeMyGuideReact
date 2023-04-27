@@ -35,18 +35,19 @@ const Welcome = props => {
             style={styles.icon}
           />
         </View>
-        <View style={styles.titleContainer}>
+        <View style={styles.buttonContainer}>
+
           <TouchableOpacity onPress={goToRegisterBlind} style={styles.button1}>
             <Text style={styles.connect}>
               {' '}
-              JE SOUHAITE ME FAIRE ACCOMPAGNER
+              ME FAIRE ACCOMPAGNER
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={goToRegister} style={styles.button2}>
             <Text style={styles.connect}>
               {' '}
-              JE SOUHAITE ACCOMPAGNER QUELQU'UN
+              ACCOMPAGNER QUELQU'UN
             </Text>
           </TouchableOpacity>
 

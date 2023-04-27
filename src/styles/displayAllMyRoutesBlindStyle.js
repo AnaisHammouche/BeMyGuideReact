@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
 
   text: {
     fontWeight: '700',
-    fontFamily: 'RobotoMono-Medium',
   },
 
 input: {
@@ -39,16 +38,7 @@ input: {
     borderWidth: 1,
     padding: 10,
     borderRadius: 5,
-    fontFamily: 'RobotoMono-Medium',
   },
-  inputDate: {
-    height: 40,
-    width: '95%',
-    marginTop :10,
-    marginBottom: 26,
-    borderRadius: 5,
-  },
-  
     button: {
     backgroundColor: colors_theme.button_green,
     alignItems: 'center',
@@ -58,7 +48,6 @@ input: {
     marginTop: 20,
     justifyContent: 'center',
     borderRadius: 10,
-    fontFamily: 'RobotoMono-Medium',
   },
   
   connect: {
