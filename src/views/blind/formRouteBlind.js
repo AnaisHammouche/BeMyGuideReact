@@ -1,5 +1,4 @@
 import React, {
-  Component,
   useCallback,
   useContext,
   useEffect,
@@ -19,7 +18,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../styles/formRoute_style';
-import { AxiosRoute } from '../../api/routeApi';
+import { AxiosRoute, AxiosRouteGet } from '../../api/routeApi';
 
 const FormRouteBlind = ({route, navigation}) => {
   const routeParamsToken = route.params.token;
@@ -33,7 +32,11 @@ const FormRouteBlind = ({route, navigation}) => {
     AxiosRoute(fromStation,
       toStation,
       routeMateGender,
-      routeParamsToken, navigation)}, [fromStation,
+      routeParamsToken, navigation), AxiosRouteGet(fromStation,
+        toStation,
+        routeMateGender,
+        routeParamsToken, navigation)}
+      , [fromStation,
         toStation,
         routeMateGender,
         routeParamsToken, navigation]);

@@ -59,7 +59,7 @@ const Waiting = (route) => {
 
     setTimeout(() => setIsHide(false), 1000);
 
-    const routeParamsToken = route.params.token;
+  //  const routeParamsToken = route.params.token;
 
     
     
@@ -97,13 +97,13 @@ const Waiting = (route) => {
       <Text>
       Votre demande a bien été prise en compte. Vous recevrez une notification dès que nous aurons trouvé le match idéal !
       </Text>
-      {!isHide ? navigation.navigate('Match') : null}
+      {/* {!isHide ? navigation.navigate('Match') : null} */}
     </View>
     </SafeAreaView>
     )
 
-    return(
-    navigation.navigate('Match'))
+    // return(
+    // navigation.navigate('Match'))
     };
 
 
