@@ -35,6 +35,7 @@ export const styles = StyleSheet.create({
    // height: 40,
     width: '85%',
     paddingLeft: 10,
+    fontFamily: 'RobotoMono-Medium',
   },
   input: {
     height: 40,
@@ -43,6 +44,7 @@ export const styles = StyleSheet.create({
     borderRadius: 10,
     borderBottomWidth: 1,
     borderBottomColor: 'green',
+    fontFamily: 'RobotoMono-Medium',
   },
   formRed: {
     marginTop: 30,
@@ -65,5 +67,6 @@ export const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 10,
     borderWidth: 1,
+    fontFamily: 'RobotoMono-Medium',
   },
 });

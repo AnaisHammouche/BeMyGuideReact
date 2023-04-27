@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     marginTop: '30%',
     marginBottom: 20,
+    fontFamily: 'RobotoMono-Bold',
     
   },
 });

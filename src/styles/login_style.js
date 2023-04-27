@@ -41,6 +41,7 @@ export const styles = StyleSheet.create({
     width: '100%',
     fontWeight: 700,
     marginTop: 35,
+    fontFamily: 'RobotoMono-Medium',
    // textAlign: 'center',
   },
 
@@ -52,6 +53,7 @@ export const styles = StyleSheet.create({
     borderBottomColor: 'green',
     padding: 10,
     borderRadius: 2,
+    fontFamily: 'RobotoMono-Medium',
   },
 
   separator: {
