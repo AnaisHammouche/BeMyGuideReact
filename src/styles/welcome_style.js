@@ -4,7 +4,7 @@ import {colors_theme} from '../config/colors_theme.js';
 export const styles = StyleSheet.create({
   screen: {
     flex: 1,
- //   justifyContent: 'space-between',
+    //   justifyContent: 'space-between',
   },
   image: {
     flex: 1,
@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     fontFamily: 'RobotoMono-Bold',
     fontSize: 25,
     textAlign: 'center',
-   // alignContent: 'space-between',
+    // alignContent: 'space-between',
     color: colors_theme.txt_white,
   },
   titleContainer: {
