@@ -1,8 +1,12 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+// baseUrl is in the .env
 let baseUrl = process.env.BASE_URL;
 
+// linking the API for routes and the front via Axios
+
+// To post a route
 export async function AxiosRoute(
   fromStation,
   toStation,
@@ -23,6 +27,8 @@ export async function AxiosRoute(
       routeParamsToken,
       navigation,
     })
+
+    // the promise we get
     .then(async function (response) {
       const getAsynTokenStorage = await AsyncStorage.getItem('Token');
       console.log('routeParamsToken async:' + JSON.parse(getAsynTokenStorage));
@@ -42,6 +48,7 @@ export async function AxiosRoute(
       }
     })
 
+    // in case of error, we get it
     .catch(function (error) {
       if (!fromStation || !toStation) {
         console.log('champ vide');
@@ -51,3 +58,31 @@ export async function AxiosRoute(
     });
 }
 [];
+
+// Get a route
+export async function AxiosRouteGet(
+  fromStation,
+  toStation,
+  routeMateGender,
+  routeParamsToken,
+  navigation,
+) {
+  axios
+    .get(`${baseUrl}/routes/matches`, {
+      fromStation: fromStation,
+      toStation: toStation,
+      routeMateGender: routeMateGender,
+      routeParamsToken,
+      navigation,
+    })
+    .then(async function (response) {
+      if (response.data) {
+        const getAsynTokenStorage = await AsyncStorage.getItem('Token');
+        console.log('routeParamsToken : ' + getAsynTokenStorage);
+        navigation.navigate('Waiting', {token: getAsynTokenStorage});
+        axios.post(`${baseUrl}/sendgrid`, {}).then(async function (response) {
+          console.log('dans le post sendgrid');
+        });
+      }
+    });
+}

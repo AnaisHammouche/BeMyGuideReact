@@ -11,11 +11,13 @@ import {useNavigation} from '@react-navigation/native';
 import {styles} from '../styles/loginStyle';
 import {axiosLogin} from '../api/userApi';
 
+// initiation of the login page
 const Login = () => {
   const navigation = useNavigation();
   const [email, setMail] = useState('');
   const [password, setPassword] = useState('');
 
+  //  Call of the axios function
   const postLogin = useCallback(() => {
     axiosLogin(email, password, navigation);
   }, [email, password, navigation]);

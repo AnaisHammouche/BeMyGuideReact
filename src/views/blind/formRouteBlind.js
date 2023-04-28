@@ -7,9 +7,11 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-import styles from '../../styles/formRoute';
-import {AxiosRoute} from '../../api/routeApi';
+import styles from '../../styles/formRoute_style';
+import {AxiosRoute, AxiosRouteGet} from '../../api/routeApi';
 
+// initiation of the route form
+// useState to renew render when data changes
 const FormRouteBlind = ({route, navigation}) => {
   const routeParamsToken = route.params.token;
   const [fromStation, setfromStation] = useState();
@@ -18,6 +20,7 @@ const FormRouteBlind = ({route, navigation}) => {
   const [time, setTime] = useState();
   const [routeMateGender, setRouteMateGender] = useState();
 
+  //  Call of the axios function in the API directory
   const postRoute = useCallback(() => {
     AxiosRoute(
       fromStation,
@@ -25,7 +28,14 @@ const FormRouteBlind = ({route, navigation}) => {
       routeMateGender,
       routeParamsToken,
       navigation,
-    );
+    ),
+      AxiosRouteGet(
+        fromStation,
+        toStation,
+        routeMateGender,
+        routeParamsToken,
+        navigation,
+      );
   }, [fromStation, toStation, routeMateGender, routeParamsToken, navigation]);
 
   return (
@@ -77,6 +87,21 @@ const FormRouteBlind = ({route, navigation}) => {
             {label: 'Pas de préférence', value: ''},
           ]}
         />
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() =>
+            postRoute(
+              fromStation,
+              toStation,
+              routeMateGender,
+              routeParamsToken,
+              navigation,
+            )
+          }
+          onLongPress={() => console.log('pas de match désolé')}>
+          <Text style={styles.connect}>Valider</Text>
+        </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
