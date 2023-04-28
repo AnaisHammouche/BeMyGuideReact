@@ -80,12 +80,3 @@ export async function AxiosRouteGet(fromStation,
         }
       })
 }
-
-// export async function PostAxiosSendGrid (){
-//     axios
-//     .post(`${baseUrl}/sendgrid`, {})
-//     .then(async function (response) {
-//       console.log('dans le post sendgrid');
-//     });
-
-// }

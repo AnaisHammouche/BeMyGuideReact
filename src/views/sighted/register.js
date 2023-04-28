@@ -30,20 +30,6 @@ const Register = () => {
     //gender: gender,
   };
 
-  /* const newUser = async () => {
-    try {
-      await AsyncStorage.setItem(
-        user.lastName,
-        user.firstName,
-        user.mail,
-        user.password,
-      );
-      console.log('registered');
-    } catch (error) {
-      console.log('error: ' + error);
-    }
-  }; */
-
   useMemo(() => {
     if (
       lastName === '' ||

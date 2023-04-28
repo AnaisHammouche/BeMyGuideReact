@@ -5,12 +5,9 @@ import {colors_theme} from '../config/colors_theme.js';
 export const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    //padding: 40,
   },
   container: {
-   // justifyContent: 'space-between',
     marginTop: 50,
-   // flexDirection: 'column',
     alignItems: 'center',
   },
   icon: {
@@ -22,11 +19,8 @@ export const styles = StyleSheet.create({
     fontFamily: 'RobotoMono-Bold',
     fontSize: 30,
     marginBottom: 50,
-    // alignItems: 'space-around',
   },
   separator: {
-   // marginVertical: 50,
-   // padding: 20,
     alignItems: 'center',
     justifyContent: 'center',
   },

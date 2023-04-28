@@ -1,7 +1,5 @@
 import React, {
   useCallback,
-  useContext,
-  useEffect,
   useState,
 } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
@@ -9,14 +7,12 @@ import axios from 'axios';
 
 import {
   Button,
-  Modal,
   SafeAreaView,
   Text,
   TextInput,
   View,
   TouchableOpacity,
 } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../styles/formRoute_style';
 import { AxiosRoute, AxiosRouteGet } from '../../api/routeApi';
 

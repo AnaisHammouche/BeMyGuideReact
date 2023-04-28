@@ -9,9 +9,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 40,
-    //justifyContent: 'space-evenly',
     marginTop: 50,
-    //padding: 40,
     flexDirection: 'column',
     alignItems: 'center',
   },
@@ -19,7 +17,6 @@ export const styles = StyleSheet.create({
   icon: {
     width: 30,
     height: 30,
-   // marginLeft: 30,
     resizeMode: 'contain',
   },
 
@@ -32,7 +29,6 @@ export const styles = StyleSheet.create({
   
   smallContainer: {
     flex: 1,
-  //  justifyContent: 'flex-start',
     marginTop: 60,
     width: '100%',
   },
@@ -42,7 +38,6 @@ export const styles = StyleSheet.create({
     fontWeight: 700,
     marginTop: 35,
     fontFamily: 'RobotoMono-Medium',
-   // textAlign: 'center',
   },
 
   input: {
