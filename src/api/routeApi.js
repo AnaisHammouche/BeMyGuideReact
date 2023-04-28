@@ -8,8 +8,8 @@ export async function AxiosRoute(
   fromStation,
   toStation,
   routeMateGender,
-  routeParamsToken, 
-  navigation
+  routeParamsToken,
+  navigation,
 ) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
     routeParamsToken,
@@ -21,8 +21,8 @@ export async function AxiosRoute(
       fromStation: fromStation,
       toStation: toStation,
       routeMateGender: routeMateGender,
-      routeParamsToken, 
-      navigation
+      routeParamsToken,
+      navigation,
     })
     .then(async function (response) {
       const getAsynTokenStorage = await AsyncStorage.getItem('Token');
@@ -50,33 +50,32 @@ export async function AxiosRoute(
         console.log('perdu ! ' + error);
       }
     });
-    ;
 }
 [];
 
-export async function AxiosRouteGet(fromStation,
-    toStation,
-    routeMateGender,
-    routeParamsToken, navigation) {
-    axios
+export async function AxiosRouteGet(
+  fromStation,
+  toStation,
+  routeMateGender,
+  routeParamsToken,
+  navigation,
+) {
+  axios
     .get(`${baseUrl}/routes/matches`, {
-    fromStation: fromStation,
-    toStation: toStation,
-    routeMateGender: routeMateGender,
-    routeParamsToken, 
-    navigation
+      fromStation: fromStation,
+      toStation: toStation,
+      routeMateGender: routeMateGender,
+      routeParamsToken,
+      navigation,
     })
-    .then(
-      async function (response) {
-        if (response.data) {
-          const getAsynTokenStorage = await AsyncStorage.getItem('Token');
-          console.log("routeParamsToken : " + getAsynTokenStorage)
-          navigation.navigate('Waiting', {token : getAsynTokenStorage});
-          axios
-          .post(`${baseUrl}/sendgrid`, {})
-          .then(async function (response) {
-            console.log('dans le post sendgrid');
-          });
-        }
-      })
+    .then(async function (response) {
+      if (response.data) {
+        const getAsynTokenStorage = await AsyncStorage.getItem('Token');
+        console.log('routeParamsToken : ' + getAsynTokenStorage);
+        navigation.navigate('Waiting', {token: getAsynTokenStorage});
+        axios.post(`${baseUrl}/sendgrid`, {}).then(async function (response) {
+          console.log('dans le post sendgrid');
+        });
+      }
+    });
 }

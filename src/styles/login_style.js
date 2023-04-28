@@ -4,7 +4,6 @@ import {colors_theme} from '../config/colors_theme.js';
 export const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    
   },
   container: {
     flex: 1,
@@ -21,12 +20,11 @@ export const styles = StyleSheet.create({
   },
 
   title: {
-    
     fontFamily: 'RobotoMono-Bold',
     fontSize: 30,
     textAlign: 'justify',
   },
-  
+
   smallContainer: {
     flex: 1,
     marginTop: 60,
@@ -56,7 +54,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
- 
+
   button: {
     backgroundColor: colors_theme.button_green,
     alignItems: 'center',
@@ -66,12 +64,12 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10,
   },
-  
+
   buttonText: {
     color: 'white',
     fontSize: 18,
     fontWeight: 700,
     fontFamily: 'RobotoMono-Medium',
     textAlign: 'center',
-  }
+  },
 });

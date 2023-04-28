@@ -1,7 +1,4 @@
-import React, {
-  useCallback,
-  useState,
-} from 'react';
+import React, {useCallback, useState} from 'react';
 import {styles} from '../../styles/login_style';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
@@ -49,12 +46,11 @@ const LogInBlind = () => {
       <View style={styles.container}>
         <Text style={styles.title}>
           Cela faisait longtemps qu'on ne vous avait pas vu.{' '}
-       </Text>
-       <Image
-            source={require('../../assets/close_eye.png')}
-            style={styles.icon}
-          />
-        
+        </Text>
+        <Image
+          source={require('../../assets/close_eye.png')}
+          style={styles.icon}
+        />
 
         <View style={styles.smallContainer}>
           <Text style={styles.text}>VOTRE ADRESSE MAIL</Text>

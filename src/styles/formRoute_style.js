@@ -2,17 +2,15 @@ import React from 'react';
 import {StyleSheet} from 'react-native';
 import {colors_theme} from '../config/colors_theme.js';
 
-
 const styles = StyleSheet.create({
-  
-  safeArea:{
+  safeArea: {
     flex: 1,
   },
 
-  container:{
+  container: {
     flex: 1,
     padding: 40,
-   width: '100%',
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'flex-start',
   },
@@ -29,17 +27,17 @@ const styles = StyleSheet.create({
     fontFamily: 'RobotoMono-Medium',
   },
 
-input: {
+  input: {
     height: 40,
     width: '100%',
-    marginTop :10,
+    marginTop: 10,
     marginBottom: 26,
     borderWidth: 1,
     padding: 10,
     borderRadius: 5,
     fontFamily: 'RobotoMono-Medium',
   },
-    button: {
+  button: {
     backgroundColor: colors_theme.button_green,
     alignItems: 'center',
     padding: 4,
@@ -50,7 +48,7 @@ input: {
     borderRadius: 10,
     fontFamily: 'RobotoMono-Medium',
   },
-  
+
   connect: {
     color: 'white',
     fontWeight: '700',
@@ -64,6 +62,6 @@ input: {
     padding: 10,
     borderRadius: 5,
   },
-})
+});
 
 export default styles;

@@ -28,7 +28,7 @@
 //   // const [hours, setHours] = useState();
 //   // const [firstName, setFirstName] = useState();
 //   // const [lastName, setLastName] = useState();
-  
+
 // //   const getMatch =  async(routeParamsFromStation, routeParamsToStation) => {
 
 // //     axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(routeParamsToken)}`;
@@ -37,7 +37,6 @@
 // //     //   headers: {
 // //     //     'Accept-Encoding': 'gzip, deflate, br'
 // //     //   }};
-
 
 // //   axios
 // //     .get('http://localhost:8080/api/v1/routes/matches', {
@@ -53,8 +52,6 @@
 
 // //     });
 // // };
-
-
 
 //   return (
 //     <SafeAreaView style={styles.screen}>
@@ -95,7 +92,5 @@
 //     </SafeAreaView>
 //   )
 // };
-
-
 
 // export default Match;

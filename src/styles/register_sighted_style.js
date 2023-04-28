@@ -1,7 +1,6 @@
 import {StyleSheet} from 'react-native';
 import {colors_theme} from '../config/colors_theme.js';
 
-
 export const styles = StyleSheet.create({
   screen: {
     flex: 1,
@@ -24,7 +23,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
- 
+
   input: {
     marginTop: 20,
     marginBottom: 30,
@@ -46,5 +45,4 @@ export const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 10,
   },
-
 });
