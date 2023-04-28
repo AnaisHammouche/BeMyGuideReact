@@ -2,8 +2,12 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Alert} from 'react-native';
 
+// baseUrl is in the .env
 let baseUrl = process.env.BASE_URL;
 
+// linking the API for routes and the front via Axios
+
+// To post a route
 export async function AxiosRoute(
   fromStation,
   toStation,
@@ -24,6 +28,8 @@ export async function AxiosRoute(
       routeParamsToken,
       navigation,
     })
+
+    // the promise we get
     .then(async function (response) {
       const getAsynTokenStorage = await AsyncStorage.getItem('Token');
       console.log('routeParamsToken async:' + JSON.parse(getAsynTokenStorage));
@@ -43,6 +49,7 @@ export async function AxiosRoute(
       }
     })
 
+    // in case of error, we get it
     .catch(function (error) {
       if (!fromStation || !toStation) {
         console.log('champ vide');
@@ -53,6 +60,7 @@ export async function AxiosRoute(
 }
 [];
 
+// Get a route
 export async function AxiosRouteGet(
   fromStation,
   toStation,

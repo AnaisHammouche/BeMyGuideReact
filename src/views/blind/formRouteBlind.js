@@ -13,6 +13,8 @@ import {
 import styles from '../../styles/formRoute_style';
 import {AxiosRoute, AxiosRouteGet} from '../../api/routeApi';
 
+// initiation of the route form
+// useState to renew render when data changes
 const FormRouteBlind = ({route, navigation}) => {
   const routeParamsToken = route.params.token;
   const [fromStation, setfromStation] = useState();
@@ -21,6 +23,7 @@ const FormRouteBlind = ({route, navigation}) => {
   const [time, setTime] = useState();
   const [routeMateGender, setRouteMateGender] = useState();
 
+  //  Call of the axios function in the API directory
   const postRoute = useCallback(() => {
     AxiosRoute(
       fromStation,

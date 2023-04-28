@@ -14,11 +14,13 @@ import {
   Image,
 } from 'react-native';
 
+// initiation of the login page
 const LogInBlind = () => {
   const navigation = useNavigation();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
+  //  Call of the axios function
   const postLogin = useCallback(async (email, password) => {
     axios
       .post('http://localhost:8080/api/v1/auth/authenticate', {

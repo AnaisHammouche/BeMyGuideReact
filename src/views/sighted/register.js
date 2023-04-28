@@ -12,6 +12,7 @@ import {styles} from '../../styles/register_sighted_style';
 import ButtonDefault from '../../components/button';
 import postRegister, {axiosRegiter} from '../../api/userApi';
 
+// registration page initiation
 const Register = () => {
   const navigation = useNavigation();
   const [lastName, setLastName] = useState('');
@@ -30,6 +31,7 @@ const Register = () => {
     //gender: gender,
   };
 
+  // initialization of conditions for registration
   useMemo(() => {
     if (
       lastName === '' ||
@@ -45,6 +47,7 @@ const Register = () => {
     }
   }, [lastName, firstName, email, password, confirmPassword]);
 
+  //  Validation of registration, call of the axios function, with an alert for registration
   const validator = useCallback(() => {
     if (isValid) {
       axiosRegiter(

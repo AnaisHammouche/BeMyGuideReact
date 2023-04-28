@@ -9,6 +9,7 @@ import Login from '../../views/login';
 import RegisterBlind from '../../views/blind/registerBlind';
 import Waiting from '../../views/waiting';
 
+// Setting up navigation pages
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {

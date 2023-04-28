@@ -6,6 +6,7 @@ import ButtonDefault from '../../components/button';
 import axiosRegiter from '../../api/userApi';
 import axios from 'axios';
 
+// registration page initiation
 const RegisterBlind = () => {
   const navigation = useNavigation();
   const [lastName, setLastName] = useState('');
@@ -24,6 +25,7 @@ const RegisterBlind = () => {
     //gender: gender,
   };
 
+  // initialization of conditions for registration
   useMemo(() => {
     if (
       lastName === '' ||
@@ -39,6 +41,7 @@ const RegisterBlind = () => {
     }
   }, [lastName, firstName, email, password, confirmPassword]);
 
+  //  Validation of registration, call of the axios function, with an alert for registration
   const validator = useCallback(() => {
     if (isValid) {
       axiosRegiter(

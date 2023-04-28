@@ -13,11 +13,13 @@ import {styles} from '../styles/login_style';
 import ButtonDefault from '../components/button';
 import {axiosLogin} from '../api/userApi';
 
+// initiation of the login page
 const Login = () => {
   const navigation = useNavigation();
   const [email, setMail] = useState('');
   const [password, setPassword] = useState('');
 
+  //  Call of the axios function
   const postLogin = useCallback(() => {
     axiosLogin(email, password, navigation);
   }, [email, password, navigation]);
