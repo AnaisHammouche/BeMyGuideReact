@@ -3,7 +3,7 @@ import React, {useCallback, useMemo, useState} from 'react';
 import {SafeAreaView, Text, View, Image, TextInput} from 'react-native';
 import {styles} from '../../styles/register_style';
 import ButtonDefault from '../../components/button';
-import postRegister, {axiosRegiter} from '../../api/userApi';
+import postRegister, {axiosRegister} from '../../api/userApi';
 import axios from 'axios';
 
 const RegisterBlind = () => {
@@ -41,7 +41,7 @@ const RegisterBlind = () => {
 
   const validator = useCallback(() => {
     if (isValid) {
-      axiosRegiter(
+      axiosRegister(
         //user.gender,
         user.lastName,
         user.firstName,
@@ -50,10 +50,6 @@ const RegisterBlind = () => {
         user.isBlind,
         navigation,
       );
-      alert(
-        'Bienvenue, ' + user.firstName + ' ravie de vous comptez parmis nous',
-      );
-      navigation.navigate('Login');
     } else {
       alert(
         'Veuillez remplir les informations nécessaires à votre inscription.',
@@ -88,9 +84,9 @@ const RegisterBlind = () => {
           />
           <Text>Femme</Text>
         </View> */}
-         <Text style={styles.inputText} keyboardType="default">
-            NOM
-          </Text>
+        <Text style={styles.inputText} keyboardType="default">
+          NOM
+        </Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"
@@ -99,8 +95,8 @@ const RegisterBlind = () => {
           onChangeText={setLastName}
         />
         <Text style={styles.inputText} keyboardType="default">
-            PRENOM
-          </Text>
+          PRENOM
+        </Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"
@@ -109,8 +105,8 @@ const RegisterBlind = () => {
           onChangeText={setFirstName}
         />
         <Text style={styles.inputText} keyboardType="default">
-            E-MAIL
-          </Text>
+          E-MAIL
+        </Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"
@@ -120,8 +116,8 @@ const RegisterBlind = () => {
           onChangeText={setEmail}
         />
         <Text style={styles.inputText} keyboardType="default">
-            MOT DE PASSE
-          </Text>
+          MOT DE PASSE
+        </Text>
         <TextInput
           style={styles.input}
           placeholder="VOTRE MOT DE PASSE"
@@ -132,8 +128,8 @@ const RegisterBlind = () => {
           onChangeText={setPassword}
         />
         <Text style={styles.inputText} keyboardType="default">
-            CONFIRMATION DE MOT DE PASSE
-          </Text>
+          CONFIRMATION DE MOT DE PASSE
+        </Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"
