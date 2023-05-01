@@ -4,9 +4,9 @@ import {Alert} from 'react-native';
 
 let baseUrl = process.env.BASE_URL;
 
-export async function axiosRegiter(
-  firstName,
+export async function axiosRegister(
   lastName,
+  firstName,
   email,
   password,
   isBlind,
@@ -14,8 +14,8 @@ export async function axiosRegiter(
 ) {
   axios
     .post(`${baseUrl}/auth/register`, {
-      firstname: firstName,
       lastname: lastName,
+      firstname: firstName,
       email: email,
       password: password,
       isBlind: isBlind,
@@ -23,16 +23,22 @@ export async function axiosRegiter(
     .then(async function (response) {
       const tokenData = JSON.stringify(response.data.token);
       await AsyncStorage.setItem('Token', tokenData);
-      if ((response.status = '200')) {
-        const getTokenData = await AsyncStorage.getItem('Token');
-        return getTokenData != null
-          ? JSON.parse(getTokenData) &&
-              navigation.navigate('FormRouteBlind', {token: getTokenData})
-          : null;
+      if (tokenData != null) {
+        JSON.parse(tokenData);
+        alert('Bienvenue ' + firstName + ', ravis de vous compter parmi nous.');
+        navigation.navigate('FormRouteBlind', {token: tokenData});
+        return;
       }
     })
+
     .catch(function (error) {
-      Alert.alert('erreur : ' + JSON.stringify(error));
+      if (error.name == 'AxiosError') {
+        Alert.alert(
+          "Vous n'êtes pas connecté à internet, veuillez vérifier votre réseau.",
+        );
+      } else {
+        Alert.alert('erreur : ' + JSON.stringify(error.name));
+      }
     });
 }
 
@@ -54,6 +60,12 @@ export async function axiosLogin(email, password, navigation) {
       }
     })
     .catch(function (error) {
-      Alert.alert('erreur : ' + JSON.stringify(error));
+      if (error.name == 'AxiosError') {
+        Alert.alert(
+          "Vous n'êtes pas connecté à internet, veuillez vérifier votre réseau.",
+        );
+      } else {
+        Alert.alert('erreur : ' + JSON.stringify(error.name));
+      }
     });
 }
