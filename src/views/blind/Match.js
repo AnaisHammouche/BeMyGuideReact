@@ -38,8 +38,10 @@
 // //     //     'Accept-Encoding': 'gzip, deflate, br'
 // //     //   }};
 
-// //   axios
-// //     .get('http://localhost:8080/api/v1/routes/matches', {
+/* const getMatch = async (routeParamsFromStation, routeParamsToStation) => {
+    axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
+      routeParamsToken,
+    )}`;
 
 // //     })
 // //     .then(function (response) {
@@ -51,7 +53,7 @@
 // //     .then(function (){
 
 // //     });
-// // };
+// // }; */
 
 //   return (
 //     <SafeAreaView style={styles.screen}>
