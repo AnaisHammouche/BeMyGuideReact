@@ -8,7 +8,7 @@ let baseUrl = process.env.BASE_URL;
 // connection between the API for users and the front via Axios
 
 // User registration
-export async function axiosRegiter(
+export async function axiosRegister(
   firstName,
   lastName,
   email,

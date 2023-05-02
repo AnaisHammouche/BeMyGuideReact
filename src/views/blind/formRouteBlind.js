@@ -7,7 +7,7 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-import styles from '../../styles/formRoute_style';
+import styles from '../../styles/formRoute';
 import {AxiosRoute, AxiosRouteGet} from '../../api/routeApi';
 
 // initiation of the route form
@@ -87,21 +87,6 @@ const FormRouteBlind = ({route, navigation}) => {
             {label: 'Pas de préférence', value: ''},
           ]}
         />
-
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() =>
-            postRoute(
-              fromStation,
-              toStation,
-              routeMateGender,
-              routeParamsToken,
-              navigation,
-            )
-          }
-          onLongPress={() => console.log('pas de match désolé')}>
-          <Text style={styles.connect}>Valider</Text>
-        </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.button}
