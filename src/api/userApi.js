@@ -2,9 +2,13 @@ import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Alert} from 'react-native';
 
+// baseUrl is in the .env
 let baseUrl = process.env.BASE_URL;
 
-export async function axiosRegiter(
+// connection between the API for users and the front via Axios
+
+// User registration
+export async function axiosRegister(
   firstName,
   lastName,
   email,
@@ -20,6 +24,7 @@ export async function axiosRegiter(
       password: password,
       isBlind: isBlind,
     })
+    // the promise we get
     .then(async function (response) {
       const tokenData = JSON.stringify(response.data.token);
       await AsyncStorage.setItem('Token', tokenData);
@@ -31,17 +36,20 @@ export async function axiosRegiter(
           : null;
       }
     })
+    // in case of error, we get it
     .catch(function (error) {
       Alert.alert('erreur : ' + JSON.stringify(error));
     });
 }
 
+// User login
 export async function axiosLogin(email, password, navigation) {
   axios
     .post(`${baseUrl}/auth/authenticate`, {
       email: email,
       password: password,
     })
+    // the promise we get
     .then(async function (response) {
       const tokenData = JSON.stringify(response.data.token);
       await AsyncStorage.setItem('Token', tokenData);
@@ -53,6 +61,7 @@ export async function axiosLogin(email, password, navigation) {
           : null;
       }
     })
+    // in case of error, we get it
     .catch(function (error) {
       Alert.alert('erreur : ' + JSON.stringify(error));
     });

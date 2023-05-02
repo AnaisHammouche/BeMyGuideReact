@@ -1,70 +1,42 @@
-import React, {
-  Component,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, {useCallback, useState} from 'react';
 import RNPickerSelect from 'react-native-picker-select';
-import axios from 'axios';
-import styles from '../../styles/formRoute_style';
-
 import {
-  Button,
   SafeAreaView,
   Text,
   TextInput,
   View,
   TouchableOpacity,
 } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import styles from '../../styles/formRoute';
+import {AxiosRoute, AxiosRouteGet} from '../../api/routeApi';
 
+// initiation of the route form
+// useState to renew render when data changes
 const FormRouteBlind = ({route, navigation}) => {
   const routeParamsToken = route.params.token;
-
   const [fromStation, setfromStation] = useState();
   const [toStation, setToStation] = useState();
   const [date, setDate] = useState();
   const [time, setTime] = useState();
+  const [routeMateGender, setRouteMateGender] = useState();
 
-  const postRoute = useCallback(
-    async (fromStation, toStation) => {
-      axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
+  //  Call of the axios function in the API directory
+  const postRoute = useCallback(() => {
+    AxiosRoute(
+      fromStation,
+      toStation,
+      routeMateGender,
+      routeParamsToken,
+      navigation,
+    ),
+      AxiosRouteGet(
+        fromStation,
+        toStation,
+        routeMateGender,
         routeParamsToken,
-      )}`;
-
-      axios
-        // (mettre son ip ici après le http://)
-        //  .post("http://192.168.1.20:8080/api/v1/routes/add", {
-        .post('http://localhost:8080/api/v1/routes/add', {
-          fromStation: fromStation,
-          toStation: toStation,
-        })
-        .then(async function (response) {
-          if ((response.status = '200')) {
-            const fromStationData = JSON.stringify(fromStation);
-            //  console.log('fromstation : ' + fromStationData);
-
-            const toStationData = JSON.stringify(toStation);
-            //   console.log('tostationDataa : ' + toStationData );
-
-            //  alert("reponse : " + JSON.stringify(response.data.token));
-            //  console.log("c'est gagné ! ")
-
-            navigation.navigate('Match', {
-              fromStation: fromStationData,
-              toStation: toStationData,
-              routeParamsToken: routeParamsToken,
-            });
-          }
-        })
-        .catch(function (error) {
-          alert('erreur : ' + JSON.stringify(error));
-          console.log('perdu ! ' + error);
-        });
-    },
-    [navigation, routeParamsToken],
-  );
+        navigation,
+      );
+  }, [fromStation, toStation, routeMateGender, routeParamsToken, navigation]);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -77,6 +49,7 @@ const FormRouteBlind = ({route, navigation}) => {
           keyboardType="default"
           value={fromStation}
           onChangeText={setfromStation}
+          required
         />
 
         <Text style={styles.text}>STATION D'ARRIVÉE</Text>
@@ -86,6 +59,7 @@ const FormRouteBlind = ({route, navigation}) => {
           keyboardType="default"
           value={toStation}
           onChangeText={setToStation}
+          required
         />
         <Text style={styles.text}>JOUR DE DÉPART</Text>
         <TextInput
@@ -103,20 +77,29 @@ const FormRouteBlind = ({route, navigation}) => {
           value={time}
           onChangeText={setTime}
         />
-        <Text style={styles.text}>GENRE</Text>
+        <Text style={styles.text}>Genre souhaité de votre accompagnant</Text>
         <RNPickerSelect
-          placeholder={{label: 'Séléctionnez votre genre', value: null}}
-          onValueChange={value => console.log(value)}
+          placeholder={{label: "Genre souhaité de l'accompagnant", value: null}}
+          onValueChange={routeMateGender => setRouteMateGender(routeMateGender)}
           items={[
-            {label: 'Femme', value: 'Femme'},
-            {label: 'Homme', value: 'Homme'},
-            {label: 'Non genré', value: 'Non genré'},
+            {label: 'Femme', value: 'FEMALE'},
+            {label: 'Homme', value: 'MALE'},
+            {label: 'Pas de préférence', value: ''},
           ]}
         />
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => postRoute(fromStation, toStation)}>
+          onPress={() =>
+            postRoute(
+              fromStation,
+              toStation,
+              routeMateGender,
+              routeParamsToken,
+              navigation,
+            )
+          }
+          onLongPress={() => console.log('pas de match désolé')}>
           <Text style={styles.connect}>Valider</Text>
         </TouchableOpacity>
       </View>

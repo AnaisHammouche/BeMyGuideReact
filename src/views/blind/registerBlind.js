@@ -1,11 +1,11 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useCallback, useMemo, useState} from 'react';
 import {SafeAreaView, Text, View, Image, TextInput} from 'react-native';
-import {styles} from '../../styles/register_style';
+import {styles} from '../../styles/registerBlindStyle';
 import ButtonDefault from '../../components/button';
-import postRegister, {axiosRegiter} from '../../api/userApi';
-import axios from 'axios';
+import {axiosRegister} from '../../api/userApi';
 
+// registration page initiation
 const RegisterBlind = () => {
   const navigation = useNavigation();
   const [lastName, setLastName] = useState('');
@@ -24,6 +24,7 @@ const RegisterBlind = () => {
     //gender: gender,
   };
 
+  // initialization of conditions for registration
   useMemo(() => {
     if (
       lastName === '' ||
@@ -39,9 +40,10 @@ const RegisterBlind = () => {
     }
   }, [lastName, firstName, email, password, confirmPassword]);
 
+  //  Validation of registration, call of the axios function, with an alert for registration
   const validator = useCallback(() => {
     if (isValid) {
-      axiosRegiter(
+      axiosRegister(
         //user.gender,
         user.lastName,
         user.firstName,
@@ -56,7 +58,7 @@ const RegisterBlind = () => {
       navigation.navigate('Login');
     } else {
       alert(
-        'Veuillez remplir les informations nécessaires à votre inscriptions.',
+        'Veuillez remplir les informations nécessaires à votre inscription.',
       );
     }
   }, [
@@ -88,30 +90,42 @@ const RegisterBlind = () => {
           />
           <Text>Femme</Text>
         </View> */}
+        <Text style={styles.inputText} keyboardType="default">
+          NOM
+        </Text>
         <TextInput
-          style={styles.form}
+          style={styles.input}
           autoCapitalize="none"
           placeholder="NOM"
           value={lastName}
           onChangeText={setLastName}
         />
+        <Text style={styles.inputText} keyboardType="default">
+          PRENOM
+        </Text>
         <TextInput
-          style={styles.form}
+          style={styles.input}
           autoCapitalize="none"
           placeholder="PRENOM"
           value={firstName}
           onChangeText={setFirstName}
         />
+        <Text style={styles.inputText} keyboardType="default">
+          E-MAIL
+        </Text>
         <TextInput
-          style={styles.form}
+          style={styles.input}
           autoCapitalize="none"
           placeholder="VOTRE ADRESSE MAIL"
           keyboardType="email-address"
           value={email}
           onChangeText={setEmail}
         />
+        <Text style={styles.inputText} keyboardType="default">
+          MOT DE PASSE
+        </Text>
         <TextInput
-          style={styles.form}
+          style={styles.input}
           placeholder="VOTRE MOT DE PASSE"
           autoCapitalize="none"
           keyboardType="default"
@@ -119,8 +133,11 @@ const RegisterBlind = () => {
           value={password}
           onChangeText={setPassword}
         />
+        <Text style={styles.inputText} keyboardType="default">
+          CONFIRMATION DE MOT DE PASSE
+        </Text>
         <TextInput
-          style={styles.form}
+          style={styles.input}
           autoCapitalize="none"
           placeholder="CONFIRMATION MOT DE PASSE"
           secureTextEntry={true}

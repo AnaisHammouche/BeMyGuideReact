@@ -1,23 +1,23 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
   SafeAreaView,
   View,
   Text,
   Image,
   TextInput,
-  Alert,
   TouchableOpacity,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {styles} from '../styles/login_style';
-import ButtonDefault from '../components/button';
+import {styles} from '../styles/loginStyle';
 import {axiosLogin} from '../api/userApi';
 
+// initiation of the login page
 const Login = () => {
   const navigation = useNavigation();
   const [email, setMail] = useState('');
   const [password, setPassword] = useState('');
 
+  //  Call of the axios function
   const postLogin = useCallback(() => {
     axiosLogin(email, password, navigation);
   }, [email, password, navigation]);
@@ -26,7 +26,7 @@ const Login = () => {
     <SafeAreaView style={styles.screen}>
       <View style={styles.container}>
         <Text style={styles.title}>
-          Cela fait longtemps qu'on ne vous avait pas vu
+          Cela faisait longtemps qu'on ne vous avait pas vu.
         </Text>
         <Image
           source={require('../assets/close_eye.png')}

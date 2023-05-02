@@ -1,17 +1,11 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useCallback, useMemo, useState} from 'react';
-import {
-  SafeAreaView,
-  Text,
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
-import {styles} from '../../styles/register_style';
+import {SafeAreaView, Text, View, Image, TextInput} from 'react-native';
+import {styles} from '../../styles/registerSighted';
 import ButtonDefault from '../../components/button';
-import postRegister, {axiosRegiter} from '../../api/userApi';
+import {axiosRegister} from '../../api/userApi';
 
+// registration page initiation
 const Register = () => {
   const navigation = useNavigation();
   const [lastName, setLastName] = useState('');
@@ -30,20 +24,7 @@ const Register = () => {
     //gender: gender,
   };
 
-  /* const newUser = async () => {
-    try {
-      await AsyncStorage.setItem(
-        user.lastName,
-        user.firstName,
-        user.mail,
-        user.password,
-      );
-      console.log('registered');
-    } catch (error) {
-      console.log('error: ' + error);
-    }
-  }; */
-
+  // initialization of conditions for registration
   useMemo(() => {
     if (
       lastName === '' ||
@@ -59,9 +40,10 @@ const Register = () => {
     }
   }, [lastName, firstName, email, password, confirmPassword]);
 
+  //  Validation of registration, call of the axios function, with an alert for registration
   const validator = useCallback(() => {
     if (isValid) {
-      axiosRegiter(
+      axiosRegister(
         //user.gender,
         user.lastName,
         user.firstName,
@@ -127,21 +109,21 @@ const Register = () => {
           </View>
         </TouchableOpacity> */}
         <TextInput
-          style={styles.form}
+          style={styles.input}
           autoCapitalize="none"
           placeholder="NOM"
           value={lastName}
           onChangeText={setLastName}
         />
         <TextInput
-          style={styles.form}
+          style={styles.input}
           autoCapitalize="none"
           placeholder="PRENOM"
           value={firstName}
           onChangeText={setFirstName}
         />
         <TextInput
-          style={styles.form}
+          style={styles.input}
           autoCapitalize="none"
           placeholder="VOTRE ADRESSE MAIL"
           keyboardType="email-address"
@@ -149,7 +131,7 @@ const Register = () => {
           onChangeText={setEmail}
         />
         <TextInput
-          style={styles.form}
+          style={styles.input}
           placeholder="VOTRE MOT DE PASSE"
           autoCapitalize="none"
           keyboardType="default"
@@ -158,7 +140,7 @@ const Register = () => {
           onChangeText={setPassword}
         />
         <TextInput
-          style={styles.form}
+          style={styles.input}
           autoCapitalize="none"
           placeholder="CONFIRMATION MOT DE PASSE"
           secureTextEntry={true}

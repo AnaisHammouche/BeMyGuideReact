@@ -1,15 +1,15 @@
 import {StyleSheet} from 'react-native';
-import {colors_theme} from '../config/colors_theme.js';
+import {colorsTheme} from '../config/colorsTheme.js';
 
 export const styles = StyleSheet.create({
   button: {
-    backgroundColor: colors_theme.button_green,
+    backgroundColor: colorsTheme.button_green,
     alignItems: 'center',
-    height: 70,
+    height: 50,
     width: 300,
-    margin: 24,
+    marginTop: 30,
     justifyContent: 'center',
-    borderRadius: 30,
+    borderRadius: 10,
   },
   buttonText: {
     color: 'white',

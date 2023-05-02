@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {colors_theme} from '../config/colors_theme.js';
+import {colorsTheme} from '../config/colorsTheme.js';
 
 export const styles = StyleSheet.create({
   screen: {
@@ -8,9 +8,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 40,
-    //justifyContent: 'space-evenly',
     marginTop: 50,
-    //padding: 40,
     flexDirection: 'column',
     alignItems: 'center',
   },
@@ -18,7 +16,6 @@ export const styles = StyleSheet.create({
   icon: {
     width: 30,
     height: 30,
-    // marginLeft: 30,
     resizeMode: 'contain',
   },
 
@@ -30,7 +27,6 @@ export const styles = StyleSheet.create({
 
   smallContainer: {
     flex: 1,
-    //  justifyContent: 'flex-start',
     marginTop: 60,
     width: '100%',
   },
@@ -39,7 +35,6 @@ export const styles = StyleSheet.create({
     width: '100%',
     fontWeight: 700,
     marginTop: 35,
-    // textAlign: 'center',
   },
 
   input: {
@@ -59,11 +54,11 @@ export const styles = StyleSheet.create({
   },
 
   button: {
-    backgroundColor: colors_theme.button_green,
+    backgroundColor: colorsTheme.button_green,
     alignItems: 'center',
-    height: 40,
+    height: 60,
     width: '100%',
-    marginTop: 60,
+    marginTop: 50,
     justifyContent: 'center',
     borderRadius: 10,
   },
