@@ -38,12 +38,16 @@ const maxDate = addOneYear(currentDate);
 
 // const [date, setDate] = useState('09-10-2021');
 
+// NE PAS SUPPRIMER CETTE FONCTION, AU PIRE, LA COMMENTER
+function TextGender({ name, isBlind }) {
+  return <Text style={styles.text}>{name}</Text>;
+}
 
 const FormRouteBlind = ({route, navigation}) => {
-  const routeParamsToken = route.params.token;
+//  const routeParamsToken = route.params.token;
   const [fromStation, setfromStation] = useState();
   const [toStation, setToStation] = useState();
-  //const [date, setDate] = useState();
+  const [date, setDate] = useState();
   const [time, setTime] = useState();
   const [routeMateGender, setRouteMateGender] = useState();
 
@@ -58,7 +62,8 @@ const FormRouteBlind = ({route, navigation}) => {
       , [fromStation,
         toStation,
         routeMateGender,
-        routeParamsToken, navigation]);
+       // routeParamsToken,
+        navigation]);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -84,6 +89,13 @@ const FormRouteBlind = ({route, navigation}) => {
           required
         />
         <Text style={styles.text}>JOUR DE DÉPART</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Date de départ"
+          keyboardType="default"
+          value={date}
+          onChangeText={setDate}
+        />
         {/* <DatePicker
         style={styles.inputDate}
           date={currentDate}
@@ -133,13 +145,16 @@ const FormRouteBlind = ({route, navigation}) => {
           value={time}
           onChangeText={setTime}
         />
-        <Text style={styles.text}>Genre souhaité de votre accompagnant</Text>
+       {/*  Ne PAS SUPPRIMER */}
+        <TextGender style={styles.text} isBlind={true} name="Genre souhaité de votre accompagnant"/>
+        <TextGender style={styles.text} isBlind={false} name="Vous êtes :"/>
+        
         <RNPickerSelect
-          placeholder={{label: "Genre souhaité de l'accompagnant", value: null}}
+          placeholder={{label: "Genre", value: null}}
           onValueChange={routeMateGender => setRouteMateGender(routeMateGender)}
           items={[
-            {label: 'Femme', value: 'FEMALE'},
-            {label: 'Homme', value: 'MALE'},
+            {label: 'une femme', value: 'FEMALE'},
+            {label: 'un homme', value: 'MALE'},
             {label: 'Pas de préférence', value: ''},
           ]}
         />
