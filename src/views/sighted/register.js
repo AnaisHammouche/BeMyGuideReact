@@ -10,11 +10,8 @@ import {
 } from 'react-native';
 import {styles} from '../../styles/register_sighted_style';
 import ButtonDefault from '../../components/button';
-<<<<<<< HEAD
-import postRegister, {axiosRegister} from '../../api/userApi';
-=======
+
 import {axiosRegister} from '../../api/userApi';
->>>>>>> 1c99a9b (refacto file)
 
 const Register = () => {
   const navigation = useNavigation();
