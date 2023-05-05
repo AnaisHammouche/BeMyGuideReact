@@ -1,26 +1,41 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState, useMemo} from 'react';
 import {
   SafeAreaView,
   View,
   Text,
   Image,
   TextInput,
-  Alert,
   TouchableOpacity,
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {styles} from '../styles/login_style';
-import ButtonDefault from '../components/button';
-import {axiosLogin} from '../api/userApi';
+import {axiosLogin, axiosUser} from '../api/userApi';
 
 const Login = () => {
   const navigation = useNavigation();
   const [email, setMail] = useState('');
   const [password, setPassword] = useState('');
+  const [isBlind, setIsBlind] = useState('true');
+
+  /* useMemo(() => {
+    if (isBlind === true) {
+      setIsBlind(true);
+    } else {
+      setIsBlind(false);
+    }
+  }, [isBlind]); */
 
   const postLogin = useCallback(() => {
-    axiosLogin(email, password, navigation);
-  }, [email, password, navigation]);
+    //if (isBlind) {
+    axiosLogin(email, password, navigation, isBlind);
+    //console.log(isBlind);
+    /* } else {
+      alert(
+        'Veuillez remplir les informations nécessaires à votre connection.',
+      );
+    } */
+    //axiosUser(email, password, isBlind, navigation);
+  }, [email, password, navigation, isBlind]);
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -57,7 +72,7 @@ const Login = () => {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() => postLogin(email, password)}>
+          onPress={isBlind => postLogin(email, password)}>
           <Text style={styles.buttonText}>ME CONNECTER</Text>
         </TouchableOpacity>
       </View>
