@@ -42,13 +42,12 @@ export async function axiosRegister(
     });
 }
 
-export async function axiosLogin(email, password, navigation, isBlind) {
+export async function axiosLogin(email, password, navigation) {
   try {
     const responseUser = await axios
       .post(`${baseUrl}/auth/authenticate`, {
         email: email,
         password: password,
-        isBlind: isBlind,
       })
       .then(async function (response) {
         const tokenData = JSON.stringify(response.data.token);
@@ -98,8 +97,8 @@ export async function axiosUser(email, password, isBlind, navigation) {
         return JSON.parse(getUserInfo);
       });
     console.log(responseUser);
-    const postData = {data: responseUser.data};
-    const postResponse = await axios
+    //const postData = {data: responseUser.data};
+    /* const postResponse = await axios
       .post(`${baseUrl}/auth/authenticate`, postData)
       .then(async function (response) {
         const tokenData = JSON.stringify(response.data.token);
@@ -120,8 +119,8 @@ export async function axiosUser(email, password, isBlind, navigation) {
         } else {
           Alert.alert('erreur : ' + JSON.stringify(error.name));
         }
-      });
-    console.log(postResponse.data);
+      }); */
+    //console.log(postResponse.data);
   } catch (error) {
     console.error(error);
   }

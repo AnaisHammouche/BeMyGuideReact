@@ -17,24 +17,24 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [isBlind, setIsBlind] = useState('true');
 
-  /* useMemo(() => {
+  useMemo(() => {
     if (isBlind === true) {
       setIsBlind(true);
     } else {
       setIsBlind(false);
     }
-  }, [isBlind]); */
+  }, [isBlind]);
 
   const postLogin = useCallback(() => {
-    //if (isBlind) {
-    axiosLogin(email, password, navigation, isBlind);
-    //console.log(isBlind);
-    /* } else {
+    if (isBlind) {
+      axiosLogin(email, password, navigation, isBlind);
+      console.log(isBlind);
+    } else {
       alert(
         'Veuillez remplir les informations nécessaires à votre connection.',
       );
-    } */
-    //axiosUser(email, password, isBlind, navigation);
+    }
+    axiosUser(email, password, isBlind, navigation);
   }, [email, password, navigation, isBlind]);
 
   return (
@@ -72,7 +72,7 @@ const Login = () => {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={isBlind => postLogin(email, password)}>
+          onPress={() => postLogin(email, password)}>
           <Text style={styles.buttonText}>ME CONNECTER</Text>
         </TouchableOpacity>
       </View>
