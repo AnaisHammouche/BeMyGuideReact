@@ -1,4 +1,4 @@
-import React, {useCallback, useState, useMemo} from 'react';
+import React, {useCallback, useState} from 'react';
 import {
   SafeAreaView,
   View,
@@ -9,33 +9,31 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {styles} from '../styles/login_style';
-import {axiosLogin, axiosUser} from '../api/userApi';
+import {axiosLogin, axiosUserIsBlind} from '../api/userApi';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useBoolean} from 'usehooks-ts';
 
 const Login = () => {
   const navigation = useNavigation();
   const [email, setMail] = useState('');
   const [password, setPassword] = useState('');
-  const [isBlind, setIsBlind] = useState('true');
+  //let [isBlind, setIsBlind] = useBoolean(true);
 
-  useMemo(() => {
-    if (isBlind === true) {
-      setIsBlind(true);
-    } else {
-      setIsBlind(false);
-    }
-  }, [isBlind]);
-
-  const postLogin = useCallback(() => {
-    if (isBlind) {
-      axiosLogin(email, password, navigation, isBlind);
-      console.log(isBlind);
-    } else {
+  const postLogin = useCallback(async () => {
+    axiosLogin(email, password);
+    const getTokenStorage = await AsyncStorage.getItem('Token');
+    console.log('token login' + getTokenStorage);
+    axiosUserIsBlind(email, getTokenStorage);
+    console.log('is blind ? ' + axiosUserIsBlind(email, getTokenStorage));
+    axiosUserIsBlind
+      ? navigation.navigate('FormRouteBlind')
+      : navigation.navigate('FormRouteV');
+    /* } else {
       alert(
         'Veuillez remplir les informations nécessaires à votre connection.',
       );
-    }
-    axiosUser(email, password, isBlind, navigation);
-  }, [email, password, navigation, isBlind]);
+    } */
+  }, [email, password, navigation]);
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -70,9 +68,7 @@ const Login = () => {
           />
         </View>
 
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => postLogin(email, password)}>
+        <TouchableOpacity style={styles.button} onPress={() => postLogin()}>
           <Text style={styles.buttonText}>ME CONNECTER</Text>
         </TouchableOpacity>
       </View>

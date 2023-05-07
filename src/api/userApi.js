@@ -42,7 +42,7 @@ export async function axiosRegister(
     });
 }
 
-export async function axiosLogin(email, password, navigation) {
+export async function axiosLogin(email, password) {
   try {
     const responseUser = await axios
       .post(`${baseUrl}/auth/authenticate`, {
@@ -54,10 +54,7 @@ export async function axiosLogin(email, password, navigation) {
         await AsyncStorage.setItem('Token', tokenData);
         if ((response.status = '200')) {
           const getTokenData = await AsyncStorage.getItem('Token');
-          return getTokenData != null
-            ? JSON.parse(getTokenData) &&
-                navigation.navigate('FormRouteBlind', {token: getTokenData})
-            : null;
+          return getTokenData;
         }
       })
       .catch(function (error) {
@@ -69,59 +66,33 @@ export async function axiosLogin(email, password, navigation) {
           Alert.alert('erreur : ' + JSON.stringify(error.name));
         }
       });
-    const userStatus = responseUser.isBlind;
-
-    if (userStatus === 'true') {
-      console.log('Blind');
-    } else if (userStatus === 'false') {
-      console.log('Sighted');
-    } else {
-      console.log('Pas connus');
-    }
   } catch (error) {
     console.log(error);
   }
 }
 
-export async function axiosUser(email, password, isBlind, navigation) {
+export async function axiosUserIsBlind(email, token) {
   try {
-    const responseUser = await axios
-      .get(`${baseUrl}/users/email/{email}`, {
-        email: email,
-        password: password,
-        isBlind: isBlind,
-        navigation,
-      })
+    axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
+      token,
+    )}`;
+    await axios
+      .get(`${baseUrl}/users/email/${email}`)
       .then(async function (response) {
-        const getUserInfo = await AsyncStorage.getItem('userInfo');
-        return JSON.parse(getUserInfo);
+        if (await response.data) {
+          let getUserIsBlind = await response.data.blind;
+          console.log('blind ?' + getUserIsBlind);
+          return getUserIsBlind;
+        }
+        null;
       });
-    console.log(responseUser);
-    //const postData = {data: responseUser.data};
-    /* const postResponse = await axios
-      .post(`${baseUrl}/auth/authenticate`, postData)
-      .then(async function (response) {
-        const tokenData = JSON.stringify(response.data.token);
-        await AsyncStorage.setItem('Token', tokenData);
-        if ((response.status = '200')) {
-          const getTokenData = await AsyncStorage.getItem('Token');
-          return getTokenData != null
-            ? JSON.parse(getTokenData) &&
-                navigation.navigate('FormRouteBlind', {token: getTokenData})
-            : null;
-        }
-      })
-      .catch(function (error) {
-        if (error.name === 'AxiosError') {
-          Alert.alert(
-            "Vous n'êtes pas connecté à internet, veuillez vérifier votre réseau.",
-          );
-        } else {
-          Alert.alert('erreur : ' + JSON.stringify(error.name));
-        }
-      }); */
-    //console.log(postResponse.data);
   } catch (error) {
     console.error(error);
   }
+}
+
+export async function axiosAuthUser() {
+  axios.get(`${baseUrl}/users/test`).then(async function (response) {
+    return;
+  });
 }

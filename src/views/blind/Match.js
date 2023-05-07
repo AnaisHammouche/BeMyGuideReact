@@ -1,4 +1,4 @@
-/* import React, {
+import React, {
   Component,
   useCallback,
   useContext,
@@ -9,16 +9,16 @@ import styles from '../../styles/LoginBindStyle';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 
-// import {
-//   SafeAreaView,
-//   View,
-//   TouchableOpacity,
-//   Text,
-//   TextInput,
-//   Alert,
-//   Image,
-// } from 'react-native';
-// import axios from 'axios';
+import {
+  SafeAreaView,
+  View,
+  TouchableOpacity,
+  Text,
+  TextInput,
+  Alert,
+  Image,
+} from 'react-native';
+import axios from 'axios';
 
 const Match = ({route, navigation}) => {
   const routeParamsFromStation = JSON.parse(route.params.fromStation);
@@ -36,14 +36,12 @@ const Match = ({route, navigation}) => {
   const [lastName, setLastName] = useState();
 
   const getMatch = async (routeParamsFromStation, routeParamsToStation) => {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
-      routeParamsToken,
-    )}`;
+    axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse()}`;
 
-// //     // const config = {
-// //     //   headers: {
-// //     //     'Accept-Encoding': 'gzip, deflate, br'
-// //     //   }};
+    // const config = {
+    //   headers: {
+    //     'Accept-Encoding': 'gzip, deflate, br'
+    //   }};
 
     axios
       .get('http://localhost:8080/api/v1/routes/matches', {})
@@ -70,16 +68,11 @@ const Match = ({route, navigation}) => {
           {/* <Text >Le : </Text>
           <Text >{date}</Text>
           <Text >À : </Text>
-          <Text >{hours}</Text> */
-{
-  /* <Text >à été confirmée par {firstName}.</Text> */
-}
-{
-  /* <Text >N'oubliez pas de le contacter afin de convenir d'un lieu de rendez-vous plus précis tel que le numéro d'entée de la station. </Text>
-   */
-}
-{
-  /* <View>
+          <Text >{hours}</Text> */}
+          {/* <Text >à été confirmée par {firstName}.</Text> */}
+          {/* <Text >N'oubliez pas de le contacter afin de convenir d'un lieu de rendez-vous plus précis tel que le numéro d'entée de la station. </Text>
+           */}
+          {/* <View>
             <Image></Image>
             <Text>{firstName} {lastName}</Text>
             <Text>Accompagnateur</Text>
@@ -95,12 +88,11 @@ const Match = ({route, navigation}) => {
             TEL
           </Text>
         </TouchableOpacity>
-        </View> */
-}
-/*  </View>
+        </View> */}
+        </View>
       </View>
     </SafeAreaView>
   );
-}; */
+};
 
-// export default Match;
+export default Match;

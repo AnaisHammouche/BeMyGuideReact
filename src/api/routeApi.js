@@ -38,7 +38,7 @@ export async function AxiosRoute(
         console.log('routeMateGender : ' + routeMateGenderData);
 
         return getAsynTokenStorage != null
-          ? JSON.parse(getAsynTokenStorage)
+          ? JSON.parse(getAsynTokenStorage) && navigation.navigate('Match')
           : null;
       }
     })
