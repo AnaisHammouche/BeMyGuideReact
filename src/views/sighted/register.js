@@ -10,7 +10,8 @@ import {
 } from 'react-native';
 import {styles} from '../../styles/register_sighted_style';
 import ButtonDefault from '../../components/button';
-import postRegister, {axiosRegister} from '../../api/userApi';
+
+import {axiosRegister} from '../../api/userApi';
 
 const Register = () => {
   const navigation = useNavigation();

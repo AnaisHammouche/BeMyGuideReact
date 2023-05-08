@@ -1,16 +1,15 @@
 import {StyleSheet} from 'react-native';
 import {colors_theme} from '../config/colors_theme.js';
 
-
 export const styles = StyleSheet.create({
   screen: {
     flex: 1,
     //padding: 40,
   },
   container: {
-   // justifyContent: 'space-between',
+    // justifyContent: 'space-between',
     marginTop: 50,
-   // flexDirection: 'column',
+    // flexDirection: 'column',
     alignItems: 'center',
   },
   icon: {
@@ -24,15 +23,15 @@ export const styles = StyleSheet.create({
     // alignItems: 'space-around',
   },
   separator: {
-   // marginVertical: 50,
-   // padding: 20,
+    // marginVertical: 50,
+    // padding: 20,
     alignItems: 'center',
     justifyContent: 'center',
   },
   inputText: {
     marginTop: 50,
     //marginLeft: 10,
-   // height: 40,
+    // height: 40,
     width: '85%',
     paddingLeft: 10,
     fontFamily: 'RobotoMono-Medium',
