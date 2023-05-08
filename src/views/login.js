@@ -11,38 +11,49 @@ import {useNavigation} from '@react-navigation/native';
 import {styles} from '../styles/login_style';
 import {axiosLogin, axiosUserIsBlind} from '../api/userApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
 const Login = () => {
   const navigation = useNavigation();
   const [email, setMail] = useState('');
   const [password, setPassword] = useState('');
-  const [isBlind, setIsBlind] = useState(Boolean);
+  let [isValid, setIsValid] = useState('true');
 
   useMemo(() => {
-    if (email === setMail && isBlind === setIsBlind) {
-      setIsBlind(isBlind);
+    if (email === '' && password === '') {
+      setIsValid(false);
     } else {
-      setIsBlind(false);
+      setIsValid(true);
     }
-  }, [email, isBlind]);
+  }, [email, password]);
 
   const postLogin = useCallback(async () => {
-    axiosLogin(email, password);
-    const getTokenStorage = await AsyncStorage.getItem('Token');
-    console.log('token login' + getTokenStorage);
-    axiosUserIsBlind(email, getTokenStorage);
-    isBlind === (await axiosUserIsBlind(email, getTokenStorage));
-    setIsBlind(isBlind);
-    console.log('is blind ? ' + isBlind);
-    isBlind === setIsBlind(false)
-      ? navigation.navigate('FormRouteBlind')
-      : navigation.navigate('FormRouteV');
-    /* } else {
+    if (isValid) {
+      axiosLogin(email, password);
+      const getTokenStorage = await AsyncStorage.getItem('Token');
+      console.log('token login' + getTokenStorage);
+      //TODO à refacto
+      axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
+        getTokenStorage,
+      )}`;
+      const userIsBlind = await axios
+        .get(`http://localhost:8080/api/v1/users/email/${email}`)
+        .then(async function (response) {
+          if (await response.data) {
+            return JSON.parse(await response.data.blind);
+          }
+          null;
+        });
+      console.log('is blind ? ' + userIsBlind);
+      userIsBlind
+        ? navigation.navigate('FormRouteBlind')
+        : navigation.navigate('FormRouteV');
+    } else {
       alert(
         'Veuillez remplir les informations nécessaires à votre connection.',
       );
-    } */
-  }, [email, password, isBlind, navigation]);
+    }
+  }, [isValid, email, password, navigation]);
 
   return (
     <SafeAreaView style={styles.screen}>

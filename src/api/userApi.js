@@ -50,11 +50,14 @@ export async function axiosLogin(email, password) {
         password: password,
       })
       .then(async function (response) {
-        const tokenData = JSON.stringify(response.data.token);
-        await AsyncStorage.setItem('Token', tokenData);
-        if ((response.status = '200')) {
+        if (response.status === '200') {
+          const tokenData = JSON.stringify(response.data.token);
+          await AsyncStorage.setItem('Token', tokenData);
           const getTokenData = await AsyncStorage.getItem('Token');
           return getTokenData;
+        }
+        if (response.status === '403') {
+          Alert.alert('Vous etes pas enregistrer');
         }
       })
       .catch(function (error) {
@@ -80,13 +83,10 @@ export async function axiosUserIsBlind(email, token) {
       .get(`${baseUrl}/users/email/${email}`)
       .then(async function (response) {
         if (await response.data) {
-          let getUserIsBlind = await response.data.blind;
-          console.log('blind ?' + getUserIsBlind);
-          return getUserIsBlind;
+          return JSON.parse(await response.data.blind);
         }
         null;
       });
-    return true;
   } catch (error) {
     console.error(error);
     return false;
