@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useMemo, useState} from 'react';
 import {
   SafeAreaView,
   View,
@@ -11,20 +11,27 @@ import {useNavigation} from '@react-navigation/native';
 import {styles} from '../styles/login_style';
 import {axiosLogin, axiosUserIsBlind} from '../api/userApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useBoolean} from 'usehooks-ts';
 
 const Login = () => {
   const navigation = useNavigation();
   const [email, setMail] = useState('');
   const [password, setPassword] = useState('');
-  //let [isBlind, setIsBlind] = useBoolean(true);
+  let [isBlind, setIsBlind] = useState(Boolean);
+
+  useMemo(() => {
+    if (isBlind === setIsBlind) {
+      setIsBlind();
+    }
+  }, [isBlind]);
 
   const postLogin = useCallback(async () => {
     axiosLogin(email, password);
     const getTokenStorage = await AsyncStorage.getItem('Token');
     console.log('token login' + getTokenStorage);
     axiosUserIsBlind(email, getTokenStorage);
-    console.log('is blind ? ' + axiosUserIsBlind(email, getTokenStorage));
+    isBlind === (await axiosUserIsBlind(email, getTokenStorage));
+    setIsBlind(isBlind);
+    console.log('is blind ? ' + isBlind);
     axiosUserIsBlind
       ? navigation.navigate('FormRouteBlind')
       : navigation.navigate('FormRouteV');
@@ -33,7 +40,7 @@ const Login = () => {
         'Veuillez remplir les informations nécessaires à votre connection.',
       );
     } */
-  }, [email, password, navigation]);
+  }, [email, password, isBlind, navigation]);
 
   return (
     <SafeAreaView style={styles.screen}>

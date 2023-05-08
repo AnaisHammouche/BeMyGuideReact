@@ -86,8 +86,10 @@ export async function axiosUserIsBlind(email, token) {
         }
         null;
       });
+    return true;
   } catch (error) {
     console.error(error);
+    return false;
   }
 }
 
