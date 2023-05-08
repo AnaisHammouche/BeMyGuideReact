@@ -76,7 +76,7 @@ export async function axiosUserIsBlind(email, token) {
     axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
       token,
     )}`;
-    await axios
+    return await axios
       .get(`${baseUrl}/users/email/${email}`)
       .then(async function (response) {
         if (await response.data) {

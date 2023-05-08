@@ -11,7 +11,6 @@ import {useNavigation} from '@react-navigation/native';
 import {styles} from '../styles/login_style';
 import {axiosLogin, axiosUserIsBlind} from '../api/userApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import axios from 'axios';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -34,18 +33,7 @@ const Login = () => {
       const getTokenStorage = await AsyncStorage.getItem('Token');
       console.log('token login :' + getTokenStorage);
       if (getTokenStorage != null) {
-        //TODO à refacto
-        axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
-          getTokenStorage,
-        )}`;
-        const userIsBlind = await axios
-          .get(`http://localhost:8080/api/v1/users/email/${email}`)
-          .then(async function (response) {
-            if (await response.data) {
-              return JSON.parse(await response.data.blind);
-            }
-            null;
-          });
+        const userIsBlind = await axiosUserIsBlind(email, getTokenStorage);
         console.log('is blind ? ' + userIsBlind);
         userIsBlind
           ? navigation.navigate('FormRouteBlind')
