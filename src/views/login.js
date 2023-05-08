@@ -16,13 +16,15 @@ const Login = () => {
   const navigation = useNavigation();
   const [email, setMail] = useState('');
   const [password, setPassword] = useState('');
-  let [isBlind, setIsBlind] = useState(Boolean);
+  const [isBlind, setIsBlind] = useState(Boolean);
 
   useMemo(() => {
-    if (isBlind === setIsBlind) {
-      setIsBlind();
+    if (email === setMail && isBlind === setIsBlind) {
+      setIsBlind(isBlind);
+    } else {
+      setIsBlind(false);
     }
-  }, [isBlind]);
+  }, [email, isBlind]);
 
   const postLogin = useCallback(async () => {
     axiosLogin(email, password);
@@ -32,7 +34,7 @@ const Login = () => {
     isBlind === (await axiosUserIsBlind(email, getTokenStorage));
     setIsBlind(isBlind);
     console.log('is blind ? ' + isBlind);
-    axiosUserIsBlind
+    isBlind === setIsBlind(false)
       ? navigation.navigate('FormRouteBlind')
       : navigation.navigate('FormRouteV');
     /* } else {
