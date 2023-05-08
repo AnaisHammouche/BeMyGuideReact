@@ -29,25 +29,28 @@ const Login = () => {
 
   const postLogin = useCallback(async () => {
     if (isValid) {
-      axiosLogin(email, password);
+      await AsyncStorage.clear();
+      await axiosLogin(email, password);
       const getTokenStorage = await AsyncStorage.getItem('Token');
-      console.log('token login' + getTokenStorage);
-      //TODO à refacto
-      axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
-        getTokenStorage,
-      )}`;
-      const userIsBlind = await axios
-        .get(`http://localhost:8080/api/v1/users/email/${email}`)
-        .then(async function (response) {
-          if (await response.data) {
-            return JSON.parse(await response.data.blind);
-          }
-          null;
-        });
-      console.log('is blind ? ' + userIsBlind);
-      userIsBlind
-        ? navigation.navigate('FormRouteBlind')
-        : navigation.navigate('FormRouteV');
+      console.log('token login :' + getTokenStorage);
+      if (getTokenStorage != null) {
+        //TODO à refacto
+        axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
+          getTokenStorage,
+        )}`;
+        const userIsBlind = await axios
+          .get(`http://localhost:8080/api/v1/users/email/${email}`)
+          .then(async function (response) {
+            if (await response.data) {
+              return JSON.parse(await response.data.blind);
+            }
+            null;
+          });
+        console.log('is blind ? ' + userIsBlind);
+        userIsBlind
+          ? navigation.navigate('FormRouteBlind')
+          : navigation.navigate('FormRouteV');
+      }
     } else {
       alert(
         'Veuillez remplir les informations nécessaires à votre connection.',

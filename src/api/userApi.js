@@ -43,35 +43,32 @@ export async function axiosRegister(
 }
 
 export async function axiosLogin(email, password) {
-  try {
-    const responseUser = await axios
-      .post(`${baseUrl}/auth/authenticate`, {
-        email: email,
-        password: password,
-      })
-      .then(async function (response) {
-        if (response.status === '200') {
-          const tokenData = JSON.stringify(response.data.token);
-          await AsyncStorage.setItem('Token', tokenData);
-          const getTokenData = await AsyncStorage.getItem('Token');
-          return getTokenData;
-        }
-        if (response.status === '403') {
-          Alert.alert('Vous etes pas enregistrer');
-        }
-      })
-      .catch(function (error) {
-        if (error.name === 'AxiosError') {
-          Alert.alert(
-            "Vous n'êtes pas connecté à internet, veuillez vérifier votre réseau.",
-          );
-        } else {
-          Alert.alert('erreur : ' + JSON.stringify(error.name));
-        }
-      });
-  } catch (error) {
-    console.log(error);
-  }
+  return await axios
+    .post(`${baseUrl}/auth/authenticate`, {
+      email: email,
+      password: password,
+    })
+    .then(async function (response) {
+      if (response.status == '200') {
+        const tokenData = JSON.stringify(response.data.token);
+        await AsyncStorage.setItem('Token', tokenData);
+        console.log('tokendata :' + tokenData);
+        const getTokenData = await AsyncStorage.getItem('Token');
+        return getTokenData;
+      }
+      if (response.status == '403') {
+        Alert.alert('Vous etes pas enregistrer');
+      }
+    })
+    .catch(function (error) {
+      if (error.name === 'AxiosError') {
+        Alert.alert(
+          "Vous n'êtes pas connecté à internet, veuillez vérifier votre réseau.",
+        );
+      } else {
+        Alert.alert('erreur : ' + JSON.stringify(error.name));
+      }
+    });
 }
 
 export async function axiosUserIsBlind(email, token) {
