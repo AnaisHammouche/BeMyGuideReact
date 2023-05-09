@@ -1,22 +1,13 @@
-import React, {
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, {useCallback, useState} from 'react';
 import RNPickerSelect from 'react-native-picker-select';
-import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {
-  Button,
-  Modal,
   SafeAreaView,
   Text,
   TextInput,
   View,
   TouchableOpacity,
-  // DatePickerIOSComponent
-
 } from 'react-native';
 
 
@@ -34,30 +25,28 @@ function addOneYear(date) {
   return date;
 }
 const maxDate = addOneYear(currentDate);
+import styles from '../../styles/formRoute_style';
+import {AxiosRoute} from '../../api/routeApi';
 
-// const [date, setDate] = useState('09-10-2021');
-
-
-const FormRouteBlind = ({route, navigation}) => {
-  const routeParamsToken = route.params.token;
+const FormRouteBlind = ({navigation}) => {
+  //const routeParamsToken = route.params.token;
   const [fromStation, setfromStation] = useState();
   const [toStation, setToStation] = useState();
-  //const [date, setDate] = useState();
+  const [date, setDate] = useState();
   const [time, setTime] = useState();
   const [routeMateGender, setRouteMateGender] = useState();
 
-  const postRoute = useCallback( () => {
-    AxiosRoute(fromStation,
+  const postRoute = useCallback(async () => {
+    const routeParamsToken = await AsyncStorage.getItem('Token');
+    console.log('route token' + routeParamsToken);
+    AxiosRoute(
+      fromStation,
       toStation,
       routeMateGender,
-      routeParamsToken, navigation), AxiosRouteGet(fromStation,
-        toStation,
-        routeMateGender,
-        routeParamsToken, navigation)}
-      , [fromStation,
-        toStation,
-        routeMateGender,
-        routeParamsToken, navigation]);
+      routeParamsToken,
+      navigation,
+    );
+  }, [fromStation, toStation, routeMateGender, navigation]);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -124,6 +113,14 @@ const FormRouteBlind = ({route, navigation}) => {
           }}
         /> */}
       
+        <Text style={styles.text}>JOUR DE DÉPART</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Date"
+          keyboardType="default"
+          value={date}
+          onChangeText={setDate}
+        />
         <Text style={styles.text}>HORAIRE DE DÉPART</Text>
         <TextInput
           style={styles.input}
@@ -142,19 +139,16 @@ const FormRouteBlind = ({route, navigation}) => {
             {label: 'Pas de préférence', value: ''},
           ]}
         />
-    
-      <TouchableOpacity style={styles.button}
-        onPress={() => postRoute(fromStation, toStation, routeMateGender,
-          routeParamsToken, 
-          navigation)
-        }
-        // onPress={() => console.log(currentDate)}
-        // onLongPress={() => console.log(currentDate)}
-        >
-        <Text  style={styles.connect}>Valider</Text>
-      </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() =>
+            postRoute(fromStation, toStation, routeMateGender, navigation)
+          }
+          onLongPress={() => console.log('pas de match désolé')}>
+          <Text style={styles.connect}>Valider</Text>
+        </TouchableOpacity>
       </View>
-    
     </SafeAreaView>
   );
 };

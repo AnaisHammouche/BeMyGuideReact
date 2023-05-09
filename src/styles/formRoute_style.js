@@ -1,20 +1,18 @@
 import React from 'react';
 
 import {StyleSheet} from 'react-native';
-import { FullWindowOverlay } from 'react-native-screens';
+import {FullWindowOverlay} from 'react-native-screens';
 import {colors_theme} from '../config/colors_theme.js';
 
-
 const styles = StyleSheet.create({
-  
-  safeArea:{
+  safeArea: {
     flex: 1,
   },
 
-  container:{
+  container: {
     flex: 1,
     padding: 40,
-   width: '100%',
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'flex-start',
   },
@@ -31,10 +29,10 @@ const styles = StyleSheet.create({
     fontFamily: 'RobotoMono-Medium',
   },
 
-input: {
+  input: {
     height: 40,
     width: '100%',
-    marginTop :10,
+    marginTop: 10,
     marginBottom: 26,
     borderWidth: 1,
     padding: 10,
@@ -44,12 +42,11 @@ input: {
   inputDate: {
     height: 40,
     width: '95%',
-    marginTop :10,
+    marginTop: 10,
     marginBottom: 26,
     borderRadius: 5,
   },
-  
-    button: {
+  button: {
     backgroundColor: colors_theme.button_green,
     alignItems: 'center',
     padding: 4,
@@ -60,13 +57,12 @@ input: {
     borderRadius: 10,
     fontFamily: 'RobotoMono-Medium',
   },
-  
+
   connect: {
     color: 'white',
     fontWeight: '700',
     textAlign: 'center',
-    fontWeight: '700',
-    fontSize: 18,
+    // fontSize: 12,
     marginHorizontal: 40,
     marginVertical: 10,
     height: 40,
@@ -74,28 +70,6 @@ input: {
     padding: 10,
     borderRadius: 5,
   },
-  dateIcon: {
-    useNativeDriver: true,
-    position: 'absolute',
-    right: -5,
-    top: 4,
-    marginLeft: 0,
-  },
-  dateInput: {
-    useNativeDriver: true,
-    borderColor : "gray",
-    alignItems: "flex-start",
-    borderWidth: 0,
-    borderBottomWidth: 1,
-  },
-  placeholderText: {
-    fontSize: 17,
-    color: "gray"
-  },
-  dateText: {
-    useNativeDriver: true,
-    fontSize: 17,
-  }
-})
+});
 
 export default styles;

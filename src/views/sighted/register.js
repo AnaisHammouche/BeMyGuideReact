@@ -15,6 +15,8 @@ import postRegister, {axiosRegiter} from '../../api/userApi';
 import CheckBox from '@react-native-community/checkbox';
 
 
+import {axiosRegister} from '../../api/userApi';
+
 const Register = () => {
   const navigation = useNavigation();
   const [lastName, setLastName] = useState('');
@@ -70,7 +72,7 @@ const Register = () => {
 
   const validator = useCallback(() => {
     if (isValid) {
-      axiosRegiter(
+      axiosRegister(
         //user.gender,
         user.lastName,
         user.firstName,
@@ -79,10 +81,6 @@ const Register = () => {
         user.isBlind,
         navigation,
       );
-      alert(
-        'Bienvenue, ' + user.firstName + ' ravie de vous comptez parmis nous',
-      );
-      navigation.navigate('Login');
     } else {
       alert(
         'Veuillez remplir les informations nécessaires à votre inscriptions.',
