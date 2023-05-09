@@ -20,14 +20,13 @@ import {
 } from 'react-native';
 
 
-import {DatePickerIOSComponent} from '@react-native-community/datetimepicker'
+//import {DatePickerIOSComponent} from '@react-native-community/datetimepicker'
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../styles/formRoute_style';
 import { AxiosRoute, AxiosRouteGet } from '../../api/routeApi';
-import DatePicker from 'react-native-datepicker';
-import TimePicker from 'react-native-simple-time-picker';
-
+//import DatePicker from 'react-native-datepicker';
+//import TimePicker from 'react-native-simple-time-picker';
 
 const currentDate = new Date();
 function addOneYear(date) {
@@ -83,7 +82,7 @@ const FormRouteBlind = ({route, navigation}) => {
           onChangeText={setToStation}
           required
         />
-        <Text style={styles.text}>JOUR DE DÉPART</Text>
+        {/* <Text style={styles.text}>JOUR DE DÉPART</Text> */}
         {/* <DatePicker
         style={styles.inputDate}
           date={currentDate}

@@ -24,6 +24,30 @@ const RegisterBlind = () => {
     //gender: gender,
   };
 
+  const [genderOptions, setGenderOptions] = useState('Mr'); //will store our current user options
+  const radioButtonsData = [
+    {
+      id: '1', // acts as primary key, should be unique and non-empty string
+      label: 'Mr',
+      value: 'MALE',
+    },
+    {
+      id: '2',
+      label: 'Mme',
+      value: 'FEMALE',
+    },
+    {
+      id: '3',
+      label: 'Autre',
+      value: '',
+    },
+  ];
+
+  const setValue = (value) => {
+    var newArray = value.filter((item)=>item.selected===true); //get the items that are selected
+    setRadioButtons(newArray[0].value); //set the selected value in this Hook
+  };
+
   useMemo(() => {
     if (
       lastName === '' ||
@@ -88,6 +112,7 @@ const RegisterBlind = () => {
           />
           <Text>Femme</Text>
         </View> */}
+
          <Text style={styles.inputText} keyboardType="default">
             NOM
           </Text>
