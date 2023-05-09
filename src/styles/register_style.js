@@ -68,4 +68,9 @@ export const styles = StyleSheet.create({
     borderWidth: 1,
     fontFamily: 'RobotoMono-Medium',
   },
+
+  radioButtons: {
+    color: 'green',
+    flexDirection: 'row',    
+  },
 });

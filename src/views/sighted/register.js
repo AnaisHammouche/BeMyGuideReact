@@ -5,6 +5,7 @@ import {
   Text,
   View,
   Image,
+  Icon,
   TextInput,
   TouchableOpacity,
 } from 'react-native';
@@ -12,6 +13,8 @@ import {styles} from '../../styles/register_sighted_style';
 import ButtonDefault from '../../components/button';
 
 import {axiosRegister} from '../../api/userApi';
+import CheckBox from '@react-native-community/checkbox';
+
 
 const Register = () => {
   const navigation = useNavigation();
@@ -31,6 +34,7 @@ const Register = () => {
     //gender: gender,
   };
 
+
   /* const newUser = async () => {
     try {
       await AsyncStorage.setItem(
@@ -44,6 +48,11 @@ const Register = () => {
       console.log('error: ' + error);
     }
   }; */
+
+
+  const [check1, setCheck1] = useState(false);
+  const [check2, setCheck2] = useState(false);
+
 
   useMemo(() => {
     if (
@@ -123,45 +132,38 @@ const Register = () => {
             <Text style={{marginLeft: 8}}>Femme</Text>
           </View>
         </TouchableOpacity> */}
-        <TextInput
-          style={styles.input}
-          autoCapitalize="none"
-          placeholder="NOM"
-          value={lastName}
-          onChangeText={setLastName}
+<CheckBox
+           checked={check1}
+           onPress={() => setCheck1(!check1)}
+           checkedIcon="dot-circle-o"
+           uncheckedIcon="circle-o"
+         />
+         <CheckBox
+           checked={check2}
+           onPress={() => setCheck2(!check2)}
+           checkedIcon="dot-circle-o"
+           uncheckedIcon="circle-o"
+         />
+         <CheckBox
+      center
+      checkedIcon={
+        <Icon
+          name="radio-button-checked"
+          type="material"
+          color="green"
+          size={25}
+          iconStyle={{ marginRight: 10 }}
         />
-        <TextInput
-          style={styles.input}
-          autoCapitalize="none"
-          placeholder="PRENOM"
-          value={firstName}
-          onChangeText={setFirstName}
+      }
+      uncheckedIcon={
+        <Icon
+          name="radio-button-unchecked"
+          type="material"
+          color="grey"
+          size={25}
+          iconStyle={{ marginRight: 10 }}
         />
-        <TextInput
-          style={styles.input}
-          autoCapitalize="none"
-          placeholder="VOTRE ADRESSE MAIL"
-          keyboardType="email-address"
-          value={email}
-          onChangeText={setEmail}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="VOTRE MOT DE PASSE"
-          autoCapitalize="none"
-          keyboardType="default"
-          secureTextEntry={true}
-          value={password}
-          onChangeText={setPassword}
-        />
-        <TextInput
-          style={styles.input}
-          autoCapitalize="none"
-          placeholder="CONFIRMATION MOT DE PASSE"
-          secureTextEntry={true}
-          value={confirmPassword}
-          onChangeText={setConfirmPassword}
-        />
+      }></CheckBox>
       </View>
       <View style={{alignItems: 'center'}}>
         <ButtonDefault title={"Je m'inscris"} onPress={validator} />

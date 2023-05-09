@@ -9,8 +9,22 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
+
+
+//import {DatePickerIOSComponent} from '@react-native-community/datetimepicker'
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../styles/formRoute_style';
-import {AxiosRoute} from '../../api/routeApi';
+import { AxiosRoute, AxiosRouteGet } from '../../api/routeApi';
+//import DatePicker from 'react-native-datepicker';
+//import TimePicker from 'react-native-simple-time-picker';
+
+const currentDate = new Date();
+function addOneYear(date) {
+  date.setFullYear(date.getFullYear() + 1);
+  return date;
+}
+const maxDate = addOneYear(currentDate);
 
 const FormRouteBlind = ({navigation}) => {
   //const routeParamsToken = route.params.token;
@@ -63,6 +77,48 @@ const FormRouteBlind = ({navigation}) => {
           value={date}
           onChangeText={setDate}
         />
+        {/* <Text style={styles.text}>JOUR DE DÉPART</Text> */}
+        {/* <DatePicker
+        style={styles.inputDate}
+          date={currentDate}
+          mode="date"
+          placeholder="Sélectionnez un jour de départ"
+          format="DD/MM/YYYY"
+          minDate={currentDate}
+          maxDate={maxDate}
+          confirmBtnText="Confirm"
+          cancelBtnText="Cancel"
+          
+          customStyles={{
+          
+            dateIcon: {
+              right: -10,
+              top: 4,
+              marginLeft: 0,
+            },
+            dateInput: {
+             // marginTop: 15,
+              borderColor : "black",
+            //  alignItems: "flex-start",
+             // borderWidth: 0,
+              width: '300%',
+              //borderBottomWidth: 1,
+              borderRadius: 5,
+            },
+            placeholderText: {
+              padding: 10, 
+              fontSize: 17,
+              color: "gray"
+            },
+            dateText: {
+              fontSize: 17,
+            }
+          }}
+          onDateChange={(date) => {
+            setDate(date);
+          }}
+        /> */}
+      
         <Text style={styles.text}>HORAIRE DE DÉPART</Text>
         <TextInput
           style={styles.input}
