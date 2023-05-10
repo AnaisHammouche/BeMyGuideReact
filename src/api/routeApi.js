@@ -17,7 +17,7 @@ export async function AxiosRoute(
   axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
     routeParamsToken,
   )}`;
-  console.log('routeParamsToken form 1: ' + JSON.parse(routeParamsToken));
+  //console.log('routeParamsToken form 1: ' + JSON.parse(routeParamsToken));
 
   axios
     .post(`${baseUrl}/routes/add`, {
@@ -30,8 +30,8 @@ export async function AxiosRoute(
 
     // the promise we get
     .then(async function (response) {
-      const getAsynTokenStorage = await AsyncStorage.getItem('Token');
-      console.log('routeParamsToken async:' + JSON.parse(getAsynTokenStorage));
+      const getAsyncTokenStorage = await AsyncStorage.getItem('Token');
+      console.log('routeParamsToken async:' + JSON.parse(getAsyncTokenStorage));
       if (
         (response.status = '200' && fromStation && toStation && routeMateGender)
       ) {
@@ -42,8 +42,8 @@ export async function AxiosRoute(
         const routeMateGenderData = JSON.stringify(routeMateGender);
         console.log('routeMateGender : ' + routeMateGenderData);
 
-        return getAsynTokenStorage != null
-          ? JSON.parse(getAsynTokenStorage)
+        return getAsyncTokenStorage != null
+          ? JSON.parse(getAsyncTokenStorage)
           : null;
       }
     })
