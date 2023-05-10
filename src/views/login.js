@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useState, useMemo} from 'react';
 import {
   SafeAreaView,
   View,
@@ -9,18 +9,44 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {styles} from '../styles/loginStyle';
-import {axiosLogin} from '../api/userApi';
+import {axiosLogin, axiosUserIsBlind} from '../api/userApi';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // initiation of the login page
 const Login = () => {
   const navigation = useNavigation();
   const [email, setMail] = useState('');
   const [password, setPassword] = useState('');
+  let [isValid, setIsValid] = useState('true');
+
+  useMemo(() => {
+    if (email === '' && password === '') {
+      setIsValid(false);
+    } else {
+      setIsValid(true);
+    }
+  }, [email, password]);
 
   //  Call of the axios function
-  const postLogin = useCallback(() => {
-    axiosLogin(email, password, navigation);
-  }, [email, password, navigation]);
+  const postLogin = useCallback(async () => {
+    if (isValid) {
+      await AsyncStorage.clear();
+      await axiosLogin(email, password);
+      const getTokenStorage = await AsyncStorage.getItem('Token');
+      console.log('token login :' + getTokenStorage);
+      if (getTokenStorage != null) {
+        const userIsBlind = await axiosUserIsBlind(email, getTokenStorage);
+        console.log('is blind ? ' + userIsBlind);
+        userIsBlind
+          ? navigation.navigate('FormRouteBlind')
+          : navigation.navigate('FormRouteV');
+      }
+    } else {
+      alert(
+        'Veuillez remplir les informations nécessaires à votre connection.',
+      );
+    }
+  }, [isValid, email, password, navigation]);
 
   return (
     <SafeAreaView style={styles.screen}>

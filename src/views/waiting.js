@@ -27,8 +27,6 @@ const Waiting = ({route, navigation}) => {
         source={require('../assets/mapstations.png')}></ImageBackground>
     </SafeAreaView>
   );
-
-  return navigation.navigate('Match');
 };
 
 export default Waiting;

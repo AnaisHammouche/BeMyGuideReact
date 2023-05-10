@@ -8,6 +8,8 @@ import Login from '../../views/login';
 // import Match from '../../views/blind/Match';
 import RegisterBlind from '../../views/blind/registerBlind';
 import Waiting from '../../views/waiting';
+import DisplayAllMyRoutesBlind from '../../views/blind/DisplayAllMyRoutesBlind';
+import FormRouteV from '../../views/sighted/formRouteV';
 
 // Setting up navigation pages
 const Stack = createNativeStackNavigator();
@@ -20,11 +22,16 @@ const AppNavigator = () => {
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="FormRouteBlind" component={FormRouteBlind} />
+        <Stack.Screen name="FormRouteV" component={FormRouteV} />
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="RegisterBlind" component={RegisterBlind} />
         <Stack.Screen name="Login" component={Login} />
         {/* <Stack.Screen name="Match" component={Match} /> */}
         <Stack.Screen name="Waiting" component={Waiting} />
+        <Stack.Screen
+          name="DisplayAllMyRoutesBlind"
+          component={DisplayAllMyRoutesBlind}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
