@@ -1,5 +1,6 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Alert} from 'react-native';
 
 // baseUrl is in the .env
 let baseUrl = process.env.BASE_URL;
@@ -19,7 +20,7 @@ export async function AxiosRoute(
   )}`;
   //console.log('routeParamsToken form 1: ' + JSON.parse(routeParamsToken));
 
-  axios
+  return await axios
     .post(`${baseUrl}/routes/add`, {
       fromStation: fromStation,
       toStation: toStation,
@@ -36,14 +37,14 @@ export async function AxiosRoute(
         (response.status = '200' && fromStation && toStation && routeMateGender)
       ) {
         const fromStationData = JSON.stringify(fromStation);
-        console.log('fromstationPost : ' + fromStationData);
+        //console.log('fromstationPost : ' + fromStationData);
         const toStationData = JSON.stringify(toStation);
-        console.log('tostationDataPost : ' + toStationData);
+        //console.log('tostationDataPost : ' + toStationData);
         const routeMateGenderData = JSON.stringify(routeMateGender);
-        console.log('routeMateGender : ' + routeMateGenderData);
+        //console.log('routeMateGender : ' + routeMateGenderData);
 
         return getAsyncTokenStorage != null
-          ? JSON.parse(getAsyncTokenStorage)
+          ? JSON.parse(getAsyncTokenStorage) && navigation.navigate('Match')
           : null;
       }
     })
@@ -52,7 +53,7 @@ export async function AxiosRoute(
     .catch(function (error) {
       if (!fromStation || !toStation) {
         console.log('champ vide');
-        alert('erreur : ' + JSON.stringify(error));
+        Alert('erreur : ' + JSON.stringify(error));
         console.log('perdu ! ' + error);
       }
     });
@@ -78,11 +79,20 @@ export async function AxiosRouteGet(
     .then(async function (response) {
       if (response.data) {
         const getAsynTokenStorage = await AsyncStorage.getItem('Token');
-        console.log('routeParamsToken : ' + getAsynTokenStorage);
+        //console.log('routeParamsToken : ' + getAsynTokenStorage);
         navigation.navigate('Waiting', {token: getAsynTokenStorage});
         axios.post(`${baseUrl}/sendgrid`, {}).then(async function (response) {
-          console.log('dans le post sendgrid');
+          //console.log('dans le post sendgrid');
         });
       }
     });
 }
+
+// export async function PostAxiosSendGrid (){
+//     axios
+//     .post(`${baseUrl}/sendgrid`, {})
+//     .then(async function (response) {
+//       console.log('dans le post sendgrid');
+//     });
+
+// }

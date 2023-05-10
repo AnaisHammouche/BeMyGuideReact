@@ -13,7 +13,7 @@ import {AxiosRoute, AxiosRouteGet} from '../../api/routeApi';
 // initiation of the route form
 // useState to renew render when data changes
 const FormRouteBlind = ({route, navigation}) => {
-  const routeParamsToken = route.params.token;
+  //const routeParamsToken = route.params.token;
   const [fromStation, setfromStation] = useState();
   const [toStation, setToStation] = useState();
   const [date, setDate] = useState();
@@ -26,17 +26,17 @@ const FormRouteBlind = ({route, navigation}) => {
       fromStation,
       toStation,
       routeMateGender,
-      routeParamsToken,
+      //routeParamsToken,
       navigation,
     ),
       AxiosRouteGet(
         fromStation,
         toStation,
         routeMateGender,
-        routeParamsToken,
+        //routeParamsToken,
         navigation,
       );
-  }, [fromStation, toStation, routeMateGender, routeParamsToken, navigation]);
+  }, [fromStation, toStation, routeMateGender, navigation]);
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -90,15 +90,7 @@ const FormRouteBlind = ({route, navigation}) => {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() =>
-            postRoute(
-              fromStation,
-              toStation,
-              routeMateGender,
-              routeParamsToken,
-              navigation,
-            )
-          }
+          onPress={() => postRoute}
           onLongPress={() => console.log('pas de match désolé')}>
           <Text style={styles.connect}>Valider</Text>
         </TouchableOpacity>
