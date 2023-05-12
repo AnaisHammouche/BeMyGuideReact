@@ -12,7 +12,7 @@ export async function axiosRegister(
   isBlind,
   navigation,
 ) {
-  axios
+  return await axios
     .post(`${baseUrl}/auth/register`, {
       lastname: lastName,
       firstname: firstName,
