@@ -3,8 +3,7 @@ import React, {useCallback, useMemo, useState} from 'react';
 import {SafeAreaView, Text, View, Image, TextInput} from 'react-native';
 import {styles} from '../../styles/register_style';
 import ButtonDefault from '../../components/button';
-import postRegister, {axiosRegister} from '../../api/userApi';
-import axios from 'axios';
+import {axiosRegister} from '../../api/userApi';
 
 const RegisterBlind = () => {
   const navigation = useNavigation();

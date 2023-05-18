@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import {useNavigation} from '@react-navigation/native';
 import {
   SafeAreaView,
   Text,
@@ -12,8 +12,9 @@ import {
 import styles from '../../styles/formRoute_style';
 import {AxiosRoute} from '../../api/routeApi';
 
-const FormRouteBlind = ({navigation}) => {
+const FormRouteBlind = () => {
   //const routeParamsToken = route.params.token;
+  const navigation = useNavigation();
   const [fromStation, setfromStation] = useState();
   const [toStation, setToStation] = useState();
   const [date, setDate] = useState();
@@ -74,7 +75,7 @@ const FormRouteBlind = ({navigation}) => {
         <Text style={styles.text}>Genre souhaité de votre accompagnant</Text>
         <RNPickerSelect
           placeholder={{label: "Genre souhaité de l'accompagnant", value: null}}
-          onValueChange={routeMateGender => setRouteMateGender(routeMateGender)}
+          onValueChange={() => setRouteMateGender(routeMateGender)}
           items={[
             {label: 'Femme', value: 'FEMALE'},
             {label: 'Homme', value: 'MALE'},
@@ -84,9 +85,7 @@ const FormRouteBlind = ({navigation}) => {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() =>
-            postRoute(fromStation, toStation, routeMateGender, navigation)
-          }
+          onPress={postRoute}
           onLongPress={() => console.log('pas de match désolé')}>
           <Text style={styles.connect}>Valider</Text>
         </TouchableOpacity>
