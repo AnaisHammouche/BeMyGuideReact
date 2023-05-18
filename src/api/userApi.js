@@ -12,7 +12,7 @@ export async function axiosRegister(
   isBlind,
   navigation,
 ) {
-  axios
+  return await axios
     .post(`${baseUrl}/auth/register`, {
       lastname: lastName,
       firstname: firstName,
@@ -52,13 +52,13 @@ export async function axiosLogin(email, password) {
       if (response.status == '200') {
         const tokenData = JSON.stringify(response.data.token);
         await AsyncStorage.setItem('Token', tokenData);
-        console.log('tokendata :' + tokenData);
-        const getTokenData = await AsyncStorage.getItem('Token');
+        const getTokenData = AsyncStorage.getItem('Token');
+        console.log(response);
         return getTokenData;
       }
-      if (response.status == '403') {
+      /* if (response.status == '403') {
         Alert.alert('Vous etes pas enregistrer');
-      }
+      } */
     })
     .catch(function (error) {
       if (error.name === 'AxiosError') {
@@ -90,8 +90,39 @@ export async function axiosUserIsBlind(email, token) {
   }
 }
 
-export async function axiosAuthUser() {
-  axios.get(`${baseUrl}/users/test`).then(async function (response) {
-    return;
-  });
+export async function axiosProfile(
+  id,
+  firstName,
+  lastName,
+  email,
+  password,
+  isBlind,
+) {
+  return await axios
+    .get(`${baseUrl}/users/${id}`)
+    .then(response => {
+      id(response.data.id);
+      firstName(response.data.firstName);
+      lastName(response.data.lastName);
+      email(response.data.email);
+      password(response.data.password);
+      isBlind(response.data.isBlind);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
+export async function axiosAuthUser(token) {
+  try {
+    const response = await axios.get(`${baseUrl}/users`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
 }

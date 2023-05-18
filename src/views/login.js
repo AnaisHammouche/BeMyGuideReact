@@ -28,7 +28,7 @@ const Login = () => {
 
   const postLogin = useCallback(async () => {
     if (isValid) {
-      await AsyncStorage.clear();
+      await AsyncStorage.getAllKeys().then(AsyncStorage.multiRemove);
       await axiosLogin(email, password);
       const getTokenStorage = await AsyncStorage.getItem('Token');
       console.log('token login :' + getTokenStorage);
