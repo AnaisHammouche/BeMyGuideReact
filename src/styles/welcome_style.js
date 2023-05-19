@@ -102,7 +102,7 @@ export const styles = StyleSheet.create({
   container2: {
    // justifyContent: 'space-between',
     marginTop: 50,
-   // flexDirection: 'column',
+    //flexDirection: 'column',
     alignItems: 'center',
   },
   icon3: {
@@ -116,5 +116,17 @@ export const styles = StyleSheet.create({
     marginBottom: 50,
     // alignItems: 'space-around',
   },
+  rewardsContainer: {
+    justifyContent: 'space-evenly',
+     marginTop: 50,
+     flexDirection: 'row',
+     alignItems: 'center',
+  },
+  reward: {
+    justifyContent: 'space-between',
+    marginTop: 50,
+    flexDirection: 'column',
+    alignItems: 'center',
+  }
 
 });
