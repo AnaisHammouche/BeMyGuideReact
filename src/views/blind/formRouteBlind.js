@@ -59,7 +59,7 @@ const FormRouteBlind = ({navigation, route}) => {
     if (userIsBlind) {
       console.log('inside function' + userIsBlind);
       return (
-        <View style={styles.container}>
+        <View>
           <Text style={styles.text} className="item">
             Genre souhaité de l'accompagnant :
           </Text>
