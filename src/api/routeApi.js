@@ -8,6 +8,8 @@ export async function AxiosRoute(
   fromStation,
   toStation,
   routeMateGender,
+  dateRoute,
+  startingTime,
   routeParamsToken,
   navigation,
 ) {
@@ -21,6 +23,8 @@ export async function AxiosRoute(
       fromStation: fromStation,
       toStation: toStation,
       routeMateGender: routeMateGender,
+      dateRoute: dateRoute,
+      startingTime: startingTime,
       routeParamsToken,
       navigation,
     })
@@ -28,7 +32,7 @@ export async function AxiosRoute(
       const getAsynTokenStorage = await AsyncStorage.getItem('Token');
       console.log('routeParamsToken async:' + JSON.parse(getAsynTokenStorage));
       if (
-        (response.status = '200' && fromStation && toStation && routeMateGender)
+        (response.status = '200' && fromStation && toStation && routeMateGender && dateRoute && startingTime)
       ) {
         const fromStationData = JSON.stringify(fromStation);
         console.log('fromstationPost : ' + fromStationData);
@@ -36,6 +40,11 @@ export async function AxiosRoute(
         console.log('tostationDataPost : ' + toStationData);
         const routeMateGenderData = JSON.stringify(routeMateGender);
         console.log('routeMateGender : ' + routeMateGenderData);
+        const dateRouteData = JSON.stringify(dateRoute);
+        console.log('dateRoute : ' + dateRouteData);
+        const startingTimeData = JSON.stringify(startingTime);
+        console.log('startingTime : ' + startingTimeData);
+
 
         return getAsynTokenStorage != null
           ? JSON.parse(getAsynTokenStorage) && navigation.navigate('Match')
@@ -57,6 +66,8 @@ export async function AxiosRouteGet(
   fromStation,
   toStation,
   routeMateGender,
+  dateRoute,
+  startingTime,
   routeParamsToken,
   navigation,
 ) {
@@ -65,6 +76,8 @@ export async function AxiosRouteGet(
       fromStation: fromStation,
       toStation: toStation,
       routeMateGender: routeMateGender,
+      dateRoute: dateRoute,
+      startingTime: startingTime,
       routeParamsToken,
       navigation,
     })

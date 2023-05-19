@@ -4,6 +4,8 @@
 
 # Xcode
 #
+ios/BeMyGuideReactNative.xcodeproj/project.pbxproj
+ios/BeMyGuideReactNative.xcodeproj/project.xcworkspace/
 build/
 *.pbxuser
 !default.pbxuser
@@ -36,9 +38,11 @@ local.properties
 
 # node.js
 #
+
 node_modules/
 npm-debug.log
 yarn-error.log
+
 
 # fastlane
 #
