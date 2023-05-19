@@ -10,6 +10,10 @@ import {
 } from 'react-native';
 import {styles} from '../../styles/register_sighted_style';
 import ButtonDefault from '../../components/button';
+import postRegister, {axiosRegiter} from '../../api/userApi';
+import CheckBox from '@react-native-community/checkbox';
+import RNPickerSelect from 'react-native-picker-select';
+
 
 import {axiosRegister} from '../../api/userApi';
 
@@ -20,15 +24,15 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  //const [gender, setGender] = useState('');
+  const [gender, setGender] = useState('');
   const [isValid, setIsValid] = useState('true');
   const user = {
+    gender: gender,
     lastName: lastName,
     firstName: firstName,
     email: email,
     password: password,
     isBlind: false,
-    //gender: gender,
   };
 
   /* const newUser = async () => {
@@ -63,7 +67,7 @@ const Register = () => {
   const validator = useCallback(() => {
     if (isValid) {
       axiosRegister(
-        //user.gender,
+        user.gender,
         user.lastName,
         user.firstName,
         user.email,
@@ -80,7 +84,7 @@ const Register = () => {
     isValid,
     navigation,
     user.firstName,
-    //user.gender,
+    user.gender,
     user.isBlind,
     user.lastName,
     user.email,
@@ -97,32 +101,17 @@ const Register = () => {
         <Text style={styles.title}>Nous rejoindre</Text>
       </View>
       <View style={styles.separator}>
-        {/* <TouchableOpacity onPress={() => setGender(!gender)}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <View
-              style={{
-                height: 24,
-                width: 24,
-                borderRadius: 4,
-                borderWidth: 2,
-                borderColor: gender ? '#007AFF' : '#C7C7CC',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}>
-              {gender && (
-                <View
-                  style={{
-                    height: 12,
-                    width: 12,
-                    borderRadius: 2,
-                    backgroundColor: '#007AFF',
-                  }}
-                />
-              )}
-            </View>
-            <Text style={{marginLeft: 8}}>Femme</Text>
-          </View>
-        </TouchableOpacity> */}
+        <View  style={styles.input}>
+        <TextInput/><RNPickerSelect
+          placeholder={{label: "GENRE", value: null}}
+          autoCapitalize="none"
+          onValueChange={gender => setGender(gender)}
+          items={[
+            {label: 'Femme', value: 'FEMALE'},
+            {label: 'Homme', value: 'MALE'},
+            {label: 'Non genré', value: 'NON_BINARY'},
+          ]}
+        /></View>
         <TextInput
           style={styles.input}
           autoCapitalize="none"

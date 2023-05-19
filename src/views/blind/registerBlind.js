@@ -4,28 +4,30 @@ import {SafeAreaView, Text, View, Image, TextInput} from 'react-native';
 import {styles} from '../../styles/register_style';
 import ButtonDefault from '../../components/button';
 import postRegister, {axiosRegister} from '../../api/userApi';
+import RNPickerSelect from 'react-native-picker-select';
 import axios from 'axios';
 
 const RegisterBlind = () => {
   const navigation = useNavigation();
+  const [gender, setGender] = useState('');
   const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  //const [gender, setGender] = useState('');
   const [isValid, setIsValid] = useState('true');
   const user = {
+    gender: gender,
     lastName: lastName,
     firstName: firstName,
     email: email,
     password: password,
     isBlind: true,
-    //gender: gender,
   };
 
   useMemo(() => {
     if (
+      gender === '' ||
       lastName === '' ||
       firstName === '' ||
       password !== confirmPassword ||
@@ -37,12 +39,12 @@ const RegisterBlind = () => {
     } else {
       setIsValid(true);
     }
-  }, [lastName, firstName, email, password, confirmPassword]);
+  }, [gender, lastName, firstName, email, password, confirmPassword]);
 
   const validator = useCallback(() => {
     if (isValid) {
       axiosRegister(
-        //user.gender,
+        user.gender,
         user.lastName,
         user.firstName,
         user.email,
@@ -58,8 +60,8 @@ const RegisterBlind = () => {
   }, [
     isValid,
     navigation,
+    user.gender,
     user.firstName,
-    //user.gender,
     user.isBlind,
     user.lastName,
     user.email,
@@ -76,14 +78,20 @@ const RegisterBlind = () => {
         <Text style={styles.title}>Nous rejoindre</Text>
       </View>
       <View style={styles.separator}>
-        {/* <View>
-          <TouchableOpacity
-            value="Femme"
-            status={gender === 'Femme' ? 'checked' : 'unchecked'}
-            onPress={() => setGender('Femme')}
-          />
-          <Text>Femme</Text>
-        </View> */}
+      <Text style={styles.inputText}>
+          GENRE
+        </Text>
+        <View  style={styles.input}>
+        <TextInput/><RNPickerSelect
+          placeholder={{label: "GENRE", value: null}}
+          autoCapitalize="none"
+          onValueChange={gender => setGender(gender)}
+          items={[
+            {label: 'Femme', value: 'FEMALE'},
+            {label: 'Homme', value: 'MALE'},
+            {label: 'Non genré', value: 'NON_BINARY'},
+          ]}
+        /></View>
         <Text style={styles.inputText} keyboardType="default">
           NOM
         </Text>
