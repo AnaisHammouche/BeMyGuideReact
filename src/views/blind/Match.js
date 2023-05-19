@@ -1,6 +1,5 @@
-import React, {useState, useCallback, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import styles from '../../styles/LoginBindStyle';
-import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView, View, Text, Image, TouchableOpacity} from 'react-native';
 import {AxiosRouteGet} from '../../api/routeApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
