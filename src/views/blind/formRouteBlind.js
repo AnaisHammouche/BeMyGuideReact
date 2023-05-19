@@ -59,9 +59,9 @@ const FormRouteBlind = ({navigation, route}) => {
     if (userIsBlind) {
       console.log('inside function' + userIsBlind);
       return (
-        <View style={styles.container}>
+        <View style={styles.containerOfGender}>
           <Text style={styles.text} className="item">
-            Genre souhaité de l'accompagnant :
+          GENRE SOUHAITÉ DE L'ACCOMPAGNANT :
           </Text>
           <RNPickerSelect
             placeholder={{
@@ -176,7 +176,7 @@ const FormRouteBlind = ({navigation, route}) => {
             postRoute(fromStation, toStation, routeMateGender, navigation)
           }
           onLongPress={() => console.log('pas de match désolé')}>
-          <Text style={styles.connect}>Valider</Text>
+          <Text style={styles.buttonText}>VALIDER</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
