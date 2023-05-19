@@ -78,18 +78,20 @@ const RegisterBlind = () => {
         <Text style={styles.title}>Nous rejoindre</Text>
       </View>
       <View style={styles.separator}>
-        {/* <View>
-          <TouchableOpacity
-            value="Femme"
-            status={gender === 'Femme' ? 'checked' : 'unchecked'}
-            onPress={() => setGender('Femme')}
-          />
-          <Text>Femme</Text>
-        </View> */}
-
-         <Text style={styles.inputText} keyboardType="default">
-            NOM
-          </Text>
+      <Text style={styles.inputText}>
+          GENRE
+        </Text>
+        <View  style={styles.input}>
+        <TextInput/><RNPickerSelect
+          placeholder={{label: "GENRE", value: null}}
+          autoCapitalize="none"
+          onValueChange={gender => setGender(gender)}
+          items={[
+            {label: 'Femme', value: 'FEMALE'},
+            {label: 'Homme', value: 'MALE'},
+            {label: 'Non genré', value: 'NON_BINARY'},
+          ]}
+        /></View>
         <Text style={styles.inputText} keyboardType="default">
           NOM
         </Text>
