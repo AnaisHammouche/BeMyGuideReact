@@ -90,23 +90,17 @@ export async function axiosUserIsBlind(email, token) {
   }
 }
 
-export async function axiosProfile(
-  id,
-  firstName,
-  lastName,
-  email,
-  password,
-  isBlind,
-) {
+export async function axiosProfile(token, id) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
+    token,
+  )}`;
   return await axios
     .get(`${baseUrl}/users/${id}`)
-    .then(response => {
-      id(response.data.id);
-      firstName(response.data.firstName);
-      lastName(response.data.lastName);
-      email(response.data.email);
-      password(response.data.password);
-      isBlind(response.data.isBlind);
+    .then(async function (response) {
+      if (await response.data) {
+        console.log('data profile ' + JSON.stringify(response.data));
+        return response.data;
+      }
     })
     .catch(error => {
       console.error(error);

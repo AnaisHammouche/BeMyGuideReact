@@ -11,6 +11,7 @@ import Waiting from '../../views/waiting';
 import DisplayAllMyRoutesBlind from '../../views/blind/DisplayAllMyRoutesBlind';
 import FormRouteV from '../../views/sighted/formRouteV';
 import DisplayAllMyRoutesV from '../../views/sighted/displayAllMyRoutesV';
+import ProfileScreen from '../../views/profile';
 
 const Stack = createNativeStackNavigator();
 // const Tab = createBottomTabNavigator();
@@ -22,6 +23,7 @@ const AppNavigator = () => {
         initialRouteName="Welcome"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Welcome" component={Welcome} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="FormRouteBlind" component={FormRouteBlind} />
         <Stack.Screen name="FormRouteV" component={FormRouteV} />
         <Stack.Screen name="Register" component={Register} />
