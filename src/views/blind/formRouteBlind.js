@@ -12,13 +12,16 @@ import {
 import styles from '../../styles/formRoute_style';
 import {AxiosRoute} from '../../api/routeApi';
 
-const FormRouteBlind = ({navigation}) => {
-  //const routeParamsToken = route.params.token;
+const FormRouteBlind = ({navigation, route}) => {
+  const isBlind = JSON.parse(route.params.userIsBlind);
+  console.log('claire isBlind : ' + isBlind);
+  console.log('check type : ' + typeof isBlind);
   const [fromStation, setfromStation] = useState();
   const [toStation, setToStation] = useState();
-  const [date, setDate] = useState();
-  const [time, setTime] = useState();
+  const [dateRoute, setDate] = useState();
+  const [startingTime, setTime] = useState();
   const [routeMateGender, setRouteMateGender] = useState();
+  console.log();
 
   const postRoute = useCallback(async () => {
     const routeParamsToken = await AsyncStorage.getItem('Token');
@@ -27,10 +30,43 @@ const FormRouteBlind = ({navigation}) => {
       fromStation,
       toStation,
       routeMateGender,
+      dateRoute,
+      startingTime,
       routeParamsToken,
       navigation,
     );
-  }, [fromStation, toStation, routeMateGender, navigation]);
+  }, [fromStation, toStation, routeMateGender, dateRoute,
+    startingTime, navigation]);
+
+  function Item(userIsBlind) {
+    userIsBlind = isBlind;
+    if (userIsBlind) {
+      console.log('inside function' + userIsBlind);
+      return (
+        <View style={styles.container}>
+          <Text style={styles.text} className="item">
+            Genre souhaité de l'accompagnant :
+          </Text>
+          <RNPickerSelect
+            placeholder={{
+              label: "Genre souhaité de l'accompagnant",
+              value: null,
+            }}
+            onValueChange={routeMateGender =>
+              setRouteMateGender(routeMateGender)
+            }
+            items={[
+              {label: 'Femme', value: 'FEMALE'},
+              {label: 'Homme', value: 'MALE'},
+              {label: 'Pas de préférence', value: ''},
+            ]}
+          />
+        </View>
+      );
+    } else {
+      return null;
+    }
+  }
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -60,7 +96,7 @@ const FormRouteBlind = ({navigation}) => {
           style={styles.input}
           placeholder="Date"
           keyboardType="default"
-          value={date}
+          value={dateRoute}
           onChangeText={setDate}
         />
         <Text style={styles.text}>HORAIRE DE DÉPART</Text>
@@ -68,19 +104,13 @@ const FormRouteBlind = ({navigation}) => {
           style={styles.input}
           placeholder="Horaire de départ"
           keyboardType="default"
-          value={time}
+          value={startingTime}
           onChangeText={setTime}
         />
-        <Text style={styles.text}>Genre souhaité de votre accompagnant</Text>
-        <RNPickerSelect
-          placeholder={{label: "Genre souhaité de l'accompagnant", value: null}}
-          onValueChange={routeMateGender => setRouteMateGender(routeMateGender)}
-          items={[
-            {label: 'Femme', value: 'FEMALE'},
-            {label: 'Homme', value: 'MALE'},
-            {label: 'Pas de préférence', value: ''},
-          ]}
-        />
+
+        <Item userIsBlind={true} />
+
+        {/* <Text style={styles.text}>Genre souhaité de votre accompagnant</Text> */}
 
         <TouchableOpacity
           style={styles.button}

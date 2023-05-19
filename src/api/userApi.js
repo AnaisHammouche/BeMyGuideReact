@@ -57,7 +57,7 @@ export async function axiosLogin(email, password) {
         return getTokenData;
       }
       if (response.status == '403') {
-        Alert.alert('Vous etes pas enregistrer');
+        Alert.alert("Mot de passe ou nom d'utilisateur invalide.");
       }
     })
     .catch(function (error) {
