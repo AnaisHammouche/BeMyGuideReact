@@ -1,19 +1,17 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import { FullWindowOverlay } from 'react-native-screens';
+import {FullWindowOverlay} from 'react-native-screens';
 import {colors_theme} from '../config/colors_theme.js';
 
-
-const styles = StyleSheet.create({
-  
-  safeArea:{
+const displayStyles = StyleSheet.create({
+  safeArea: {
     flex: 1,
   },
 
-  container:{
+  container: {
     flex: 1,
     padding: 40,
-   width: '100%',
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'flex-start',
   },
@@ -29,10 +27,10 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
 
-input: {
+  input: {
     height: 40,
     width: '100%',
-    marginTop :10,
+    marginTop: 10,
     marginBottom: 26,
     borderWidth: 1,
     padding: 10,
@@ -42,12 +40,12 @@ input: {
     marginTop: 50,
     flex: 1,
     padding: 40,
-   width: '100%',
+    width: '100%',
     justifyContent: 'center',
     alignItems: 'flex-start',
   },
 
-    button: {
+  button: {
     backgroundColor: colors_theme.button_green,
     alignItems: 'center',
     padding: 4,
@@ -59,7 +57,7 @@ input: {
   },
 
   buttonRed: {
-  backgroundColor: 'red',
+    backgroundColor: 'red',
     alignItems: 'center',
     padding: 4,
     height: 50,
@@ -68,12 +66,11 @@ input: {
     justifyContent: 'center',
     borderRadius: 10,
   },
-  
+
   connect: {
     color: 'white',
     fontWeight: '700',
     textAlign: 'center',
-    fontWeight: '700',
     fontSize: 18,
     marginHorizontal: 40,
     marginVertical: 10,
@@ -89,18 +86,18 @@ input: {
     marginLeft: 0,
   },
   dateInput: {
-    borderColor : "gray",
-    alignItems: "flex-start",
+    borderColor: 'gray',
+    alignItems: 'flex-start',
     borderWidth: 0,
     borderBottomWidth: 1,
   },
   placeholderText: {
     fontSize: 17,
-    color: "gray"
+    color: 'gray',
   },
   dateText: {
     fontSize: 17,
-  }
-})
+  },
+});
 
-export default styles;
+export default displayStyles;

@@ -10,6 +10,7 @@ import RegisterBlind from '../../views/blind/registerBlind';
 import Waiting from '../../views/waiting';
 import DisplayAllMyRoutesBlind from '../../views/blind/DisplayAllMyRoutesBlind';
 import FormRouteV from '../../views/sighted/formRouteV';
+import DisplayAllMyRoutesV from '../../views/sighted/displayAllMyRoutesV';
 
 const Stack = createNativeStackNavigator();
 // const Tab = createBottomTabNavigator();
@@ -18,7 +19,7 @@ const AppNavigator = () => {
   return (
     <NavigationContainer independent={true}>
       <Stack.Navigator
-        initialRouteName="Bienvenue"
+        initialRouteName="Welcome"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="FormRouteBlind" component={FormRouteBlind} />
@@ -31,6 +32,10 @@ const AppNavigator = () => {
         <Stack.Screen
           name="DisplayAllMyRoutesBlind"
           component={DisplayAllMyRoutesBlind}
+        />
+        <Stack.Screen
+          name="DisplayAllMyRoutesV"
+          component={DisplayAllMyRoutesV}
         />
       </Stack.Navigator>
     </NavigationContainer>

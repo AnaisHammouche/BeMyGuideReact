@@ -6,15 +6,13 @@ import {
   View,
   TouchableOpacity,
   Text,
-  TextInput,
-  Alert,
-  Image,
   FlatList,
 } from 'react-native';
+
 import {AxiosListRoutes} from '../../api/routeApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const DisplayAllMyRoutesBlind = () => {
+const DisplayAllMyRoutesV = () => {
   // const navigation = useNavigation();
   // const [email, setEmail] = useState();
   // const [password, setPassword] = useState();
@@ -27,29 +25,31 @@ const DisplayAllMyRoutesBlind = () => {
   const getMatch = async () => {
     const routeParamsToken = await AsyncStorage.getItem('Token');
     console.log('routeToken ' + routeParamsToken);
-    const response = await AxiosListRoutes(routeParamsToken);
-    setData(response.data);
-    console.log('setData ' + setData(response.data));
+    try {
+      const response = await AxiosListRoutes(routeParamsToken);
+      setData(response);
+      console.log('setData ' + response);
+    } catch (error) {
+      console.log('Error: ', error);
+    }
   };
 
-  console.log('data : ' + data);
-  const renderListItem = ({item}) => {
-    <View>
-      <Text>{item.createdAt}</Text>
-      <Text>{item.fromStation}</Text>
-      <Text>{item.toStation}</Text>
-      <Text>{item.dateRoute}</Text>
-      <Text>{item.startingTime}</Text>
-    </View>;
-  };
+  console.log('voir ' + JSON.stringify(data[0]));
 
   return (
     <SafeAreaView>
       <FlatList
+        showsHorizontalScrollIndicator={false}
         data={data}
-        extraData={data}
-        renderItem={renderListItem}
         keyExtractor={item => item.id}
+        renderItem={({item}) => {
+          return (
+            <View>
+              <Text>{item.fromStation}</Text>
+              <Text>{item.toStation}</Text>
+            </View>
+          );
+        }}
       />
       <View style={displayStyles.buttonContainer}>
         <TouchableOpacity
@@ -67,4 +67,4 @@ const DisplayAllMyRoutesBlind = () => {
   );
 };
 
-export default DisplayAllMyRoutesBlind;
+export default DisplayAllMyRoutesV;
