@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import {styles} from '../styles/welcome_style';
+import Rewards from './sighted/rewards';
 
 const Welcome = props => {
   const {navigation} = props;
@@ -23,6 +24,27 @@ const Welcome = props => {
   const goToLogin = useCallback(() => {
     navigation.navigate('Login');
   }, [navigation]);
+
+  return (
+    <SafeAreaView style={styles.screen2}>
+    <View style={styles.container2}>
+      <Text style={styles.title2}>Mes récompenses</Text>
+      <Image
+            source={require('../assets/close_eye.png')}
+            style={styles.icon3}
+          />
+      
+    </View>
+    <Image
+            source={require('/assets/coupe-vide')}
+            style={styles.icon3}
+          />
+    <Image
+            source={require('../assets/coupe-vide')}
+            style={styles.icon3}
+          />
+  </SafeAreaView>
+  )
 
   return (
     <SafeAreaView style={styles.screen}>
