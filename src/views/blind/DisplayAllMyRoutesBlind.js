@@ -6,15 +6,14 @@ import {
   View,
   TouchableOpacity,
   Text,
-  TextInput,
-  Alert,
-  Image,
   FlatList,
 } from 'react-native';
+
 import {AxiosListRoutes} from '../../api/routeApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import flatListStyles from '../../styles/flatListStyle';
 
-const DisplayAllMyRoutesBlind = () => {
+const DisplayAllMyRoutesRoutesBlind = () => {
   // const navigation = useNavigation();
   // const [email, setEmail] = useState();
   // const [password, setPassword] = useState();
@@ -27,44 +26,57 @@ const DisplayAllMyRoutesBlind = () => {
   const getMatch = async () => {
     const routeParamsToken = await AsyncStorage.getItem('Token');
     console.log('routeToken ' + routeParamsToken);
-    const response = await AxiosListRoutes(routeParamsToken);
-    setData(response.data);
-    console.log('setData ' + setData(response.data));
+    try {
+      const response = await AxiosListRoutes(routeParamsToken);
+      setData(response);
+      console.log('setData ' + response);
+    } catch (error) {
+      console.log('Error: ', error);
+    }
   };
 
-  console.log('data : ' + data);
-  const renderListItem = ({item}) => {
-    <View>
-      <Text>{item.createdAt}</Text>
-      <Text>{item.fromStation}</Text>
-      <Text>{item.toStation}</Text>
-      <Text>{item.dateRoute}</Text>
-      <Text>{item.startingTime}</Text>
-    </View>;
+  console.log('voir ' + JSON.stringify(data[0]));
+
+  const ItemSeparatorView = () => {
+    return (
+      //Item Separator
+      <View style={{height: 0.5, width: '100%', backgroundColor: '#C8C8C8'}} />
+    );
   };
 
   return (
     <SafeAreaView>
       <FlatList
+        showsHorizontalScrollIndicator={false}
         data={data}
-        extraData={data}
-        renderItem={renderListItem}
         keyExtractor={item => item.id}
+        ItemSeparatorComponent={ItemSeparatorView}
+        renderItem={({item}) => {
+          return (
+            <View style={flatListStyles.container}>
+              <View style={flatListStyles.container}>
+                <Text>Date de création : {item.createdAt}</Text>
+                <Text>Station de départ : {item.fromStation}</Text>
+                <Text>Station d'arrivée : {item.toStation}</Text>
+                <Text>Date : {item.dateRoute}</Text>
+                <Text>Heure : {item.startingTime}</Text>
+              </View>
+              <TouchableOpacity
+                style={displayStyles.button}
+                onPress={() => console.log('Bouton validé cliqué')}>
+                <Text style={displayStyles.connect}>VALIDER</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={displayStyles.buttonRed}
+                onPress={() => console.log('bouton annulé cliqué')}>
+                <Text style={displayStyles.connect}>ANNULER</Text>
+              </TouchableOpacity>
+            </View>
+          );
+        }}
       />
-      <View style={displayStyles.buttonContainer}>
-        <TouchableOpacity
-          style={displayStyles.button}
-          onPress={() => console.log('Bouton validé cliqué')}>
-          <Text style={displayStyles.connect}>VALIDER</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={displayStyles.buttonRed}
-          onPress={() => console.log('bouton annulé cliqué')}>
-          <Text style={displayStyles.connect}>ANNULER</Text>
-        </TouchableOpacity>
-      </View>
     </SafeAreaView>
   );
 };
 
-export default DisplayAllMyRoutesBlind;
+export default DisplayAllMyRoutesRoutesBlind;

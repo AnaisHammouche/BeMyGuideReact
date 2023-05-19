@@ -36,8 +36,8 @@ const Login = () => {
         const userIsBlind = await axiosUserIsBlind(email, getTokenStorage);
         console.log('is blind ? ' + userIsBlind);
         userIsBlind
-          ? navigation.navigate('DisplayAllMyRoutesBlind')
-          : navigation.navigate('DisplayAllMyRoutesV');
+          ? navigation.navigate('Match')
+          : navigation.navigate('Match');
       }
     } else {
       alert(

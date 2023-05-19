@@ -53,16 +53,16 @@ export async function AxiosRouteGet(routeParamsToken) {
     routeParamsToken,
   )}`;
   return await axios.get(`${baseUrl}/routes/matches`).then(response => {
-    const data = JSON.stringify(response.data);
-    console.log('aie ' + data);
-    //return response.data;
-    if (data) {
+    const data = response.data;
+    console.log('match ' + JSON.stringify(data));
+    return data;
+    /* if (data) {
       const getAsyncTokenStorage = AsyncStorage.getItem('Token');
       console.log('routeParamsToken : ' + getAsyncTokenStorage);
-      axios.post(`${baseUrl}/sendgrid`, {}).then(async function (response) {
+      axios.post(`${baseUrl}/sendgrid`).then(async function (response) {
         console.log('dans le post sendgrid');
       });
-    }
+    } */
   });
 }
 
@@ -73,17 +73,9 @@ export async function AxiosListRoutes(token) {
   return await axios
     .get(`${baseUrl}/routes/auth/all`)
     .then(async function (response) {
-      /* const data = JSON.stringify(response.data);
-    console.log('aie ' + data); */
       if (await response.data) {
         console.log('data axios ' + JSON.stringify(response.data));
         return response.data;
-        /* const getAsyncStorage = AsyncStorage.getItem();
-        console.log('stock ' + JSON.stringify(getAsyncStorage));
-        setfromStation(data.fromStation);
-        setToStation(data.toStation);
-        setDate(data.dateRoute);
-        setTime(data.startingTime); */
       }
     });
 }

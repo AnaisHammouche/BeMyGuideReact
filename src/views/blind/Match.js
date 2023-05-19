@@ -6,20 +6,8 @@ import {AxiosRouteGet} from '../../api/routeApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import displayStyles from '../../styles/displayAllMyRoutesBlindStyle';
 
-const Match = ({route}) => {
-  /* const routeParamsFromStation = JSON.parse(route.params.fromStation);
-  console.log('ROUTPARAMFROMSTATION : ' + routeParamsFromStation);
-  const routeParamsToStation = JSON.parse(route.params.toStation);
-  console.log('ROUTPARAMTOSTATION : ' + routeParamsToStation); */
-  //const routeParamsToken = JSON.parse(route.params.token);
-  const navigation = useNavigation();
-  const [fromStation, setFromStation] = useState([]);
-  const [toStation, setToStation] = useState([]);
-  const [date, setDate] = useState();
-  const [hours, setHours] = useState();
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [get, setGet] = useState(null);
+const Match = () => {
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     getMatch();
@@ -27,54 +15,38 @@ const Match = ({route}) => {
 
   const getMatch = async () => {
     const routeParamsToken = await AsyncStorage.getItem('Token');
-    console.log('enfoiré ' + routeParamsToken);
+    console.log('route token ' + routeParamsToken);
     try {
       const response = await AxiosRouteGet(routeParamsToken);
-      console.log('bouh ' + response);
-      setFromStation(response.fromStation);
-      setToStation(response.toStation);
-      setDate(response.dateRoute);
-      setHours(response.startingTime);
+      setData(response);
+      console.log('axiosRouteGet ' + JSON.stringify(response));
     } catch (error) {
       console.log('Error: ', error);
     }
   };
 
-  /* const getMatch = useCallback(async () => {
-    const routeParamsToken = await AsyncStorage.getItem('Token');
-    const routeMateGender = await AsyncStorage.getItem('Gender');
-    AxiosRouteGet(
-      fromStation,
-      toStation,
-      routeMateGender,
-      routeParamsToken,
-      navigation,
-    );
-  }, [fromStation, navigation, toStation]); */
-
   return (
     <SafeAreaView style={styles.screen}>
       <View>
         <Text style={styles.title}>C'est un match !</Text>
-        {/* <Image></Image> */}
+        <Image></Image>
         <View>
           <Text>Votre demande de trajet</Text>
           <Text>De : </Text>
-          <Text>{fromStation}</Text>
+          <Text>{data[0].fromStation}</Text>
           <Text>À : </Text>
-          <Text>{toStation}</Text>
+          <Text>{data[0].toStation}</Text>
           <Text>Le : </Text>
-          <Text>{date}</Text>
+          <Text>{data[0].dateRoute}</Text>
           <Text>À : </Text>
-          <Text>{hours}</Text>
-
+          <Text>{data[0].startingTime}</Text>
           <TouchableOpacity
-            style={styles.button}
+            style={displayStyles.button}
             onPress={() => console.log('Bouton validé cliqué')}>
             <Text style={displayStyles.connect}>VALIDER</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.buttonRed}
+            style={displayStyles.buttonRed}
             onPress={() => console.log('bouton annulé cliqué')}>
             <Text style={displayStyles.connect}>ANNULER</Text>
           </TouchableOpacity>
