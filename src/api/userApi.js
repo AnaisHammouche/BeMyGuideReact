@@ -5,6 +5,7 @@ import {Alert} from 'react-native';
 let baseUrl = process.env.BASE_URL;
 
 export async function axiosRegister(
+  gender,
   lastName,
   firstName,
   email,
@@ -14,6 +15,7 @@ export async function axiosRegister(
 ) {
   axios
     .post(`${baseUrl}/auth/register`, {
+      gender: gender,
       lastname: lastName,
       firstname: firstName,
       email: email,
@@ -32,7 +34,7 @@ export async function axiosRegister(
     })
 
     .catch(function (error) {
-      if (error.name === 'AxiosError') {
+      if (error.name === 'Network Error') {
         Alert.alert(
           "Vous n'êtes pas connecté à internet, veuillez vérifier votre réseau.",
         );
