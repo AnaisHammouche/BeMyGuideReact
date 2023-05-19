@@ -5,6 +5,7 @@ import {styles} from '../../styles/register_style';
 import ButtonDefault from '../../components/button';
 import postRegister, {axiosRegister} from '../../api/userApi';
 import RNPickerSelect from 'react-native-picker-select';
+import RNPickerSelect from 'react-native-picker-select';
 import axios from 'axios';
 
 const RegisterBlind = () => {
@@ -86,10 +87,6 @@ const RegisterBlind = () => {
           />
           <Text>Femme</Text>
         </View> */}
-
-         <Text style={styles.inputText} keyboardType="default">
-            NOM
-          </Text>
         <Text style={styles.inputText} keyboardType="default">
           NOM
         </Text>

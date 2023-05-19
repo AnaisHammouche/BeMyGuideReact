@@ -10,9 +10,7 @@ import {
 } from 'react-native';
 import {styles} from '../../styles/register_sighted_style';
 import ButtonDefault from '../../components/button';
-import postRegister, {axiosRegiter} from '../../api/userApi';
-import CheckBox from '@react-native-community/checkbox';
-
+import RNPickerSelect from 'react-native-picker-select';
 
 import {axiosRegister} from '../../api/userApi';
 
