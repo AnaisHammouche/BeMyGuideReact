@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   inputText: {
-    marginTop: 50,
+    marginTop: 30,
     //marginLeft: 10,
     // height: 40,
     width: '85%',

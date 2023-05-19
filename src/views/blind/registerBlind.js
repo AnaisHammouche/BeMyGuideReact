@@ -4,52 +4,30 @@ import {SafeAreaView, Text, View, Image, TextInput} from 'react-native';
 import {styles} from '../../styles/register_style';
 import ButtonDefault from '../../components/button';
 import postRegister, {axiosRegister} from '../../api/userApi';
+import RNPickerSelect from 'react-native-picker-select';
 import axios from 'axios';
 
 const RegisterBlind = () => {
   const navigation = useNavigation();
+  const [gender, setGender] = useState('');
   const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  //const [gender, setGender] = useState('');
   const [isValid, setIsValid] = useState('true');
   const user = {
+    gender: gender,
     lastName: lastName,
     firstName: firstName,
     email: email,
     password: password,
     isBlind: true,
-    //gender: gender,
-  };
-
-  const [genderOptions, setGenderOptions] = useState('Mr'); //will store our current user options
-  const radioButtonsData = [
-    {
-      id: '1', // acts as primary key, should be unique and non-empty string
-      label: 'Mr',
-      value: 'MALE',
-    },
-    {
-      id: '2',
-      label: 'Mme',
-      value: 'FEMALE',
-    },
-    {
-      id: '3',
-      label: 'Autre',
-      value: '',
-    },
-  ];
-
-  const setValue = (value) => {
-    var newArray = value.filter((item)=>item.selected===true); //get the items that are selected
-    setRadioButtons(newArray[0].value); //set the selected value in this Hook
   };
 
   useMemo(() => {
     if (
+      gender === '' ||
       lastName === '' ||
       firstName === '' ||
       password !== confirmPassword ||
@@ -61,12 +39,12 @@ const RegisterBlind = () => {
     } else {
       setIsValid(true);
     }
-  }, [lastName, firstName, email, password, confirmPassword]);
+  }, [gender, lastName, firstName, email, password, confirmPassword]);
 
   const validator = useCallback(() => {
     if (isValid) {
       axiosRegister(
-        //user.gender,
+        user.gender,
         user.lastName,
         user.firstName,
         user.email,
@@ -82,8 +60,8 @@ const RegisterBlind = () => {
   }, [
     isValid,
     navigation,
+    user.gender,
     user.firstName,
-    //user.gender,
     user.isBlind,
     user.lastName,
     user.email,
@@ -112,6 +90,9 @@ const RegisterBlind = () => {
          <Text style={styles.inputText} keyboardType="default">
             NOM
           </Text>
+        <Text style={styles.inputText} keyboardType="default">
+          NOM
+        </Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"

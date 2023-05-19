@@ -13,7 +13,7 @@ import {
 
 //import {DatePickerIOSComponent} from '@react-native-community/datetimepicker'
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+//import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../styles/formRoute_style';
 import { AxiosRoute, AxiosRouteGet } from '../../api/routeApi';
 //import DatePicker from 'react-native-datepicker';
@@ -25,6 +25,8 @@ function addOneYear(date) {
   return date;
 }
 const maxDate = addOneYear(currentDate);
+//import styles from '../../styles/formRoute_style';
+//import {AxiosRoute} from '../../api/routeApi';
 
 const FormRouteBlind = ({navigation}) => {
   //const routeParamsToken = route.params.token;
