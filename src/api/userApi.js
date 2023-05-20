@@ -11,8 +11,10 @@ export async function axiosRegister(
   email,
   password,
   isBlind,
+  phoneNumber,
   navigation,
 ) {
+  console.log('phoneNUMBER : axiosregister début ' + phoneNumber)
   axios
     .post(`${baseUrl}/auth/register`, {
       gender: gender,
@@ -20,21 +22,30 @@ export async function axiosRegister(
       firstname: firstName,
       email: email,
       password: password,
+      phoneNumber: phoneNumber,
       isBlind: isBlind,
     })
     .then(async function (response) {
       const tokenData = JSON.stringify(response.data.token);
       await AsyncStorage.setItem('Token', tokenData);
       if (tokenData != null) {
-        JSON.parse(tokenData);
+        // JSON.parse(tokenData);
         alert('Bienvenue ' + firstName + ', ravis de vous compter parmi nous.');
-        navigation.navigate('FormRouteBlind', {token: tokenData});
+        navigation.navigate('FormRouteBlind', {userIsBlind: isBlind});
         return;
       }
+      // if (response.status == '200') {
+      //   const tokenData = JSON.stringify(response.data.token);
+      //   await AsyncStorage.setItem('Token', tokenData);
+      //   console.log('tokendata :' + tokenData);
+      //   const getTokenData = await AsyncStorage.getItem('Token');
+      //   return getTokenData;
+      // }
     })
 
     .catch(function (error) {
-      if (error.name === 'Network Error') {
+      if (error.name === 'AxiosError') {
+        console.log('error.name : ' + error.name);
         Alert.alert(
           "Vous n'êtes pas connecté à internet, veuillez vérifier votre réseau.",
         );
