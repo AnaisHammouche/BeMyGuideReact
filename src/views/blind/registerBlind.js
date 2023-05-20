@@ -7,12 +7,14 @@ import postRegister, {axiosRegister} from '../../api/userApi';
 import RNPickerSelect from 'react-native-picker-select';
 import axios from 'axios';
 
-const RegisterBlind = () => {
+const RegisterBlind = ({route}) => {
   const navigation = useNavigation();
+  const isBlind = JSON.parse(route.params.userIsBlind);
   const [gender, setGender] = useState('');
   const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
   const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isValid, setIsValid] = useState('true');
@@ -21,9 +23,13 @@ const RegisterBlind = () => {
     lastName: lastName,
     firstName: firstName,
     email: email,
+    phoneNumber: phoneNumber,
     password: password,
-    isBlind: true,
+    isBlind: isBlind,
   };
+  console.log("user : " + JSON.stringify(user))
+
+  console.log("user.phoneNumber : " + user.phoneNumber)
 
   useMemo(() => {
     if (
@@ -32,6 +38,7 @@ const RegisterBlind = () => {
       firstName === '' ||
       password !== confirmPassword ||
       email === '' ||
+      phoneNumber.length < 10 ||
       password === '' ||
       password.length < 5
     ) {
@@ -39,7 +46,15 @@ const RegisterBlind = () => {
     } else {
       setIsValid(true);
     }
-  }, [gender, lastName, firstName, email, password, confirmPassword]);
+  }, [
+    gender,
+    lastName,
+    firstName,
+    email,
+    phoneNumber,
+    password,
+    confirmPassword,
+  ]);
 
   const validator = useCallback(() => {
     if (isValid) {
@@ -50,8 +65,11 @@ const RegisterBlind = () => {
         user.email,
         user.password,
         user.isBlind,
+        user.phoneNumber,
         navigation,
       );
+      console.log("user.isBlind" + user.isBlind)
+
     } else {
       alert(
         'Veuillez remplir les informations nécessaires à votre inscription.',
@@ -64,6 +82,7 @@ const RegisterBlind = () => {
     user.firstName,
     user.isBlind,
     user.lastName,
+    user.phoneNumber,
     user.email,
     user.password,
   ]);
@@ -71,27 +90,27 @@ const RegisterBlind = () => {
   return (
     <SafeAreaView style={styles.screen}>
       <View style={styles.container}>
+        <Text style={styles.title}>Nous rejoindre</Text>
         <Image
           source={require('../../assets/close_eye.png')}
           style={styles.icon}
         />
-        <Text style={styles.title}>Nous rejoindre</Text>
       </View>
       <View style={styles.separator}>
-      <Text style={styles.inputText}>
-          GENRE
-        </Text>
-        <View  style={styles.input}>
-        <TextInput/><RNPickerSelect
-          placeholder={{label: "GENRE", value: null}}
-          autoCapitalize="none"
-          onValueChange={gender => setGender(gender)}
-          items={[
-            {label: 'Femme', value: 'FEMALE'},
-            {label: 'Homme', value: 'MALE'},
-            {label: 'Non genré', value: 'NON_BINARY'},
-          ]}
-        /></View>
+        <Text style={styles.inputText}>GENRE</Text>
+        <View style={styles.input}>
+          <TextInput />
+          <RNPickerSelect
+            placeholder={{label: 'GENRE', value: null}}
+            autoCapitalize="none"
+            onValueChange={gender => setGender(gender)}
+            items={[
+              {label: 'Femme', value: 'FEMALE'},
+              {label: 'Homme', value: 'MALE'},
+              {label: 'Non genré', value: 'NON_BINARY'},
+            ]}
+          />
+        </View>
         <Text style={styles.inputText} keyboardType="default">
           NOM
         </Text>
@@ -103,12 +122,12 @@ const RegisterBlind = () => {
           onChangeText={setLastName}
         />
         <Text style={styles.inputText} keyboardType="default">
-          PRENOM
+          PRÉNOM
         </Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"
-          placeholder="PRENOM"
+          placeholder="PRÉNOM"
           value={firstName}
           onChangeText={setFirstName}
         />
@@ -122,6 +141,17 @@ const RegisterBlind = () => {
           keyboardType="email-address"
           value={email}
           onChangeText={setEmail}
+        />
+        <Text style={styles.inputText} keyboardType="default">
+          NUMÉRO DE TÉLÉPHONE
+        </Text>
+        <TextInput
+          style={styles.input}
+          autoCapitalize="none"
+          placeholder="VOTRE NUMÉRO DE TÉLÉPHONE"
+          keyboardType="numeric"
+          value={phoneNumber}
+          onChangeText={setPhoneNumber}
         />
         <Text style={styles.inputText} keyboardType="default">
           MOT DE PASSE

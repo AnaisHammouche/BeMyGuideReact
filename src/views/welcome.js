@@ -13,11 +13,12 @@ const Welcome = props => {
   const {navigation} = props;
 
   const goToRegisterBlind = useCallback(() => {
-    navigation.navigate('RegisterBlind');
+    //const userIsBlind = true
+    navigation.navigate('RegisterBlind', {userIsBlind: true});
   }, [navigation]);
 
   const goToRegister = useCallback(() => {
-    navigation.navigate('Register');
+    navigation.navigate('RegisterBlind', {userIsBlind: false});
   }, [navigation]);
 
   const goToLogin = useCallback(() => {
