@@ -14,7 +14,7 @@ export async function axiosRegister(
   phoneNumber,
   navigation,
 ) {
-  console.log('phoneNUMBER : axiosregister début ' + phoneNumber)
+ 
   axios
     .post(`${baseUrl}/auth/register`, {
       gender: gender,
@@ -34,13 +34,7 @@ export async function axiosRegister(
         navigation.navigate('FormRouteBlind', {userIsBlind: isBlind});
         return;
       }
-      // if (response.status == '200') {
-      //   const tokenData = JSON.stringify(response.data.token);
-      //   await AsyncStorage.setItem('Token', tokenData);
-      //   console.log('tokendata :' + tokenData);
-      //   const getTokenData = await AsyncStorage.getItem('Token');
-      //   return getTokenData;
-      // }
+
     })
 
     .catch(function (error) {

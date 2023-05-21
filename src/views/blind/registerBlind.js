@@ -27,9 +27,6 @@ const RegisterBlind = ({route}) => {
     password: password,
     isBlind: isBlind,
   };
-  console.log("user : " + JSON.stringify(user))
-
-  console.log("user.phoneNumber : " + user.phoneNumber)
 
   useMemo(() => {
     if (
