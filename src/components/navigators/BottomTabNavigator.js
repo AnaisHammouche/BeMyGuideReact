@@ -2,7 +2,7 @@ import * as React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import DisplayAllMyRoutesBlind from '../../views/blind/DisplayAllMyRoutesBlind';
 import FormRouteBlind from '../../views/blind/formRouteBlind.js';
-import Waiting from '../../views/waiting';
+import Rewards from '../../views/sighted/Rewards';
 import {
     View,
     Image,
@@ -94,7 +94,7 @@ return (
       />
       <Tab.Screen
         name="Profil"
-        component={ProfileScreen}
+        component={Rewards}
         options={{
           tabBarIcon: ({focused}) => (
             <View
