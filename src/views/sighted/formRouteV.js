@@ -2,15 +2,10 @@ import React, {useCallback, useState} from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
-import {
-  SafeAreaView,
-  Text,
-  TextInput,
-  View,
-  TouchableOpacity,
-} from 'react-native';
-import styles from '../../styles/formRoute_style';
-import {AxiosRoute} from '../../api/routeApi';
+import {SafeAreaView, Text, TextInput, View} from 'react-native';
+import FormRouteStyle from '../../styles/FormRouteStyle';
+import {AxiosRoute} from '../../api/RouteApi';
+import {ButtonDisplay} from '../../components/Buttons';
 
 const FormRouteV = () => {
   const navigation = useNavigation();
@@ -33,10 +28,10 @@ const FormRouteV = () => {
   }, [fromStation, toStation, routeMateGender, navigation]);
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <View style={styles.container}>
-        <Text style={styles.title}>OÙ ALLEZ-VOUS ?</Text>
-        <Text style={styles.text}>DÉPART</Text>
+    <SafeAreaView style={FormRouteStyle.safeArea}>
+      <View style={FormRouteStyle.container}>
+        <Text style={FormRouteStyle.title}>OÙ ALLEZ-VOUS ?</Text>
+        <Text style={FormRouteStyle.text}>DÉPART</Text>
         <TextInput
           placeholder="Station de départ"
           keyboardType="default"
@@ -44,7 +39,7 @@ const FormRouteV = () => {
           onChangeText={setfromStation}
           required
         />
-        <Text style={styles.text}>ARRIVÉE</Text>
+        <Text style={FormRouteStyle.text}>ARRIVÉE</Text>
         <TextInput
           placeholder="Station d'arrivée"
           keyboardType="default"
@@ -52,21 +47,23 @@ const FormRouteV = () => {
           onChangeText={setToStation}
           required
         />
-        <Text style={styles.text}>JOURS DE DÉPART</Text>
+        <Text style={FormRouteStyle.text}>JOURS DE DÉPART</Text>
         <TextInput
           placeholder="Date"
           keyboardType="default"
           value={date}
           onChangeText={setDate}
         />
-        <Text style={styles.text}>HORAIRE DE DÉPART</Text>
+        <Text style={FormRouteStyle.text}>HORAIRE DE DÉPART</Text>
         <TextInput
           placeholder="Horaire de départ"
           keyboardType="default"
           value={time}
           onChangeText={setTime}
         />
-        <Text style={styles.text}>Genre souhaité de votre accompagné</Text>
+        <Text style={FormRouteStyle.text}>
+          Genre souhaité de votre accompagné
+        </Text>
         <RNPickerSelect
           placeholder={{label: "Genre souhaité de l'accompagnant", value: null}}
           onValueChange={() => setRouteMateGender(routeMateGender)}
@@ -76,12 +73,7 @@ const FormRouteV = () => {
             {label: 'Pas de préférence', value: ''},
           ]}
         />
-        <TouchableOpacity
-          style={styles.button}
-          onPress={postRoute}
-          onLongPress={() => console.log('pas de match désolé')}>
-          <Text style={styles.connect}>Valider</Text>
-        </TouchableOpacity>
+        <ButtonDisplay title={'Valider'} onPress={postRoute} />
       </View>
     </SafeAreaView>
   );

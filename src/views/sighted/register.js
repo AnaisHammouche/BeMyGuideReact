@@ -1,17 +1,10 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useCallback, useMemo, useState} from 'react';
-import {
-  SafeAreaView,
-  Text,
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
-import {styles} from '../../styles/register_sighted_style';
-import ButtonDefault from '../../components/button';
+import {SafeAreaView, Text, View, Image, TextInput} from 'react-native';
+import {RegisterSightedStyle} from '../../styles/RegisterSightedStyle';
+import ButtonDefault from '../../components/Buttons';
 
-import {axiosRegister} from '../../api/userApi';
+import {axiosRegister} from '../../api/UserApi';
 
 const Register = () => {
   const navigation = useNavigation();
@@ -30,20 +23,6 @@ const Register = () => {
     isBlind: false,
     //gender: gender,
   };
-
-  /* const newUser = async () => {
-    try {
-      await AsyncStorage.setItem(
-        user.lastName,
-        user.firstName,
-        user.mail,
-        user.password,
-      );
-      console.log('registered');
-    } catch (error) {
-      console.log('error: ' + error);
-    }
-  }; */
 
   useMemo(() => {
     if (
@@ -88,15 +67,15 @@ const Register = () => {
   ]);
 
   return (
-    <SafeAreaView style={styles.screen}>
-      <View style={styles.container}>
+    <SafeAreaView style={RegisterSightedStyle.screen}>
+      <View style={RegisterSightedStyle.container}>
         <Image
           source={require('../../assets/close_eye.png')}
-          style={styles.icon}
+          style={RegisterSightedStyle.icon}
         />
-        <Text style={styles.title}>Nous rejoindre</Text>
+        <Text style={RegisterSightedStyle.title}>Nous rejoindre</Text>
       </View>
-      <View style={styles.separator}>
+      <View style={RegisterSightedStyle.separator}>
         {/* <TouchableOpacity onPress={() => setGender(!gender)}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <View
@@ -124,21 +103,21 @@ const Register = () => {
           </View>
         </TouchableOpacity> */}
         <TextInput
-          style={styles.input}
+          style={RegisterSightedStyle.input}
           autoCapitalize="none"
           placeholder="NOM"
           value={lastName}
           onChangeText={setLastName}
         />
         <TextInput
-          style={styles.input}
+          style={RegisterSightedStyle.input}
           autoCapitalize="none"
           placeholder="PRENOM"
           value={firstName}
           onChangeText={setFirstName}
         />
         <TextInput
-          style={styles.input}
+          style={RegisterSightedStyle.input}
           autoCapitalize="none"
           placeholder="VOTRE ADRESSE MAIL"
           keyboardType="email-address"
@@ -146,7 +125,7 @@ const Register = () => {
           onChangeText={setEmail}
         />
         <TextInput
-          style={styles.input}
+          style={RegisterSightedStyle.input}
           placeholder="VOTRE MOT DE PASSE"
           autoCapitalize="none"
           keyboardType="default"
@@ -155,7 +134,7 @@ const Register = () => {
           onChangeText={setPassword}
         />
         <TextInput
-          style={styles.input}
+          style={RegisterSightedStyle.input}
           autoCapitalize="none"
           placeholder="CONFIRMATION MOT DE PASSE"
           secureTextEntry={true}

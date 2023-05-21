@@ -1,7 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {colors_theme} from '../config/colors_theme.js';
 
-export const styles = StyleSheet.create({
+export const ButtonLinkStyles = StyleSheet.create({
   button: {
     backgroundColor: 'white',
     alignItems: 'center',

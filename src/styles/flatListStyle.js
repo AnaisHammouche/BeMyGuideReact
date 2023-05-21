@@ -1,7 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {colors_theme} from '../config/colors_theme';
 
-const flatListStyles = StyleSheet.create({
+export const FlatListStyle = StyleSheet.create({
   container: {
     padding: 10,
     backgroundColor: 'white',
@@ -17,5 +16,3 @@ const flatListStyles = StyleSheet.create({
     shadowRadius: 8,
   },
 });
-
-export default flatListStyles;

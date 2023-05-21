@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {styles} from '../styles/welcome_style';
+import {WelcomeStyle} from '../styles/WelcomeStyle';
+import {ButtonWelcome, ButtonWelcome2} from '../components/Buttons';
 
 const Welcome = props => {
   const {navigation} = props;
@@ -25,28 +26,30 @@ const Welcome = props => {
   }, [navigation]);
 
   return (
-    <SafeAreaView style={styles.screen}>
+    <SafeAreaView style={WelcomeStyle.screen}>
       <ImageBackground source={require('../assets/main_aidant.png')}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>Où tu iras, </Text>
-          <Text style={styles.title}>nous irons aussi.</Text>
+        <View style={WelcomeStyle.titleContainer}>
+          <Text style={WelcomeStyle.title}>Où tu iras, </Text>
+          <Text style={WelcomeStyle.title}>nous irons aussi.</Text>
           <Image
             source={require('../assets/close_eye.png')}
-            style={styles.icon}
+            style={WelcomeStyle.icon}
           />
         </View>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={goToRegisterBlind} style={styles.button1}>
-            <Text style={styles.connect}> ME FAIRE ACCOMPAGNER</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity onPress={goToRegister} style={styles.button2}>
-            <Text style={styles.connect}> ACCOMPAGNER QUELQU'UN</Text>
-          </TouchableOpacity>
-
-          <Text style={styles.textConnect}>Vous avez déjà un compte ?</Text>
-          <TouchableOpacity onPress={goToLogin} style={styles.button}>
-            <Text style={styles.connect}> Connectez-vous</Text>
+        <View style={WelcomeStyle.buttonContainer}>
+          <ButtonWelcome
+            title={'ME FAIRE ACCOMPAGNER'}
+            onPress={goToRegisterBlind}
+          />
+          <ButtonWelcome2
+            title={"ACCOMPAGNER QUELQU'UN"}
+            onPress={goToRegister}
+          />
+          <Text style={WelcomeStyle.textConnect}>
+            Vous avez déjà un compte ?
+          </Text>
+          <TouchableOpacity onPress={goToLogin}>
+            <Text style={WelcomeStyle.connect}> Connectez-vous</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>

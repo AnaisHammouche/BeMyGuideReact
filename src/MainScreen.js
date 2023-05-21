@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import AppNavigator from '../src/components/navigators/AppNavigator';
 import Tabs from './components/navigators/BottomTabNavigator';
-import {axiosAuthUser} from './api/userApi';
+import {axiosAuthUser} from './api/UserApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import LoadingScreen from './views/loading';
+import LoadingScreen from './views/Loading';
 
 const MainScreen = () => {
   const [user, setUser] = useState('');

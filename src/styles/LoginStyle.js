@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native';
-import {colors_theme} from '../config/colors_theme.js';
+import {colorsTheme} from '../config/colorsTheme.js';
 
-export const styles = StyleSheet.create({
+export const LoginStyle = StyleSheet.create({
   screen: {
     flex: 1,
   },
@@ -59,8 +59,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  button: {
-    backgroundColor: colors_theme.button_green,
+  /* button: {
+    backgroundColor: colorsTheme.button_green,
     alignItems: 'center',
     height: 60,
     width: '100%',
@@ -75,5 +75,5 @@ export const styles = StyleSheet.create({
     fontWeight: 700,
     fontFamily: 'RobotoMono-Medium',
     textAlign: 'center',
-  },
+  }, */
 });

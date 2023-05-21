@@ -1,9 +1,6 @@
-import React from 'react';
 import {StyleSheet} from 'react-native';
-import {FullWindowOverlay} from 'react-native-screens';
-import {colors_theme} from '../config/colors_theme.js';
 
-const displayStyles = StyleSheet.create({
+export const DisplayStyle = StyleSheet.create({
   safeArea: {
     flex: 1,
   },
@@ -44,41 +41,6 @@ const displayStyles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-start',
   },
-
-  button: {
-    backgroundColor: colors_theme.button_green,
-    alignItems: 'center',
-    padding: 4,
-    height: 50,
-    width: '90%',
-    marginTop: 20,
-    justifyContent: 'center',
-    borderRadius: 10,
-  },
-
-  buttonRed: {
-    backgroundColor: 'red',
-    alignItems: 'center',
-    padding: 4,
-    height: 50,
-    width: '90%',
-    marginTop: 20,
-    justifyContent: 'center',
-    borderRadius: 10,
-  },
-
-  connect: {
-    color: 'white',
-    fontWeight: '700',
-    textAlign: 'center',
-    fontSize: 18,
-    marginHorizontal: 40,
-    marginVertical: 10,
-    height: 40,
-    margin: 6,
-    padding: 10,
-    borderRadius: 5,
-  },
   dateIcon: {
     position: 'absolute',
     right: -5,
@@ -99,5 +61,3 @@ const displayStyles = StyleSheet.create({
     fontSize: 17,
   },
 });
-
-export default displayStyles;

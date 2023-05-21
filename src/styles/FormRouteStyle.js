@@ -1,10 +1,6 @@
-import React from 'react';
-
 import {StyleSheet} from 'react-native';
-import {FullWindowOverlay} from 'react-native-screens';
-import {colors_theme} from '../config/colors_theme.js';
 
-const styles = StyleSheet.create({
+export const FormRouteStyle = StyleSheet.create({
   safeArea: {
     flex: 1,
   },
@@ -46,8 +42,8 @@ const styles = StyleSheet.create({
     marginBottom: 26,
     borderRadius: 5,
   },
-  button: {
-    backgroundColor: colors_theme.button_green,
+  /* button: {
+    backgroundColor: colorsTheme.button_green,
     alignItems: 'center',
     padding: 4,
     height: 50,
@@ -56,9 +52,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10,
     fontFamily: 'RobotoMono-Medium',
-  },
+  }, */
 
-  connect: {
+  /* connect: {
     color: 'white',
     fontWeight: '700',
     textAlign: 'center',
@@ -69,7 +65,5 @@ const styles = StyleSheet.create({
     margin: 6,
     padding: 10,
     borderRadius: 5,
-  },
+  }, */
 });
-
-export default styles;

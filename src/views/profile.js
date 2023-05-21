@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {View, Text, Image, SafeAreaView, TextInput} from 'react-native';
-import {axiosAuthUser} from '../api/userApi';
-import {ProfileStyles} from '../styles/profileStyle';
+import {axiosAuthUser} from '../api/UserApi';
+import {ProfileStyles} from '../styles/ProfileStyle';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import ButtonDefault from '../components/button';
+import ButtonDefault from '../components/Buttons';
 
 export default function ProfileScreen() {
   const [data, setData] = useState([]);

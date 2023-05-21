@@ -1,37 +1,37 @@
 import {StyleSheet} from 'react-native';
-import {colors_theme} from '../config/colors_theme.js';
+import {colorsTheme} from '../config/colorsTheme.js';
 
-export const styles = StyleSheet.create({
+export const WelcomeStyle = StyleSheet.create({
   screen: {
     flex: 1,
     //   justifyContent: 'space-between',
   },
   image: {
     flex: 1,
-   // resizeMode: 'cover',
-  //  justifyContent: 'space-between',
+    // resizeMode: 'cover',
+    //  justifyContent: 'space-between',
   },
   title: {
     fontFamily: 'RobotoMono-Bold',
     fontSize: 25,
     textAlign: 'center',
     // alignContent: 'space-between',
-    color: colors_theme.txt_white,
+    color: colorsTheme.txt_white,
   },
   titleContainer: {
-   paddingTop: 120,
+    paddingTop: 120,
     marginVertical: 80,
     alignItems: 'center',
     justifyContent: 'center',
   },
   buttonContainer: {
-  //  paddingTop: 120,
-     marginVertical: 80,
-     alignItems: 'center',
-     justifyContent: 'center',
-   },
+    //  paddingTop: 120,
+    marginVertical: 80,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   icon: {
-   // marginHorizontal: 170,
+    // marginHorizontal: 170,
     alignItems: 'center',
     tintColor: 'white',
     justifyContent: 'center',
@@ -41,24 +41,24 @@ export const styles = StyleSheet.create({
   },
   text: {
     fontFamily: 'RobotoMono-Medium',
-    color: colors_theme.txt_white,
+    color: colorsTheme.txt_white,
     textAlign: 'center',
     fontSize: 16,
   },
   textConnect: {
-    color: colors_theme.txt_white,
+    color: colorsTheme.txt_white,
     fontFamily: 'RobotoMono-Medium',
     fontSize: 16,
     marginTop: 80,
   },
   connect: {
     textAlign: 'center',
-    color: colors_theme.txt_white,
+    color: colorsTheme.txt_white,
     fontSize: 16,
     fontFamily: 'RobotoMono-Bold',
   },
-  button1: {
-    backgroundColor: colors_theme.button_green,
+  /* button1: {
+    backgroundColor: colorsTheme.button_green,
     alignItems: 'center',
     padding: 4,
     height: 50,
@@ -66,9 +66,9 @@ export const styles = StyleSheet.create({
     // marginTop: 30,
     justifyContent: 'center',
     borderRadius: 10,
-  },
-  button2: {
-    backgroundColor: colors_theme.button_green,
+  }, */
+  /* button2: {
+    backgroundColor: colorsTheme.button_green,
     alignItems: 'center',
     padding: 4,
     height: 50,
@@ -76,5 +76,5 @@ export const styles = StyleSheet.create({
     marginTop: 20,
     justifyContent: 'center',
     borderRadius: 10,
-  },
+  }, */
 });

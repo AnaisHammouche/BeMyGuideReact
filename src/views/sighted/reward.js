@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {View, Text, FlatList, StyleSheet} from 'react-native';
-import axios from 'axios';
+import {RewardStyle} from '../../styles/RewardStyle';
 
 const RewardScreen = () => {
   const [rewards, setRewards] = useState([]);
@@ -17,50 +17,22 @@ const RewardScreen = () => {
   }, []); */
 
   const renderReward = ({item}) => (
-    <View style={styles.rewardContainer}>
-      <Text style={styles.rewardTitle}>{item.title}</Text>
-      <Text style={styles.rewardDescription}>{item.description}</Text>
+    <View style={RewardStyle.rewardContainer}>
+      <Text style={RewardStyle.rewardTitle}>{item.title}</Text>
+      <Text style={RewardStyle.rewardDescription}>{item.description}</Text>
     </View>
   );
 
   return (
-    <View style={styles.container}>
+    <View style={RewardStyle.container}>
       <FlatList
         data={rewards}
         renderItem={renderReward}
         keyExtractor={item => item.id.toString()}
-        contentContainerStyle={styles.rewardList}
+        contentContainerStyle={RewardStyle.rewardList}
       />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  rewardList: {
-    paddingHorizontal: 20,
-    paddingBottom: 20,
-  },
-  rewardContainer: {
-    padding: 20,
-    borderRadius: 10,
-    backgroundColor: '#eee',
-    marginBottom: 10,
-  },
-  rewardTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 5,
-  },
-  rewardDescription: {
-    fontSize: 16,
-    color: '#555',
-  },
-});
 
 export default RewardScreen;

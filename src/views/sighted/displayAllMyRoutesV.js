@@ -1,22 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import displayStyles from '../../styles/displayAllMyRoutesBlindStyle';
+import {SafeAreaView, View, Text, FlatList} from 'react-native';
 
-import {
-  SafeAreaView,
-  View,
-  TouchableOpacity,
-  Text,
-  FlatList,
-} from 'react-native';
-
-import {AxiosListRoutes} from '../../api/routeApi';
+import {AxiosListRoutes} from '../../api/RouteApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import flatListStyles from '../../styles/flatListStyle';
+import FlatListStyle from '../../styles/FlatListStyle';
+import {ButtonDisplay, ButtonDisplayRed} from '../../components/Buttons';
 
 const DisplayAllMyRoutesV = () => {
-  // const navigation = useNavigation();
-  // const [email, setEmail] = useState();
-  // const [password, setPassword] = useState();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -53,24 +43,22 @@ const DisplayAllMyRoutesV = () => {
         ItemSeparatorComponent={ItemSeparatorView}
         renderItem={({item}) => {
           return (
-            <View style={flatListStyles.container}>
-              <View style={flatListStyles.container}>
+            <View style={FlatListStyle.container}>
+              <View style={FlatListStyle.container}>
                 <Text>Date de création : {item.createdAt}</Text>
                 <Text>Station de départ : {item.fromStation}</Text>
                 <Text>Station d'arrivée : {item.toStation}</Text>
                 <Text>Date : {item.dateRoute}</Text>
                 <Text>Heure : {item.startingTime}</Text>
               </View>
-              <TouchableOpacity
-                style={displayStyles.button}
-                onPress={() => console.log('Bouton validé cliqué')}>
-                <Text style={displayStyles.connect}>VALIDER</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={displayStyles.buttonRed}
-                onPress={() => console.log('bouton annulé cliqué')}>
-                <Text style={displayStyles.connect}>ANNULER</Text>
-              </TouchableOpacity>
+              <ButtonDisplay
+                title={'VALIDER'}
+                onPress={() => console.log('Bouton validé cliqué')}
+              />
+              <ButtonDisplayRed
+                title={'ANNULER'}
+                onPress={() => console.log('bouton annulé cliqué')}
+              />
             </View>
           );
         }}

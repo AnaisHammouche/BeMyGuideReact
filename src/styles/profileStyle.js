@@ -1,9 +1,10 @@
 import {StyleSheet} from 'react-native';
+import {colorsTheme} from '../config/colorsTheme';
 
-export const ProfileStyles = StyleSheet.create({
+export const ProfileStyle = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: colorsTheme.background,
   },
   title: {
     fontFamily: 'RobotoMono-Bold',

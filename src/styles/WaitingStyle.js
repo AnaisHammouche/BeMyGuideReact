@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-export const waitingStyles = StyleSheet.create({
+export const WaitingStyles = StyleSheet.create({
   screen: {
     flex: 1,
   },

@@ -1,9 +1,9 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useCallback, useMemo, useState} from 'react';
 import {SafeAreaView, Text, View, Image, TextInput} from 'react-native';
-import {styles} from '../../styles/register_style';
-import ButtonDefault from '../../components/button';
-import {axiosRegister} from '../../api/userApi';
+import {RegisterStyle} from '../../styles/RegisterStyle';
+import ButtonDefault from '../../components/Buttons';
+import {axiosRegister} from '../../api/UserApi';
 
 const RegisterBlind = () => {
   const navigation = useNavigation();
@@ -66,15 +66,15 @@ const RegisterBlind = () => {
   ]);
 
   return (
-    <SafeAreaView style={styles.screen}>
-      <View style={styles.container}>
+    <SafeAreaView style={RegisterStyle.screen}>
+      <View style={RegisterStyle.container}>
         <Image
           source={require('../../assets/close_eye.png')}
-          style={styles.icon}
+          style={RegisterStyle.icon}
         />
-        <Text style={styles.title}>Nous rejoindre</Text>
+        <Text style={RegisterStyle.title}>Nous rejoindre</Text>
       </View>
-      <View style={styles.separator}>
+      <View style={RegisterStyle.separator}>
         {/* <View>
           <TouchableOpacity
             value="Femme"
@@ -83,42 +83,42 @@ const RegisterBlind = () => {
           />
           <Text>Femme</Text>
         </View> */}
-        <Text style={styles.inputText} keyboardType="default">
+        <Text style={RegisterStyle.inputText} keyboardType="default">
           NOM
         </Text>
         <TextInput
-          style={styles.input}
+          style={RegisterStyle.input}
           autoCapitalize="none"
           placeholder="NOM"
           value={lastName}
           onChangeText={setLastName}
         />
-        <Text style={styles.inputText} keyboardType="default">
+        <Text style={RegisterStyle.inputText} keyboardType="default">
           PRENOM
         </Text>
         <TextInput
-          style={styles.input}
+          style={RegisterStyle.input}
           autoCapitalize="none"
           placeholder="PRENOM"
           value={firstName}
           onChangeText={setFirstName}
         />
-        <Text style={styles.inputText} keyboardType="default">
+        <Text style={RegisterStyle.inputText} keyboardType="default">
           E-MAIL
         </Text>
         <TextInput
-          style={styles.input}
+          style={RegisterStyle.input}
           autoCapitalize="none"
           placeholder="VOTRE ADRESSE MAIL"
           keyboardType="email-address"
           value={email}
           onChangeText={setEmail}
         />
-        <Text style={styles.inputText} keyboardType="default">
+        <Text style={RegisterStyle.inputText} keyboardType="default">
           MOT DE PASSE
         </Text>
         <TextInput
-          style={styles.input}
+          style={RegisterStyle.input}
           placeholder="VOTRE MOT DE PASSE"
           autoCapitalize="none"
           keyboardType="default"
@@ -126,11 +126,11 @@ const RegisterBlind = () => {
           value={password}
           onChangeText={setPassword}
         />
-        <Text style={styles.inputText} keyboardType="default">
+        <Text style={RegisterStyle.inputText} keyboardType="default">
           CONFIRMATION DE MOT DE PASSE
         </Text>
         <TextInput
-          style={styles.input}
+          style={RegisterStyle.input}
           autoCapitalize="none"
           placeholder="CONFIRMATION MOT DE PASSE"
           secureTextEntry={true}

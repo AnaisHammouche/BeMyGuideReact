@@ -12,7 +12,7 @@ import Match from './views/blind/Match';
 import DisplayAllMyRoutesBlind from './views/blind/DisplayAllMyRoutesBlind';
 import Tabs from './components/navigators/BottomTabNavigator';
 import MainScreen from './MainScreen';
-import ProfileScreen from './views/profile';
+import ProfileScreen from './views/Profile';
 
 //import type {PropsWithChildren} from 'react';
 
