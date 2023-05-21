@@ -48,11 +48,11 @@ export async function AxiosRoute(
 }
 [];
 
-export async function AxiosRouteGet(routeParamsToken) {
+export async function AxiosRouteGet(routeParamsToken, id) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
     routeParamsToken,
   )}`;
-  return await axios.get(`${baseUrl}/routes/matches`).then(response => {
+  return await axios.get(`${baseUrl}/routes/matches/${id}`).then(response => {
     const data = response.data;
     console.log('match ' + JSON.stringify(data));
     return data;

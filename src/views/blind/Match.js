@@ -4,13 +4,16 @@ import {SafeAreaView, View, Text, Image, TouchableOpacity} from 'react-native';
 import {AxiosRouteGet} from '../../api/routeApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import displayStyles from '../../styles/displayAllMyRoutesBlindStyle';
+import {useNavigation} from '@react-navigation/native';
 
-const Match = () => {
+const Match = ({route}) => {
+  const navigation = useNavigation();
   const [data, setData] = useState([]);
+  const idRoute = route.params.idRoute;
 
   useEffect(() => {
-    getMatch();
-  }, []);
+    getMatch(idRoute);
+  }, [idRoute]);
 
   const getMatch = async () => {
     const routeParamsToken = await AsyncStorage.getItem('Token');

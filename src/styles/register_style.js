@@ -63,7 +63,7 @@ export const styles = StyleSheet.create({
     marginTop: 30,
     height: 50,
     width: '85%',
-    backgroundColor: 'white',
+    //backgroundColor: 'white',
     borderRadius: 10,
     borderWidth: 1,
     fontFamily: 'RobotoMono-Medium',
