@@ -18,6 +18,7 @@ import styles from '../../styles/formRoute_style';
 import { AxiosRoute, AxiosRouteGet } from '../../api/routeApi';
 //import DatePicker from 'react-native-datepicker';
 //import TimePicker from 'react-native-simple-time-picker';
+import BottomTabNavigator from '../../components/navigators/BottomTabNavigator';
 
 const currentDate = new Date();
 function addOneYear(date) {
@@ -29,7 +30,7 @@ const maxDate = addOneYear(currentDate);
 //import {AxiosRoute} from '../../api/routeApi';
 
 const FormRouteBlind = ({navigation, route}) => {
-  const isBlind = JSON.parse(route.params.userIsBlind);
+ const isBlind = JSON.parse(route.params.isBlindUser);
   console.log('claire isBlind : ' + isBlind);
   console.log('check type : ' + typeof isBlind);
   const [fromStation, setfromStation] = useState();
