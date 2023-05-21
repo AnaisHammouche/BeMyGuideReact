@@ -1,7 +1,7 @@
 import {Image, ImageBackground, SafeAreaView, Text, View} from 'react-native';
 
 import {waitingStyles} from '../styles/waiting_style';
-import React, {useCallback} from 'react';
+import React from 'react';
 
 const Waiting = ({route, navigation}) => {
   const routeParamsToken = route.params.token;

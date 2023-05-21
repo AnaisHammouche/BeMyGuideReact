@@ -56,6 +56,24 @@ export async function AxiosRoute(
 }
 [];
 
+export async function AxiosRouteGet(routeParamsToken, id) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
+    routeParamsToken,
+  )}`;
+  return await axios.get(`${baseUrl}/routes/matches/${id}`).then(response => {
+    const data = response.data;
+    console.log('match ' + JSON.stringify(data));
+    return data;
+    /* if (data) {
+      const getAsyncTokenStorage = AsyncStorage.getItem('Token');
+      console.log('routeParamsToken : ' + getAsyncTokenStorage);
+      axios.post(`${baseUrl}/sendgrid`).then(async function (response) {
+        console.log('dans le post sendgrid');
+      });
+    } */
+  });
+}
+
 export async function AxiosListRoutes(token) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
     token,
@@ -70,7 +88,7 @@ export async function AxiosListRoutes(token) {
     });
 }
 
-export async function AxiosRouteGet(
+/* export async function AxiosRouteGet(
   fromStation,
   toStation,
   routeMateGender,
@@ -99,9 +117,9 @@ export async function AxiosRouteGet(
       axios.post(`${baseUrl}/sendgrid`).then(async function (response) {
         console.log('dans le post sendgrid');
       });
-    } */
+    }
     });
-}
+} */
 
 // export async function PostAxiosSendGrid (){
 //     axios
