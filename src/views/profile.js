@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, Image, FlatList, SafeAreaView, TextInput} from 'react-native';
-import {axiosAuthUser, axiosProfile} from '../api/userApi';
+import {View, Text, Image, SafeAreaView, TextInput} from 'react-native';
+import {axiosAuthUser} from '../api/userApi';
 import {ProfileStyles} from '../styles/profileStyle';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import ButtonDefault from '../components/button';
 
 export default function ProfileScreen() {
   const [data, setData] = useState([]);
@@ -33,8 +34,6 @@ export default function ProfileScreen() {
     );
   }
 
-  //(data.blind == true) ? (<Text>Mal voyant</Text>) : (<Text>Voyant</Text>)
-    
   return (
     <SafeAreaView style={ProfileStyles.screen}>
       <View style={ProfileStyles.header}>
@@ -52,13 +51,35 @@ export default function ProfileScreen() {
       </View>
       <View style={ProfileStyles.separator}>
         <Text style={ProfileStyles.inputText}>MON NOM</Text>
-        <TextInput style={ProfileStyles.input} editable={false} placeholder= {data.firstName +' '+ data.lastName} placeholderTextColor={'black'}/>
+        <TextInput
+          style={ProfileStyles.input}
+          editable={false}
+          placeholder={data.firstName + ' ' + data.lastName}
+          placeholderTextColor={'black'}
+        />
         <Text style={ProfileStyles.inputText}>MON ADRESSE EMAIL</Text>
-        <TextInput style={ProfileStyles.input} editable={false} placeholder={data.email} placeholderTextColor={'black'}/>
+        <TextInput
+          style={ProfileStyles.input}
+          editable={false}
+          placeholder={data.email}
+          placeholderTextColor={'black'}
+        />
         <Text style={ProfileStyles.inputText}>MON MOT DE PASSE</Text>
-        <TextInput style={ProfileStyles.input} editable={false} placeholder={data.password} placeholderTextColor={'black'} secureTextEntry={true}/>
-        <Text style={ProfileStyles.inputText}>JE SUIS</Text>
-        <TextInput style={ProfileStyles.input} editable={false} placeholder={data.blind} placeholderTextColor={'black'}/>
+        <TextInput
+          style={ProfileStyles.input}
+          editable={false}
+          placeholder={data.password}
+          placeholderTextColor={'black'}
+          secureTextEntry={true}
+        />
+        <ButtonDefault title={'Modifier'} />
+        {/* <Text style={ProfileStyles.inputText}>JE SUIS</Text>
+        <TextInput
+          style={ProfileStyles.input}
+          editable={false}
+          //placeholder={data.blind}
+          placeholderTextColor={'black'}
+        />*/}
       </View>
     </SafeAreaView>
   );

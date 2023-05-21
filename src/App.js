@@ -28,10 +28,10 @@ import ProfileScreen from './views/profile';
 const App = () => {
   return (
     <NavigationContainer>
-      {/* <AppNavigator /> */}
+      <AppNavigator />
       {/* <Tabs /> */}
       {/* <MainScreen /> */}
-      <ProfileScreen />
+      {/* <ProfileScreen /> */}
     </NavigationContainer>
   );
 };

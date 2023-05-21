@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 export const ProfileStyles = StyleSheet.create({
   screen: {
     flex: 1,
+    backgroundColor: 'white',
   },
   title: {
     fontFamily: 'RobotoMono-Bold',
@@ -19,7 +20,6 @@ export const ProfileStyles = StyleSheet.create({
   icon: {
     width: 30,
     height: 30,
-    // marginLeft: 30,
     resizeMode: 'contain',
   },
   header: {
@@ -27,7 +27,6 @@ export const ProfileStyles = StyleSheet.create({
     padding: 30,
   },
   containerAvatar: {
-    backgroundColor: '#fff',
     alignItems: 'center',
     padding: 10,
   },
