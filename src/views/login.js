@@ -11,6 +11,7 @@ import {useNavigation} from '@react-navigation/native';
 import {styles} from '../styles/login_style';
 import {axiosLogin, axiosUserIsBlind} from '../api/userApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import MyTabs from './../components/navigators/BottomTabNavigator';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -82,8 +83,9 @@ const Login = () => {
         <TouchableOpacity style={styles.button} onPress={() => postLogin()}>
           <Text style={styles.buttonText}>ME CONNECTER</Text>
         </TouchableOpacity>
-      </View>
+      </View> 
     </SafeAreaView>
+    
   );
 };
 

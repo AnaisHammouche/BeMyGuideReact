@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 import styles from '../../styles/formRoute_style';
 import {AxiosRoute} from '../../api/routeApi';
+import Tabs from '../../components/navigators/BottomTabNavigator';
 
 const FormRouteBlind = () => {
   //const routeParamsToken = route.params.token;
@@ -89,7 +90,9 @@ const FormRouteBlind = () => {
           onLongPress={() => console.log('pas de match désolé')}>
           <Text style={styles.connect}>Valider</Text>
         </TouchableOpacity>
-      </View>
+      </View> 
+      /* endroit où le module doit etre appelé */
+      {/* <Tabs/> */}
     </SafeAreaView>
   );
 };

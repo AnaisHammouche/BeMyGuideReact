@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native';
 import {styles} from '../styles/welcome_style';
+import MyTabs from '../components/navigators/BottomTabNavigator';
 
 const Welcome = props => {
   const {navigation} = props;
@@ -57,6 +58,8 @@ const Welcome = props => {
           </TouchableOpacity>
         </View>
       </ImageBackground>
+
+
     </SafeAreaView>
   );
 };
