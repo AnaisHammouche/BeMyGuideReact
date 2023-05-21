@@ -12,6 +12,7 @@ import Match from './views/blind/Match';
 import DisplayAllMyRoutesBlind from './views/blind/DisplayAllMyRoutesBlind';
 import Tabs from './components/navigators/BottomTabNavigator';
 import MainScreen from './MainScreen';
+import ProfileScreen from './views/profile';
 
 //import type {PropsWithChildren} from 'react';
 
@@ -27,9 +28,10 @@ import MainScreen from './MainScreen';
 const App = () => {
   return (
     <NavigationContainer>
-      <AppNavigator />
+      {/* <AppNavigator /> */}
       {/* <Tabs /> */}
       {/* <MainScreen /> */}
+      <ProfileScreen />
     </NavigationContainer>
   );
 };

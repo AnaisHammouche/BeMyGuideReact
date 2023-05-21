@@ -108,15 +108,18 @@ export async function axiosProfile(token, id) {
 }
 
 export async function axiosAuthUser(token) {
-  try {
-    const response = await axios.get(`${baseUrl}/users`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+  axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
+    token,
+  )}`;
+  return await axios
+    .get(`${baseUrl}/users/authuser`)
+    .then(async function (response) {
+      if (await response.data) {
+        console.log('data profile ' + JSON.stringify(response.data));
+        return response.data;
+      }
+    })
+    .catch(error => {
+      console.error(error);
     });
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    return false;
-  }
 }

@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, Image, FlatList} from 'react-native';
+import {View, Text, Image, FlatList, SafeAreaView, TextInput} from 'react-native';
 import {axiosAuthUser, axiosProfile} from '../api/userApi';
-import ProfileStyles from '../styles/profile_style';
+import {ProfileStyles} from '../styles/profileStyle';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function ProfileScreen() {
@@ -13,10 +13,9 @@ export default function ProfileScreen() {
 
   const userProfile = async () => {
     const token = await AsyncStorage.getItem('Token');
-    const idUser = await AsyncStorage.getItem('Id');
-    console.log('user ' + idUser + ' token ' + token);
+    console.log(' token ' + token);
     try {
-      const response = await axiosProfile(idUser);
+      const response = await axiosAuthUser(token);
       setData(response);
       console.log('setData ' + response);
     } catch (error) {
@@ -34,27 +33,33 @@ export default function ProfileScreen() {
     );
   }
 
+  //(data.blind == true) ? (<Text>Mal voyant</Text>) : (<Text>Voyant</Text>)
+    
   return (
-    <View style={ProfileStyles.container}>
+    <SafeAreaView style={ProfileStyles.screen}>
       <View style={ProfileStyles.header}>
+        <Image
+          source={require('../assets/close_eye.png')}
+          style={ProfileStyles.icon}
+        />
+        <Text style={ProfileStyles.title}>Mon profil</Text>
+      </View>
+      <View style={ProfileStyles.containerAvatar}>
         <Image
           style={ProfileStyles.avatar}
           source={{uri: 'https://randomuser.me/api/portraits/men/1.jpg'}}
         />
-        <Text style={ProfileStyles.name}>{data.name}</Text>
-        <Text style={ProfileStyles.email}>{data.email}</Text>
       </View>
-      <FlatList
-        style={ProfileStyles.list}
-        data={data}
-        renderItem={({item}) => (
-          <View style={ProfileStyles.item}>
-            <Text style={ProfileStyles.title}>{item.firstname}</Text>
-            <Text style={ProfileStyles.value}>{item.value}</Text>
-          </View>
-        )}
-        keyExtractor={item => item.id}
-      />
-    </View>
+      <View style={ProfileStyles.separator}>
+        <Text style={ProfileStyles.inputText}>MON NOM</Text>
+        <TextInput style={ProfileStyles.input} editable={false} placeholder= {data.firstName +' '+ data.lastName} placeholderTextColor={'black'}/>
+        <Text style={ProfileStyles.inputText}>MON ADRESSE EMAIL</Text>
+        <TextInput style={ProfileStyles.input} editable={false} placeholder={data.email} placeholderTextColor={'black'}/>
+        <Text style={ProfileStyles.inputText}>MON MOT DE PASSE</Text>
+        <TextInput style={ProfileStyles.input} editable={false} placeholder={data.password} placeholderTextColor={'black'} secureTextEntry={true}/>
+        <Text style={ProfileStyles.inputText}>JE SUIS</Text>
+        <TextInput style={ProfileStyles.input} editable={false} placeholder={data.blind} placeholderTextColor={'black'}/>
+      </View>
+    </SafeAreaView>
   );
 }

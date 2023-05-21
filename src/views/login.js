@@ -28,7 +28,7 @@ const Login = () => {
 
   const postLogin = useCallback(async () => {
     if (isValid) {
-      await AsyncStorage.getAllKeys().then(AsyncStorage.multiRemove);
+      await AsyncStorage.clear();
       await axiosLogin(email, password);
       const getTokenStorage = await AsyncStorage.getItem('Token');
       console.log('token login :' + getTokenStorage);
@@ -36,8 +36,8 @@ const Login = () => {
         const userIsBlind = await axiosUserIsBlind(email, getTokenStorage);
         console.log('is blind ? ' + userIsBlind);
         userIsBlind
-          ? navigation.navigate('Profile')
-          : navigation.navigate('Profile');
+          ? navigation.navigate('FormRouteBlind')
+          : navigation.navigate('FormRouteV');
       }
     } else {
       alert(
