@@ -9,23 +9,34 @@ import {useNavigation} from '@react-navigation/native';
 const Match = ({route}) => {
   const navigation = useNavigation();
   const [data, setData] = useState([]);
-  const idRoute = route.params.idRoute;
+  //const idRoute = route.params.idRoute;
 
-  useEffect(() => {
-    getMatch(idRoute);
-  }, [idRoute]);
+  /* useEffect(() => {
+    async function getMatch() {
+      const routeParamsToken = await AsyncStorage.getItem('Token');
+      const idRoute = await route.params.idRoute;
+      console.log('idRoute ' + idRoute);
+      console.log('route ' + routeParamsToken);
+      const response = await AxiosRouteGet(routeParamsToken, idRoute);
+      setData(response);
+      console.log('axiosRouteGet ' + JSON.stringify(response));
+      return data;
+    }
+    getMatch();
+  }, [data, route.params.idRoute]); */
 
   const getMatch = async () => {
     const routeParamsToken = await AsyncStorage.getItem('Token');
-    console.log('route token ' + routeParamsToken);
-    try {
-      const response = await AxiosRouteGet(routeParamsToken);
-      setData(response);
-      console.log('axiosRouteGet ' + JSON.stringify(response));
-    } catch (error) {
-      console.log('Error: ', error);
-    }
+    const idRoute = await route.params.idRoute;
+    console.log('idRoute ' + idRoute);
+    console.log('route ' + routeParamsToken);
+    const response = await AxiosRouteGet(routeParamsToken, idRoute);
+    setData(response);
+    console.log('axiosRouteGet ' + JSON.parse(response));
+    return data;
   };
+
+  getMatch();
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -35,13 +46,13 @@ const Match = ({route}) => {
         <View>
           <Text>Votre demande de trajet</Text>
           <Text>De : </Text>
-          <Text>{data[0].fromStation}</Text>
+          <Text>{data.fromStation}</Text>
           <Text>À : </Text>
-          <Text>{data[0].toStation}</Text>
+          <Text>{data.toStation}</Text>
           <Text>Le : </Text>
-          <Text>{data[0].dateRoute}</Text>
+          <Text>{data.dateRoute}</Text>
           <Text>À : </Text>
-          <Text>{data[0].startingTime}</Text>
+          <Text>{data.startingTime}</Text>
           <TouchableOpacity
             style={displayStyles.button}
             onPress={() => console.log('Bouton validé cliqué')}>

@@ -34,7 +34,6 @@ export async function axiosRegister(
         navigation.navigate('FormRouteBlind', {userIsBlind: isBlind});
         return;
       }
-
     })
 
     .catch(function (error) {

@@ -29,7 +29,7 @@ export async function AxiosRoute(
       navigation,
     })
     .then(async function (response) {
-      const data = JSON.stringify(response.data);
+      const data = response.data;
       console.log('id route ' + response.data);
       if (data) {
         const fromStationData = JSON.stringify(fromStation);
@@ -61,7 +61,7 @@ export async function AxiosRouteGet(routeParamsToken, id) {
     routeParamsToken,
   )}`;
   return await axios.get(`${baseUrl}/routes/matches/${id}`).then(response => {
-    const data = response.data;
+    const data = response.data.routesMatch;
     console.log('match ' + JSON.stringify(data));
     return data;
     /* if (data) {

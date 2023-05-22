@@ -29,8 +29,6 @@ const App = () => {
     <NavigationContainer>
       <AppNavigator />
       {/* <Tabs /> */}
-      {/* <MainScreen /> */}
-      {/* <ProfileScreen /> */}
     </NavigationContainer>
   );
 };

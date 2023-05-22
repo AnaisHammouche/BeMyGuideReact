@@ -4,10 +4,11 @@ import {waitingStyles} from '../styles/waiting_style';
 import React from 'react';
 
 const Waiting = ({route, navigation}) => {
-  const routeParamsToken = route.params.token;
+  //const routeParamsToken = route.params.token;
+  const idRoute = JSON.stringify(route.params.idRoute);
 
   setTimeout(() => {
-    navigation.navigate('Match', {token: routeParamsToken});
+    navigation.navigate('Match', {idRoute: idRoute});
   }, 1 * 5 * 1000);
 
   return (
