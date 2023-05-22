@@ -134,17 +134,13 @@ export async function axiosAuthUser(token) {
 
 
 export async function axiosNumberOfRoutesDone(token) {
-  console.log('racie de la function')
   axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
     token,
   )}`;
-  console.log("token : " +  token)
   return await axios
   .get(`${baseUrl}/routes/routesDone`)
   .then(async function (response){
-    console.log('api nomber response : ' + response.data)
     if (response.data != null){
-      console.log('number of routes done : ' + JSON.stringify(response.data));
       return response.data;
     }
   })
