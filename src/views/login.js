@@ -11,8 +11,6 @@ import {useNavigation} from '@react-navigation/native';
 import {styles} from '../styles/login_style';
 import {axiosLogin, axiosUserIsBlind} from '../api/userApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import BottomTabNavigator from '../components/navigators/BottomTabNavigator';
-
 
 const Login = () => {
   const navigation = useNavigation();
@@ -30,7 +28,7 @@ const Login = () => {
 
   const postLogin = useCallback(async () => {
     if (isValid) {
-      await AsyncStorage.clear();
+      await AsyncStorage.getAllKeys().then(AsyncStorage.multiRemove);
       await axiosLogin(email, password);
       const getTokenStorage = await AsyncStorage.getItem('Token');
       console.log('token login :' + getTokenStorage);
@@ -39,8 +37,7 @@ const Login = () => {
         console.log('is blind ? ' + userIsBlind);
         // AsyncStorage.setItem('userIsBlind : ', userIsBlind);
         // console.log('userIsBlind :' + userIsBlind);
-        navigation.navigate('Tab', {userIsBlind: userIsBlind})
-
+        navigation.navigate('Tab', {userIsBlind: userIsBlind});
       }
     } else {
       alert(

@@ -10,7 +10,7 @@ import RegisterBlind from '../../views/blind/registerBlind';
 import Waiting from '../../views/waiting';
 import DisplayAllMyRoutesBlind from '../../views/blind/DisplayAllMyRoutesBlind';
 import FormRouteV from '../../views/sighted/formRouteV';
-
+import ProfileScreen from '../../views/profile';
 import BottomTabNavigator from './BottomTabNavigator';
 
 const Stack = createNativeStackNavigator();
@@ -36,9 +36,8 @@ const AppNavigator = () => {
           component={DisplayAllMyRoutesBlind}
         />
 
-        <Stack.Screen name= "Tab" component={BottomTabNavigator} />
+        <Stack.Screen name="Tab" component={BottomTabNavigator} />
       </Stack.Navigator>
-      
     </NavigationContainer>
   );
 };
