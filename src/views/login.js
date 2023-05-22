@@ -11,6 +11,8 @@ import {useNavigation} from '@react-navigation/native';
 import {styles} from '../styles/login_style';
 import {axiosLogin, axiosUserIsBlind} from '../api/userApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import BottomTabNavigator from '../components/navigators/BottomTabNavigator';
+
 
 const Login = () => {
   const navigation = useNavigation();
@@ -35,9 +37,10 @@ const Login = () => {
       if (getTokenStorage != null) {
         const userIsBlind = await axiosUserIsBlind(email, getTokenStorage);
         console.log('is blind ? ' + userIsBlind);
-        userIsBlind
-          ? navigation.navigate('FormRouteBlind')
-          : navigation.navigate('FormRouteV');
+        // AsyncStorage.setItem('userIsBlind : ', userIsBlind);
+        // console.log('userIsBlind :' + userIsBlind);
+        navigation.navigate('Tab', {userIsBlind: userIsBlind})
+
       }
     } else {
       alert(

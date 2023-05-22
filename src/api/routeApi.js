@@ -8,6 +8,8 @@ export async function AxiosRoute(
   fromStation,
   toStation,
   routeMateGender,
+  dateRoute,
+  startingTime,
   routeParamsToken,
   navigation,
 ) {
@@ -21,6 +23,8 @@ export async function AxiosRoute(
       fromStation: fromStation,
       toStation: toStation,
       routeMateGender: routeMateGender,
+      dateRoute: dateRoute,
+      startingTime: startingTime,
       routeParamsToken,
       navigation,
     })
@@ -34,6 +38,10 @@ export async function AxiosRoute(
         console.log('tostationDataPost : ' + toStationData);
         const routeMateGenderData = JSON.stringify(routeMateGender);
         console.log('routeMateGender : ' + routeMateGenderData);
+        const dateRouteData = JSON.stringify(dateRoute);
+        console.log('dateRoute : ' + dateRouteData);
+        const startingTimeData = JSON.stringify(startingTime);
+        console.log('startingTime : ' + startingTimeData);
         navigation.navigate('Waiting', {idRoute: data});
         return;
       }
@@ -48,11 +56,41 @@ export async function AxiosRoute(
 }
 [];
 
-export async function AxiosRouteGet(routeParamsToken) {
+
+export async function AxiosListRoutes(token) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
-    routeParamsToken,
+    token,
   )}`;
-  return await axios.get(`${baseUrl}/routes/matches`).then(response => {
+  return await axios
+    .get(`${baseUrl}/routes/auth/all`)
+  .then(async function (response) {
+      if (await response.data) {
+        console.log('data axios ' + JSON.stringify(response.data));
+        return response.data;
+      }
+    });
+}
+
+export async function AxiosRouteGet(
+  fromStation,
+  toStation,
+  routeMateGender,
+  dateRoute,
+  startingTime,
+  routeParamsToken,
+  navigation,
+) {
+  axios
+    .get(`${baseUrl}/routes/matches`, {
+      fromStation: fromStation,
+      toStation: toStation,
+      routeMateGender: routeMateGender,
+      dateRoute: dateRoute,
+      startingTime: startingTime,
+      routeParamsToken,
+      navigation,
+    })
+    .then(response => {
     const data = response.data;
     console.log('match ' + JSON.stringify(data));
     return data;
@@ -64,21 +102,7 @@ export async function AxiosRouteGet(routeParamsToken) {
       });
     } */
   });
-}
-
-export async function AxiosListRoutes(token) {
-  axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
-    token,
-  )}`;
-  return await axios
-    .get(`${baseUrl}/routes/auth/all`)
-    .then(async function (response) {
-      if (await response.data) {
-        console.log('data axios ' + JSON.stringify(response.data));
-        return response.data;
-      }
-    });
-}
+    
 
 // export async function PostAxiosSendGrid (){
 //     axios

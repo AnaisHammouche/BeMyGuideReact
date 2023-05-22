@@ -14,4 +14,5 @@ const iconBottomBar = ({image, focused}) => {
   );
 };
 
+
 export default iconBottomBar;

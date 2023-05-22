@@ -18,6 +18,13 @@ export const styles = StyleSheet.create({
     // alignContent: 'space-between',
     color: colors_theme.txt_white,
   },
+  title2: {
+    fontFamily: 'RobotoMono-Bold',
+    fontSize: 25,
+    textAlign: 'center',
+    // alignContent: 'space-between',
+    color: colors_theme.txt_black,
+  },
   titleContainer: {
    paddingTop: 120,
     marginVertical: 80,
@@ -39,6 +46,15 @@ export const styles = StyleSheet.create({
     height: 50,
     resizeMode: 'contain',
   },
+  icon2: {
+    // marginHorizontal: 170,
+     alignItems: 'center',
+     tintColor: 'green',
+     justifyContent: 'center',
+     width: 50,
+     height: 50,
+     resizeMode: 'contain',
+   },
   text: {
     fontFamily: 'RobotoMono-Medium',
     color: colors_theme.txt_white,
@@ -77,4 +93,40 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10,
   },
+
+
+  screen2: {
+    flex: 1,
+    //padding: 40,
+  },
+  container2: {
+   // justifyContent: 'space-between',
+    marginTop: 50,
+    //flexDirection: 'column',
+    alignItems: 'center',
+  },
+  icon3: {
+    width: 30,
+    height: 30,
+    resizeMode: 'contain',
+  },
+  title2: {
+    fontFamily: 'RobotoMono-Bold',
+    fontSize: 30,
+    marginBottom: 50,
+    // alignItems: 'space-around',
+  },
+  rewardsContainer: {
+    justifyContent: 'space-evenly',
+     marginTop: 50,
+     flexDirection: 'row',
+     alignItems: 'center',
+  },
+  reward: {
+    justifyContent: 'space-between',
+    marginTop: 50,
+    flexDirection: 'column',
+    alignItems: 'center',
+  }
+
 });

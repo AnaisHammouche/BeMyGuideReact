@@ -5,34 +5,41 @@ import {Alert} from 'react-native';
 let baseUrl = process.env.BASE_URL;
 
 export async function axiosRegister(
+  gender,
   lastName,
   firstName,
   email,
   password,
   isBlind,
+  phoneNumber,
   navigation,
 ) {
   return await axios
+
     .post(`${baseUrl}/auth/register`, {
+      gender: gender,
       lastname: lastName,
       firstname: firstName,
       email: email,
       password: password,
+      phoneNumber: phoneNumber,
       isBlind: isBlind,
     })
     .then(async function (response) {
       const tokenData = JSON.stringify(response.data.token);
       await AsyncStorage.setItem('Token', tokenData);
       if (tokenData != null) {
-        JSON.parse(tokenData);
+        // JSON.parse(tokenData);
         alert('Bienvenue ' + firstName + ', ravis de vous compter parmi nous.');
-        navigation.navigate('FormRouteBlind', {token: tokenData});
+        navigation.navigate('FormRouteBlind', {userIsBlind: isBlind});
         return;
       }
+
     })
 
     .catch(function (error) {
       if (error.name === 'AxiosError') {
+        console.log('error.name : ' + error.name);
         Alert.alert(
           "Vous n'êtes pas connecté à internet, veuillez vérifier votre réseau.",
         );
@@ -56,9 +63,10 @@ export async function axiosLogin(email, password) {
         console.log(response);
         return getTokenData;
       }
-      /* if (response.status == '403') {
-        Alert.alert('Vous etes pas enregistrer');
-      } */
+
+      if (response.status == '403') {
+        Alert.alert("Mot de passe ou nom d'utilisateur invalide.");
+      }
     })
     .catch(function (error) {
       if (error.name === 'AxiosError') {

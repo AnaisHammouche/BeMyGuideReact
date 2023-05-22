@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     padding: 40,
     width: '100%',
     justifyContent: 'center',
-    alignItems: 'flex-start',
+    alignItems: 'flex-start'
   },
 
   title: {
@@ -49,13 +49,11 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: colors_theme.button_green,
     alignItems: 'center',
-    padding: 4,
     height: 50,
     width: '100%',
-    marginTop: 20,
+    marginTop: 50,
     justifyContent: 'center',
     borderRadius: 10,
-    fontFamily: 'RobotoMono-Medium',
   },
 
   connect: {
@@ -69,6 +67,17 @@ const styles = StyleSheet.create({
     margin: 6,
     padding: 10,
     borderRadius: 5,
+  },
+
+  containerOfGender: {
+    marginBottom: 40
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 700,
+    fontFamily: 'RobotoMono-Medium',
+    textAlign: 'center',
   },
 });
 

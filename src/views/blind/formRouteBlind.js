@@ -9,17 +9,37 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-import styles from '../../styles/formRoute_style';
-import {AxiosRoute} from '../../api/routeApi';
 
-const FormRouteBlind = () => {
-  //const routeParamsToken = route.params.token;
-  const navigation = useNavigation();
+
+//import {DatePickerIOSComponent} from '@react-native-community/datetimepicker'
+
+//import AsyncStorage from '@react-native-async-storage/async-storage';
+import styles from '../../styles/formRoute_style';
+import { AxiosRoute, AxiosRouteGet } from '../../api/routeApi';
+//import DatePicker from 'react-native-datepicker';
+//import TimePicker from 'react-native-simple-time-picker';
+import BottomTabNavigator from '../../components/navigators/BottomTabNavigator';
+
+const currentDate = new Date();
+function addOneYear(date) {
+  date.setFullYear(date.getFullYear() + 1);
+  return date;
+}
+const maxDate = addOneYear(currentDate);
+//import styles from '../../styles/formRoute_style';
+//import {AxiosRoute} from '../../api/routeApi';
+
+
+const FormRouteBlind = ({navigation, route}) => {
+ const isBlind = JSON.parse(route.params.isBlindUser);
+  console.log('claire isBlind : ' + isBlind);
+  console.log('check type : ' + typeof isBlind);
   const [fromStation, setfromStation] = useState();
   const [toStation, setToStation] = useState();
-  const [date, setDate] = useState();
-  const [time, setTime] = useState();
+  const [dateRoute, setDate] = useState();
+  const [startingTime, setTime] = useState();
   const [routeMateGender, setRouteMateGender] = useState();
+  console.log();
 
   const postRoute = useCallback(async () => {
     const routeParamsToken = await AsyncStorage.getItem('Token');
@@ -28,10 +48,43 @@ const FormRouteBlind = () => {
       fromStation,
       toStation,
       routeMateGender,
+      dateRoute,
+      startingTime,
       routeParamsToken,
       navigation,
     );
-  }, [fromStation, toStation, routeMateGender, navigation]);
+  }, [fromStation, toStation, routeMateGender, dateRoute,
+    startingTime, navigation]);
+
+  function Item(userIsBlind) {
+    userIsBlind = isBlind;
+    if (userIsBlind) {
+      console.log('inside function' + userIsBlind);
+      return (
+        <View style={styles.containerOfGender}>
+          <Text style={styles.text} className="item">
+          GENRE SOUHAITÉ DE L'ACCOMPAGNANT :
+          </Text>
+          <RNPickerSelect
+            placeholder={{
+              label: "Genre souhaité de l'accompagnant",
+              value: null,
+            }}
+            onValueChange={routeMateGender =>
+              setRouteMateGender(routeMateGender)
+            }
+            items={[
+              {label: 'Femme', value: 'FEMALE'},
+              {label: 'Homme', value: 'MALE'},
+              {label: 'Pas de préférence', value: ''},
+            ]}
+          />
+        </View>
+      );
+    } else {
+      return null;
+    }
+  }
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -61,33 +114,70 @@ const FormRouteBlind = () => {
           style={styles.input}
           placeholder="Date"
           keyboardType="default"
-          value={date}
+          value={dateRoute}
           onChangeText={setDate}
         />
+        {/* <Text style={styles.text}>JOUR DE DÉPART</Text> */}
+        {/* <DatePicker
+        style={styles.inputDate}
+          date={currentDate}
+          mode="date"
+          placeholder="Sélectionnez un jour de départ"
+          format="DD/MM/YYYY"
+          minDate={currentDate}
+          maxDate={maxDate}
+          confirmBtnText="Confirm"
+          cancelBtnText="Cancel"
+          
+          customStyles={{
+          
+            dateIcon: {
+              right: -10,
+              top: 4,
+              marginLeft: 0,
+            },
+            dateInput: {
+             // marginTop: 15,
+              borderColor : "black",
+            //  alignItems: "flex-start",
+             // borderWidth: 0,
+              width: '300%',
+              //borderBottomWidth: 1,
+              borderRadius: 5,
+            },
+            placeholderText: {
+              padding: 10, 
+              fontSize: 17,
+              color: "gray"
+            },
+            dateText: {
+              fontSize: 17,
+            }
+          }}
+          onDateChange={(date) => {
+            setDate(date);
+          }}
+        /> */}
+      
         <Text style={styles.text}>HORAIRE DE DÉPART</Text>
         <TextInput
           style={styles.input}
           placeholder="Horaire de départ"
           keyboardType="default"
-          value={time}
+          value={startingTime}
           onChangeText={setTime}
         />
-        <Text style={styles.text}>Genre souhaité de votre accompagnant</Text>
-        <RNPickerSelect
-          placeholder={{label: "Genre souhaité de l'accompagnant", value: null}}
-          onValueChange={() => setRouteMateGender(routeMateGender)}
-          items={[
-            {label: 'Femme', value: 'FEMALE'},
-            {label: 'Homme', value: 'MALE'},
-            {label: 'Pas de préférence', value: ''},
-          ]}
-        />
+
+
+        <Item userIsBlind={true} />
+
+        {/* <Text style={styles.text}>Genre souhaité de votre accompagnant</Text> */}
 
         <TouchableOpacity
           style={styles.button}
           onPress={postRoute}
           onLongPress={() => console.log('pas de match désolé')}>
-          <Text style={styles.connect}>Valider</Text>
+          <Text style={styles.buttonText}>VALIDER</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
