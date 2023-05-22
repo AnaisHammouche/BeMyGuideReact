@@ -3,34 +3,29 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import DisplayAllMyRoutesBlind from '../../views/blind/DisplayAllMyRoutesBlind';
 import FormRouteBlind from '../../views/blind/formRouteBlind.js';
 import Rewards from '../../views/sighted/Rewards';
-import {
-    View,
-    Image,
-  } from 'react-native';
-import ProfileScreen from '../../views/Profile';
-
+import {View, Image} from 'react-native';
+import ProfileScreen from '../../views/profile';
 
 const Tab = createBottomTabNavigator();
 // const isBlind = JSON.parse(route.params.userIsBlind);
 // console.log('isBlindTAB : ' + isBlind)
 
 const BottomTabNavigator = ({navigation, route}) => {
+  const isBlind = JSON.parse(route.params.userIsBlind);
 
-const isBlind = JSON.parse(route.params.userIsBlind);
-
-return (
- <Tab.Navigator initialRouteName="Welcome"
- screenOptions={{
-   tabBarShowLabel: false,
-   tabBarStyle: {
-     position: 'absolute',
-     borderRadius: 25,
-     elevation: 0,
-     height: 90,
-   },
-   headerShown: false,
- }} >
-
+  return (
+    <Tab.Navigator
+      initialRouteName="Welcome"
+      screenOptions={{
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          position: 'absolute',
+          borderRadius: 25,
+          elevation: 0,
+          height: 90,
+        },
+        headerShown: false,
+      }}>
       <Tab.Screen
         name="Route"
         component={FormRouteBlind}
@@ -40,7 +35,6 @@ return (
             <View
               style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
               <Image
-
                 source={require('../../assets/nav.png')}
                 resizeMode="contain"
                 style={{
@@ -54,7 +48,6 @@ return (
         }}
       />
       <Tab.Screen
-
         name="Trajets"
         component={DisplayAllMyRoutesBlind}
         options={{
@@ -75,7 +68,6 @@ return (
         }}
       />
       <Tab.Screen
-
         name="Rewards"
         component={Rewards}
         options={{
@@ -98,7 +90,6 @@ return (
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
-
         options={{
           tabBarIcon: ({focused}) => (
             <View
@@ -117,15 +108,10 @@ return (
         }}
       />
 
-
-     {/* <Tab.Screen name="FormRouteBlind" component={FormRouteBlind} initialParams={{isBlindUser: isBlind}}/>
+      {/* <Tab.Screen name="FormRouteBlind" component={FormRouteBlind} initialParams={{isBlindUser: isBlind}}/>
      <Tab.Screen name="Routes" component={DisplayAllMyRoutesBlind} /> */}
-   </Tab.Navigator>
- );
-}
-
+    </Tab.Navigator>
+  );
+};
 
 export default BottomTabNavigator;
-
-
-

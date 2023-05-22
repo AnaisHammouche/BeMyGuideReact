@@ -64,11 +64,11 @@ export default function ProfileScreen() {
           placeholder={data.email}
           placeholderTextColor={'black'}
         />
-        <Text style={ProfileStyles.inputText}>MON MOT DE PASSE</Text>
+        <Text style={ProfileStyles.inputText}>MON NUMÉRO DE TÉLÉPHONE</Text>
         <TextInput
           style={ProfileStyles.input}
           editable={false}
-          placeholder={data.password}
+          placeholder={data.phoneNumber}
           placeholderTextColor={'black'}
           secureTextEntry={true}
         />
