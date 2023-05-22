@@ -18,7 +18,7 @@ export async function AxiosRoute(
   )}`;
   console.log('routeParamsToken form 1: ' + JSON.parse(routeParamsToken));
 
-  axios
+  return await axios
     .post(`${baseUrl}/routes/add`, {
       fromStation: fromStation,
       toStation: toStation,
@@ -29,11 +29,9 @@ export async function AxiosRoute(
       navigation,
     })
     .then(async function (response) {
-      const getAsynTokenStorage = await AsyncStorage.getItem('Token');
-      console.log('routeParamsToken async:' + JSON.parse(getAsynTokenStorage));
-      if (
-        (response.status = '200' && fromStation && toStation && routeMateGender && dateRoute && startingTime)
-      ) {
+      const data = JSON.stringify(response.data);
+      console.log('id route ' + response.data);
+      if (data) {
         const fromStationData = JSON.stringify(fromStation);
         console.log('fromstationPost : ' + fromStationData);
         const toStationData = JSON.stringify(toStation);
@@ -44,14 +42,10 @@ export async function AxiosRoute(
         console.log('dateRoute : ' + dateRouteData);
         const startingTimeData = JSON.stringify(startingTime);
         console.log('startingTime : ' + startingTimeData);
-
-
-        return getAsynTokenStorage != null
-          ? JSON.parse(getAsynTokenStorage) && navigation.navigate('Match')
-          : null;
+        navigation.navigate('Waiting', {idRoute: data});
+        return;
       }
     })
-
     .catch(function (error) {
       if (!fromStation || !toStation) {
         console.log('champ vide');
@@ -61,6 +55,21 @@ export async function AxiosRoute(
     });
 }
 [];
+
+
+export async function AxiosListRoutes(token) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
+    token,
+  )}`;
+  return await axios
+    .get(`${baseUrl}/routes/auth/all`)
+  .then(async function (response) {
+      if (await response.data) {
+        console.log('data axios ' + JSON.stringify(response.data));
+        return response.data;
+      }
+    });
+}
 
 export async function AxiosRouteGet(
   fromStation,
@@ -81,17 +90,19 @@ export async function AxiosRouteGet(
       routeParamsToken,
       navigation,
     })
-    .then(async function (response) {
-      if (response.data) {
-        const getAsynTokenStorage = await AsyncStorage.getItem('Token');
-        console.log('routeParamsToken : ' + getAsynTokenStorage);
-        navigation.navigate('Waiting', {token: getAsynTokenStorage});
-        axios.post(`${baseUrl}/sendgrid`, {}).then(async function (response) {
-          console.log('dans le post sendgrid');
-        });
-      }
-    });
-}
+    .then(response => {
+    const data = response.data;
+    console.log('match ' + JSON.stringify(data));
+    return data;
+    /* if (data) {
+      const getAsyncTokenStorage = AsyncStorage.getItem('Token');
+      console.log('routeParamsToken : ' + getAsyncTokenStorage);
+      axios.post(`${baseUrl}/sendgrid`).then(async function (response) {
+        console.log('dans le post sendgrid');
+      });
+    } */
+  });
+    
 
 // export async function PostAxiosSendGrid (){
 //     axios

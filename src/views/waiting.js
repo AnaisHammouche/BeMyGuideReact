@@ -1,44 +1,32 @@
-import {
-  Image,
-  ImageBackground,
-  SafeAreaView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Image, ImageBackground, SafeAreaView, Text, View} from 'react-native';
 
-import {styles} from '../styles/waiting_style';
-import React from 'react';
+import {waitingStyles} from '../styles/waiting_style';
+import React, {useCallback} from 'react';
 
 const Waiting = ({route, navigation}) => {
-
   const routeParamsToken = route.params.token;
-  
-    setTimeout(() => {
-    navigation.navigate('DisplayAllMyRoutesBlind', {token : routeParamsToken})
-  }, 1 * 10 * 1000)
+
+  setTimeout(() => {
+    navigation.navigate('Match', {token: routeParamsToken});
+  }, 1 * 5 * 1000);
 
   return (
-    <SafeAreaView style={styles.screen}>
-      <View style={styles.container}>
-      <Image
-            source={require('../assets/close_eye.png')}
-            style={styles.icon}
-          />
-          <Text style={styles.text}>
-            Votre demande a bien été prise en compte. Vous recevrez une
-            notification dès que nous aurons trouvé le match idéal !
-          </Text>
-        </View>
-        <ImageBackground
-        style={styles.image}
-        source={require('../assets/mapstations.png')}>
-        
-      </ImageBackground>
-
+    <SafeAreaView style={waitingStyles.screen}>
+      <View style={waitingStyles.container}>
+        <Image
+          source={require('../assets/close_eye.png')}
+          style={waitingStyles.icon}
+        />
+        <Text style={waitingStyles.text}>
+          Votre demande a bien été prise en compte. Vous recevrez une
+          notification dès que nous aurons trouvé le match idéal !
+        </Text>
+      </View>
+      <ImageBackground
+        style={waitingStyles.image}
+        source={require('../assets/mapstations.png')}></ImageBackground>
     </SafeAreaView>
   );
-
 };
 
 export default Waiting;

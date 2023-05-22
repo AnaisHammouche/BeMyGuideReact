@@ -1,57 +1,27 @@
-import React, {
-  Component,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, {useState, useEffect} from 'react';
 import styles from '../../styles/LoginBindStyle';
+import {SafeAreaView, View, Text, Image, TouchableOpacity} from 'react-native';
+import {AxiosRouteGet} from '../../api/routeApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useNavigation} from '@react-navigation/native';
+import displayStyles from '../../styles/displayAllMyRoutesBlindStyle';
 
-import {
-  SafeAreaView,
-  View,
-  TouchableOpacity,
-  Text,
-  TextInput,
-  Alert,
-  Image,
-} from 'react-native';
-import axios from 'axios';
+const Match = () => {
+  const [data, setData] = useState([]);
 
-const Match = ({route, navigation}) => {
-  const routeParamsFromStation = JSON.parse(route.params.fromStation);
-  console.log('ROUTPARAMFROMSTATION : ' + routeParamsFromStation);
-  const routeParamsToStation = JSON.parse(route.params.toStation);
-  console.log('ROUTPARAMTOSTATION : ' + routeParamsToStation);
+  useEffect(() => {
+    getMatch();
+  }, []);
 
-  //const routeParamsToken = JSON.parse(route.params.token);
-  // const navigation = useNavigation();
-  const [fromStation, setFromStation] = useState([]);
-  const [toStation, setToStation] = useState([]);
-  const [date, setDate] = useState();
-  const [hours, setHours] = useState();
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-
-  const getMatch = async (routeParamsFromStation, routeParamsToStation) => {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse()}`;
-
-    // const config = {
-    //   headers: {
-    //     'Accept-Encoding': 'gzip, deflate, br'
-    //   }};
-
-    axios
-      .get('http://localhost:8080/api/v1/routes/matches', {})
-      .then(function (response) {
-        Alert.alert(' get response : ' + response.status);
-      })
-      .catch(function (error) {
-        Alert.alert('Accept-Encoding status:' + error);
-      })
-      .then(function () {});
+  const getMatch = async () => {
+    const routeParamsToken = await AsyncStorage.getItem('Token');
+    console.log('route token ' + routeParamsToken);
+    try {
+      const response = await AxiosRouteGet(routeParamsToken);
+      setData(response);
+      console.log('axiosRouteGet ' + JSON.stringify(response));
+    } catch (error) {
+      console.log('Error: ', error);
+    }
   };
 
   return (
@@ -62,13 +32,23 @@ const Match = ({route, navigation}) => {
         <View>
           <Text>Votre demande de trajet</Text>
           <Text>De : </Text>
-          <Text>{routeParamsFromStation}</Text>
+          <Text>{data[0].fromStation}</Text>
           <Text>À : </Text>
-          <Text>{routeParamsToStation}</Text>
-          {/* <Text >Le : </Text>
-          <Text >{date}</Text>
-          <Text >À : </Text>
-          <Text >{hours}</Text> */}
+          <Text>{data[0].toStation}</Text>
+          <Text>Le : </Text>
+          <Text>{data[0].dateRoute}</Text>
+          <Text>À : </Text>
+          <Text>{data[0].startingTime}</Text>
+          <TouchableOpacity
+            style={displayStyles.button}
+            onPress={() => console.log('Bouton validé cliqué')}>
+            <Text style={displayStyles.connect}>VALIDER</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={displayStyles.buttonRed}
+            onPress={() => console.log('bouton annulé cliqué')}>
+            <Text style={displayStyles.connect}>ANNULER</Text>
+          </TouchableOpacity>
           {/* <Text >à été confirmée par {firstName}.</Text> */}
           {/* <Text >N'oubliez pas de le contacter afin de convenir d'un lieu de rendez-vous plus précis tel que le numéro d'entée de la station. </Text>
            */}

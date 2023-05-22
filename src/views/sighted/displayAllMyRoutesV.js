@@ -13,7 +13,7 @@ import {AxiosListRoutes} from '../../api/routeApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import flatListStyles from '../../styles/flatListStyle';
 
-const DisplayAllMyRoutesRoutesBlind = () => {
+const DisplayAllMyRoutesV = () => {
   // const navigation = useNavigation();
   // const [email, setEmail] = useState();
   // const [password, setPassword] = useState();
@@ -79,4 +79,4 @@ const DisplayAllMyRoutesRoutesBlind = () => {
   );
 };
 
-export default DisplayAllMyRoutesRoutesBlind;
+export default DisplayAllMyRoutesV;

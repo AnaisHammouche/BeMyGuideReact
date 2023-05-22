@@ -8,6 +8,11 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import AppNavigator from '../src/components/navigators/AppNavigator';
+import Match from './views/blind/Match';
+import DisplayAllMyRoutesBlind from './views/blind/DisplayAllMyRoutesBlind';
+import Tabs from './components/navigators/BottomTabNavigator';
+import MainScreen from './MainScreen';
+import ProfileScreen from './views/profile';
 
 //import type {PropsWithChildren} from 'react';
 
@@ -24,6 +29,9 @@ const App = () => {
   return (
     <NavigationContainer>
       <AppNavigator />
+      {/* <Tabs /> */}
+      {/* <MainScreen /> */}
+      {/* <ProfileScreen /> */}
     </NavigationContainer>
   );
 };

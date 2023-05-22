@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import {useNavigation} from '@react-navigation/native';
 import {
   SafeAreaView,
   Text,
@@ -28,6 +28,7 @@ function addOneYear(date) {
 const maxDate = addOneYear(currentDate);
 //import styles from '../../styles/formRoute_style';
 //import {AxiosRoute} from '../../api/routeApi';
+
 
 const FormRouteBlind = ({navigation, route}) => {
  const isBlind = JSON.parse(route.params.isBlindUser);
@@ -167,15 +168,14 @@ const FormRouteBlind = ({navigation, route}) => {
           onChangeText={setTime}
         />
 
+
         <Item userIsBlind={true} />
 
         {/* <Text style={styles.text}>Genre souhaité de votre accompagnant</Text> */}
 
         <TouchableOpacity
           style={styles.button}
-          onPress={() =>
-            postRoute(fromStation, toStation, routeMateGender, navigation)
-          }
+          onPress={postRoute}
           onLongPress={() => console.log('pas de match désolé')}>
           <Text style={styles.buttonText}>VALIDER</Text>
         </TouchableOpacity>

@@ -40,6 +40,7 @@ return (
             <View
               style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
               <Image
+
                 source={require('../../assets/nav.png')}
                 resizeMode="contain"
                 style={{
@@ -53,6 +54,7 @@ return (
         }}
       />
       <Tab.Screen
+
         name="Trajets"
         component={DisplayAllMyRoutesBlind}
         options={{
@@ -73,6 +75,7 @@ return (
         }}
       />
       <Tab.Screen
+
         name="Rewards"
         component={Rewards}
         options={{
@@ -93,8 +96,9 @@ return (
         }}
       />
       <Tab.Screen
-        name="Profil"
-        component={Rewards}
+        name="Profile"
+        component={ProfileScreen}
+
         options={{
           tabBarIcon: ({focused}) => (
             <View
@@ -112,6 +116,7 @@ return (
           ),
         }}
       />
+
 
      {/* <Tab.Screen name="FormRouteBlind" component={FormRouteBlind} initialParams={{isBlindUser: isBlind}}/>
      <Tab.Screen name="Routes" component={DisplayAllMyRoutesBlind} /> */}

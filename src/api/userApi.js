@@ -14,8 +14,8 @@ export async function axiosRegister(
   phoneNumber,
   navigation,
 ) {
- 
-  axios
+  return await axios
+
     .post(`${baseUrl}/auth/register`, {
       gender: gender,
       lastname: lastName,
@@ -59,10 +59,11 @@ export async function axiosLogin(email, password) {
       if (response.status == '200') {
         const tokenData = JSON.stringify(response.data.token);
         await AsyncStorage.setItem('Token', tokenData);
-        console.log('tokendata :' + tokenData);
-        const getTokenData = await AsyncStorage.getItem('Token');
+        const getTokenData = AsyncStorage.getItem('Token');
+        console.log(response);
         return getTokenData;
       }
+
       if (response.status == '403') {
         Alert.alert("Mot de passe ou nom d'utilisateur invalide.");
       }
@@ -97,8 +98,36 @@ export async function axiosUserIsBlind(email, token) {
   }
 }
 
-export async function axiosAuthUser() {
-  axios.get(`${baseUrl}/users/test`).then(async function (response) {
-    return;
-  });
+export async function axiosProfile(token, id) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
+    token,
+  )}`;
+  return await axios
+    .get(`${baseUrl}/users/${id}`)
+    .then(async function (response) {
+      if (await response.data) {
+        console.log('data profile ' + JSON.stringify(response.data));
+        return response.data;
+      }
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
+export async function axiosAuthUser(token) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
+    token,
+  )}`;
+  return await axios
+    .get(`${baseUrl}/users/authuser`)
+    .then(async function (response) {
+      if (await response.data) {
+        console.log('data profile ' + JSON.stringify(response.data));
+        return response.data;
+      }
+    })
+    .catch(error => {
+      console.error(error);
+    });
 }

@@ -37,19 +37,12 @@ const Welcome = props => {
           />
         </View>
         <View style={styles.buttonContainer}>
-
           <TouchableOpacity onPress={goToRegisterBlind} style={styles.button1}>
-            <Text style={styles.connect}>
-              {' '}
-              ME FAIRE ACCOMPAGNER
-            </Text>
+            <Text style={styles.connect}> ME FAIRE ACCOMPAGNER</Text>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={goToRegister} style={styles.button2}>
-            <Text style={styles.connect}>
-              {' '}
-              ACCOMPAGNER QUELQU'UN
-            </Text>
+            <Text style={styles.connect}> ACCOMPAGNER QUELQU'UN</Text>
           </TouchableOpacity>
 
           <Text style={styles.textConnect}>Vous avez déjà un compte ?</Text>
