@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import styles from '../../styles/LoginBindStyle';
 import {SafeAreaView, View, Text, Image, TouchableOpacity} from 'react-native';
-import {AxiosRouteGet} from '../../api/routeApi';
+import {AxiosRouteGet, AxiosRoutePut} from '../../api/routeApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import displayStyles from '../../styles/displayAllMyRoutesBlindStyle';
 import {useNavigation} from '@react-navigation/native';
@@ -29,12 +29,14 @@ const Match = ({route}) => {
     const routeParamsToken = await AsyncStorage.getItem('Token');
     const value = route.params.idRoute;
     console.log('idRoute ' + value.idRoute);
-    console.log('typeof ' + typeof value.idRoute);
     console.log('route ' + routeParamsToken);
     try {
       const response = await AxiosRouteGet(routeParamsToken, value.idRoute);
-      setData(response.data);
+      setData(!response.data);
       console.log('axiosRouteGet ' + setData(response.data));
+      if (response.data) {
+        await AxiosRoutePut(routeParamsToken, value.idRoute);
+      }
       //return data;
     } catch (error) {
       console.log('Error: ', error);

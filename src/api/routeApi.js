@@ -79,6 +79,20 @@ export async function AxiosRouteGet(routeParamsToken, id) {
     });
 }
 
+export async function AxiosRoutePut(routeParamsToken, id) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
+    routeParamsToken,
+  )}`;
+  return await axios
+    .put(`${baseUrl}/routes/routeseeker/${id}`)
+    .then(async function (response) {
+      if (await response.data) {
+        console.log('data axios ' + JSON.stringify(response.data));
+        return response.data;
+      }
+    });
+}
+
 export async function AxiosListRoutes(token) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
     token,
