@@ -72,14 +72,7 @@ export default function ProfileScreen() {
           placeholderTextColor={'black'}
           secureTextEntry={true}
         />
-        <Text style={ProfileStyles.inputText}>MON MOT DE PASSE</Text>
-        <TextInput
-          style={ProfileStyles.input}
-          editable={false}
-          placeholder={data.password}
-          placeholderTextColor={'black'}
-          secureTextEntry={true}
-        />
+     
         <ButtonDefault title={'Modifier'} />
       </View>
     </SafeAreaView>
