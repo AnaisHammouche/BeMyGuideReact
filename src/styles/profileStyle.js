@@ -28,7 +28,7 @@ export const ProfileStyles = StyleSheet.create({
   },
   containerAvatar: {
     alignItems: 'center',
-    padding: 10,
+    padding: 5,
   },
   avatar: {
     width: 150,
@@ -40,14 +40,14 @@ export const ProfileStyles = StyleSheet.create({
     justifyContent: 'center',
   },
   inputText: {
-    marginTop: 50,
+    marginTop: 30,
     width: '85%',
     paddingLeft: 10,
     fontFamily: 'RobotoMono-Medium',
     color: 'grey',
   },
   input: {
-    height: 40,
+    height: 30,
     width: '85%',
     paddingHorizontal: 10,
     borderBottomWidth: 1,
