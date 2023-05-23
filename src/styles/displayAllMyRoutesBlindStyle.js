@@ -1,6 +1,4 @@
-import React from 'react';
 import {StyleSheet} from 'react-native';
-import {FullWindowOverlay} from 'react-native-screens';
 import {colors_theme} from '../config/colors_theme.js';
 
 const displayStyles = StyleSheet.create({
@@ -20,8 +18,8 @@ const displayStyles = StyleSheet.create({
     fontFamily: 'RobotoMono-Bold',
     fontSize: 30,
     textAlign: 'center',
-    marginBottom: 36,
-    marginTop: 40,
+    marginBottom: 20,
+    marginTop: 30,
   },
 
   text: {
@@ -63,7 +61,7 @@ const displayStyles = StyleSheet.create({
   buttonRed: {
     backgroundColor: 'red',
     alignItems: 'center',
-   // padding: 4,
+    // padding: 4,
     height: 40,
     width: '45%',
     marginTop: 10,
@@ -77,9 +75,9 @@ const displayStyles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     marginHorizontal: 40,
-   // marginVertical: 10,
+    // marginVertical: 10,
     height: 40,
-  //  margin: 6,
+    //  margin: 6,
     padding: 10,
     borderRadius: 5,
   },

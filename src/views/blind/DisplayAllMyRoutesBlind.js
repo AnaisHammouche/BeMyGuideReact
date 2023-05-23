@@ -47,6 +47,8 @@ const DisplayAllMyRoutesRoutesBlind = () => {
 
       <FlatList
         showsHorizontalScrollIndicator={false}
+        refreshing={true}
+        overScrollMode="always"
         data={data}
         keyExtractor={item => item.id}
         ItemSeparatorComponent={ItemSeparatorView}
@@ -54,8 +56,12 @@ const DisplayAllMyRoutesRoutesBlind = () => {
           return (
             <View style={flatListStyles.container}>
               <View style={flatListStyles.container}>
-                <Text  style={displayStyles.text}>Départ : {item.fromStation}</Text>
-                <Text style={displayStyles.text}>Arrivée : {item.toStation}</Text>
+                <Text style={displayStyles.text}>
+                  Départ : {item.fromStation}
+                </Text>
+                <Text style={displayStyles.text}>
+                  Arrivée : {item.toStation}
+                </Text>
                 <Text style={displayStyles.text}>Le : {item.dateRoute}</Text>
                 <Text style={displayStyles.text}>À : {item.startingTime}</Text>
               </View>

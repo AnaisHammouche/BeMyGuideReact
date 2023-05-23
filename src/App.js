@@ -8,7 +8,7 @@
 import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import AppNavigator from '../src/components/navigators/AppNavigator';
-import Match from './views/blind/Match';
+import Match from './views/sighted/Match';
 import DisplayAllMyRoutesBlind from './views/blind/DisplayAllMyRoutesBlind';
 import Tabs from './components/navigators/BottomTabNavigator';
 import ProfileScreen from './views/profile';
