@@ -33,8 +33,8 @@ const Match = ({route}) => {
     console.log('route ' + routeParamsToken);
     try {
       const response = await AxiosRouteGet(routeParamsToken, value.idRoute);
-      setData(response);
-      console.log('axiosRouteGet ' + response);
+      setData(response.data);
+      console.log('axiosRouteGet ' + setData(response.data));
       //return data;
     } catch (error) {
       console.log('Error: ', error);
@@ -51,13 +51,13 @@ const Match = ({route}) => {
         <View>
           <Text>Votre demande de trajet</Text>
           <Text>De : </Text>
-          <Text>{data[0]['fromStation']}</Text>
+          <Text>{data.fromStation}</Text>
           <Text>À : </Text>
-          <Text>{data[0]['toStation']}</Text>
+          {/* <Text>{data[0]['toStation']}</Text>
           <Text>Le : </Text>
           <Text>{data[0]['dateRoute']}</Text>
           <Text>À : </Text>
-          <Text>{data[0]['startingTime']}</Text>
+          <Text>{data[0]['startingTime']}</Text> */}
           <TouchableOpacity
             style={displayStyles.button}
             onPress={() => console.log('Bouton validé cliqué')}>
