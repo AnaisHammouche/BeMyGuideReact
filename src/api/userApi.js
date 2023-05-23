@@ -131,3 +131,21 @@ export async function axiosAuthUser(token) {
       console.error(error);
     });
 }
+
+
+export async function axiosNumberOfRoutesDone(token) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
+    token,
+  )}`;
+  return await axios
+  .get(`${baseUrl}/routes/routesDone`)
+  .then(async function (response){
+    if (response.data != null){
+      return response.data;
+    }
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}
+
