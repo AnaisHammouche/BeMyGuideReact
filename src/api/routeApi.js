@@ -4,6 +4,7 @@ import {Alert} from 'react-native';
 
 let baseUrl = process.env.BASE_URL;
 
+// Fonction pour envoyer une requête POST pour ajouter une route
 export async function AxiosRoute(
   fromStation,
   toStation,
@@ -54,8 +55,8 @@ export async function AxiosRoute(
       }
     });
 }
-[];
 
+// Fonction pour envoyer une requête GET pour récupérer la liste des routes
 export async function AxiosListRoutes(token) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
     token,
@@ -70,6 +71,7 @@ export async function AxiosListRoutes(token) {
     });
 }
 
+// Fonction pour envoyer une requête GET pour récupérer les correspondances de route
 export async function AxiosRouteGet(
   fromStation,
   toStation,
@@ -93,16 +95,10 @@ export async function AxiosRouteGet(
       const data = response.data;
       console.log('match ' + JSON.stringify(data));
       return data;
-      /* if (data) {
-      const getAsyncTokenStorage = AsyncStorage.getItem('Token');
-      console.log('routeParamsToken : ' + getAsyncTokenStorage);
-      axios.post(`${baseUrl}/sendgrid`).then(async function (response) {
-        console.log('dans le post sendgrid');
-      });
-    } */
     });
 }
 
+// Fonction pour envoyer une requête POST à SendGrid
 // export async function PostAxiosSendGrid (){
 //     axios
 //     .post(`${baseUrl}/sendgrid`, {})

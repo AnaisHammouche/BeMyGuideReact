@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import displayStyles from '../../styles/displayAllMyRoutesBlindStyle';
-
 import {
   SafeAreaView,
   View,
@@ -9,7 +8,6 @@ import {
   FlatList,
   Image,
 } from 'react-native';
-
 import {AxiosListRoutes} from '../../api/routeApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import flatListStyles from '../../styles/flatListStyle';
@@ -21,6 +19,7 @@ const DisplayAllMyRoutesRoutesBlind = () => {
     getMatch();
   }, []);
 
+  // Récupère les trajets de l'utilisateur
   const getMatch = async () => {
     const routeParamsToken = await AsyncStorage.getItem('Token');
     console.log('routeToken ' + routeParamsToken);
@@ -35,10 +34,13 @@ const DisplayAllMyRoutesRoutesBlind = () => {
 
   console.log('voir ' + JSON.stringify(data[0]));
 
+  // Composant pour afficher une ligne de séparation entre les éléments de la liste
   const ItemSeparatorView = () => {
     return (
+
       //Item Separator
       <View style={{height: 2, width: '100%', backgroundColor: '#C8C8C8'}} />
+
     );
   };
 
@@ -119,7 +121,7 @@ const DisplayAllMyRoutesRoutesBlind = () => {
         </View>)
       }
       return (
-        <Text>Statut : JE SAIS PAS !!!!</Text>
+        <Text>Statut : {item.routeStatus} !</Text>
       )
     };
   
@@ -144,6 +146,7 @@ const DisplayAllMyRoutesRoutesBlind = () => {
           return (
             <View style={flatListStyles.container}>
               <View style={flatListStyles.container}>
+
                 <Text style={displayStyles.text}>
                   Départ : {item.fromStation}
                 </Text>
@@ -167,6 +170,7 @@ const DisplayAllMyRoutesRoutesBlind = () => {
                   Numéro de téléphone : 
                 </Text>
                 
+
               </View>
               <View style={displayStyles.buttonContainer}>
                 <TouchableOpacity

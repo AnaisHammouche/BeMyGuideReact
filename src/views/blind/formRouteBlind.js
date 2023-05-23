@@ -29,7 +29,7 @@ const maxDate = addOneYear(currentDate);
 //import {AxiosRoute} from '../../api/routeApi';
 
 const FormRouteBlind = ({navigation, route}) => {
-  const isBlind = JSON.parse(route.params.isBlindUser);
+  const isBlind = JSON.parse(route.params.userIsBlind);
   console.log('claire isBlind : ' + isBlind);
   console.log('check type : ' + typeof isBlind);
   const [fromStation, setfromStation] = useState();
@@ -60,6 +60,7 @@ const FormRouteBlind = ({navigation, route}) => {
     navigation,
   ]);
 
+  // Affiche les options de genre pour l'accompagnant si l'utilisateur est aveugle
   function Item(userIsBlind) {
     userIsBlind = isBlind;
     if (userIsBlind) {
