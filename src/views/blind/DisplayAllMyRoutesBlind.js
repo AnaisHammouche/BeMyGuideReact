@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import displayStyles from '../../styles/displayAllMyRoutesBlindStyle';
-
 import {
   SafeAreaView,
   View,
@@ -8,7 +7,6 @@ import {
   Text,
   FlatList,
 } from 'react-native';
-
 import {AxiosListRoutes} from '../../api/routeApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import flatListStyles from '../../styles/flatListStyle';
@@ -20,6 +18,7 @@ const DisplayAllMyRoutesRoutesBlind = () => {
     getMatch();
   }, []);
 
+  // Récupère les trajets de l'utilisateur
   const getMatch = async () => {
     const routeParamsToken = await AsyncStorage.getItem('Token');
     console.log('routeToken ' + routeParamsToken);
@@ -34,9 +33,9 @@ const DisplayAllMyRoutesRoutesBlind = () => {
 
   console.log('voir ' + JSON.stringify(data[0]));
 
+  // Composant pour afficher une ligne de séparation entre les éléments de la liste
   const ItemSeparatorView = () => {
     return (
-      //Item Separator
       <View style={{height: 0.5, width: '100%', backgroundColor: '#C8C8C8'}} />
     );
   };
@@ -54,7 +53,7 @@ const DisplayAllMyRoutesRoutesBlind = () => {
           return (
             <View style={flatListStyles.container}>
               <View style={flatListStyles.container}>
-                <Text  style={displayStyles.text}>Départ : {item.fromStation}</Text>
+                <Text style={displayStyles.text}>Départ : {item.fromStation}</Text>
                 <Text style={displayStyles.text}>Arrivée : {item.toStation}</Text>
                 <Text style={displayStyles.text}>Le : {item.dateRoute}</Text>
                 <Text style={displayStyles.text}>À : {item.startingTime}</Text>
