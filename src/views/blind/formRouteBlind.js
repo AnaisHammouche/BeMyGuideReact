@@ -1,4 +1,6 @@
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useState,useEffect} from 'react';
+import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import PushNotification from 'react-native-push-notification';
 import RNPickerSelect from 'react-native-picker-select';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
@@ -18,6 +20,7 @@ import {AxiosRoute, AxiosRouteGet} from '../../api/routeApi';
 //import DatePicker from 'react-native-datepicker';
 //import TimePicker from 'react-native-simple-time-picker';
 import BottomTabNavigator from '../../components/navigators/BottomTabNavigator';
+import { locale } from 'moment';
 
 const currentDate = new Date();
 function addOneYear(date) {
@@ -37,6 +40,7 @@ const FormRouteBlind = ({navigation, route}) => {
   const [dateRoute, setDate] = useState();
   const [startingTime, setTime] = useState();
   const [routeMateGender, setRouteMateGender] = useState();
+  const [permissions, setPermissions] = useState({});
   console.log();
 
   const postRoute = useCallback(async () => {
@@ -89,6 +93,91 @@ const FormRouteBlind = ({navigation, route}) => {
       return null;
     }
   }
+
+// const configurePushNotifications = () => {
+//   PushNotification.configure({
+//     // Gestionnaire appelé lorsque la notification est reçue
+//     onNotification: function(notification) {
+//       console.log('Notification reçue:', notification);
+//     },
+//     // Gestionnaire appelé lorsque l'utilisateur appuie sur la notification
+//     onAction: function(notification) {
+//       console.log('Action de notification:', notification.action);
+//     },
+//     // Permissions requises pour afficher des notifications
+//     permissions: {
+//       alert: true,
+//       badge: true,
+//       sound: true,
+//     },
+//     // Demande d'autorisation de notifications à l'utilisateur
+//     requestPermissions: true,
+//   });
+  
+//   // Envoie une notification push
+//   const sendNotification = () => {
+//     PushNotification.localNotification({
+//       title: 'Ma première notification push',
+//       message: 'Ceci est un exemple de notification push',
+//     });
+//   };
+// }
+//   useEffect(() => {
+//     configurePushNotifications();
+//   }, []);
+
+ /**
+   * By calling this function, notification with category `userAction` will have action buttons
+   */
+ const setNotificationCategories = () => {
+ console.log("dans la notif")
+  PushNotificationIOS.setNotificationCategories([
+    {
+      id: 'userAction',
+      actions: [
+        {id: 'open', title: 'Open', options: {foreground: true}},
+        {
+          id: 'ignore',
+          title: 'Desruptive',
+          options: {foreground: true, destructive: true},
+        },
+        {
+          id: 'text',
+          title: 'Text Input',
+          options: {foreground: true},
+          textInput: {buttonTitle: 'Send'},
+        },
+      ],
+    },
+  ]);
+};
+
+
+
+useEffect(() => {
+  const type = 'notification';
+  PushNotificationIOS.addEventListener(type, onRemoteNotification);
+  return () => {
+    PushNotificationIOS.removeEventListener(type);
+  };
+}, []);
+
+const onRemoteNotification = (notification) => {
+  console.log('dans le remote notif')
+  const isClicked = notification.getData().userInteraction === 1;
+
+  if (isClicked) {
+    // Navigate user to another screen
+    console.log('dans le if cliqué')
+  } else {
+    // Do something else with push notification
+    console.log('dans le else')
+  }
+  // Use the appropriate result based on what you needed to do for this notification
+  const result = PushNotificationIOS.FetchResult.NoData;
+  notification.finish(result);
+};
+
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -178,8 +267,9 @@ const FormRouteBlind = ({navigation, route}) => {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={postRoute}
-          onLongPress={() => console.log('pas de match désolé')}>
+          onPress={setNotificationCategories}
+          // onLongPress={sendNotification}
+          >
           <Text style={styles.buttonText}>VALIDER</Text>
         </TouchableOpacity>
       </View>
