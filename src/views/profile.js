@@ -64,6 +64,14 @@ export default function ProfileScreen() {
           placeholder={data.email}
           placeholderTextColor={'black'}
         />
+        <Text style={ProfileStyles.inputText}>MON NUMÉRO DE TÉLÉPHONE</Text>
+        <TextInput
+          style={ProfileStyles.input}
+          editable={false}
+          placeholder={data.phoneNumber}
+          placeholderTextColor={'black'}
+          secureTextEntry={true}
+        />
         <Text style={ProfileStyles.inputText}>MON MOT DE PASSE</Text>
         <TextInput
           style={ProfileStyles.input}
@@ -73,13 +81,6 @@ export default function ProfileScreen() {
           secureTextEntry={true}
         />
         <ButtonDefault title={'Modifier'} />
-        {/* <Text style={ProfileStyles.inputText}>JE SUIS</Text>
-        <TextInput
-          style={ProfileStyles.input}
-          editable={false}
-          //placeholder={data.blind}
-          placeholderTextColor={'black'}
-        />*/}
       </View>
     </SafeAreaView>
   );

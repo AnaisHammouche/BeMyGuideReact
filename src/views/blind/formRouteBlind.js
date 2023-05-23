@@ -10,12 +10,11 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-
 //import {DatePickerIOSComponent} from '@react-native-community/datetimepicker'
 
 //import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../styles/formRoute_style';
-import { AxiosRoute, AxiosRouteGet } from '../../api/routeApi';
+import {AxiosRoute, AxiosRouteGet} from '../../api/routeApi';
 //import DatePicker from 'react-native-datepicker';
 //import TimePicker from 'react-native-simple-time-picker';
 import BottomTabNavigator from '../../components/navigators/BottomTabNavigator';
@@ -29,9 +28,8 @@ const maxDate = addOneYear(currentDate);
 //import styles from '../../styles/formRoute_style';
 //import {AxiosRoute} from '../../api/routeApi';
 
-
 const FormRouteBlind = ({navigation, route}) => {
- const isBlind = JSON.parse(route.params.isBlindUser);
+  const isBlind = JSON.parse(route.params.userIsBlind);
   console.log('claire isBlind : ' + isBlind);
   console.log('check type : ' + typeof isBlind);
   const [fromStation, setfromStation] = useState();
@@ -53,9 +51,16 @@ const FormRouteBlind = ({navigation, route}) => {
       routeParamsToken,
       navigation,
     );
-  }, [fromStation, toStation, routeMateGender, dateRoute,
-    startingTime, navigation]);
+  }, [
+    fromStation,
+    toStation,
+    routeMateGender,
+    dateRoute,
+    startingTime,
+    navigation,
+  ]);
 
+  // Affiche les options de genre pour l'accompagnant si l'utilisateur est aveugle
   function Item(userIsBlind) {
     userIsBlind = isBlind;
     if (userIsBlind) {
@@ -63,7 +68,7 @@ const FormRouteBlind = ({navigation, route}) => {
       return (
         <View style={styles.containerOfGender}>
           <Text style={styles.text} className="item">
-          GENRE SOUHAITÉ DE L'ACCOMPAGNANT :
+            GENRE SOUHAITÉ DE L'ACCOMPAGNANT :
           </Text>
           <RNPickerSelect
             placeholder={{
@@ -117,48 +122,7 @@ const FormRouteBlind = ({navigation, route}) => {
           value={dateRoute}
           onChangeText={setDate}
         />
-        {/* <Text style={styles.text}>JOUR DE DÉPART</Text> */}
-        {/* <DatePicker
-        style={styles.inputDate}
-          date={currentDate}
-          mode="date"
-          placeholder="Sélectionnez un jour de départ"
-          format="DD/MM/YYYY"
-          minDate={currentDate}
-          maxDate={maxDate}
-          confirmBtnText="Confirm"
-          cancelBtnText="Cancel"
-          
-          customStyles={{
-          
-            dateIcon: {
-              right: -10,
-              top: 4,
-              marginLeft: 0,
-            },
-            dateInput: {
-             // marginTop: 15,
-              borderColor : "black",
-            //  alignItems: "flex-start",
-             // borderWidth: 0,
-              width: '300%',
-              //borderBottomWidth: 1,
-              borderRadius: 5,
-            },
-            placeholderText: {
-              padding: 10, 
-              fontSize: 17,
-              color: "gray"
-            },
-            dateText: {
-              fontSize: 17,
-            }
-          }}
-          onDateChange={(date) => {
-            setDate(date);
-          }}
-        /> */}
-      
+
         <Text style={styles.text}>HORAIRE DE DÉPART</Text>
         <TextInput
           style={styles.input}
@@ -168,10 +132,7 @@ const FormRouteBlind = ({navigation, route}) => {
           onChangeText={setTime}
         />
 
-
         <Item userIsBlind={true} />
-
-        {/* <Text style={styles.text}>Genre souhaité de votre accompagnant</Text> */}
 
         <TouchableOpacity
           style={styles.button}

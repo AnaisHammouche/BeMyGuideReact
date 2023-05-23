@@ -9,7 +9,6 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import AppNavigator from '../src/components/navigators/AppNavigator';
 
-
 //import type {PropsWithChildren} from 'react';
 
 /* import {

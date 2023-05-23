@@ -8,9 +8,15 @@ import postRegister, {axiosRegister} from '../../api/userApi';
 import RNPickerSelect from 'react-native-picker-select';
 import axios from 'axios';
 
+// Importation des dépendances nécessaires
+
 const RegisterBlind = ({route}) => {
   const navigation = useNavigation();
+
+  // Récupération de la valeur "isBlind" depuis les paramètres de la route
   const isBlind = JSON.parse(route.params.userIsBlind);
+
+  // Déclaration des états utilisés dans le formulaire d'inscription
   const [gender, setGender] = useState('');
   const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -19,6 +25,8 @@ const RegisterBlind = ({route}) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [isValid, setIsValid] = useState('true');
+
+  // Création de l'objet "user" contenant les informations de l'utilisateur
   const user = {
     gender: gender,
     lastName: lastName,
@@ -29,6 +37,7 @@ const RegisterBlind = ({route}) => {
     isBlind: isBlind,
   };
 
+  // Utilisation du hook useMemo pour vérifier si les champs du formulaire sont valides
   useMemo(() => {
     if (
       gender === '' ||
@@ -54,8 +63,10 @@ const RegisterBlind = ({route}) => {
     confirmPassword,
   ]);
 
+  // Fonction de validation du formulaire
   const validator = useCallback(() => {
     if (isValid) {
+      // Appel de la fonction axiosRegister pour effectuer l'inscription
       axiosRegister(
         user.gender,
         user.lastName,
