@@ -1,11 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {View, Text, Image, SafeAreaView, TextInput} from 'react-native';
 import {axiosAuthUser} from '../api/userApi';
 import {ProfileStyles} from '../styles/profileStyle';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ButtonDefault from '../components/button';
+import {useNavigation} from '@react-navigation/native';
 
 export default function ProfileScreen() {
+  const navigation = useNavigation();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -33,6 +35,33 @@ export default function ProfileScreen() {
       </View>
     );
   }
+
+  const deconnexionButton = async () => {
+    try {
+      await AsyncStorage.clear();
+      console.log('AsyncStorage vide');
+      console.log('AsyncStorage : ' + JSON.stringify(AsyncStorage));
+      navigation.navigate('Welcome');
+    } catch (error) {
+      console.log('Error lors du clear de l AsyncStorage: ', error);
+    }
+  };
+
+  const deleteProfileButton = async () => {
+    try {
+      const token = await AsyncStorage.getItem('Token');
+      console.log('Token: ', token);
+      
+      // Ajoutez ici la logique pour supprimer l'utilisateur en base de données
+      // Utilisez le token pour identifier l'utilisateur et effectuer la suppression
+      
+      await AsyncStorage.clear();
+      console.log('AsyncStorage cleared');
+      navigation.navigate('Welcome');
+    } catch (error) {
+      console.log('Error deleting profile: ', error);
+    }
+  };
 
   return (
     <SafeAreaView style={ProfileStyles.screen}>
@@ -72,7 +101,9 @@ export default function ProfileScreen() {
           placeholderTextColor={'black'}
           secureTextEntry={true}
         />
-        <ButtonDefault title={'Modifier'} />
+        {/* <ButtonDefault title={'Modifier'} /> */}
+        <ButtonDefault title={'Se déconnecter'} onPress= {deconnexionButton}/>
+        <ButtonDefault title={'Supprimer mon compte'} onPress= {deleteProfileButton}/>
       </View>
     </SafeAreaView>
   );
