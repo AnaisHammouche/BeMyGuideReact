@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import styles from '../../styles/LoginBindStyle';
-import {SafeAreaView, View, Text, Image, TouchableOpacity} from 'react-native';
+import {SafeAreaView, View, Text, Image, TouchableOpacity, ImageBackground} from 'react-native';
 import {AxiosRouteGet} from '../../api/routeApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import displayStyles from '../../styles/displayAllMyRoutesBlindStyle';
 import {useNavigation} from '@react-navigation/native';
+import {waitingStyles} from '../../styles/waiting_style';
 
 const Match = ({route}) => {
   const navigation = useNavigation();
@@ -33,7 +34,7 @@ const Match = ({route}) => {
     console.log('route ' + routeParamsToken);
     try {
       const response = await AxiosRouteGet(routeParamsToken, value.idRoute);
-      setData(response);
+      setData(response.data);
       console.log('axiosRouteGet ' + response);
       //return data;
     } catch (error) {
@@ -45,19 +46,20 @@ const Match = ({route}) => {
 
   return (
     <SafeAreaView style={styles.screen}>
-      <View>
+      <View style={waitingStyles.container2}>
+        {/* <View style={waitingStyles.container3} ></View> */}
+        
         <Text style={styles.title}>C'est un match !</Text>
-        <Image></Image>
         <View>
           <Text>Votre demande de trajet</Text>
           <Text>De : </Text>
-          <Text>{data[0]['fromStation']}</Text>
+          <Text>{data[0]?.fromStation}</Text>
           <Text>À : </Text>
-          <Text>{data[0]['toStation']}</Text>
+          <Text>{data[0]?.toStation}</Text>
           <Text>Le : </Text>
-          <Text>{data[0]['dateRoute']}</Text>
+          <Text>{data[0]?.dateRoute}</Text>
           <Text>À : </Text>
-          <Text>{data[0]['startingTime']}</Text>
+          <Text>{data[0]?.startingTime}</Text>
           <TouchableOpacity
             style={displayStyles.button}
             onPress={() => console.log('Bouton validé cliqué')}>
@@ -68,28 +70,33 @@ const Match = ({route}) => {
             onPress={() => console.log('bouton annulé cliqué')}>
             <Text style={displayStyles.connect}>ANNULER</Text>
           </TouchableOpacity>
-          {/* <Text >à été confirmée par {firstName}.</Text> */}
-          {/* <Text >N'oubliez pas de le contacter afin de convenir d'un lieu de rendez-vous plus précis tel que le numéro d'entée de la station. </Text>
-           */}
-          {/* <View>
+          <Text >à été confirmée par .</Text>
+          <Text >N'oubliez pas de le contacter afin de convenir d'un lieu de rendez-vous plus précis tel que le numéro d'entée de la station par exemple. </Text>
+          
+           <View>
             <Image></Image>
-            <Text>{firstName} {lastName}</Text>
+            <Text>michel dupont</Text>
             <Text>Accompagnateur</Text>
         <TouchableOpacity
-        onPress={() => getMatch(fromStation,toStation)}>
-          <Text >
-            CHAT
-          </Text>
+        onPress={() => console.log('tel cliqué')}>
+           <Image
+                source={require('../../assets/close_eye.png')}
+                resizeMode="contain"
+                style={{
+                  width: 25,
+                  height: 25,
+                }}
+              />
         </TouchableOpacity>
-        <TouchableOpacity
-        onPress={() => Alert.alert(JSON.stringify('num : ' + num ))}>
-          <Text >
-            TEL
-          </Text>
-        </TouchableOpacity>
-        </View> */}
         </View>
+        
+        </View>
+        
+        
       </View>
+      <ImageBackground
+        style={waitingStyles.image2}
+        source={require('../../assets/mapstations.png')}></ImageBackground>
     </SafeAreaView>
   );
 };

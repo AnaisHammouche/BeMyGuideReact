@@ -66,7 +66,7 @@ export async function AxiosRouteGet(routeParamsToken, id) {
     .then(async function (response) {
       const data = response.data.routesMatch;
       if (data) {
-        console.log('match ' + JSON.stringify(data));
+        console.log('match ' + JSON.stringify(data[0]));
         return data;
       }
       /* if (data) {

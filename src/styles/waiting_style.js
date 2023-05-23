@@ -10,6 +10,13 @@ export const waitingStyles = StyleSheet.create({
     justifyContent: 'space-between',
     opacity: 0.33,
   },
+
+  image2 : {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'space-between',
+    opacity: 0.33 ,
+  },
   container: {
     padding: 40,
     flex: 1,
@@ -20,6 +27,16 @@ export const waitingStyles = StyleSheet.create({
     top: 300,
   },
 
+  container2: {
+    padding: 45,
+    flex: 1,
+    justifyContent: 'center',
+    alignContent:'center',
+    position: 'absolute',
+    top: 50,
+    zIndex:1,
+  },
+
   text: {
     color: 'black',
     fontWeight: 'bold',
@@ -28,6 +45,7 @@ export const waitingStyles = StyleSheet.create({
     fontFamily: 'RobotoMono-Medium',
     fontSize: 16,
   },
+
 
   icon: {
     alignItems: 'center',
