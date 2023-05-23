@@ -15,29 +15,27 @@ const Waiting = ({route, navigation}) => {
   useEffect(() => {
     const searchMatch = async () => {
       const routeParamsToken = await AsyncStorage.getItem('Token');
-      const value = route.params.idRoute;
-      console.log('idRoute ' + value.idRoute);
+      const idRoute = route.params.idRoute.idRoute;
+      console.log('idRoute ' + idRoute);
+      console.log('idRoute typeof ' + typeof idRoute);
       console.log('route ' + routeParamsToken);
       try {
-        const response = await AxiosRoutePut(
-          routeParamsToken,
-          value.idRouteSeeker,
-        );
-        setData(response.data);
-        console.log('axiosRoutePut ' + JSON.stringify(response.data));
-        if (response.data) {
-        }
+        const response = await AxiosRoutePut(routeParamsToken, idRoute);
+        /* setData(response);
+        console.log('axiosRoutePut ' + response);
+        if (response) {
+        } */
         //return data;
       } catch (error) {
         console.log('Error: ', error);
       }
     };
     searchMatch();
-  }, [route.params.idRoute]);
+  }, [route.params.idRoute.idRoute]);
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      navigation.navigate('Match', {token: routeParamsToken});
+      navigation.navigate('Match', {idRoute: this.idRoute});
     }, 1 * 5 * 1000);
 
     return () => clearTimeout(timeout);

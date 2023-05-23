@@ -13,7 +13,7 @@ import displayStyles from '../../styles/displayAllMyRoutesBlindStyle';
 import flatListStyles from '../../styles/flatListStyle';
 import {AxiosMatchAuthUser} from '../../api/routeApi';
 
-const Match = ({}) => {
+const Match = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -28,11 +28,14 @@ const Match = ({}) => {
     try {
       const response = await AxiosMatchAuthUser(routeParamsToken);
       setData(response);
+      //const data = response.data[0];
       console.log('axiosRouteMatch ' + response);
     } catch (error) {
       console.log('Error: ', error);
     }
   };
+
+  console.log('voir Match ' + JSON.stringify(data));
 
   const ItemSeparatorView = () => {
     return (

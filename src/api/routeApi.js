@@ -29,7 +29,7 @@ export async function AxiosRoute(
       navigation,
     })
     .then(async function (response) {
-      const data = JSON.stringify(response.data);
+      const data = response.data;
       console.log('id route ' + response.data);
       if (data) {
         const fromStationData = JSON.stringify(fromStation);
@@ -80,12 +80,12 @@ export async function AxiosRouteGet(routeParamsToken, idRoute) {
     });
 }
 
-export async function AxiosRoutePut(routeParamsToken, id) {
+export async function AxiosRoutePut(routeParamsToken, idRoute) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
     routeParamsToken,
   )}`;
   return await axios
-    .put(`${baseUrl}/routes/routeseeker/${id}`)
+    .put(`${baseUrl}/routes/routeseeker/${idRoute}`)
     .then(async function (response) {
       const data = response.data;
       if (data) {
@@ -104,7 +104,7 @@ export async function AxiosMatchAuthUser(routeParamsToken) {
     .then(async function (response) {
       const data = response.data;
       if (data) {
-        console.log('data axios Auth User ' + JSON.stringify(data));
+        console.log('data axios Auth User ' + data);
         return data;
       }
     });
