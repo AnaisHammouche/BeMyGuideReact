@@ -121,47 +121,6 @@ const FormRouteBlind = ({navigation, route}) => {
           value={dateRoute}
           onChangeText={setDate}
         />
-        {/* <Text style={styles.text}>JOUR DE DÉPART</Text> */}
-        {/* <DatePicker
-        style={styles.inputDate}
-          date={currentDate}
-          mode="date"
-          placeholder="Sélectionnez un jour de départ"
-          format="DD/MM/YYYY"
-          minDate={currentDate}
-          maxDate={maxDate}
-          confirmBtnText="Confirm"
-          cancelBtnText="Cancel"
-          
-          customStyles={{
-          
-            dateIcon: {
-              right: -10,
-              top: 4,
-              marginLeft: 0,
-            },
-            dateInput: {
-             // marginTop: 15,
-              borderColor : "black",
-            //  alignItems: "flex-start",
-             // borderWidth: 0,
-              width: '300%',
-              //borderBottomWidth: 1,
-              borderRadius: 5,
-            },
-            placeholderText: {
-              padding: 10, 
-              fontSize: 17,
-              color: "gray"
-            },
-            dateText: {
-              fontSize: 17,
-            }
-          }}
-          onDateChange={(date) => {
-            setDate(date);
-          }}
-        /> */}
 
         <Text style={styles.text}>HORAIRE DE DÉPART</Text>
         <TextInput
@@ -173,8 +132,6 @@ const FormRouteBlind = ({navigation, route}) => {
         />
 
         <Item userIsBlind={true} />
-
-        {/* <Text style={styles.text}>Genre souhaité de votre accompagnant</Text> */}
 
         <TouchableOpacity
           style={styles.button}
