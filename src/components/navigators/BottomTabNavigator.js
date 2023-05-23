@@ -11,6 +11,7 @@ const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = ({navigation, route}) => {
   const isBlind = JSON.parse(route.params.userIsBlind);
+  //commentaire inutile
 
   return (
     <Tab.Navigator
