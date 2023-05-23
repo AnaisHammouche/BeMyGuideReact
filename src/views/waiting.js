@@ -5,7 +5,7 @@ import React from 'react';
 
 const Waiting = ({route, navigation}) => {
   //const routeParamsToken = route.params.token;
-  const idRoute = JSON.stringify(route.params.idRoute);
+  const idRoute = route.params.idRoute;
 
   setTimeout(() => {
     navigation.navigate('Match', {idRoute: idRoute});

@@ -11,8 +11,8 @@ const Match = ({route}) => {
   const [data, setData] = useState([]);
   //const idRoute = route.params.idRoute;
 
-  /* useEffect(() => {
-    async function getMatch() {
+  useEffect(() => {
+    /* async function getMatch() {
       const routeParamsToken = await AsyncStorage.getItem('Token');
       const idRoute = await route.params.idRoute;
       console.log('idRoute ' + idRoute);
@@ -21,22 +21,27 @@ const Match = ({route}) => {
       setData(response);
       console.log('axiosRouteGet ' + JSON.stringify(response));
       return data;
-    }
+    } */
     getMatch();
-  }, [data, route.params.idRoute]); */
+  });
 
   const getMatch = async () => {
     const routeParamsToken = await AsyncStorage.getItem('Token');
-    const idRoute = await route.params.idRoute;
-    console.log('idRoute ' + idRoute);
+    const value = route.params.idRoute;
+    console.log('idRoute ' + value.idRoute);
+    console.log('typeof ' + typeof value.idRoute);
     console.log('route ' + routeParamsToken);
-    const response = await AxiosRouteGet(routeParamsToken, idRoute);
-    setData(response);
-    console.log('axiosRouteGet ' + JSON.parse(response));
-    return data;
+    try {
+      const response = await AxiosRouteGet(routeParamsToken, value.idRoute);
+      setData(response);
+      console.log('axiosRouteGet ' + response);
+      //return data;
+    } catch (error) {
+      console.log('Error: ', error);
+    }
   };
 
-  getMatch();
+  //getMatch();
 
   return (
     <SafeAreaView style={styles.screen}>
@@ -46,13 +51,13 @@ const Match = ({route}) => {
         <View>
           <Text>Votre demande de trajet</Text>
           <Text>De : </Text>
-          <Text>{data.fromStation}</Text>
+          <Text>{data[0]['fromStation']}</Text>
           <Text>À : </Text>
-          <Text>{data.toStation}</Text>
+          <Text>{data[0]['toStation']}</Text>
           <Text>Le : </Text>
-          <Text>{data.dateRoute}</Text>
+          <Text>{data[0]['dateRoute']}</Text>
           <Text>À : </Text>
-          <Text>{data.startingTime}</Text>
+          <Text>{data[0]['startingTime']}</Text>
           <TouchableOpacity
             style={displayStyles.button}
             onPress={() => console.log('Bouton validé cliqué')}>

@@ -57,21 +57,26 @@ export async function AxiosRoute(
 [];
 
 export async function AxiosRouteGet(routeParamsToken, id) {
+  //console.log('Bonjour axios ');
   axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
     routeParamsToken,
   )}`;
-  return await axios.get(`${baseUrl}/routes/matches/${id}`).then(response => {
-    const data = response.data.routesMatch;
-    console.log('match ' + JSON.stringify(data));
-    return data;
-    /* if (data) {
+  return await axios
+    .get(`${baseUrl}/routes/matches/${id}`)
+    .then(async function (response) {
+      const data = response.data.routesMatch;
+      if (data) {
+        console.log('match ' + JSON.stringify(data));
+        return data;
+      }
+      /* if (data) {
       const getAsyncTokenStorage = AsyncStorage.getItem('Token');
       console.log('routeParamsToken : ' + getAsyncTokenStorage);
       axios.post(`${baseUrl}/sendgrid`).then(async function (response) {
         console.log('dans le post sendgrid');
       });
     } */
-  });
+    });
 }
 
 export async function AxiosListRoutes(token) {
