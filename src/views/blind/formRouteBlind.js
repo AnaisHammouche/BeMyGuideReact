@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, {useCallback, useState} from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
@@ -11,13 +11,6 @@ import {
 import styles from '../../styles/formRoute_style';
 import {AxiosRoute} from '../../api/routeApi';
 
-const currentDate = new Date();
-function addOneYear(date) {
-date.setFullYear(date.getFullYear() + 1);
-return date;
-}
-const maxDate = addOneYear(currentDate);
-
 const FormRouteBlind = ({navigation, route}) => {
   const isBlind = route.params.isBlindUser;
   console.log('claire isBlind : ' + isBlind);
@@ -29,19 +22,26 @@ const FormRouteBlind = ({navigation, route}) => {
   const [routeMateGender, setRouteMateGender] = useState();
   console.log();
 
-const postRoute = useCallback(async () => {
-const routeParamsToken = await AsyncStorage.getItem('Token');
-console.log('route token' + routeParamsToken);
-AxiosRoute(
-fromStation,
-toStation,
-routeMateGender,
-dateRoute,
-startingTime,
-routeParamsToken,
-navigation,
-);
-}, [fromStation, toStation, routeMateGender, dateRoute, startingTime, navigation]);
+  const postRoute = useCallback(async () => {
+    const routeParamsToken = await AsyncStorage.getItem('Token');
+    console.log('route token' + routeParamsToken);
+    AxiosRoute(
+      fromStation,
+      toStation,
+      routeMateGender,
+      dateRoute,
+      startingTime,
+      routeParamsToken,
+      navigation,
+    );
+  }, [
+    fromStation,
+    toStation,
+    routeMateGender,
+    dateRoute,
+    startingTime,
+    navigation,
+  ]);
 
   // Affiche les options de genre pour l'accompagnant si l'utilisateur est aveugle
   function Item({userIsBlind}) {
@@ -70,8 +70,7 @@ navigation,
         </View>
       );
     } else {
-      return 
-        <View/>;
+      return null;
     }
   }
 

@@ -9,7 +9,7 @@ import {
   FlatList,
 } from 'react-native';
 
-import {AxiosListRoutes} from '../../api/routeApi';
+import {AxiosListRoutes, AxiosDoneRoutes} from '../../api/routeApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import flatListStyles from '../../styles/flatListStyle';
 
@@ -37,6 +37,12 @@ const DisplayAllMyRoutesV = () => {
 
   console.log('voir ' + JSON.stringify(data[0]));
 
+  const doneRoutes = async () => {
+    const routeParamsToken = await AsyncStorage.getItem('Token');
+    const done = await AxiosDoneRoutes(routeParamsToken);
+    setData(done);
+  };
+
   const ItemSeparatorView = () => {
     return (
       //Item Separator
@@ -63,7 +69,9 @@ const DisplayAllMyRoutesV = () => {
               </View>
               <TouchableOpacity
                 style={displayStyles.button}
-                onPress={() => console.log('Bouton validé cliqué')}>
+                onPress={() => {
+                  doneRoutes();
+                }}>
                 <Text style={displayStyles.connect}>VALIDER</Text>
               </TouchableOpacity>
               <TouchableOpacity
