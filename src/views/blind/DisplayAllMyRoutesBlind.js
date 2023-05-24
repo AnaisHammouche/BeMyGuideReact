@@ -1,14 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import displayStyles from '../../styles/displayAllMyRoutesBlindStyle';
-
 import {
   SafeAreaView,
   View,
   TouchableOpacity,
   Text,
   FlatList,
+  Image,
 } from 'react-native';
-
 import {AxiosListRoutes} from '../../api/routeApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import flatListStyles from '../../styles/flatListStyle';
@@ -20,6 +19,7 @@ const DisplayAllMyRoutesRoutesBlind = () => {
     getMatch();
   }, []);
 
+  // Récupère les trajets de l'utilisateur
   const getMatch = async () => {
     const routeParamsToken = await AsyncStorage.getItem('Token');
     console.log('routeToken ' + routeParamsToken);
@@ -34,25 +34,117 @@ const DisplayAllMyRoutesRoutesBlind = () => {
 
   console.log('voir ' + JSON.stringify(data[0]));
 
+  // Composant pour afficher une ligne de séparation entre les éléments de la liste
   const ItemSeparatorView = () => {
     return (
+
       //Item Separator
-      <View style={{height: 0.5, width: '100%', backgroundColor: '#C8C8C8'}} />
+      <View style={{height: 2, width: '100%', backgroundColor: '#C8C8C8'}} />
+
     );
   };
 
+  const renderItem = ({ item }) => {
+    if (item.routeStatus == "PENDING") {
+      return (  <View style={flatListStyles.container}>
+        <View style={flatListStyles.container}>
+          <Text style={displayStyles.text}>
+            Départ : {item.fromStation}
+          </Text>
+          <Text style={displayStyles.text}>
+            Arrivée : {item.toStation}
+          </Text>
+          <View style={displayStyles.dateContainer}>
+            <Text style={displayStyles.text}>
+              Le : {item.dateRoute}</Text>
+            <Text style={displayStyles.textTime }>
+              À : {item.startingTime}
+            </Text>
+          </View>
+          <Text style={displayStyles.text}>
+            Statut : En attente
+          </Text>
+          <Text style={displayStyles.text}>
+            Avec : 
+          </Text>
+          <Text style={displayStyles.text}>
+            Numéro de téléphone : 
+          </Text>
+          
+        </View>
+        <View style={displayStyles.buttonContainer}>
+          <TouchableOpacity
+            style={displayStyles.button}
+            onPress={() => console.log('Bouton validé cliqué')}>
+            <Text style={displayStyles.connect}>VALIDER</Text>
+          </TouchableOpacity>
+        
+        </View>
+      </View>)
+    }
+    else if (item.routeStatus == "ACCEPTED") {
+      
+        return (  <View style={flatListStyles.container}>
+          <View style={flatListStyles.container}>
+            <Text style={displayStyles.text}>
+              Départ : {item.fromStation}
+            </Text>
+            <Text style={displayStyles.text}>
+              Arrivée : {item.toStation}
+            </Text>
+            <View style={displayStyles.dateContainer}>
+              <Text style={displayStyles.text}>
+                Le : {item.dateRoute}</Text>
+              <Text style={displayStyles.textTime }>
+                À : {item.startingTime}
+              </Text>
+            </View>
+            <Text style={displayStyles.text}>
+              Statut : Confirmé
+            </Text>
+            <Text style={displayStyles.text}>
+              Avec : 
+            </Text>
+            <Text style={displayStyles.text}>
+              Numéro de téléphone : 
+            </Text>
+            
+          </View>
+          <View style={displayStyles.buttonContainer}>
+            <TouchableOpacity
+              style={displayStyles.button}
+              onPress={() => console.log('Bouton validé cliqué')}>
+              <Text style={displayStyles.connect}>VALIDER</Text>
+            </TouchableOpacity>
+          
+          </View>
+        </View>)
+      }
+      return (
+        <Text>Statut : {item.routeStatus} !</Text>
+      )
+    };
+  
   return (
     <SafeAreaView>
-      <Text style={displayStyles.title}>VOS TRAJETS</Text>
+      <View>
+        <Image
+          source={require('../../assets/close_eye.png')}
+          style={displayStyles.icon}
+        />
+        <Text style={displayStyles.title}>Vos trajets</Text>
+      </View>
 
       <FlatList
         showsHorizontalScrollIndicator={false}
         refreshing={true}
         overScrollMode="always"
+        ItemSeparatorComponent={ItemSeparatorView}
+        // myCondition={myConditionFunction}
         data={data}
         keyExtractor={item => item.id}
-        ItemSeparatorComponent={ItemSeparatorView}
         renderItem={({item}) => {
+        
           return (
             <View style={flatListStyles.container}>
               <View style={flatListStyles.container}>
@@ -62,8 +154,22 @@ const DisplayAllMyRoutesRoutesBlind = () => {
                 <Text style={displayStyles.text}>
                   Arrivée : {item.toStation}
                 </Text>
-                <Text style={displayStyles.text}>Le : {item.dateRoute}</Text>
-                <Text style={displayStyles.text}>À : {item.startingTime}</Text>
+                <View style={displayStyles.dateContainer}>
+                  <Text style={displayStyles.text}>
+                    Le : {item.dateRoute}</Text>
+                  <Text style={displayStyles.textTime }>
+                    À : {item.startingTime}
+                  </Text>
+                </View>
+                <Text style={displayStyles.text}>
+                  Statut : {item.routeStatus}
+                </Text>
+                <Text style={displayStyles.text}>
+                  Avec : 
+                </Text>
+                <Text style={displayStyles.text}>
+                  Numéro de téléphone : 
+                </Text>
               </View>
               <View style={displayStyles.buttonContainer}>
                 <TouchableOpacity
@@ -71,11 +177,11 @@ const DisplayAllMyRoutesRoutesBlind = () => {
                   onPress={() => console.log('Bouton validé cliqué')}>
                   <Text style={displayStyles.connect}>VALIDER</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
+                {/* <TouchableOpacity
                   style={displayStyles.buttonRed}
                   onPress={() => console.log('bouton annulé cliqué')}>
                   <Text style={displayStyles.connect}>ANNULER</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
             </View>
           );

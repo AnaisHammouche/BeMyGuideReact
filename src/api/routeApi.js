@@ -4,6 +4,7 @@ import {Alert} from 'react-native';
 
 let baseUrl = process.env.BASE_URL;
 
+// Fonction pour envoyer une requête POST pour ajouter une route
 export async function AxiosRoute(
   fromStation,
   toStation,
@@ -55,7 +56,6 @@ export async function AxiosRoute(
       }
     });
 }
-[];
 
 export async function AxiosRouteGet(routeParamsToken, idRoute) {
   //console.log('Bonjour axios ');
@@ -124,6 +124,8 @@ export async function AxiosListRoutes(token) {
     });
 }
 
+
+// Fonction pour envoyer une requête POST à SendGrid
 // export async function PostAxiosSendGrid (){
 //     axios
 //     .post(`${baseUrl}/sendgrid`, {})

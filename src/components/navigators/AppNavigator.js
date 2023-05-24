@@ -8,13 +8,13 @@ import Match from '../../views/sighted/Match';
 import RegisterBlind from '../../views/blind/registerBlind';
 import Waiting from '../../views/waiting';
 import DisplayAllMyRoutesBlind from '../../views/blind/DisplayAllMyRoutesBlind';
-import FormRouteV from '../../views/sighted/formRouteV';
 import ProfileScreen from '../../views/profile';
 import BottomTabNavigator from './BottomTabNavigator';
 
 const Stack = createNativeStackNavigator();
 // const Tab = createBottomTabNavigator();
 
+// Création d'un navigateur d'applications
 const AppNavigator = () => {
   return (
     <NavigationContainer independent={true}>
@@ -23,8 +23,7 @@ const AppNavigator = () => {
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="FormRouteBlind" component={FormRouteBlind} />
-        <Stack.Screen name="FormRouteV" component={FormRouteV} />
+        <Stack.Screen name="FormRouteBlind" component={FormRouteBlind} /> 
         <Stack.Screen name="RegisterBlind" component={RegisterBlind} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Match" component={Match} />

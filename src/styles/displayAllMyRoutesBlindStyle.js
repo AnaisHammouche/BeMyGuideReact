@@ -2,26 +2,24 @@ import {StyleSheet} from 'react-native';
 import {colors_theme} from '../config/colors_theme.js';
 
 const displayStyles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
-
-  container: {
-    flex: 1,
-    padding: 40,
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-  },
+  // safeArea: {
+  //   flex: 1,
+  // },
 
   title: {
     fontFamily: 'RobotoMono-Bold',
     fontSize: 30,
     textAlign: 'center',
-    marginBottom: 20,
-    marginTop: 30,
+    //marginLeft: 20,
+    marginBottom: 36,
   },
 
+  icon: {
+    // display: inline block react native
+    marginTop: 40,
+    marginLeft: 180,
+    marginBottom: 10,
+  },
   text: {
     fontWeight: '700',
     fontSize: 17,
@@ -37,7 +35,20 @@ const displayStyles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
   },
+  dateContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
 
+  textTime: {
+    marginLeft: 20,
+    fontWeight: '700',
+    fontSize: 17,
+    marginBottom: 10,
+  },
   buttonContainer: {
     flex: 1,
     flexDirection: 'row',
