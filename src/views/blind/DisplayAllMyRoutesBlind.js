@@ -19,7 +19,7 @@ const DisplayAllMyRoutesRoutesBlind = () => {
     getMatch();
   }, []);
 
-  // Récupère les trajets de l'utilisateur
+  // Retrieve user's route
   const getMatch = async () => {
     const routeParamsToken = await AsyncStorage.getItem('Token');
     console.log('routeToken ' + routeParamsToken);
@@ -32,6 +32,7 @@ const DisplayAllMyRoutesRoutesBlind = () => {
     }
   };
 
+  // update route as DONE so that helper gets reward.
   const doneRoutes = async () => {
     const routeParamsToken = await AsyncStorage.getItem('Token');
     const done = await AxiosDoneRoutes(routeParamsToken);
@@ -40,7 +41,7 @@ const DisplayAllMyRoutesRoutesBlind = () => {
 
   console.log('voir ' + JSON.stringify(data));
 
-  // Composant pour afficher une ligne de séparation entre les éléments de la liste
+  // Component to display separation line
   const ItemSeparatorView = () => {
     return (
       //Item Separator
