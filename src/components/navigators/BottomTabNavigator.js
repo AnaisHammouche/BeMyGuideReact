@@ -99,7 +99,7 @@ const BottomTabNavigator = ({navigation, route}) => {
                       tintColor: focused ? '#27AE60' : '#748c94',
                     }}
                   />
-                  <Text style={styles.text}>Trajets</Text>
+                  <Text style={styles.text}>Match</Text>
                 </View>
               ),
             }}

@@ -124,7 +124,21 @@ export async function AxiosListRoutes(token) {
     });
 }
 
-
+export async function AxiosValidateMatchRoutes(token) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
+    token,
+  )}`;
+  return await axios
+    .put(`${baseUrl}/routes/validated`)
+    .then(async function (response) {
+      console.log(response.status);
+      if (response.status === 200) {
+        Alert.alert('La route a été confirmé !! ');
+      } else {
+        Alert.alert('Nous avons rencontré un problème.');
+      }
+    });
+}
 // Fonction pour envoyer une requête POST à SendGrid
 // export async function PostAxiosSendGrid (){
 //     axios

@@ -11,7 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../styles/LoginBindStyle';
 import displayStyles from '../../styles/displayAllMyRoutesBlindStyle';
 import flatListStyles from '../../styles/flatListStyle';
-import {AxiosMatchAuthUser} from '../../api/routeApi';
+import {AxiosMatchAuthUser, AxiosValidateMatchRoutes} from '../../api/routeApi';
 
 const Match = () => {
   const [data, setData] = useState([]);
@@ -36,6 +36,12 @@ const Match = () => {
   };
 
   console.log('voir Match ' + JSON.stringify(data));
+
+  const validatedMatch = async () => {
+    const routeParamsToken = await AsyncStorage.getItem('Token');
+    await AxiosValidateMatchRoutes(routeParamsToken);
+    //return validated;
+  };
 
   const ItemSeparatorView = () => {
     return (
@@ -75,7 +81,9 @@ const Match = () => {
                 <View style={displayStyles.buttonContainer}>
                   <TouchableOpacity
                     style={displayStyles.button}
-                    onPress={() => console.log('Bouton validé cliqué')}>
+                    onPress={() => {
+                      validatedMatch();
+                    }}>
                     <Text style={displayStyles.connect}>VALIDER</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
