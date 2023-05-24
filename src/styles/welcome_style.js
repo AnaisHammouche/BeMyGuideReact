@@ -127,6 +127,15 @@ export const styles = StyleSheet.create({
     marginTop: 50,
     flexDirection: 'column',
     alignItems: 'center',
-  }
+  },
+  disabledReward: {
+    opacity: 0.5, // Réduit l'opacité pour griser l'élément
+  },
+
+  disabledButton: {
+    backgroundColor: '#ccc', // Couleur de fond grise pour le bouton
+    opacity: 0.5, // Réduit l'opacité pour griser le bouton
+    // Ajoutez d'autres styles de désactivation du bouton si nécessaire
+  },
 
 });

@@ -61,7 +61,7 @@ const isBlind = JSON.parse(route.params.userIsBlind);
           <Tab.Screen
             name="Trajets"
             component={DisplayAllMyRoutesBlind}
-            initialParams={{token: routeParamsToken}}
+            //initialParams={{token: routeParamsToken}}
             options={{
               tabBarIcon: ({ focused }) => (
                 <View
