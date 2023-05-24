@@ -11,7 +11,7 @@ import Match from '../../views/sighted/Match';
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = ({navigation, route}) => {
-  const isBlind = JSON.parse(route.params.userIsBlind);
+  const isBlind = route.params.userIsBlind;
 
   return (
     <Tab.Navigator
@@ -57,6 +57,7 @@ const BottomTabNavigator = ({navigation, route}) => {
           <Tab.Screen
             name="Trajets"
             component={DisplayAllMyRoutesBlind}
+            initialParams={{token: routeParamsToken}}
             options={{
               tabBarIcon: ({focused}) => (
                 <View
@@ -82,6 +83,7 @@ const BottomTabNavigator = ({navigation, route}) => {
           <Tab.Screen
             name="Match"
             component={Match}
+            initialParams={{idRoute: idRoute}}
             options={{
               tabBarIcon: ({focused}) => (
                 <View

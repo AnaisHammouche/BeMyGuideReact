@@ -21,11 +21,6 @@ const Waiting = ({route, navigation}) => {
       console.log('route ' + routeParamsToken);
       try {
         const response = await AxiosRoutePut(routeParamsToken, idRoute);
-        /* setData(response);
-        console.log('axiosRoutePut ' + response);
-        if (response) {
-        } */
-        //return data;
       } catch (error) {
         console.log('Error: ', error);
       }

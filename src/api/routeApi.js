@@ -1,5 +1,4 @@
 import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Alert} from 'react-native';
 
 let baseUrl = process.env.BASE_URL;
@@ -133,7 +132,9 @@ export async function AxiosValidateMatchRoutes(token) {
     .then(async function (response) {
       console.log(response.status);
       if (response.status === 200) {
-        Alert.alert('Vous venez de confirmer votre trajet !! ');
+        Alert.alert(
+          "Vous venez de confirmer votre trajet ! \n Retrouvez l'ensemble de vos itinéraires sur la page Trajets.",
+        );
       } else {
         Alert.alert('Nous avons rencontré un problème.');
       }

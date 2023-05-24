@@ -13,44 +13,46 @@ import displayStyles from '../../styles/displayAllMyRoutesBlindStyle';
 import flatListStyles from '../../styles/flatListStyle';
 import {AxiosMatchAuthUser, AxiosValidateMatchRoutes} from '../../api/routeApi';
 
-const Match = () => {
+const Match = ({navigation}) => {
   let [data, setData] = useState([]);
   //const [refreshKey, setRefreshKey] = useState(0);
   // const [test, setTest] = useState([]);
 
   useEffect(() => {
+    // Function to fetch match data
     const getMatch = async () => {
       const routeParamsToken = await AsyncStorage.getItem('Token');
-      //const value = route.params.idRoute;
-      //console.log('idRoute ' + value.idRoute);
       console.log('route token ' + routeParamsToken);
       try {
         const response = await AxiosMatchAuthUser(routeParamsToken);
         setData(response);
-        //const data = response.data[0];
         console.log('axiosRouteMatch ' + response);
       } catch (error) {
         console.log('Error: ', error);
       }
-      //setRefreshKey(oldKey => oldKey + 1);
     };
     getMatch();
-  }, [setData]);
+  }, []);
 
   console.log('voir Match ' + JSON.stringify(data));
   console.log('data match avant validated' + data);
 
   const validatedMatch = async () => {
+    // Function to validate the match triggered by button
     const routeParamsToken = await AsyncStorage.getItem('Token');
     const put = await AxiosValidateMatchRoutes(routeParamsToken);
     setData(put);
     console.log('data match après validated' + data);
-    //return validated;
+    setTimeout(() => {
+      navigation.navigate('Tab', {
+        token: routeParamsToken,
+      });
+    }, 1 * 5 * 1000);
   };
 
+  // Component to render item separator
   const ItemSeparatorView = () => {
     return (
-      //Item Separator
       <View style={{height: 0.5, width: '100%', backgroundColor: '#C8C8C8'}} />
     );
   };
@@ -66,7 +68,7 @@ const Match = () => {
           refreshing={true}
           overScrollMode="always"
           data={data}
-          keyExtractor={item => item.id}
+          keyExtractor={item => item.id.toString()}
           ItemSeparatorComponent={ItemSeparatorView}
           renderItem={({item}) => {
             return (
