@@ -16,6 +16,23 @@ const Stack = createNativeStackNavigator();
 
 // Création d'un navigateur d'applications
 const AppNavigator = () => {
+  return (
+    <NavigationContainer independent={true}>
+      <Stack.Navigator
+        initialRouteName="Welcome"
+        screenOptions={{headerShown: false}}>
+        <Stack.Screen name="Welcome" component={Welcome} />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="FormRouteBlind" component={FormRouteBlind} />
+        <Stack.Screen name="RegisterBlind" component={RegisterBlind} />
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Match" component={Match} />
+        <Stack.Screen name="Waiting" component={Waiting} />
+        <Stack.Screen
+          name="DisplayAllMyRoutesBlind"
+          component={DisplayAllMyRoutesBlind}
+        />
+            
 const [screenReaderEnabled, setScreenReaderEnabled] = React.useState(false);
 
 // Ajout de la fonction pour vérifier si le lecteur d'écran est activé en utilisant `AccessibilityInfo` et stocké l'état dans `screenReaderEnabled`.

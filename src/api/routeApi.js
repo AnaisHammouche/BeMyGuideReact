@@ -1,5 +1,4 @@
 import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Alert} from 'react-native';
 
 let baseUrl = process.env.BASE_URL;
@@ -124,7 +123,23 @@ export async function AxiosListRoutes(token) {
     });
 }
 
-
+export async function AxiosValidateMatchRoutes(token) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
+    token,
+  )}`;
+  return await axios
+    .put(`${baseUrl}/routes/validated`)
+    .then(async function (response) {
+      console.log(response.status);
+      if (response.status === 200) {
+        Alert.alert(
+          "Vous venez de confirmer votre trajet ! \n Retrouvez l'ensemble de vos itinéraires sur la page Trajets.",
+        );
+      } else {
+        Alert.alert('Nous avons rencontré un problème.');
+      }
+    });
+}
 // Fonction pour envoyer une requête POST à SendGrid
 // export async function PostAxiosSendGrid (){
 //     axios

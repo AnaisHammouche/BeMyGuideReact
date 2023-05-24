@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useNavigation} from '@react-navigation/native';
 import {
   SafeAreaView,
   Text,
@@ -9,15 +8,8 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-
-//import {DatePickerIOSComponent} from '@react-native-community/datetimepicker'
-
-//import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../styles/formRoute_style';
-import {AxiosRoute, AxiosRouteGet} from '../../api/routeApi';
-//import DatePicker from 'react-native-datepicker';
-//import TimePicker from 'react-native-simple-time-picker';
-import BottomTabNavigator from '../../components/navigators/BottomTabNavigator';
+import {AxiosRoute} from '../../api/routeApi';
 
 const currentDate = new Date();
 function addOneYear(date) {
@@ -25,8 +17,6 @@ date.setFullYear(date.getFullYear() + 1);
 return date;
 }
 const maxDate = addOneYear(currentDate);
-//import styles from '../../styles/formRoute_style';
-//import {AxiosRoute} from '../../api/routeApi';
 
 const FormRouteBlind = ({navigation, route}) => {
   const isBlind = route.params.isBlindUser;

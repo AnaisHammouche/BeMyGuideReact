@@ -11,35 +11,48 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../styles/LoginBindStyle';
 import displayStyles from '../../styles/displayAllMyRoutesBlindStyle';
 import flatListStyles from '../../styles/flatListStyle';
-import {AxiosMatchAuthUser} from '../../api/routeApi';
+import {AxiosMatchAuthUser, AxiosValidateMatchRoutes} from '../../api/routeApi';
 
-const Match = () => {
-  const [data, setData] = useState([]);
+const Match = ({navigation}) => {
+  let [data, setData] = useState([]);
+  //const [refreshKey, setRefreshKey] = useState(0);
+  // const [test, setTest] = useState([]);
 
   useEffect(() => {
+    // Function to fetch match data
+    const getMatch = async () => {
+      const routeParamsToken = await AsyncStorage.getItem('Token');
+      console.log('route token ' + routeParamsToken);
+      try {
+        const response = await AxiosMatchAuthUser(routeParamsToken);
+        setData(response);
+        console.log('axiosRouteMatch ' + response);
+      } catch (error) {
+        console.log('Error: ', error);
+      }
+    };
     getMatch();
   }, []);
 
-  const getMatch = async () => {
+  console.log('voir Match ' + JSON.stringify(data));
+  console.log('data match avant validated' + data);
+
+  const validatedMatch = async () => {
+    // Function to validate the match triggered by button
     const routeParamsToken = await AsyncStorage.getItem('Token');
-    //const value = route.params.idRoute;
-    //console.log('idRoute ' + value.idRoute);
-    console.log('route token ' + routeParamsToken);
-    try {
-      const response = await AxiosMatchAuthUser(routeParamsToken);
-      setData(response);
-      //const data = response.data[0];
-      console.log('axiosRouteMatch ' + response);
-    } catch (error) {
-      console.log('Error: ', error);
-    }
+    const put = await AxiosValidateMatchRoutes(routeParamsToken);
+    setData(put);
+    console.log('data match après validated' + data);
+    setTimeout(() => {
+      navigation.navigate('Tab', {
+        token: routeParamsToken,
+      });
+    }, 1 * 5 * 1000);
   };
 
-  console.log('voir Match ' + JSON.stringify(data));
-
+  // Component to render item separator
   const ItemSeparatorView = () => {
     return (
-      //Item Separator
       <View style={{height: 0.5, width: '100%', backgroundColor: '#C8C8C8'}} />
     );
   };
@@ -55,7 +68,7 @@ const Match = () => {
           refreshing={true}
           overScrollMode="always"
           data={data}
-          keyExtractor={item => item.id}
+          keyExtractor={item => item.id.toString()}
           ItemSeparatorComponent={ItemSeparatorView}
           renderItem={({item}) => {
             return (
@@ -75,7 +88,9 @@ const Match = () => {
                 <View style={displayStyles.buttonContainer}>
                   <TouchableOpacity
                     style={displayStyles.button}
-                    onPress={() => console.log('Bouton validé cliqué')}>
+                    onPress={() => {
+                      validatedMatch();
+                    }}>
                     <Text style={displayStyles.connect}>VALIDER</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
