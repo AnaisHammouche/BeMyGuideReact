@@ -15,24 +15,25 @@ import {AxiosMatchAuthUser, AxiosValidateMatchRoutes} from '../../api/routeApi';
 
 const Match = ({navigation}) => {
   let [data, setData] = useState([]);
-  //const [refreshKey, setRefreshKey] = useState(0);
+  const [refreshing, setRefreshing] = useState(false);
   // const [test, setTest] = useState([]);
 
   useEffect(() => {
-    // Function to fetch match data
-    const getMatch = async () => {
-      const routeParamsToken = await AsyncStorage.getItem('Token');
-      console.log('route token ' + routeParamsToken);
-      try {
-        const response = await AxiosMatchAuthUser(routeParamsToken);
-        setData(response);
-        console.log('axiosRouteMatch ' + response);
-      } catch (error) {
-        console.log('Error: ', error);
-      }
-    };
     getMatch();
   }, []);
+
+  // Function to fetch match data
+  const getMatch = async () => {
+    const routeParamsToken = await AsyncStorage.getItem('Token');
+    console.log('route token ' + routeParamsToken);
+    try {
+      const response = await AxiosMatchAuthUser(routeParamsToken);
+      setData(response);
+      console.log('axiosRouteMatch ' + JSON.stringify(response));
+    } catch (error) {
+      console.log('Error: ', error);
+    }
+  };
 
   console.log('voir Match ' + JSON.stringify(data));
   console.log('data match avant validated' + data);
@@ -42,7 +43,13 @@ const Match = ({navigation}) => {
     const routeParamsToken = await AsyncStorage.getItem('Token');
     const put = await AxiosValidateMatchRoutes(routeParamsToken);
     setData(put);
-    console.log('data match après validated' + data);
+    console.log('data match après validated' + put);
+    setRefreshing(true);
+    // Rafraîchir la liste en appelant à nouveau getMatch après un certain délai
+    setTimeout(() => {
+      setRefreshing(false);
+      getMatch();
+    }, 1000);
   };
 
   // Component to render item separator
@@ -98,26 +105,7 @@ const Match = ({navigation}) => {
             );
           }}
         />
-        {/*  <View>
-          <Text>Votre demande de trajet</Text>
-          <Text>De : </Text>
-          <Text>{data[0].fromStation}</Text>
-          <Text>À : </Text>
-          <Text>{data[0].toStation}</Text>
-          <Text>Le : </Text>
-          <Text>{data[0].dateRoute}</Text>
-          <Text>À : </Text>
-          <Text>{data[0].startingTime}</Text>
-          <TouchableOpacity
-            style={displayStyles.button}
-            onPress={() => console.log('Bouton validé cliqué')}>
-            <Text style={displayStyles.connect}>VALIDER</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={displayStyles.buttonRed}
-            onPress={() => console.log('bouton annulé cliqué')}>
-            <Text style={displayStyles.connect}>ANNULER</Text>
-          </TouchableOpacity>
+        {/*
           {/* <Text >à été confirmée par {firstName}.</Text> */}
         {/* <Text >N'oubliez pas de le contacter afin de convenir d'un lieu de rendez-vous plus précis tel que le numéro d'entée de la station. </Text>
          */}

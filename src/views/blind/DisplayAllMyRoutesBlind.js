@@ -14,6 +14,7 @@ import flatListStyles from '../../styles/flatListStyle';
 
 const DisplayAllMyRoutesRoutesBlind = () => {
   const [data, setData] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     getMatch();
@@ -37,6 +38,12 @@ const DisplayAllMyRoutesRoutesBlind = () => {
     const routeParamsToken = await AsyncStorage.getItem('Token');
     const done = await AxiosDoneRoutes(routeParamsToken);
     setData(done);
+    setRefreshing(true);
+    // Rafraîchir la liste en appelant à nouveau getMatch après un certain délai
+    setTimeout(() => {
+      setRefreshing(false);
+      getMatch();
+    }, 1000);
   };
 
   console.log('voir ' + JSON.stringify(data));
