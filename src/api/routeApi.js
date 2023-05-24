@@ -133,7 +133,7 @@ export async function AxiosValidateMatchRoutes(token) {
     .then(async function (response) {
       console.log(response.status);
       if (response.status === 200) {
-        Alert.alert('La route a été confirmé !! ');
+        Alert.alert('Vous venez de confirmer votre trajet !! ');
       } else {
         Alert.alert('Nous avons rencontré un problème.');
       }

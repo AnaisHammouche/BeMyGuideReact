@@ -14,32 +14,37 @@ import flatListStyles from '../../styles/flatListStyle';
 import {AxiosMatchAuthUser, AxiosValidateMatchRoutes} from '../../api/routeApi';
 
 const Match = () => {
-  const [data, setData] = useState([]);
+  let [data, setData] = useState([]);
+  //const [refreshKey, setRefreshKey] = useState(0);
+  // const [test, setTest] = useState([]);
 
   useEffect(() => {
+    const getMatch = async () => {
+      const routeParamsToken = await AsyncStorage.getItem('Token');
+      //const value = route.params.idRoute;
+      //console.log('idRoute ' + value.idRoute);
+      console.log('route token ' + routeParamsToken);
+      try {
+        const response = await AxiosMatchAuthUser(routeParamsToken);
+        setData(response);
+        //const data = response.data[0];
+        console.log('axiosRouteMatch ' + response);
+      } catch (error) {
+        console.log('Error: ', error);
+      }
+      //setRefreshKey(oldKey => oldKey + 1);
+    };
     getMatch();
-  }, []);
-
-  const getMatch = async () => {
-    const routeParamsToken = await AsyncStorage.getItem('Token');
-    //const value = route.params.idRoute;
-    //console.log('idRoute ' + value.idRoute);
-    console.log('route token ' + routeParamsToken);
-    try {
-      const response = await AxiosMatchAuthUser(routeParamsToken);
-      setData(response);
-      //const data = response.data[0];
-      console.log('axiosRouteMatch ' + response);
-    } catch (error) {
-      console.log('Error: ', error);
-    }
-  };
+  }, [setData]);
 
   console.log('voir Match ' + JSON.stringify(data));
+  console.log('data match avant validated' + data);
 
   const validatedMatch = async () => {
     const routeParamsToken = await AsyncStorage.getItem('Token');
-    await AxiosValidateMatchRoutes(routeParamsToken);
+    const put = await AxiosValidateMatchRoutes(routeParamsToken);
+    setData(put);
+    console.log('data match après validated' + data);
     //return validated;
   };
 
