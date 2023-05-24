@@ -36,7 +36,7 @@ const Welcome = props => {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity onPress={goToRegisterBlind}  style={styles.button1}>
+          <TouchableOpacity onPress={goToRegisterBlind} style={styles.button1}>
             <Text style={styles.connect}> ME FAIRE ACCOMPAGNER</Text>
           </TouchableOpacity>
 

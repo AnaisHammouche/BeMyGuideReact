@@ -1,5 +1,12 @@
 import React, {useCallback, useEffect, useState} from 'react';
-import {SafeAreaView, View, Text, Image, Touchable, TouchableOpacity} from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  Image,
+  Touchable,
+  TouchableOpacity,
+} from 'react-native';
 import {styles} from '../../styles/welcome_style';
 import ProgressCircle from 'react-native-progress-circle';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -22,30 +29,28 @@ const Rewards = () => {
       console.log('claire : ' + dataNumber * 25);
 
       setRewardsRouteNumbers(dataNumber * 25);
-    //   if (dataNumber >=4) {
-    //             console.log('4')
-           
-    //             return ( <View><Text>New view</Text></View>);
-    //           } else {
-    //             console.log('< 4')
-    //           }
-      
+      //   if (dataNumber >=4) {
+      //             console.log('4')
+
+      //             return ( <View><Text>New view</Text></View>);
+      //           } else {
+      //             console.log('< 4')
+      //           }
     } catch (error) {
       console.log('Error: ', error);
     }
   };
 
   getRewardsRouteNumbers();
- 
 
-//   function ArrayRewards() {
-//     if (dataNumber >=4) {
-//         console.log('4')
-//         return ( <View><Text>New view</Text></View>);
-//       } else {
-//         console.log('< 4')
-//       }
-//   }
+  //   function ArrayRewards() {
+  //     if (dataNumber >=4) {
+  //         console.log('4')
+  //         return ( <View><Text>New view</Text></View>);
+  //       } else {
+  //         console.log('< 4')
+  //       }
+  //   }
 
   return (
     <SafeAreaView style={styles.screen2}>
@@ -76,33 +81,30 @@ const Rewards = () => {
             <Text style={{fontSize: 18}}>{rewardsRouteNumbers}% </Text>
           </ProgressCircle>
           <Text>Récompense</Text>
-          <TouchableOpacity
-          onPress={console.log('REWARD UTILISE')}
-          >
-          <Text style={styles.buttonText}>VALIDER</Text>
-        </TouchableOpacity>
+          <TouchableOpacity onPress={console.log('REWARD UTILISE')}>
+            <Text style={styles.buttonText}>VALIDER</Text>
+          </TouchableOpacity>
         </View>
         {rewardsRouteNumbers >= 4 ? (
-        <View style={styles.reward}>
-        <ProgressCircle
-          percent={rewardsRouteNumbers} //variable
-          maxPercent={100}
-          startFromZero="true"
-          radius={50}
-          borderWidth={8}
-          color="#22D197"
-          shadowColor="#999"
-          bgColor="#fff">
-          <Image
-            source={require('../../assets/reward.png')}
-            style={styles.icon3}
-          />
+          <View style={styles.reward}>
+            <ProgressCircle
+              percent={rewardsRouteNumbers} //variable
+              maxPercent={100}
+              startFromZero="true"
+              radius={50}
+              borderWidth={8}
+              color="#22D197"
+              shadowColor="#999"
+              bgColor="#fff">
+              <Image
+                source={require('../../assets/reward.png')}
+                style={styles.icon3}
+              />
 
-          <Text style={{fontSize: 18}}>{rewardsRouteNumbers}% </Text>
-        </ProgressCircle>
-        <Text>Récompense</Text>
-        
-      </View>
+              <Text style={{fontSize: 18}}>{rewardsRouteNumbers}% </Text>
+            </ProgressCircle>
+            <Text>Récompense</Text>
+          </View>
         ) : (
           <View>
             <Text>Less than 4</Text>
