@@ -5,7 +5,7 @@ import { AccessibilityInfo } from 'react-native';
 import FormRouteBlind from '../../views/blind/formRouteBlind';
 import Welcome from '../../views/welcome';
 import Login from '../../views/login';
-import Match from '../../views/blind/Match';
+import Match from '../../views/sighted/Match';
 import RegisterBlind from '../../views/blind/registerBlind';
 import Waiting from '../../views/waiting';
 import DisplayAllMyRoutesBlind from '../../views/blind/DisplayAllMyRoutesBlind';

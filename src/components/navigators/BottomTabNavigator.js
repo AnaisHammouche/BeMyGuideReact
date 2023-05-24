@@ -6,6 +6,7 @@ import Rewards from '../../views/sighted/Rewards';
 import { View, Image, Text } from 'react-native';
 import ProfileScreen from '../../views/profile';
 import { styles } from '../../styles/register_style';
+import Match from '../../views/sighted/Match';
 
 const Tab = createBottomTabNavigator();
 
@@ -78,12 +79,37 @@ const BottomTabNavigator = ({ navigation, route }) => {
                     }}
                     accessibilityLabel="Trajets"
                   />
-                  <Text style={styles.text}>Trajets</Text>
+                  <Text>Trajets</Text>
                 </View>
               ),
             }}
           />
-
+          <Tab.Screen
+                      name="Match"
+                      component={Match}
+            options={{
+              tabBarIcon: ({focused}) => (
+                <View
+                  style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    top: 10,
+                  }}>
+                  <Image
+                    source={require('../../assets/eye.png')}
+                    resizeMode="contain"
+                    style={{
+                      width: 25,
+                      height: 25,
+                      tintColor: focused ? '#27AE60' : '#748c94',
+                    }}
+                    accessibilityLabel="Match"
+                  />
+                  <Text style={styles.text}>Match</Text>
+                </View>
+              ),
+            }}
+          />
           <Tab.Screen
             name="Rewards"
             component={Rewards}
@@ -106,12 +132,11 @@ const BottomTabNavigator = ({ navigation, route }) => {
                     }}
                     accessibilityLabel="Récompenses"
                   />
-                  <Text style={styles.text}>Récompenses</Text>
+                  <Text style={styles.text}>Rewards</Text>
                 </View>
               ),
             }}
           />
-
           <Tab.Screen
             name="Profile"
             component={ProfileScreen}
@@ -197,7 +222,6 @@ const BottomTabNavigator = ({ navigation, route }) => {
               ),
             }}
           />
-
           <Tab.Screen
             name="Profile"
             component={ProfileScreen}

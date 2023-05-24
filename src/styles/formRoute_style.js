@@ -4,7 +4,7 @@ import {StyleSheet} from 'react-native';
 import {FullWindowOverlay} from 'react-native-screens';
 import {colors_theme} from '../config/colors_theme.js';
 
-const formRoutesStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
   },
@@ -81,4 +81,4 @@ const formRoutesStyles = StyleSheet.create({
   },
 });
 
-export default formRoutesStyles;
+export default styles;

@@ -37,78 +37,27 @@ const DisplayAllMyRoutesRoutesBlind = () => {
   // Composant pour afficher une ligne de séparation entre les éléments de la liste
   const ItemSeparatorView = () => {
     return (
-
       //Item Separator
       <View style={{height: 2, width: '100%', backgroundColor: '#C8C8C8'}} />
-
     );
   };
 
-  const renderItem = ({ item }) => {
-    if (item.routeStatus == "PENDING") {
-      return (  <View style={flatListStyles.container}>
+  const renderItem = ({item}) => {
+    if (item.routeStatus == 'PENDING') {
+      return (
         <View style={flatListStyles.container}>
-          <Text style={displayStyles.text}>
-            Départ : {item.fromStation}
-          </Text>
-          <Text style={displayStyles.text}>
-            Arrivée : {item.toStation}
-          </Text>
-          <View style={displayStyles.dateContainer}>
-            <Text style={displayStyles.text}>
-              Le : {item.dateRoute}</Text>
-            <Text style={displayStyles.textTime }>
-              À : {item.startingTime}
-            </Text>
-          </View>
-          <Text style={displayStyles.text}>
-            Statut : En attente
-          </Text>
-          <Text style={displayStyles.text}>
-            Avec : 
-          </Text>
-          <Text style={displayStyles.text}>
-            Numéro de téléphone : 
-          </Text>
-          
-        </View>
-        <View style={displayStyles.buttonContainer}>
-          <TouchableOpacity
-            style={displayStyles.button}
-            onPress={() => console.log('Bouton validé cliqué')}>
-            <Text style={displayStyles.connect}>VALIDER</Text>
-          </TouchableOpacity>
-        
-        </View>
-      </View>)
-    }
-    else if (item.routeStatus == "ACCEPTED") {
-      
-        return (  <View style={flatListStyles.container}>
           <View style={flatListStyles.container}>
-            <Text style={displayStyles.text}>
-              Départ : {item.fromStation}
-            </Text>
-            <Text style={displayStyles.text}>
-              Arrivée : {item.toStation}
-            </Text>
+            <Text style={displayStyles.text}>Départ : {item.fromStation}</Text>
+            <Text style={displayStyles.text}>Arrivée : {item.toStation}</Text>
             <View style={displayStyles.dateContainer}>
-              <Text style={displayStyles.text}>
-                Le : {item.dateRoute}</Text>
-              <Text style={displayStyles.textTime }>
+              <Text style={displayStyles.text}>Le : {item.dateRoute}</Text>
+              <Text style={displayStyles.textTime}>
                 À : {item.startingTime}
               </Text>
             </View>
-            <Text style={displayStyles.text}>
-              Statut : Confirmé
-            </Text>
-            <Text style={displayStyles.text}>
-              Avec : 
-            </Text>
-            <Text style={displayStyles.text}>
-              Numéro de téléphone : 
-            </Text>
-            
+            <Text style={displayStyles.text}>Statut : En attente</Text>
+            <Text style={displayStyles.text}>Avec :</Text>
+            <Text style={displayStyles.text}>Numéro de téléphone :</Text>
           </View>
           <View style={displayStyles.buttonContainer}>
             <TouchableOpacity
@@ -116,15 +65,38 @@ const DisplayAllMyRoutesRoutesBlind = () => {
               onPress={() => console.log('Bouton validé cliqué')}>
               <Text style={displayStyles.connect}>VALIDER</Text>
             </TouchableOpacity>
-          
           </View>
-        </View>)
-      }
+        </View>
+      );
+    } else if (item.routeStatus == 'ACCEPTED') {
       return (
-        <Text>Statut : {item.routeStatus} !</Text>
-      )
-    };
-  
+        <View style={flatListStyles.container}>
+          <View style={flatListStyles.container}>
+            <Text style={displayStyles.text}>Départ : {item.fromStation}</Text>
+            <Text style={displayStyles.text}>Arrivée : {item.toStation}</Text>
+            <View style={displayStyles.dateContainer}>
+              <Text style={displayStyles.text}>Le : {item.dateRoute}</Text>
+              <Text style={displayStyles.textTime}>
+                À : {item.startingTime}
+              </Text>
+            </View>
+            <Text style={displayStyles.text}>Statut : Confirmé</Text>
+            <Text style={displayStyles.text}>Avec :</Text>
+            <Text style={displayStyles.text}>Numéro de téléphone :</Text>
+          </View>
+          <View style={displayStyles.buttonContainer}>
+            <TouchableOpacity
+              style={displayStyles.button}
+              onPress={() => console.log('Bouton validé cliqué')}>
+              <Text style={displayStyles.connect}>VALIDER</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      );
+    }
+    return <Text>Statut : {item.routeStatus} !</Text>;
+  };
+
   return (
     <SafeAreaView>
       <View>
@@ -137,16 +109,16 @@ const DisplayAllMyRoutesRoutesBlind = () => {
 
       <FlatList
         showsHorizontalScrollIndicator={false}
+        refreshing={true}
+        overScrollMode="always"
         ItemSeparatorComponent={ItemSeparatorView}
         // myCondition={myConditionFunction}
         data={data}
         keyExtractor={item => item.id}
         renderItem={({item}) => {
-        
           return (
             <View style={flatListStyles.container}>
               <View style={flatListStyles.container}>
-
                 <Text style={displayStyles.text}>
                   Départ : {item.fromStation}
                 </Text>
@@ -154,23 +126,16 @@ const DisplayAllMyRoutesRoutesBlind = () => {
                   Arrivée : {item.toStation}
                 </Text>
                 <View style={displayStyles.dateContainer}>
-                  <Text style={displayStyles.text}>
-                    Le : {item.dateRoute}</Text>
-                  <Text style={displayStyles.textTime }>
+                  <Text style={displayStyles.text}>Le : {item.dateRoute}</Text>
+                  <Text style={displayStyles.textTime}>
                     À : {item.startingTime}
                   </Text>
                 </View>
                 <Text style={displayStyles.text}>
                   Statut : {item.routeStatus}
                 </Text>
-                <Text style={displayStyles.text}>
-                  Avec : 
-                </Text>
-                <Text style={displayStyles.text}>
-                  Numéro de téléphone : 
-                </Text>
-                
-
+                <Text style={displayStyles.text}>Avec :</Text>
+                <Text style={displayStyles.text}>Numéro de téléphone :</Text>
               </View>
               <View style={displayStyles.buttonContainer}>
                 <TouchableOpacity
