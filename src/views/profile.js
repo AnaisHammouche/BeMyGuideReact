@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import {View, Text, Image, SafeAreaView, TextInput} from 'react-native';
 import {axiosAuthUser} from '../api/userApi';
+import {axiosDeleteUser} from '../api/userApi';
 import {ProfileStyles} from '../styles/profileStyle';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ButtonDefault from '../components/button';
@@ -9,6 +10,7 @@ import {useNavigation} from '@react-navigation/native';
 export default function ProfileScreen() {
   const navigation = useNavigation();
   const [data, setData] = useState([]);
+  const [dataUser, setDataUser] = useState();
 
   useEffect(() => {
     userProfile();
@@ -51,10 +53,7 @@ export default function ProfileScreen() {
     try {
       const token = await AsyncStorage.getItem('Token');
       console.log('Token: ', token);
-      
-      // Ajoutez ici la logique pour supprimer l'utilisateur en base de données
-      // Utilisez le token pour identifier l'utilisateur et effectuer la suppression
-      
+      await axiosDeleteUser(token);
       await AsyncStorage.clear();
       console.log('AsyncStorage cleared');
       navigation.navigate('Welcome');
