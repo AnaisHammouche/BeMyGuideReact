@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, Image, SafeAreaView, TextInput} from 'react-native';
-import {axiosAuthUser} from '../api/userApi';
-import {ProfileStyles} from '../styles/profileStyle';
+import React, { useState, useEffect } from 'react';
+import { View, Text, Image, SafeAreaView, TextInput } from 'react-native';
+import { axiosAuthUser } from '../api/userApi';
+import { ProfileStyles } from '../styles/profileStyle';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ButtonDefault from '../components/button';
 
 export default function ProfileScreen() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     userProfile();
@@ -40,40 +40,55 @@ export default function ProfileScreen() {
         <Image
           source={require('../assets/close_eye.png')}
           style={ProfileStyles.icon}
+          accessible={true}
+          accessibilityLabel="Logo"
         />
         <Text style={ProfileStyles.title}>Mon profil</Text>
       </View>
       <View style={ProfileStyles.containerAvatar}>
         <Image
           style={ProfileStyles.avatar}
-          source={{uri: 'https://randomuser.me/api/portraits/men/1.jpg'}}
+          source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }}
+          accessible={true}
+          accessibilityLabel="Avatar"
         />
       </View>
       <View style={ProfileStyles.separator}>
-        <Text style={ProfileStyles.inputText}>MON NOM</Text>
+        <Text style={ProfileStyles.inputText} accessible={true} accessibilityLabel="Mon nom">
+          MON NOM
+        </Text>
         <TextInput
           style={ProfileStyles.input}
           editable={false}
           placeholder={data.firstName + ' ' + data.lastName}
           placeholderTextColor={'black'}
+          accessible={true}
+          accessibilityLabel="Mon nom"
         />
-        <Text style={ProfileStyles.inputText}>MON ADRESSE EMAIL</Text>
+        <Text style={ProfileStyles.inputText} accessible={true} accessibilityLabel="Mon adresse e-mail">
+          MON ADRESSE EMAIL
+        </Text>
         <TextInput
           style={ProfileStyles.input}
           editable={false}
           placeholder={data.email}
           placeholderTextColor={'black'}
+          accessible={true}
+          accessibilityLabel="Mon adresse e-mail"
         />
-        <Text style={ProfileStyles.inputText}>MON NUMÉRO DE TÉLÉPHONE</Text>
+        <Text style={ProfileStyles.inputText} accessible={true} accessibilityLabel="Mon numéro de téléphone">
+          MON NUMÉRO DE TÉLÉPHONE
+        </Text>
         <TextInput
           style={ProfileStyles.input}
           editable={false}
           placeholder={data.phoneNumber}
           placeholderTextColor={'black'}
           secureTextEntry={true}
+          accessible={true}
+          accessibilityLabel="Mon numéro de téléphone"
         />
-     
-        <ButtonDefault title={'Modifier'} />
+        <ButtonDefault title={'Modifier'} accessible={true} accessibilityLabel="Modifier" />
       </View>
     </SafeAreaView>
   );
