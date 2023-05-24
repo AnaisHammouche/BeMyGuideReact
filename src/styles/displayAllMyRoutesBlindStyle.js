@@ -1,6 +1,4 @@
-import React from 'react';
 import {StyleSheet} from 'react-native';
-import {FullWindowOverlay} from 'react-native-screens';
 import {colors_theme} from '../config/colors_theme.js';
 
 const displayStyles = StyleSheet.create({

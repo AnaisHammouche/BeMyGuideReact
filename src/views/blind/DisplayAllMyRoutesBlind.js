@@ -137,6 +137,8 @@ const DisplayAllMyRoutesRoutesBlind = () => {
 
       <FlatList
         showsHorizontalScrollIndicator={false}
+        refreshing={true}
+        overScrollMode="always"
         ItemSeparatorComponent={ItemSeparatorView}
         // myCondition={myConditionFunction}
         data={data}
@@ -146,7 +148,6 @@ const DisplayAllMyRoutesRoutesBlind = () => {
           return (
             <View style={flatListStyles.container}>
               <View style={flatListStyles.container}>
-
                 <Text style={displayStyles.text}>
                   Départ : {item.fromStation}
                 </Text>
@@ -169,8 +170,6 @@ const DisplayAllMyRoutesRoutesBlind = () => {
                 <Text style={displayStyles.text}>
                   Numéro de téléphone : 
                 </Text>
-                
-
               </View>
               <View style={displayStyles.buttonContainer}>
                 <TouchableOpacity

@@ -4,7 +4,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import FormRouteBlind from '../../views/blind/formRouteBlind';
 import Welcome from '../../views/welcome';
 import Login from '../../views/login';
-import Match from '../../views/blind/Match';
+import Match from '../../views/sighted/Match';
 import RegisterBlind from '../../views/blind/registerBlind';
 import Waiting from '../../views/waiting';
 import DisplayAllMyRoutesBlind from '../../views/blind/DisplayAllMyRoutesBlind';
@@ -23,7 +23,7 @@ const AppNavigator = () => {
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Welcome" component={Welcome} />
         <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="FormRouteBlind" component={FormRouteBlind} />
+        <Stack.Screen name="FormRouteBlind" component={FormRouteBlind} /> 
         <Stack.Screen name="RegisterBlind" component={RegisterBlind} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Match" component={Match} />
