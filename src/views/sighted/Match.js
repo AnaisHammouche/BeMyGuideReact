@@ -43,11 +43,6 @@ const Match = ({navigation}) => {
     const put = await AxiosValidateMatchRoutes(routeParamsToken);
     setData(put);
     console.log('data match après validated' + data);
-    setTimeout(() => {
-      navigation.navigate('Tab', {
-        token: routeParamsToken,
-      });
-    }, 1 * 5 * 1000);
   };
 
   // Component to render item separator

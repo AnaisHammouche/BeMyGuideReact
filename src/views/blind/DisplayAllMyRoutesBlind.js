@@ -8,7 +8,7 @@ import {
   FlatList,
   Image,
 } from 'react-native';
-import {AxiosListRoutes} from '../../api/routeApi';
+import {AxiosDoneRoutes, AxiosListRoutes} from '../../api/routeApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import flatListStyles from '../../styles/flatListStyle';
 
@@ -19,7 +19,7 @@ const DisplayAllMyRoutesRoutesBlind = () => {
     getMatch();
   }, []);
 
-  // Récupère les trajets de l'utilisateur
+  // Retrieve user's route
   const getMatch = async () => {
     const routeParamsToken = await AsyncStorage.getItem('Token');
     console.log('routeToken ' + routeParamsToken);
@@ -32,9 +32,16 @@ const DisplayAllMyRoutesRoutesBlind = () => {
     }
   };
 
-  console.log('voir ' + JSON.stringify(data[0]));
+  // update route as DONE so that helper gets reward.
+  const doneRoutes = async () => {
+    const routeParamsToken = await AsyncStorage.getItem('Token');
+    const done = await AxiosDoneRoutes(routeParamsToken);
+    setData(done);
+  };
 
-  // Composant pour afficher une ligne de séparation entre les éléments de la liste
+  console.log('voir ' + JSON.stringify(data));
+
+  // Component to display separation line
   const ItemSeparatorView = () => {
     return (
       //Item Separator
@@ -68,7 +75,7 @@ const DisplayAllMyRoutesRoutesBlind = () => {
           </View>
         </View>
       );
-    } else if (item.routeStatus == 'ACCEPTED') {
+    } else {
       return (
         <View style={flatListStyles.container}>
           <View style={flatListStyles.container}>
@@ -94,7 +101,6 @@ const DisplayAllMyRoutesRoutesBlind = () => {
         </View>
       );
     }
-    return <Text>Statut : {item.routeStatus} !</Text>;
   };
 
   return (
@@ -115,42 +121,96 @@ const DisplayAllMyRoutesRoutesBlind = () => {
         // myCondition={myConditionFunction}
         data={data}
         keyExtractor={item => item.id}
-        renderItem={({item}) => {
-          return (
-            <View style={flatListStyles.container}>
+        renderItem={({item, index}) => {
+          if ((index = item.routeStatus == 'PENDING')) {
+            return (
               <View style={flatListStyles.container}>
-                <Text style={displayStyles.text}>
-                  Départ : {item.fromStation}
-                </Text>
-                <Text style={displayStyles.text}>
-                  Arrivée : {item.toStation}
-                </Text>
-                <View style={displayStyles.dateContainer}>
-                  <Text style={displayStyles.text}>Le : {item.dateRoute}</Text>
-                  <Text style={displayStyles.textTime}>
-                    À : {item.startingTime}
+                <View style={flatListStyles.container}>
+                  <Text style={displayStyles.text}>
+                    Départ : {item.fromStation}
                   </Text>
+                  <Text style={displayStyles.text}>
+                    Arrivée : {item.toStation}
+                  </Text>
+                  <View style={displayStyles.dateContainer}>
+                    <Text style={displayStyles.text}>
+                      Le : {item.dateRoute}
+                    </Text>
+                    <Text style={displayStyles.textTime}>
+                      À : {item.startingTime}
+                    </Text>
+                  </View>
+                  <Text style={displayStyles.text}>
+                    Statut : EN ATTENTE {/* {item.routeStatus} */}
+                  </Text>
+                  <Text style={displayStyles.text}>Avec : </Text>
+                  <Text style={displayStyles.text}>Numéro de téléphone :</Text>
                 </View>
-                <Text style={displayStyles.text}>
-                  Statut : {item.routeStatus}
-                </Text>
-                <Text style={displayStyles.text}>Avec :</Text>
-                <Text style={displayStyles.text}>Numéro de téléphone :</Text>
-              </View>
-              <View style={displayStyles.buttonContainer}>
-                <TouchableOpacity
-                  style={displayStyles.button}
-                  onPress={() => console.log('Bouton validé cliqué')}>
-                  <Text style={displayStyles.connect}>VALIDER</Text>
-                </TouchableOpacity>
-                {/* <TouchableOpacity
+                <View style={displayStyles.buttonContainer}>
+                  <TouchableOpacity
+                    style={displayStyles.button}
+                    onPress={() => {
+                      console.log('Bouton validé cliqué');
+                    }}>
+                    <Text style={displayStyles.connect}>VALIDER</Text>
+                  </TouchableOpacity>
+                  {/* <TouchableOpacity
                   style={displayStyles.buttonRed}
                   onPress={() => console.log('bouton annulé cliqué')}>
                   <Text style={displayStyles.connect}>ANNULER</Text>
                 </TouchableOpacity> */}
+                </View>
               </View>
-            </View>
-          );
+            );
+          } else if ((index = item.routeStatus == 'ACCEPTED')) {
+            return (
+              <View style={flatListStyles.container}>
+                <View style={flatListStyles.container}>
+                  <Text style={displayStyles.text}>
+                    Départ : {item.fromStation}
+                  </Text>
+                  <Text style={displayStyles.text}>
+                    Arrivée : {item.toStation}
+                  </Text>
+                  <View style={displayStyles.dateContainer}>
+                    <Text style={displayStyles.text}>
+                      Le : {item.dateRoute}
+                    </Text>
+                    <Text style={displayStyles.textTime}>
+                      À : {item.startingTime}
+                    </Text>
+                  </View>
+                  <Text style={displayStyles.text}>
+                    Statut : CONFIRMÉ {/* {item.routeStatus} */}
+                  </Text>
+                  <Text style={displayStyles.text}>Avec : </Text>
+                  <Text style={displayStyles.text}>Numéro de téléphone :</Text>
+                </View>
+                <View style={displayStyles.buttonContainer}>
+                  <TouchableOpacity
+                    style={displayStyles.button}
+                    onPress={() => {
+                      doneRoutes();
+                    }}>
+                    <Text style={displayStyles.connect}>VALIDER</Text>
+                  </TouchableOpacity>
+                  {/* <TouchableOpacity
+                  style={displayStyles.buttonRed}
+                  onPress={() => console.log('bouton annulé cliqué')}>
+                  <Text style={displayStyles.connect}>ANNULER</Text>
+                </TouchableOpacity> */}
+                </View>
+              </View>
+            );
+          } else {
+            return (
+              <View style={flatListStyles.container}>
+                <Text style={displayStyles.text}>
+                  Vous n'avez pas encore effectué de demande de trajet
+                </Text>
+              </View>
+            );
+          }
         }}
       />
     </SafeAreaView>
