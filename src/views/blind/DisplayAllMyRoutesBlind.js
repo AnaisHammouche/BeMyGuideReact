@@ -13,7 +13,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import flatListStyles from '../../styles/flatListStyle';
 
 const DisplayAllMyRoutesRoutesBlind = () => {
-  const [data, setData] = useState([]);
+  const [routeList, setRouteList] = useState([]);
 
   useEffect(() => {
     getMatch();
@@ -25,8 +25,8 @@ const DisplayAllMyRoutesRoutesBlind = () => {
     console.log('routeToken ' + routeParamsToken);
     try {
       const response = await AxiosListRoutes(routeParamsToken);
-      setData(response);
-      console.log('setData ' + response);
+      setRouteList(response);
+      console.log('setRouteList ' + response);
     } catch (error) {
       console.log('Error: ', error);
     }
@@ -36,10 +36,10 @@ const DisplayAllMyRoutesRoutesBlind = () => {
   const doneRoutes = async () => {
     const routeParamsToken = await AsyncStorage.getItem('Token');
     const done = await AxiosDoneRoutes(routeParamsToken);
-    setData(done);
+    setRouteList(done);
   };
 
-  console.log('voir ' + JSON.stringify(data));
+  console.log('voir ' + JSON.stringify(routeList));
 
   // Component to display separation line
   const ItemSeparatorView = () => {
@@ -119,7 +119,7 @@ const DisplayAllMyRoutesRoutesBlind = () => {
         overScrollMode="always"
         ItemSeparatorComponent={ItemSeparatorView}
         // myCondition={myConditionFunction}
-        data={data}
+        data={routeList}
         keyExtractor={item => item.id}
         renderItem={({item, index}) => {
           if ((index = item.routeStatus == 'PENDING')) {
