@@ -4,6 +4,7 @@ import {Alert} from 'react-native';
 
 let baseUrl = process.env.BASE_URL;
 
+// Fonction pour s'inscrire avec une requête POST
 export async function axiosRegister(
   gender,
   lastName,
@@ -14,41 +15,52 @@ export async function axiosRegister(
   phoneNumber,
   navigation,
 ) {
-  return await axios
-
-    .post(`${baseUrl}/auth/register`, {
-      gender: gender,
-      lastname: lastName,
-      firstname: firstName,
-      email: email,
-      password: password,
-      phoneNumber: phoneNumber,
-      isBlind: isBlind,
-    })
-    .then(async function (response) {
-      const tokenData = JSON.stringify(response.data.token);
-      await AsyncStorage.setItem('Token', tokenData);
-      if (tokenData != null) {
-        // JSON.parse(tokenData);
-        alert('Bienvenue ' + firstName + ', ravis de vous compter parmi nous.');
-        navigation.navigate('FormRouteBlind', {userIsBlind: isBlind});
-        return;
-      }
-
-    })
-
-    .catch(function (error) {
-      if (error.name === 'AxiosError') {
-        console.log('error.name : ' + error.name);
-        Alert.alert(
-          "Vous n'êtes pas connecté à internet, veuillez vérifier votre réseau.",
-        );
-      } else {
-        Alert.alert('erreur : ' + JSON.stringify(error.name));
-      }
-    });
+  try {
+    const response = await axios
+      .post(`${baseUrl}/auth/register`, {
+        gender: gender,
+        lastname: lastName,
+        firstname: firstName,
+        email: email,
+        password: password,
+        phoneNumber: phoneNumber,
+        isBlind: isBlind,
+      })
+      .then(async function (response) {
+        const tokenData = JSON.stringify(response.data.token);
+        await AsyncStorage.setItem('Token', tokenData);
+        if (tokenData != null) {
+          // JSON.parse(tokenData);
+          alert(
+            'Bienvenue ' + firstName + ', ravis de vous compter parmi nous.',
+          );
+          navigation.navigate('Tab', {userIsBlind: isBlind});
+          return;
+        }
+      })
+      .catch(function (error) {
+        if (error.name === 'AxiosError') {
+          console.log('error.name : ' + error.name);
+          Alert.alert(
+            "Vous n'êtes pas connecté à internet, veuillez vérifier votre réseau.",
+          );
+        } else {
+          Alert.alert('erreur : ' + JSON.stringify(error.name));
+        }
+      });
+  } catch (error) {
+    if (error.name === 'AxiosError') {
+      console.log('error.name : ' + error.name);
+      Alert.alert(
+        "Vous n'êtes pas connecté à internet, veuillez vérifier votre réseau.",
+      );
+    } else {
+      Alert.alert('erreur : ' + JSON.stringify(error.name));
+    }
+  }
 }
 
+// Fonction pour se connecter avec une requête POST
 export async function axiosLogin(email, password) {
   return await axios
     .post(`${baseUrl}/auth/authenticate`, {
@@ -79,6 +91,7 @@ export async function axiosLogin(email, password) {
     });
 }
 
+// Fonction pour vérifier si l'utilisateur est aveugle avec une requête GET
 export async function axiosUserIsBlind(email, token) {
   try {
     axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
@@ -98,6 +111,7 @@ export async function axiosUserIsBlind(email, token) {
   }
 }
 
+// Fonction pour récupérer le profil de l'utilisateur avec une requête GET
 export async function axiosProfile(token, id) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
     token,
@@ -115,6 +129,7 @@ export async function axiosProfile(token, id) {
     });
 }
 
+// Fonction pour récupérer l'utilisateur authentifié avec une requête GET
 export async function axiosAuthUser(token) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
     token,
@@ -124,6 +139,22 @@ export async function axiosAuthUser(token) {
     .then(async function (response) {
       if (await response.data) {
         console.log('data profile ' + JSON.stringify(response.data));
+        return response.data;
+      }
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}
+
+export async function axiosNumberOfRoutesDone(token) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
+    token,
+  )}`;
+  return await axios
+    .get(`${baseUrl}/routes/routesDone`)
+    .then(async function (response) {
+      if (response.data != null) {
         return response.data;
       }
     })

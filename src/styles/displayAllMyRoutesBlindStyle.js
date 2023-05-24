@@ -1,30 +1,29 @@
-import React from 'react';
 import {StyleSheet} from 'react-native';
-import {FullWindowOverlay} from 'react-native-screens';
 import {colors_theme} from '../config/colors_theme.js';
 
 const displayStyles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
-
-  container: {
-    flex: 1,
-    padding: 40,
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-  },
+  // safeArea: {
+  //   flex: 1,
+  // },
 
   title: {
     fontFamily: 'RobotoMono-Bold',
     fontSize: 30,
     textAlign: 'center',
+    //marginLeft: 20,
     marginBottom: 36,
   },
 
+  icon: {
+    // display: inline block react native
+    marginTop: 40,
+    marginLeft: 180,
+    marginBottom: 10,
+  },
   text: {
     fontWeight: '700',
+    fontSize: 17,
+    marginBottom: 10,
   },
 
   input: {
@@ -36,33 +35,47 @@ const displayStyles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
   },
-  buttonContainer: {
-    marginTop: 50,
+  dateContainer: {
     flex: 1,
-    padding: 40,
+    flexDirection: 'row',
     width: '100%',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
+
+  textTime: {
+    marginLeft: 20,
+    fontWeight: '700',
+    fontSize: 17,
+    marginBottom: 10,
+  },
+  buttonContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-evenly',
     alignItems: 'flex-start',
   },
 
   button: {
     backgroundColor: colors_theme.button_green,
     alignItems: 'center',
-    padding: 4,
-    height: 50,
-    width: '90%',
-    marginTop: 20,
+    // padding: 4,
+    height: 40,
+    width: '45%',
+    marginTop: 10,
     justifyContent: 'center',
+    //  alignItems: 'space-between',
     borderRadius: 10,
   },
 
   buttonRed: {
     backgroundColor: 'red',
     alignItems: 'center',
-    padding: 4,
-    height: 50,
-    width: '90%',
-    marginTop: 20,
+    // padding: 4,
+    height: 40,
+    width: '45%',
+    marginTop: 10,
     justifyContent: 'center',
     borderRadius: 10,
   },
@@ -71,11 +84,11 @@ const displayStyles = StyleSheet.create({
     color: 'white',
     fontWeight: '700',
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: 16,
     marginHorizontal: 40,
-    marginVertical: 10,
+    // marginVertical: 10,
     height: 40,
-    margin: 6,
+    //  margin: 6,
     padding: 10,
     borderRadius: 5,
   },
