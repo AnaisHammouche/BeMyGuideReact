@@ -1,15 +1,26 @@
 import React from 'react';
-import {View, TouchableOpacity, Text} from 'react-native';
-import {styles} from '../styles/button_style.js';
+import { View, TouchableOpacity, Text, AccessibilityInfo } from 'react-native';
+import { styles } from '../styles/button_style.js';
 
-const ButtonDefault = ({title, onPress}) => {
-  return (
-    <View>
-      <TouchableOpacity style={styles.button} onPress={onPress}>
-        <Text style={styles.buttonText}>{title}</Text>
-      </TouchableOpacity>
-    </View>
-  );
+const ButtonDefault = ({ title, onPress }) => {
+const handleButtonPress = () => {
+if (onPress) {
+onPress();
+}
+};
+
+return (
+<View>
+<TouchableOpacity
+     style={styles.button}
+     onPress={handleButtonPress}
+     accessibilityRole="button"
+     accessibilityLabel={title}
+   >
+<Text style={styles.buttonText}>{title}</Text>
+</TouchableOpacity>
+</View>
+);
 };
 
 export default ButtonDefault;
