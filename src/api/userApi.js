@@ -162,3 +162,22 @@ export async function axiosNumberOfRoutesDone(token) {
       console.error(error);
     });
 }
+
+export async function axiosDeleteUser(token) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
+    token,
+  )}`;
+  return await axios
+    .delete(`${baseUrl}/users/delete`)
+    .then(async function (response) {
+      if (response.status == 200) {
+        console.log('delete user response :' + response.status)
+        Alert.alert('Votre profil utilisateur a bien été supprimé.');
+      } else {
+        Alert.alert('Nous avons rencontrez un problème lors de la suppression de votre compte.')
+      }
+    })
+    .catch(error => {
+      console.error(error);
+    });
+}

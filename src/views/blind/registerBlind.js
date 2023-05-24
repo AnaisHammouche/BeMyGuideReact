@@ -1,22 +1,18 @@
-import {useNavigation} from '@react-navigation/native';
-import React, {useCallback, useMemo, useState} from 'react';
-import {SafeAreaView, Text, View, Image, TextInput} from 'react-native';
-import {styles} from '../../styles/register_style';
+import { useNavigation } from '@react-navigation/native';
+import React, { useCallback, useMemo, useState } from 'react';
+import { SafeAreaView, Text, View, Image, TextInput } from 'react-native';
+import { styles } from '../../styles/register_style';
 import ButtonDefault from '../../components/button';
 
-import postRegister, {axiosRegister} from '../../api/userApi';
+import postRegister, { axiosRegister } from '../../api/userApi';
 import RNPickerSelect from 'react-native-picker-select';
 import axios from 'axios';
 
-// Importation des dépendances nécessaires
-
-const RegisterBlind = ({route}) => {
+const RegisterBlind = ({ route }) => {
   const navigation = useNavigation();
 
-  // Récupération de la valeur "isBlind" depuis les paramètres de la route
   const isBlind = JSON.parse(route.params.userIsBlind);
 
-  // Déclaration des états utilisés dans le formulaire d'inscription
   const [gender, setGender] = useState('');
   const [lastName, setLastName] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -24,9 +20,8 @@ const RegisterBlind = ({route}) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [isValid, setIsValid] = useState('true');
+  const [isValid, setIsValid] = useState(true);
 
-  // Création de l'objet "user" contenant les informations de l'utilisateur
   const user = {
     gender: gender,
     lastName: lastName,
@@ -37,7 +32,6 @@ const RegisterBlind = ({route}) => {
     isBlind: isBlind,
   };
 
-  // Utilisation du hook useMemo pour vérifier si les champs du formulaire sont valides
   useMemo(() => {
     if (
       gender === '' ||
@@ -63,10 +57,8 @@ const RegisterBlind = ({route}) => {
     confirmPassword,
   ]);
 
-  // Fonction de validation du formulaire
   const validator = useCallback(() => {
     if (isValid) {
-      // Appel de la fonction axiosRegister pour effectuer l'inscription
       axiosRegister(
         user.gender,
         user.lastName,
@@ -77,11 +69,9 @@ const RegisterBlind = ({route}) => {
         user.phoneNumber,
         navigation,
       );
-      console.log('user.isBlind' + user.isBlind);
+      console.log("user.isBlind" + user.isBlind);
     } else {
-      alert(
-        'Veuillez remplir les informations nécessaires à votre inscription.',
-      );
+      alert('Veuillez remplir les informations nécessaires à votre inscription.');
     }
   }, [
     isValid,
@@ -100,6 +90,8 @@ const RegisterBlind = ({route}) => {
       <View style={styles.container}>
         <Text style={styles.title}>Nous rejoindre</Text>
         <Image
+          accessible={true}
+          accessibilityLabel="Logo"
           source={require('../../assets/close_eye.png')}
           style={styles.icon}
         />
@@ -109,39 +101,37 @@ const RegisterBlind = ({route}) => {
         <View style={styles.input}>
           <TextInput />
           <RNPickerSelect
-            placeholder={{label: 'GENRE', value: null}}
+            placeholder={{ label: 'GENRE', value: null }}
             autoCapitalize="none"
             onValueChange={gender => setGender(gender)}
             items={[
-              {label: 'Femme', value: 'FEMALE'},
-              {label: 'Homme', value: 'MALE'},
-              {label: 'Non genré', value: 'NON_BINARY'},
+              { label: 'Femme', value: 'FEMALE' },
+              { label: 'Homme', value: 'MALE' },
+              { label: 'Non genré', value: 'NON_BINARY' },
             ]}
           />
         </View>
-        <Text style={styles.inputText} keyboardType="default">
-          NOM
-        </Text>
+        <Text style={styles.inputText}>NOM</Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"
           placeholder="NOM"
           value={lastName}
           onChangeText={setLastName}
+          accessible={true}
+          accessibilityLabel="Nom"
         />
-        <Text style={styles.inputText} keyboardType="default">
-          PRÉNOM
-        </Text>
+        <Text style={styles.inputText}>PRÉNOM</Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"
           placeholder="PRÉNOM"
           value={firstName}
           onChangeText={setFirstName}
+          accessible={true}
+          accessibilityLabel="Prénom"
         />
-        <Text style={styles.inputText} keyboardType="default">
-          E-MAIL
-        </Text>
+        <Text style={styles.inputText}>E-MAIL</Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"
@@ -149,10 +139,10 @@ const RegisterBlind = ({route}) => {
           keyboardType="email-address"
           value={email}
           onChangeText={setEmail}
+          accessible={true}
+          accessibilityLabel="Adresse e-mail"
         />
-        <Text style={styles.inputText} keyboardType="default">
-          NUMÉRO DE TÉLÉPHONE
-        </Text>
+        <Text style={styles.inputText}>NUMÉRO DE TÉLÉPHONE</Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"
@@ -160,10 +150,10 @@ const RegisterBlind = ({route}) => {
           keyboardType="numeric"
           value={phoneNumber}
           onChangeText={setPhoneNumber}
+          accessible={true}
+          accessibilityLabel="Numéro de téléphone"
         />
-        <Text style={styles.inputText} keyboardType="default">
-          MOT DE PASSE
-        </Text>
+        <Text style={styles.inputText}>MOT DE PASSE</Text>
         <TextInput
           style={styles.input}
           placeholder="VOTRE MOT DE PASSE"
@@ -172,10 +162,10 @@ const RegisterBlind = ({route}) => {
           secureTextEntry={true}
           value={password}
           onChangeText={setPassword}
+          accessible={true}
+          accessibilityLabel="Mot de passe"
         />
-        <Text style={styles.inputText} keyboardType="default">
-          CONFIRMATION DE MOT DE PASSE
-        </Text>
+        <Text style={styles.inputText}>CONFIRMATION DE MOT DE PASSE</Text>
         <TextInput
           style={styles.input}
           autoCapitalize="none"
@@ -183,14 +173,17 @@ const RegisterBlind = ({route}) => {
           secureTextEntry={true}
           value={confirmPassword}
           onChangeText={setConfirmPassword}
+          accessible={true}
+          accessibilityLabel="Confirmation du mot de passe"
         />
       </View>
-      <View style={{alignItems: 'center'}}>
-        <ButtonDefault title={"Je m'inscris"} onPress={validator} />
-        {/* <View style={{flexDirection: 'row'}}>
-          <SocialIcon type="google" />
-          <SocialIcon type="facebook" />
-        </View> */}
+      <View style={{ alignItems: 'center' }}>
+        <ButtonDefault
+          title={"Je m'inscris"}
+          onPress={validator}
+          accessible={true}
+          accessibilityLabel="S'inscrire"
+        />
       </View>
     </SafeAreaView>
   );

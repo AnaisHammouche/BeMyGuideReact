@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, { useCallback, useState } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
@@ -13,14 +13,13 @@ import {AxiosRoute} from '../../api/routeApi';
 
 const currentDate = new Date();
 function addOneYear(date) {
-  date.setFullYear(date.getFullYear() + 1);
-  return date;
+date.setFullYear(date.getFullYear() + 1);
+return date;
 }
 const maxDate = addOneYear(currentDate);
 
 const FormRouteBlind = ({navigation, route}) => {
-  const isBlind = JSON.stringify(route.params.isBlindUser);
-  // const isBlind = JSON.parse(route.params.userIsBlind);
+  const isBlind = route.params.isBlindUser;
   console.log('claire isBlind : ' + isBlind);
   console.log('check type : ' + typeof isBlind);
   const [fromStation, setfromStation] = useState();
@@ -30,29 +29,22 @@ const FormRouteBlind = ({navigation, route}) => {
   const [routeMateGender, setRouteMateGender] = useState();
   console.log();
 
-  const postRoute = useCallback(async () => {
-    const routeParamsToken = await AsyncStorage.getItem('Token');
-    console.log('route token' + routeParamsToken);
-    AxiosRoute(
-      fromStation,
-      toStation,
-      routeMateGender,
-      dateRoute,
-      startingTime,
-      routeParamsToken,
-      navigation,
-    );
-  }, [
-    fromStation,
-    toStation,
-    routeMateGender,
-    dateRoute,
-    startingTime,
-    navigation,
-  ]);
+const postRoute = useCallback(async () => {
+const routeParamsToken = await AsyncStorage.getItem('Token');
+console.log('route token' + routeParamsToken);
+AxiosRoute(
+fromStation,
+toStation,
+routeMateGender,
+dateRoute,
+startingTime,
+routeParamsToken,
+navigation,
+);
+}, [fromStation, toStation, routeMateGender, dateRoute, startingTime, navigation]);
 
   // Affiche les options de genre pour l'accompagnant si l'utilisateur est aveugle
-  function Item(userIsBlind) {
+  function Item({userIsBlind}) {
     userIsBlind = isBlind;
     if (userIsBlind) {
       console.log('inside function' + userIsBlind);
@@ -78,7 +70,8 @@ const FormRouteBlind = ({navigation, route}) => {
         </View>
       );
     } else {
-      return null;
+      return 
+        <View/>;
     }
   }
 
