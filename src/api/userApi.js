@@ -31,10 +31,9 @@ export async function axiosRegister(
       if (tokenData != null) {
         // JSON.parse(tokenData);
         alert('Bienvenue ' + firstName + ', ravis de vous compter parmi nous.');
-        navigation.navigate('FormRouteBlind', {userIsBlind: isBlind});
+        navigation.navigate('Tab', {userIsBlind: isBlind});
         return;
       }
-
     })
 
     .catch(function (error) {

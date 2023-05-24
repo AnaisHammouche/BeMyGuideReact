@@ -3,7 +3,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import FormRouteBlind from '../../views/blind/formRouteBlind';
 import Welcome from '../../views/welcome';
-import Register from '../../views/sighted/register';
 import Login from '../../views/login';
 import Match from '../../views/sighted/Match';
 import RegisterBlind from '../../views/blind/registerBlind';
@@ -26,7 +25,6 @@ const AppNavigator = () => {
         <Stack.Screen name="Profile" component={ProfileScreen} />
         <Stack.Screen name="FormRouteBlind" component={FormRouteBlind} />
         <Stack.Screen name="FormRouteV" component={FormRouteV} />
-        <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="RegisterBlind" component={RegisterBlind} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Match" component={Match} />

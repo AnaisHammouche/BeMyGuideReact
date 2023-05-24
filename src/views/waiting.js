@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Image, ImageBackground, SafeAreaView, Text, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {waitingStyles} from '../styles/waiting_style';
-import {AxiosRouteGet, AxiosRoutePut} from '../api/routeApi';
+import {AxiosRoutePut} from '../api/routeApi';
 
 const Waiting = ({route, navigation}) => {
   const routeParamsToken = route.params.token;

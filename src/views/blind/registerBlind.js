@@ -66,8 +66,7 @@ const RegisterBlind = ({route}) => {
         user.phoneNumber,
         navigation,
       );
-      console.log("user.isBlind" + user.isBlind)
-
+      console.log('user.isBlind' + user.isBlind);
     } else {
       alert(
         'Veuillez remplir les informations nécessaires à votre inscription.',
