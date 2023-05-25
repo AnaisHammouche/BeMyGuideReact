@@ -51,7 +51,7 @@ const DisplayAllMyRoutesRoutesBlind = () => {
   // Component to display separation line
   const ItemSeparatorView = () => {
     return (
-      //Item Separator
+      // Item Separator
       <View style={{height: 2, width: '100%', backgroundColor: '#C8C8C8'}} />
     );
   };
@@ -72,11 +72,10 @@ const DisplayAllMyRoutesRoutesBlind = () => {
         onRefresh={getMatch}
         overScrollMode="always"
         ItemSeparatorComponent={ItemSeparatorView}
-        // myCondition={myConditionFunction}
         data={data}
-        keyExtractor={item => item.id}
+        keyExtractor={(item, index) => item + index}
         renderItem={({item, index}) => {
-          if ((index = item.routeStatus == 'PENDING')) {
+          if (item.routeStatus === 'PENDING') {
             return (
               <View style={flatListStyles.container}>
                 <View style={flatListStyles.container}>
@@ -107,14 +106,14 @@ const DisplayAllMyRoutesRoutesBlind = () => {
                     <Text style={displayStyles.connect}>VALIDER</Text>
                   </TouchableOpacity>
                   {/* <TouchableOpacity
-                  style={displayStyles.buttonRed}
-                  onPress={() => console.log('bouton annulé cliqué')}>
-                  <Text style={displayStyles.connect}>ANNULER</Text>
-                </TouchableOpacity> */}
+                      style={displayStyles.buttonRed}
+                      onPress={() => console.log('bouton annulé cliqué')}>
+                      <Text style={displayStyles.connect}>ANNULER</Text>
+                    </TouchableOpacity> */}
                 </View>
               </View>
             );
-          } else if ((index = item.routeStatus == 'ACCEPTED')) {
+          } else if (item.routeStatus === 'ACCEPTED') {
             return (
               <View style={flatListStyles.container}>
                 <View style={flatListStyles.container}>
@@ -136,7 +135,7 @@ const DisplayAllMyRoutesRoutesBlind = () => {
                     Statut : CONFIRMÉ {/* {item.routeStatus} */}
                   </Text>
                   <Text style={displayStyles.text}>
-                    Avec : {item.idRouteSeeker} {item.lastname}
+                    Avec : {item.idRouteSeeker.firstname} {item.lastname}
                   </Text>
                   <Text style={displayStyles.text}>
                     Numéro de téléphone : {item.phoneNumber}
@@ -151,10 +150,10 @@ const DisplayAllMyRoutesRoutesBlind = () => {
                     <Text style={displayStyles.connect}>VALIDER</Text>
                   </TouchableOpacity>
                   {/* <TouchableOpacity
-                  style={displayStyles.buttonRed}
-                  onPress={() => console.log('bouton annulé cliqué')}>
-                  <Text style={displayStyles.connect}>ANNULER</Text>
-                </TouchableOpacity> */}
+                      style={displayStyles.buttonRed}
+                      onPress={() => console.log('bouton annulé cliqué')}>
+                      <Text style={displayStyles.connect}>ANNULER</Text>
+                    </TouchableOpacity> */}
                 </View>
               </View>
             );
