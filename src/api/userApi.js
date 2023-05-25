@@ -34,7 +34,7 @@ export async function axiosRegister(
           alert(
             'Bienvenue ' + firstName + ', ravis de vous compter parmi nous.',
           );
-       //   navigation.navigate('Tab', {userIsBlind: isBlind});
+          //   navigation.navigate('Tab', {userIsBlind: isBlind});
           return;
         }
       })
@@ -171,10 +171,12 @@ export async function axiosDeleteUser(token) {
     .delete(`${baseUrl}/users/delete`)
     .then(async function (response) {
       if (response.status == 200) {
-        console.log('delete user response :' + response.status)
+        console.log('delete user response :' + response.status);
         Alert.alert('Votre profil utilisateur a bien été supprimé.');
       } else {
-        Alert.alert('Nous avons rencontrez un problème lors de la suppression de votre compte.')
+        Alert.alert(
+          'Nous avons rencontrez un problème lors de la suppression de votre compte.',
+        );
       }
     })
     .catch(error => {

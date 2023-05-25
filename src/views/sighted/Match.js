@@ -91,7 +91,12 @@ const Match = () => {
                   Avec : {item.firstname} {item.lastname}
                 </Text>
                 <Text style={displayStyles.text}>
-                  Avec : {item.phoneNumber}
+                  Téléphone : {item.phoneNumber}
+                </Text>
+                <Text style={displayStyles.text}>
+                  ATTENTION : Ces coordonnées s'autodétruiront au clic du bouton
+                  valider, veuillez vous munir de votre plus beau stylo pour les
+                  noter !
                 </Text>
               </View>
               <View style={displayStyles.buttonContainer}>
