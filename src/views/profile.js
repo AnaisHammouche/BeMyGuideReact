@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, Image, SafeAreaView, TextInput} from 'react-native';
 import {axiosAuthUser} from '../api/userApi';
 import {axiosDeleteUser} from '../api/userApi';
@@ -10,7 +10,6 @@ import {useNavigation} from '@react-navigation/native';
 export default function ProfileScreen() {
   const navigation = useNavigation();
   const [data, setData] = useState([]);
-  const [dataUser, setDataUser] = useState();
 
   useEffect(() => {
     userProfile();
@@ -18,17 +17,13 @@ export default function ProfileScreen() {
 
   const userProfile = async () => {
     const token = await AsyncStorage.getItem('Token');
-    console.log(' token ' + token);
     try {
       const response = await axiosAuthUser(token);
       setData(response);
-      console.log('setData ' + response);
     } catch (error) {
       console.log('Error: ', error);
     }
   };
-
-  console.log('voir data ' + JSON.stringify(data));
 
   if (!data) {
     return (
@@ -41,8 +36,6 @@ export default function ProfileScreen() {
   const deconnexionButton = async () => {
     try {
       await AsyncStorage.clear();
-      console.log('AsyncStorage vide');
-      console.log('AsyncStorage : ' + JSON.stringify(AsyncStorage));
       navigation.navigate('Welcome');
     } catch (error) {
       console.log('Error lors du clear de l AsyncStorage: ', error);
@@ -52,10 +45,8 @@ export default function ProfileScreen() {
   const deleteProfileButton = async () => {
     try {
       const token = await AsyncStorage.getItem('Token');
-      console.log('Token: ', token);
       await axiosDeleteUser(token);
       await AsyncStorage.clear();
-      console.log('AsyncStorage cleared');
       navigation.navigate('Welcome');
     } catch (error) {
       console.log('Error deleting profile: ', error);
@@ -76,13 +67,16 @@ export default function ProfileScreen() {
       <View style={ProfileStyles.containerAvatar}>
         <Image
           style={ProfileStyles.avatar}
-          source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }}
+          source={{uri: 'https://randomuser.me/api/portraits/men/1.jpg'}}
           accessible={true}
           accessibilityLabel="Avatar"
         />
       </View>
       <View style={ProfileStyles.separator}>
-        <Text style={ProfileStyles.inputText} accessible={true} accessibilityLabel="Mon nom">
+        <Text
+          style={ProfileStyles.inputText}
+          accessible={true}
+          accessibilityLabel="Mon nom">
           MON NOM
         </Text>
         <TextInput
@@ -93,7 +87,10 @@ export default function ProfileScreen() {
           accessible={true}
           accessibilityLabel="Mon nom"
         />
-        <Text style={ProfileStyles.inputText} accessible={true} accessibilityLabel="Mon adresse e-mail">
+        <Text
+          style={ProfileStyles.inputText}
+          accessible={true}
+          accessibilityLabel="Mon adresse e-mail">
           MON ADRESSE EMAIL
         </Text>
         <TextInput
@@ -104,7 +101,10 @@ export default function ProfileScreen() {
           accessible={true}
           accessibilityLabel="Mon adresse e-mail"
         />
-        <Text style={ProfileStyles.inputText} accessible={true} accessibilityLabel="Mon numéro de téléphone">
+        <Text
+          style={ProfileStyles.inputText}
+          accessible={true}
+          accessibilityLabel="Mon numéro de téléphone">
           MON NUMÉRO DE TÉLÉPHONE
         </Text>
         <TextInput
@@ -117,9 +117,21 @@ export default function ProfileScreen() {
           accessibilityLabel="Mon numéro de téléphone"
         />
 
-        <ButtonDefault title={'Se déconnecter'} onPress= {deconnexionButton} accessibilityLabel="Déconnexion"/>
-        <ButtonDefault title={'Supprimer mon compte'} onPress= {deleteProfileButton} accessibilityLabel="Supprimer"/>
-        <ButtonDefault title={'Modifier'} accessible={true} accessibilityLabel="Modifier" />
+        <ButtonDefault
+          title={'Se déconnecter'}
+          onPress={deconnexionButton}
+          accessibilityLabel="Déconnexion"
+        />
+        <ButtonDefault
+          title={'Supprimer mon compte'}
+          onPress={deleteProfileButton}
+          accessibilityLabel="Supprimer"
+        />
+        <ButtonDefault
+          title={'Modifier'}
+          accessible={true}
+          accessibilityLabel="Modifier"
+        />
       </View>
     </SafeAreaView>
   );
