@@ -104,7 +104,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colors_theme.button_green,
     alignItems: 'center',
     padding: 4,
-    height: 50,
+    height: 40,
     width: 130,
     marginTop: 10,
     justifyContent: 'center',

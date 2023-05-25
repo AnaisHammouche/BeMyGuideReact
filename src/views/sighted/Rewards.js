@@ -92,7 +92,7 @@ const Rewards = () => {
             disabled={rewardClaimed}
             style={[styles.button3, rewardClaimed && styles.disabledButton]}
           >
-            <Text style={styles.text}>VALIDER</Text>
+            <Text style={styles.text}>OBTENIR</Text>
           </TouchableOpacity>
         </View>
       </View>
