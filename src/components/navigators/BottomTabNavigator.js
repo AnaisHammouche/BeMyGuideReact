@@ -18,6 +18,10 @@ const BottomTabNavigator = ({navigation, route}) => {
       initialRouteName="Welcome"
       screenOptions={{
         tabBarShowLabel: false,
+        // labelStyle: {
+        //   fontSize: 25,
+        //   color: 'gray',
+        //  },
         tabBarStyle: {
           position: 'absolute',
           borderRadius: 25,
@@ -48,10 +52,10 @@ const BottomTabNavigator = ({navigation, route}) => {
                       height: 25,
                       tintColor: focused ? '#27AE60' : '#748c94',
                     }}
-                    accessibilityLabel="Recherche"
+                    accessibilityLabel="Recherche de trajet"
                   />
-                  <Text style={styles.text}>Recherche</Text>
-                </View>
+                  <Text style={{color: focused ? '#27AE60' : '#748c94'}}>Recherche</Text>
+                 </View>
               ),
             }}
           />
@@ -76,8 +80,8 @@ const BottomTabNavigator = ({navigation, route}) => {
                     }}
                     accessibilityLabel="Trajets"
                   />
-                  <Text>Trajets</Text>
-                </View>
+                    <Text style={{color: focused ? '#27AE60' : '#748c94'}}>Trajets</Text>
+                  </View>
               ),
             }}
           />
@@ -100,10 +104,10 @@ const BottomTabNavigator = ({navigation, route}) => {
                       height: 25,
                       tintColor: focused ? '#27AE60' : '#748c94',
                     }}
-                    accessibilityLabel="Match"
+                    accessibilityLabel="Matchs"
                   />
-                  <Text style={styles.text}>Match</Text>
-                </View>
+                    <Text style={{color: focused ? '#27AE60' : '#748c94'}}>Matchs</Text>
+                 </View>
               ),
             }}
           />
@@ -128,11 +132,12 @@ const BottomTabNavigator = ({navigation, route}) => {
                     }}
                     accessibilityLabel="Récompenses"
                   />
-                  <Text style={styles.text}>Rewards</Text>
-                </View>
+                    <Text style={{color: focused ? '#27AE60' : '#748c94'}}>Rewards</Text>
+                   </View>
               ),
             }}
           />
+
           <Tab.Screen
             name="Profile"
             component={ProfileScreen}
@@ -154,7 +159,7 @@ const BottomTabNavigator = ({navigation, route}) => {
                     }}
                     accessibilityLabel="Profil"
                   />
-                  <Text>Profil</Text>
+                    <Text style={{color: focused ? '#27AE60' : '#748c94'}}>Profil</Text>
                 </View>
               ),
             }}
@@ -182,10 +187,10 @@ const BottomTabNavigator = ({navigation, route}) => {
                       height: 25,
                       tintColor: focused ? '#27AE60' : '#748c94',
                     }}
-                    accessibilityLabel="Recherche"
+                    accessibilityLabel="Recherche de trajet"
                   />
-                  <Text style={styles.text}>Recherche</Text>
-                </View>
+                    <Text style={{color: focused ? '#27AE60' : '#748c94'}}>Recherche</Text>
+                   </View>
               ),
             }}
           />
@@ -208,13 +213,16 @@ const BottomTabNavigator = ({navigation, route}) => {
                       height: 25,
                       tintColor: focused ? '#27AE60' : '#748c94',
                     }}
-                    accessibilityLabel="Trajets"
+                    accessibilityLabel="Mes trajets"
                   />
-                  <Text>Trajets</Text>
-                </View>
+                    <Text style={{color: focused ? '#27AE60' : '#748c94'}}>Trajets</Text>
+               
+                 </View>
               ),
             }}
           />
+          {/* <Item userIsBlind={true} /> */}
+
           <Tab.Screen
             name="Profile"
             component={ProfileScreen}
@@ -236,8 +244,8 @@ const BottomTabNavigator = ({navigation, route}) => {
                     }}
                     accessibilityLabel="Profil"
                   />
-                  <Text>Profil</Text>
-                </View>
+                    <Text style={{color: focused ? '#27AE60' : '#748c94'}}>Profil</Text>
+                 </View>
               ),
             }}
           />

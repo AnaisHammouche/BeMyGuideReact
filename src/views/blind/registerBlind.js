@@ -70,6 +70,14 @@ const RegisterBlind = ({ route }) => {
         navigation,
       );
       console.log("user.isBlind" + user.isBlind);
+      setGender(null);
+      setLastName('');
+      setEmail('');
+      setConfirmPassword('');
+      setPassword('');
+      setFirstName('');
+      setPhoneNumber('');
+      navigation.navigate('Tab', {userIsBlind: isBlind});
     } else {
       alert('Veuillez remplir les informations nécessaires à votre inscription.');
     }
@@ -99,7 +107,8 @@ const RegisterBlind = ({ route }) => {
       <View style={styles.separator}>
         <Text style={styles.inputText}>GENRE</Text>
         <View style={styles.input}>
-          <TextInput />
+          {/* <TextInput /> */}
+          <View  style={styles.rnpicker}></View>
           <RNPickerSelect
             placeholder={{ label: 'GENRE', value: null }}
             autoCapitalize="none"
