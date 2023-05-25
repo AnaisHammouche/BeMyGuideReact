@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, {useCallback, useMemo, useState} from 'react';
 import {
   SafeAreaView,
   View,
@@ -7,9 +7,9 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { styles } from '../styles/login_style';
-import { axiosLogin, axiosUserIsBlind } from '../api/userApi';
+import {useNavigation} from '@react-navigation/native';
+import {styles} from '../styles/login_style';
+import {axiosLogin, axiosUserIsBlind} from '../api/userApi';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = () => {
@@ -34,10 +34,7 @@ const Login = () => {
       console.log('token login :' + getTokenStorage);
       if (getTokenStorage != null) {
         const userIsBlind = await axiosUserIsBlind(email, getTokenStorage);
-        console.log('is blind ? ' + userIsBlind);
-        // AsyncStorage.setItem('userIsBlind : ', userIsBlind);
-        // console.log('userIsBlind :' + userIsBlind);
-        navigation.navigate('Tab', { userIsBlind: userIsBlind });
+        navigation.navigate('Tab', {userIsBlind: userIsBlind});
       }
     } else {
       alert('Veuillez remplir les informations nécessaires à votre connexion.');
@@ -57,7 +54,10 @@ const Login = () => {
           accessibilityLabel="Logo"
         />
         <View style={styles.smallContainer}>
-          <Text style={styles.text} accessible={true} accessibilityLabel="Adresse e-mail">
+          <Text
+            style={styles.text}
+            accessible={true}
+            accessibilityLabel="Adresse e-mail">
             VOTRE ADRESSE MAIL
           </Text>
           <TextInput
@@ -70,7 +70,10 @@ const Login = () => {
             accessible={true}
             accessibilityLabel="Adresse e-mail"
           />
-          <Text style={styles.text} accessible={true} accessibilityLabel="Mot de passe">
+          <Text
+            style={styles.text}
+            accessible={true}
+            accessibilityLabel="Mot de passe">
             VOTRE MOT DE PASSE
           </Text>
           <TextInput
@@ -89,8 +92,7 @@ const Login = () => {
           style={styles.button}
           onPress={() => postLogin()}
           accessible={true}
-          accessibilityLabel="Se connecter"
-        >
+          accessibilityLabel="Se connecter">
           <Text style={styles.buttonText}>ME CONNECTER</Text>
         </TouchableOpacity>
       </View>

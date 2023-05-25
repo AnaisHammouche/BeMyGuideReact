@@ -17,7 +17,6 @@ import styles from '../styles/formRoute_style';
 export default function ProfileScreen() {
   const navigation = useNavigation();
   const [data, setData] = useState([]);
-  const [dataUser, setDataUser] = useState();
 
   useEffect(() => {
     userProfile();
@@ -25,17 +24,13 @@ export default function ProfileScreen() {
 
   const userProfile = async () => {
     const token = await AsyncStorage.getItem('Token');
-    console.log(' token ' + token);
     try {
       const response = await axiosAuthUser(token);
       setData(response);
-      console.log('setData ' + response);
     } catch (error) {
       console.log('Error: ', error);
     }
   };
-
-  console.log('voir data ' + JSON.stringify(data));
 
   if (!data) {
     return (
@@ -48,8 +43,6 @@ export default function ProfileScreen() {
   const deconnexionButton = async () => {
     try {
       await AsyncStorage.clear();
-      console.log('AsyncStorage vide');
-      console.log('AsyncStorage : ' + JSON.stringify(AsyncStorage));
       navigation.navigate('Welcome');
     } catch (error) {
       console.log('Error lors du clear de l AsyncStorage: ', error);
@@ -59,10 +52,8 @@ export default function ProfileScreen() {
   const deleteProfileButton = async () => {
     try {
       const token = await AsyncStorage.getItem('Token');
-      console.log('Token: ', token);
       await axiosDeleteUser(token);
       await AsyncStorage.clear();
-      console.log('AsyncStorage cleared');
       navigation.navigate('Welcome');
     } catch (error) {
       console.log('Error deleting profile: ', error);
@@ -138,13 +129,13 @@ export default function ProfileScreen() {
           onPress={deconnexionButton}
           accessibilityLabel="Déconnexion"
         />
+            
         <TouchableOpacity
           style={styles.buttonRedProfile}
           onPress={deleteProfileButton}>
           <Text style={styles.buttonText}>Supprimer mon compte</Text>
         </TouchableOpacity>
-        {/* <ButtonDefault title={'Supprimer mon compte'} onPress= {deleteProfileButton} accessibilityLabel="Supprimer"/> */}
-        {/* <ButtonDefault title={'Modifier'} accessible={true} accessibilityLabel="Modifier" /> */}
+        
       </View>
     </SafeAreaView>
   );

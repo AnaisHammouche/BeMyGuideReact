@@ -122,7 +122,8 @@ const DisplayAllMyRoutesRoutesBlind = () => {
 
       <FlatList
         showsHorizontalScrollIndicator={false}
-        refreshing={true}
+        refreshing={refreshing}
+        onRefresh={getMatch}
         overScrollMode="always"
         ItemSeparatorComponent={ItemSeparatorView}
         // myCondition={myConditionFunction}
@@ -150,8 +151,6 @@ const DisplayAllMyRoutesRoutesBlind = () => {
                   <Text style={displayStyles.text}>
                     Statut : EN ATTENTE {/* {item.routeStatus} */}
                   </Text>
-                  <Text style={displayStyles.text}>Avec : </Text>
-                  <Text style={displayStyles.text}>Numéro de téléphone :</Text>
                 </View>
                 <View style={displayStyles.buttonContainer}>
                   <TouchableOpacity
@@ -190,8 +189,12 @@ const DisplayAllMyRoutesRoutesBlind = () => {
                   <Text style={displayStyles.text}>
                     Statut : CONFIRMÉ {/* {item.routeStatus} */}
                   </Text>
-                  <Text style={displayStyles.text}>Avec : </Text>
-                  <Text style={displayStyles.text}>Numéro de téléphone :</Text>
+                  <Text style={displayStyles.text}>
+                    Avec : {item.firstname} {item.lastname}
+                  </Text>
+                  <Text style={displayStyles.text}>
+                    Numéro de téléphone : {item.phoneNumber}
+                  </Text>
                 </View>
                 <View style={displayStyles.buttonContainer}>
                   <TouchableOpacity

@@ -56,7 +56,7 @@ export async function AxiosRoute(
     });
 }
 
-export async function AxiosRouteGet(routeParamsToken, idRoute) {
+export async function AxiosRoutesGet(routeParamsToken, idRoute) {
   //console.log('Bonjour axios ');
   axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
     routeParamsToken,
@@ -79,6 +79,21 @@ export async function AxiosRouteGet(routeParamsToken, idRoute) {
     });
 }
 
+export async function AxiosRouteGetById(routeParamsToken, idSeeker) {
+  axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
+    routeParamsToken,
+  )}`;
+  try {
+    const response = await axios.get(`${baseUrl}/route/${idSeeker}`);
+    const dataIdSeeker = response.data;
+    console.log('data id seeker ' + JSON.stringify(dataIdSeeker));
+    return dataIdSeeker;
+  } catch (error) {
+    console.log('Error: ', error);
+    throw error;
+  }
+}
+
 export async function AxiosRoutePut(routeParamsToken, idRoute) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
     routeParamsToken,
@@ -98,15 +113,14 @@ export async function AxiosMatchAuthUser(routeParamsToken) {
   axios.defaults.headers.common['Authorization'] = `Bearer ${JSON.parse(
     routeParamsToken,
   )}`;
-  return await axios
-    .get(`${baseUrl}/routes/routesMatchAuthUser`)
-    .then(async function (response) {
-      const data = response.data;
-      if (data) {
-        console.log('data axios Auth User ' + data);
-        return data;
-      }
-    });
+  try {
+    const response = await axios.get(`${baseUrl}/routes/routesMatchAuthUser`);
+    const data = response.data;
+    return data;
+  } catch (error) {
+    console.log('Error: ', error);
+    throw error;
+  }
 }
 
 export async function AxiosListRoutes(token) {
