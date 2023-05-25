@@ -61,6 +61,13 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
   },
+  BlackText: {
+    marginTop: 10,
+    fontFamily: 'RobotoMono-Medium',
+    // color: colors_theme.txt_white,
+    textAlign: 'center',
+    fontSize: 16,
+  },
   textConnect: {
     color: colors_theme.txt_white,
     fontFamily: 'RobotoMono-Medium',
@@ -93,8 +100,16 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10,
   },
-
-
+  button3: {
+    backgroundColor: colors_theme.button_green,
+    alignItems: 'center',
+    padding: 4,
+    height: 40,
+    width: 130,
+    marginTop: 10,
+    justifyContent: 'center',
+    borderRadius: 10,
+  },
   screen2: {
     flex: 1,
     //padding: 40,
@@ -127,6 +142,16 @@ export const styles = StyleSheet.create({
     marginTop: 50,
     flexDirection: 'column',
     alignItems: 'center',
-  }
+  },
+  disabledReward: {
+    opacity: 0.5, // Réduit l'opacité pour griser l'élément
+  },
+
+  disabledButton: {
+    backgroundColor: '#ccc', // Couleur de fond grise pour le bouton
+    opacity: 0.5, // Réduit l'opacité pour griser le bouton
+    // Ajoutez d'autres styles de désactivation du bouton si nécessaire
+  },
+
 
 });

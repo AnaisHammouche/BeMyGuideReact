@@ -1,19 +1,15 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {
-  SafeAreaView,
-  View,
-  Text,
-  Image,
-  Touchable,
-  TouchableOpacity,
-} from 'react-native';
-import {styles} from '../../styles/welcome_style';
+import React, { useEffect, useState } from 'react';
+import { SafeAreaView, View, Text, Image, TouchableOpacity } from 'react-native';
+import { styles } from '../../styles/welcome_style';
 import ProgressCircle from 'react-native-progress-circle';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {axiosNumberOfRoutesDone} from '../../api/userApi';
+import {Alert} from 'react-native';
+import { axiosNumberOfRoutesDone } from '../../api/userApi';
 
 const Rewards = () => {
-  const [rewardsRouteNumbers, setRewardsRouteNumbers] = useState(0);
+  const [rewardsRouteNumbersPercent, setRewardsRouteNumbersPercent] = useState(0);
+  const [dataNumber, setDataNumber] = useState(0);
+  const [rewardClaimed, setRewardClaimed] = useState(false);
 
   useEffect(() => {
     getRewardsRouteNumbers();
@@ -26,90 +22,79 @@ const Rewards = () => {
       const data = await axiosNumberOfRoutesDone(token);
       console.log(data);
       let dataNumber = Number(data);
-      console.log('claire : ' + dataNumber * 25);
-
-      setRewardsRouteNumbers(dataNumber * 25);
-      //   if (dataNumber >=4) {
-      //             console.log('4')
-
-      //             return ( <View><Text>New view</Text></View>);
-      //           } else {
-      //             console.log('< 4')
-      //           }
+      setDataNumber(dataNumber);
+      console.log('dataNumber : ' + dataNumber);
+      console.log('DataNumber*25 : ' + dataNumber * 25);
+      setRewardsRouteNumbersPercent(dataNumber * 25);
+      console.log('dataNumber : ' + dataNumber);
     } catch (error) {
       console.log('Error: ', error);
     }
   };
 
-  getRewardsRouteNumbers();
-
-  //   function ArrayRewards() {
-  //     if (dataNumber >=4) {
-  //         console.log('4')
-  //         return ( <View><Text>New view</Text></View>);
-  //       } else {
-  //         console.log('< 4')
-  //       }
-  //   }
+  const handleRewardClaim = () => {
+    if (rewardsRouteNumbersPercent >= 100) {
+      setRewardsRouteNumbersPercent(0);
+    }
+    setRewardClaimed(true);
+    Alert.alert("FONCEZ RÉCUPÉRER VOS -5% DE RÉDUCTION SUR VOTRE PASS NAVIGO À UN STAND RATP EN PRÉSENTANT VOTRE APPLICATION SUR L'ONGLET REWARDS !!!")
+  };
 
   return (
     <SafeAreaView style={styles.screen2}>
       <View style={styles.container2}>
         <Text style={styles.title2}>Mes récompenses</Text>
-        <Image
-          source={require('../../assets/close_eye.png')}
-          style={styles.icon3}
-        />
+        <Image source={require('../../assets/close_eye.png')} style={styles.icon3} />
       </View>
 
       <View style={styles.rewardsContainer}>
-        <View style={styles.reward}>
-          <ProgressCircle
-            percent={rewardsRouteNumbers} //variable
-            maxPercent={100}
-            startFromZero="true"
-            radius={50}
-            borderWidth={8}
-            color="#22D197"
-            shadowColor="#999"
-            bgColor="#fff">
-            <Image
-              source={require('../../assets/reward.png')}
-              style={styles.icon3}
-            />
-
-            <Text style={{fontSize: 18}}>{rewardsRouteNumbers}% </Text>
-          </ProgressCircle>
-          <Text>Récompense</Text>
-          <TouchableOpacity onPress={console.log('REWARD UTILISE')}>
-            <Text style={styles.buttonText}>VALIDER</Text>
-          </TouchableOpacity>
-        </View>
-        {rewardsRouteNumbers >= 4 ? (
+        {dataNumber > 4 && rewardsRouteNumbersPercent >= 100 && !rewardClaimed ? (
           <View style={styles.reward}>
             <ProgressCircle
-              percent={rewardsRouteNumbers} //variable
-              maxPercent={100}
-              startFromZero="true"
+              percent={rewardsRouteNumbersPercent}
+              startFromZero={true}
               radius={50}
               borderWidth={8}
               color="#22D197"
               shadowColor="#999"
-              bgColor="#fff">
-              <Image
-                source={require('../../assets/reward.png')}
-                style={styles.icon3}
-              />
-
-              <Text style={{fontSize: 18}}>{rewardsRouteNumbers}% </Text>
+              bgColor="#fff"
+            >
+              <Image source={require('../../assets/reward.png')} style={styles.icon3} />
+              <Text style={{ fontSize: 18 }}>0%</Text>
             </ProgressCircle>
             <Text>Récompense</Text>
+            <TouchableOpacity
+              onPress={handleRewardClaim}
+              disabled={rewardClaimed}
+              style={[styles.button, rewardClaimed && styles.disabledButton]}
+            >
+              <Text style={styles.buttonText}>VALIDER</Text>
+            </TouchableOpacity>
           </View>
-        ) : (
-          <View>
-            <Text>Less than 4</Text>
-          </View>
-        )}
+        ) : null}
+
+        <View style={[styles.reward, rewardClaimed && styles.disabledReward]}>
+          <ProgressCircle
+            percent={rewardsRouteNumbersPercent}
+            startFromZero={true}
+            radius={50}
+            borderWidth={8}
+            color="#22D197"
+            shadowColor="#999"
+            bgColor="#fff"
+          >
+            <Image source={require('../../assets/reward.png')} style={styles.icon3} />
+            <Text style={{ fontSize: 18 }}>{rewardsRouteNumbersPercent}%</Text>
+          </ProgressCircle>
+          <Text style={styles.BlackText} >Récompense</Text>
+          <TouchableOpacity
+            onPress={handleRewardClaim}
+            disabled={rewardClaimed}
+            style={[styles.button3, rewardClaimed && styles.disabledButton]}
+          >
+            <Text style={styles.text}>OBTENIR</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );
