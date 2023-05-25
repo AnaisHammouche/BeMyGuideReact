@@ -107,7 +107,8 @@ const RegisterBlind = ({ route }) => {
       <View style={styles.separator}>
         <Text style={styles.inputText}>GENRE</Text>
         <View style={styles.input}>
-          <TextInput />
+          {/* <TextInput /> */}
+          <View  style={styles.rnpicker}></View>
           <RNPickerSelect
             placeholder={{ label: 'GENRE', value: null }}
             autoCapitalize="none"

@@ -31,9 +31,9 @@ export const ProfileStyles = StyleSheet.create({
     padding: 5,
   },
   avatar: {
-    width: 150,
-    height: 150,
-    borderRadius: 100,
+    width: 130,
+    height: 130,
+    tintColor: 'gray'
   },
   separator: {
     alignItems: 'center',

@@ -40,6 +40,10 @@ export const styles = StyleSheet.create({
     paddingLeft: 10,
     fontFamily: 'RobotoMono-Medium',
   },
+  rnpicker: {
+    marginTop: 10,
+  },
+
   input: {
     height: 40,
     width: '85%',

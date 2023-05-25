@@ -1,5 +1,12 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import {View, Text, Image, SafeAreaView, TextInput,  TouchableOpacity,} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  SafeAreaView,
+  TextInput,
+  TouchableOpacity,
+} from 'react-native';
 import {axiosAuthUser} from '../api/userApi';
 import {axiosDeleteUser} from '../api/userApi';
 import {ProfileStyles} from '../styles/profileStyle';
@@ -76,13 +83,16 @@ export default function ProfileScreen() {
       <View style={ProfileStyles.containerAvatar}>
         <Image
           style={ProfileStyles.avatar}
-          source={{ uri: 'https://randomuser.me/api/portraits/men/1.jpg' }}
+          source={require('../../src/assets/unknownUser.png')}
           accessible={true}
           accessibilityLabel="Avatar"
         />
       </View>
       <View style={ProfileStyles.separator}>
-        <Text style={ProfileStyles.inputText} accessible={true} accessibilityLabel="Mon nom">
+        <Text
+          style={ProfileStyles.inputText}
+          accessible={true}
+          accessibilityLabel="Mon nom">
           MON NOM
         </Text>
         <TextInput
@@ -93,7 +103,10 @@ export default function ProfileScreen() {
           accessible={true}
           accessibilityLabel="Mon nom"
         />
-        <Text style={ProfileStyles.inputText} accessible={true} accessibilityLabel="Mon adresse e-mail">
+        <Text
+          style={ProfileStyles.inputText}
+          accessible={true}
+          accessibilityLabel="Mon adresse e-mail">
           MON ADRESSE EMAIL
         </Text>
         <TextInput
@@ -104,7 +117,10 @@ export default function ProfileScreen() {
           accessible={true}
           accessibilityLabel="Mon adresse e-mail"
         />
-        <Text style={ProfileStyles.inputText} accessible={true} accessibilityLabel="Mon numéro de téléphone">
+        <Text
+          style={ProfileStyles.inputText}
+          accessible={true}
+          accessibilityLabel="Mon numéro de téléphone">
           MON NUMÉRO DE TÉLÉPHONE
         </Text>
         <TextInput
@@ -117,13 +133,17 @@ export default function ProfileScreen() {
           accessibilityLabel="Mon numéro de téléphone"
         />
 
-        <ButtonDefault title={'Se déconnecter'} onPress= {deconnexionButton} accessibilityLabel="Déconnexion"/>
+        <ButtonDefault
+          title={'Se déconnecter'}
+          onPress={deconnexionButton}
+          accessibilityLabel="Déconnexion"
+        />
         <TouchableOpacity
           style={styles.buttonRedProfile}
           onPress={deleteProfileButton}>
           <Text style={styles.buttonText}>Supprimer mon compte</Text>
         </TouchableOpacity>
-         {/* <ButtonDefault title={'Supprimer mon compte'} onPress= {deleteProfileButton} accessibilityLabel="Supprimer"/> */}
+        {/* <ButtonDefault title={'Supprimer mon compte'} onPress= {deleteProfileButton} accessibilityLabel="Supprimer"/> */}
         {/* <ButtonDefault title={'Modifier'} accessible={true} accessibilityLabel="Modifier" /> */}
       </View>
     </SafeAreaView>
