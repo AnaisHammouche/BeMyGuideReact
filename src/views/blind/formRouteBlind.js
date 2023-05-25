@@ -119,8 +119,7 @@ const FormRouteBlind = ({navigation, route}) => {
 
         <TouchableOpacity
           style={styles.button}
-          onPress={postRoute}
-          onLongPress={() => console.log('pas de match désolé')}>
+          onPress={postRoute}>
           <Text style={styles.buttonText}>VALIDER</Text>
         </TouchableOpacity>
       </View>

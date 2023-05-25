@@ -34,7 +34,7 @@ export async function axiosRegister(
           alert(
             'Bienvenue ' + firstName + ', ravis de vous compter parmi nous.',
           );
-          navigation.navigate('Tab', {userIsBlind: isBlind});
+       //   navigation.navigate('Tab', {userIsBlind: isBlind});
           return;
         }
       })
