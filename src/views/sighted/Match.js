@@ -6,8 +6,6 @@ import {
   Image,
   TouchableOpacity,
   FlatList,
-  RefreshControl,
-  ScrollView,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../../styles/LoginBindStyle';
@@ -21,7 +19,6 @@ import {
 
 const Match = () => {
   const [data, setData] = useState('');
-  //const [idSeeker, setIdSeeker] = useState('');
   const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
@@ -70,39 +67,6 @@ const Match = () => {
     <SafeAreaView style={styles.screen}>
       <Text style={styles.title}>Match(s) trouvé(s) !</Text>
       <Image />
-      {/* <ScrollView
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={validatedMatch} />
-        }>
-        <Text style={styles.title}>Match(s) trouvé(s) !</Text>
-        <Image />
-        <View style={flatListStyles.container}>
-          <View style={flatListStyles.container}>
-            <Text style={displayStyles.text}>Départ : {data.fromStation}</Text>
-            <Text style={displayStyles.text}>Arrivée : {data.toStation}</Text>
-            <Text style={displayStyles.text}>Le : {data.dateRoute}</Text>
-            <Text style={displayStyles.text}>À : {data.startingTime}</Text>
-            <Text style={displayStyles.text}>
-              Avec : {data.firstname} {data.lastname}
-            </Text>
-            <Text style={displayStyles.text}>
-              Téléphone : {data.phoneNumber}
-            </Text>
-          </View>
-          <View style={displayStyles.buttonContainer}>
-            <TouchableOpacity
-              style={displayStyles.button}
-              onPress={validatedMatch}>
-              <Text style={displayStyles.connect}>VALIDER</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={displayStyles.buttonRed}
-              onPress={() => console.log('bouton annulé cliqué')}>
-              <Text style={displayStyles.connect}>ANNULER</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </ScrollView> */}
       <FlatList
         showsHorizontalScrollIndicator={false}
         refreshing={refreshing}

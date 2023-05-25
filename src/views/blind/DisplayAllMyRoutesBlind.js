@@ -56,60 +56,6 @@ const DisplayAllMyRoutesRoutesBlind = () => {
     );
   };
 
-  const renderItem = ({item}) => {
-    if (item.routeStatus == 'PENDING') {
-      return (
-        <View style={flatListStyles.container}>
-          <View style={flatListStyles.container}>
-            <Text style={displayStyles.text}>Départ : {item.fromStation}</Text>
-            <Text style={displayStyles.text}>Arrivée : {item.toStation}</Text>
-            <View style={displayStyles.dateContainer}>
-              <Text style={displayStyles.text}>Le : {item.dateRoute}</Text>
-              <Text style={displayStyles.textTime}>
-                À : {item.startingTime}
-              </Text>
-            </View>
-            <Text style={displayStyles.text}>Statut : En attente</Text>
-            <Text style={displayStyles.text}>Avec :</Text>
-            <Text style={displayStyles.text}>Numéro de téléphone :</Text>
-          </View>
-          <View style={displayStyles.buttonContainer}>
-            <TouchableOpacity
-              style={displayStyles.button}
-              onPress={() => console.log('Bouton validé cliqué')}>
-              <Text style={displayStyles.connect}>VALIDER</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      );
-    } else {
-      return (
-        <View style={flatListStyles.container}>
-          <View style={flatListStyles.container}>
-            <Text style={displayStyles.text}>Départ : {item.fromStation}</Text>
-            <Text style={displayStyles.text}>Arrivée : {item.toStation}</Text>
-            <View style={displayStyles.dateContainer}>
-              <Text style={displayStyles.text}>Le : {item.dateRoute}</Text>
-              <Text style={displayStyles.textTime}>
-                À : {item.startingTime}
-              </Text>
-            </View>
-            <Text style={displayStyles.text}>Statut : Confirmé</Text>
-            <Text style={displayStyles.text}>Avec :</Text>
-            <Text style={displayStyles.text}>Numéro de téléphone :</Text>
-          </View>
-          <View style={displayStyles.buttonContainer}>
-            <TouchableOpacity
-              style={displayStyles.button}
-              onPress={() => console.log('Bouton validé cliqué')}>
-              <Text style={displayStyles.connect}>VALIDER</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      );
-    }
-  };
-
   return (
     <SafeAreaView>
       <View>
@@ -190,7 +136,7 @@ const DisplayAllMyRoutesRoutesBlind = () => {
                     Statut : CONFIRMÉ {/* {item.routeStatus} */}
                   </Text>
                   <Text style={displayStyles.text}>
-                    Avec : {item.firstname} {item.lastname}
+                    Avec : {item.idRouteSeeker} {item.lastname}
                   </Text>
                   <Text style={displayStyles.text}>
                     Numéro de téléphone : {item.phoneNumber}
