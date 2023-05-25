@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Image, ImageBackground, SafeAreaView, Text, View} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {waitingStyles} from '../styles/waiting_style';
-import {AxiosRoutePut} from '../api/routeApi';
+import {AxiosRoutePut, axiosSendGrid} from '../api/routeApi';
 
 const Waiting = ({route, navigation}) => {
   const routeParamsToken = route.params.token;
@@ -17,6 +17,7 @@ const Waiting = ({route, navigation}) => {
       console.log('route ' + routeParamsToken);
       try {
         const response = await AxiosRoutePut(routeParamsToken, idRoute);
+        const sendgrid = await axiosSendGrid(idRoute);
       } catch (error) {
         console.log('Error: ', error);
       }

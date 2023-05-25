@@ -171,12 +171,9 @@ export async function AxiosDoneRoutes(token) {
     });
 }
 
-// Fonction pour envoyer une requête POST à SendGrid
-// export async function PostAxiosSendGrid (){
-//     axios
-//     .post(`${baseUrl}/sendgrid`, {})
-//     .then(async function (response) {
-//       console.log('dans le post sendgrid');
-//     });
-
-// }
+//Fonction pour envoyer une requête POST à SendGrid
+export async function axiosSendGrid(id) {
+  axios.post(`${baseUrl}/sendgrid/${id}`, {}).then(async function (response) {
+    console.log(response);
+  });
+}
