@@ -55,6 +55,16 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: 10,
   },
+  buttonRedProfile: {
+    backgroundColor: 'red',
+    alignItems: 'center',
+    height: 50,
+    width: 300,
+    marginTop: 20,
+    justifyContent: 'center',
+    borderRadius: 10,
+  },
+  
 
   connect: {
     color: 'white',

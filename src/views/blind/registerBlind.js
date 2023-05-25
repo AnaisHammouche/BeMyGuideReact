@@ -70,6 +70,14 @@ const RegisterBlind = ({ route }) => {
         navigation,
       );
       console.log("user.isBlind" + user.isBlind);
+      setGender(null);
+      setLastName('');
+      setEmail('');
+      setConfirmPassword('');
+      setPassword('');
+      setFirstName('');
+      setPhoneNumber('');
+      navigation.navigate('Tab', {userIsBlind: isBlind});
     } else {
       alert('Veuillez remplir les informations nécessaires à votre inscription.');
     }

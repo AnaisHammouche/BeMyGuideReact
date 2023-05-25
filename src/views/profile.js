@@ -1,12 +1,12 @@
 import React, {useState, useEffect, useCallback} from 'react';
-import {View, Text, Image, SafeAreaView, TextInput} from 'react-native';
+import {View, Text, Image, SafeAreaView, TextInput,  TouchableOpacity,} from 'react-native';
 import {axiosAuthUser} from '../api/userApi';
 import {axiosDeleteUser} from '../api/userApi';
 import {ProfileStyles} from '../styles/profileStyle';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ButtonDefault from '../components/button';
 import {useNavigation} from '@react-navigation/native';
-
+import styles from '../styles/formRoute_style';
 export default function ProfileScreen() {
   const navigation = useNavigation();
   const [data, setData] = useState([]);
@@ -118,8 +118,13 @@ export default function ProfileScreen() {
         />
 
         <ButtonDefault title={'Se déconnecter'} onPress= {deconnexionButton} accessibilityLabel="Déconnexion"/>
-        <ButtonDefault title={'Supprimer mon compte'} onPress= {deleteProfileButton} accessibilityLabel="Supprimer"/>
-        <ButtonDefault title={'Modifier'} accessible={true} accessibilityLabel="Modifier" />
+        <TouchableOpacity
+          style={styles.buttonRedProfile}
+          onPress={deleteProfileButton}>
+          <Text style={styles.buttonText}>Supprimer mon compte</Text>
+        </TouchableOpacity>
+         {/* <ButtonDefault title={'Supprimer mon compte'} onPress= {deleteProfileButton} accessibilityLabel="Supprimer"/> */}
+        {/* <ButtonDefault title={'Modifier'} accessible={true} accessibilityLabel="Modifier" /> */}
       </View>
     </SafeAreaView>
   );
