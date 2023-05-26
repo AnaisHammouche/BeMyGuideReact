@@ -12,6 +12,7 @@ const Rewards = () => {
   const [dataNumber, setDataNumber] = useState(0);
   const [rewardClaimed, setRewardClaimed] = useState(false);
 
+
   useEffect(() => {
     getRewardsRouteNumbers();
   }, []);
@@ -42,6 +43,9 @@ const Rewards = () => {
       "FONCEZ RÉCUPÉRER VOS -5% DE RÉDUCTION SUR VOTRE PASS NAVIGO À UN STAND RATP EN PRÉSENTANT VOTRE APPLICATION SUR L'ONGLET REWARDS !!!",
     );
   };
+
+  const isButtonDisabled = dataNumber < 4 || rewardsRouteNumbersPercent < 100 || rewardClaimed;
+
 
   return (
     <SafeAreaView style={styles.screen2}>
@@ -75,9 +79,9 @@ const Rewards = () => {
             <Text>Récompense</Text>
             <TouchableOpacity
               onPress={handleRewardClaim}
-              disabled={rewardClaimed}
-              style={[styles.button, rewardClaimed && styles.disabledButton]}>
-              <Text style={styles.buttonText}>VALIDER</Text>
+              disabled={isButtonDisabled}
+              style={[styles.button3, rewardClaimed && styles.disabledButton]}>
+              <Text style={styles.buttonText}>OBTENIR</Text>
             </TouchableOpacity>
           </View>
         ) : null}
@@ -100,7 +104,7 @@ const Rewards = () => {
           <Text style={styles.BlackText}>Récompense</Text>
           <TouchableOpacity
             onPress={handleRewardClaim}
-            disabled={rewardClaimed}
+            disabled={isButtonDisabled}
             style={[styles.button3, rewardClaimed && styles.disabledButton]}>
             <Text style={styles.text}>OBTENIR</Text>
           </TouchableOpacity>
