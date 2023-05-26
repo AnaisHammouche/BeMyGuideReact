@@ -21,9 +21,19 @@ const displayStyles = StyleSheet.create({
     marginBottom: 10,
   },
   text: {
+    fontFamily: 'RobotoMono-Bold',
     fontWeight: '700',
     fontSize: 17,
     marginBottom: 10,
+    marginLeft: 10,
+  },
+  redText: {
+    fontFamily: 'RobotoMono-Bold',
+    fontWeight: '700',
+    fontSize: 20,
+    marginBottom: 10,
+    marginLeft: 10,
+    color: 'red',
   },
 
   input: {
@@ -44,7 +54,8 @@ const displayStyles = StyleSheet.create({
   },
 
   textTime: {
-    marginLeft: 20,
+    fontFamily: 'RobotoMono-Bold',
+    marginLeft: 30,
     fontWeight: '700',
     fontSize: 17,
     marginBottom: 10,

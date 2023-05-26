@@ -121,6 +121,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   icon3: {
+    marginBottom: 10,
     width: 30,
     height: 30,
     resizeMode: 'contain',

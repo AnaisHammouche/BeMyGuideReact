@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { SafeAreaView, View, Text, Image, TouchableOpacity } from 'react-native';
-import { styles } from '../../styles/welcome_style';
+import React, {useEffect, useState} from 'react';
+import {SafeAreaView, View, Text, Image, TouchableOpacity} from 'react-native';
+import {styles} from '../../styles/welcome_style';
 import ProgressCircle from 'react-native-progress-circle';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Alert} from 'react-native';
-import { axiosNumberOfRoutesDone } from '../../api/userApi';
+import {axiosNumberOfRoutesDone} from '../../api/userApi';
 
 const Rewards = () => {
-  const [rewardsRouteNumbersPercent, setRewardsRouteNumbersPercent] = useState(0);
+  const [rewardsRouteNumbersPercent, setRewardsRouteNumbersPercent] =
+    useState(0);
   const [dataNumber, setDataNumber] = useState(0);
   const [rewardClaimed, setRewardClaimed] = useState(false);
 
@@ -37,18 +38,25 @@ const Rewards = () => {
       setRewardsRouteNumbersPercent(0);
     }
     setRewardClaimed(true);
-    Alert.alert("FONCEZ RÉCUPÉRER VOS -5% DE RÉDUCTION SUR VOTRE PASS NAVIGO À UN STAND RATP EN PRÉSENTANT VOTRE APPLICATION SUR L'ONGLET REWARDS !!!")
+    Alert.alert(
+      "FONCEZ RÉCUPÉRER VOS -5% DE RÉDUCTION SUR VOTRE PASS NAVIGO À UN STAND RATP EN PRÉSENTANT VOTRE APPLICATION SUR L'ONGLET REWARDS !!!",
+    );
   };
 
   return (
     <SafeAreaView style={styles.screen2}>
       <View style={styles.container2}>
+        <Image
+          source={require('../../assets/close_eye.png')}
+          style={styles.icon3}
+        />
         <Text style={styles.title2}>Mes récompenses</Text>
-        <Image source={require('../../assets/close_eye.png')} style={styles.icon3} />
       </View>
 
       <View style={styles.rewardsContainer}>
-        {dataNumber > 4 && rewardsRouteNumbersPercent >= 100 && !rewardClaimed ? (
+        {dataNumber > 4 &&
+        rewardsRouteNumbersPercent >= 100 &&
+        !rewardClaimed ? (
           <View style={styles.reward}>
             <ProgressCircle
               percent={rewardsRouteNumbersPercent}
@@ -57,17 +65,18 @@ const Rewards = () => {
               borderWidth={8}
               color="#22D197"
               shadowColor="#999"
-              bgColor="#fff"
-            >
-              <Image source={require('../../assets/reward.png')} style={styles.icon3} />
-              <Text style={{ fontSize: 18 }}>0%</Text>
+              bgColor="#fff">
+              <Image
+                source={require('../../assets/reward.png')}
+                style={styles.icon3}
+              />
+              <Text style={{fontSize: 18}}>0%</Text>
             </ProgressCircle>
             <Text>Récompense</Text>
             <TouchableOpacity
               onPress={handleRewardClaim}
               disabled={rewardClaimed}
-              style={[styles.button, rewardClaimed && styles.disabledButton]}
-            >
+              style={[styles.button, rewardClaimed && styles.disabledButton]}>
               <Text style={styles.buttonText}>VALIDER</Text>
             </TouchableOpacity>
           </View>
@@ -81,17 +90,18 @@ const Rewards = () => {
             borderWidth={8}
             color="#22D197"
             shadowColor="#999"
-            bgColor="#fff"
-          >
-            <Image source={require('../../assets/reward.png')} style={styles.icon3} />
-            <Text style={{ fontSize: 18 }}>{rewardsRouteNumbersPercent}%</Text>
+            bgColor="#fff">
+            <Image
+              source={require('../../assets/reward.png')}
+              style={styles.icon3}
+            />
+            <Text style={{fontSize: 18}}>{rewardsRouteNumbersPercent}%</Text>
           </ProgressCircle>
-          <Text style={styles.BlackText} >Récompense</Text>
+          <Text style={styles.BlackText}>Récompense</Text>
           <TouchableOpacity
             onPress={handleRewardClaim}
             disabled={rewardClaimed}
-            style={[styles.button3, rewardClaimed && styles.disabledButton]}
-          >
+            style={[styles.button3, rewardClaimed && styles.disabledButton]}>
             <Text style={styles.text}>OBTENIR</Text>
           </TouchableOpacity>
         </View>
