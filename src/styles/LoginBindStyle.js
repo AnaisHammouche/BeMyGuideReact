@@ -32,13 +32,14 @@ const styles = StyleSheet.create({
   titleMatch: {
     fontFamily: 'RobotoMono-Bold',
     textAlign: 'center',
-    fontSize: 35,
+    fontSize: 30,
     marginTop: 30,
     marginBottom: 20,
   },
   icon4: {
     width: 40,
     height: 40,
+    marginVertical: 10,
   },
 });
 

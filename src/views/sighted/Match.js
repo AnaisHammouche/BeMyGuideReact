@@ -70,7 +70,7 @@ const Match = () => {
           source={require('../../assets/close_eye.png')}
           style={styles.icon3}
         />
-        <Text style={styles.titleMatch}>Match(s) trouvé(s) !</Text>
+        <Text style={styles.titleMatch}>Match(s) trouvé(s)!</Text>
       </View>
       <FlatList
         showsHorizontalScrollIndicator={false}
@@ -99,18 +99,18 @@ const Match = () => {
                   Téléphone : {item.phoneNumber}
                 </Text>
                 <View style={displayStyles.buttonContainer}>
-                 <Image
-          source={require('../../assets/danger-sign.png')}
-          style={styles.icon4}
-        />
-                <Text style={displayStyles.redText}>
-                  ATTENTION : Ces coordonnées s'autodétruiront au clic du bouton
-                  valider, veuillez vous munir de votre plus beau stylo pour les
-                  noter !
-                </Text>
+                  <Image
+                    source={require('../../assets/danger-sign.png')}
+                    style={styles.icon4}
+                  />
+                  <Text style={displayStyles.redText}>
+                    ATTENTION : Ces coordonnées s'autodétruiront au clic du
+                    bouton valider, veuillez vous munir de votre plus beau stylo
+                    pour les noter !
+                  </Text>
                 </View>
               </View>
-              <View style={displayStyles.buttonContainer}>
+              <View style={displayStyles.buttonContainer2}>
                 <TouchableOpacity
                   style={displayStyles.button}
                   onPress={validatedMatch}>

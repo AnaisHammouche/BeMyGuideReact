@@ -137,8 +137,14 @@ const DisplayAllMyRoutesRoutesBlind = () => {
                   <Text style={displayStyles.text}>
                     Avec : {item.idRouteSeeker.firstname} {item.lastname}
                   </Text>
+                  <Text style={displayStyles.text2}>
+                    Fonctionnalité à venir
+                  </Text>
                   <Text style={displayStyles.text}>
                     Numéro de téléphone : {item.phoneNumber}
+                  </Text>
+                  <Text style={displayStyles.text2}>
+                    Fonctionnalité à venir
                   </Text>
                 </View>
                 <View style={displayStyles.buttonContainer}>
@@ -147,8 +153,13 @@ const DisplayAllMyRoutesRoutesBlind = () => {
                     onPress={() => {
                       doneRoutes();
                     }}>
-                    <Text style={displayStyles.connect}>VALIDER</Text>
+                    <Text style={displayStyles.connect}>CONFIRMER</Text>
                   </TouchableOpacity>
+                  <Text style={displayStyles.textExplication}>
+                    Veuillez nous confirmer que le trajet a bien eu lieu avec
+                    votre compagnon de voyage, afin que nous lui attribuions une
+                    récompense.
+                  </Text>
                   {/* <TouchableOpacity
                       style={displayStyles.buttonRed}
                       onPress={() => console.log('bouton annulé cliqué')}>
